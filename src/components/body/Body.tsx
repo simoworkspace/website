@@ -24,7 +24,7 @@ export const Body = () => {
                             <h1>{x.name}</h1>
                             <div>{x.description.length > 80 ? x.description.slice(0, 80) + '...' : x.description}</div>
                             <div className='buttons'>
-                                <div><button className='button-adicionar-bot'>Me Adicione</button></div>
+                                <div><button className='button-adicionar-bot'>Adicionar</button></div>
                                 <div><button className='button-pagina-bot'>Mais informações</button></div>
                             </div>
                         </div>
