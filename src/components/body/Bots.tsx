@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import './style.css';
 import { API_KEY, API_URL } from '../../../config.json';
 import { BotType } from '../../../types';
-export const Body = () => {
+import { Skeleton } from '../loader/Skeleton';
+
+export const Bots = () => {
     const [data, setData] = useState<any>(null);
 
     useEffect(() => {
@@ -12,7 +14,7 @@ export const Body = () => {
             setData(response2);
         }
         fetchData();
-    }, [])
+    }, [data])
 
     return (
         data ? (
@@ -21,7 +23,7 @@ export const Body = () => {
                     data.map((x: BotType) => (
                         <div key={x._id} className='bot-card'>
                             <img src={`https://cdn.discordapp.com/avatars/${x._id}/${x.avatar}.png?size=2048`} alt={x.name} />
-                            <h1>{x.name}</h1>
+                            <h1 className='text-center text-[24px]'>{x.name}</h1>
                             <div>{x.description.length > 80 ? x.description.slice(0, 80) + '...' : x.description}</div>
                             <div className='buttons'>
                                 <div><button className='button-adicionar-bot'>Adicionar</button></div>
@@ -31,14 +33,6 @@ export const Body = () => {
                     ))
                 }
             </div>
-        ) : (
-            <div className="loader">
-                <div className="circle"></div>
-                <div className="circle"></div>
-                <div className="circle"></div>
-                <div className="circle"></div>
-                <div className="circle"></div>
-            </div>
-        )
+        ) : (<Skeleton></Skeleton>)
     );
 }

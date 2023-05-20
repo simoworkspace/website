@@ -1,0 +1,63 @@
+.button-skeleton {
+    margin: 10px;
+    height: 40px;
+    width: 170px;
+    border-radius: 20px;
+    background-color: #24313d;
+}
+
+.posts-bots-skeleton {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 30px;
+    margin: 10px;
+}
+
+.bot-card-skeleton {
+    background: #151b27;
+    border: 3px solid transparent;
+    border-radius: 10px;
+}
+
+.bot-card-skeleton div {
+    background-color: #24313d;
+    height: 72px;
+    width: 220px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+.bot-card-skeleton h2 {
+    margin-top: 10px;
+    margin-right: 10px;
+    background-color: #24313d;
+    border-radius: 80px;
+    width: 100px;
+    height: 100px;
+    float: right;
+}
+
+.bot-card-skeleton h1 {
+    background-color: #24313d;
+    height: 24px;
+    width: 220px;
+    border-radius: 10px;
+}
+
+.skeleton {
+    animation: loading 1s linear infinite alternate;
+}
+
+@keyframes loading {
+    0% {
+        background-color: #24313d
+    }
+
+    50% {
+        background-color: #313f4d
+    }
+
+    100% {
+        background-color: #344453
+    }
+}

@@ -15,12 +15,12 @@ export const Header: React.FC = () => {
     };
 
     return (
-        <header>
+        <>
             <h1 className='text-white text-[32px] mx-10 my-3'><strong>Bot</strong>List</h1>
             <form onSubmit={handleSubmit} className='pesquisar-bot-form'>
                 <input type='text' placeholder='Digite o nome de um bot.' value={valorInput} onChange={handleChange}/>
                 <button type="submit"><img src={searchIcon} alt='Search Icon'/></button>
             </form>
-        </header>
+        </>
     );
 };

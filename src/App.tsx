@@ -1,12 +1,16 @@
 import { Header } from './components/header/Header';
-import { Body } from './components/body/Body';
+import { Bots } from './components/body/Bots';
 
 function App() {
     return (
-        <div>
-            <Header />
-            <Body />
-        </div>
+        <>
+            <header>
+                <Header />
+            </header>
+            <body>
+                <Bots />
+            </body>
+        </>
     );
 }
 
