@@ -1,5 +1,5 @@
-import { Header } from './components/header/Header';
-import { Bots } from './components/body/Bots';
+import { Header } from './components/Header';
+import { Bots } from './components/Bots';
 
 function App() {
     return (

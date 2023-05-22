@@ -9,3 +9,11 @@
     padding: 0;
     font-family: 'Inter', sans-serif;
 }
+
+body {
+    background: linear-gradient(135deg, #121721 0%, #000000 100%) fixed;
+}
+
+.card-bc {
+    background: linear-gradient(#313131, #313131) padding-box, linear-gradient(to right, #1b2332, #2d3a53) border-box;
+}
