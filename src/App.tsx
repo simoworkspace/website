@@ -1,5 +1,8 @@
 import { Header } from './components/Header';
 import { Bots } from './components/Bots';
+import { Addbot } from './pages/Addbot';
+import { Routes, Route, Router } from 'react-router-dom';
+import { NotFound } from './pages/NotFound';
 
 function App() {
     return (
@@ -8,7 +11,11 @@ function App() {
                 <Header />
             </header>
             <body>
-                <Bots />
+                <Routes>
+                    <Route path='/' element={<Bots/>}/>
+                    <Route path='addbot' element={<Addbot/>}/>
+                    <Route path='*' element={<NotFound/>}/>
+                </Routes>
             </body>
         </>
     );

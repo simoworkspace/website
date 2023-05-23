@@ -1,4 +1,4 @@
-import searchIcon from '../../assets/search.svg';
+import searchIcon from '../assets/search.svg';
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 
 export const Header: React.FC = () => {
