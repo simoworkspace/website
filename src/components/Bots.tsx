@@ -25,8 +25,8 @@ export const Bots = () => {
                             <h1 className='text-center text-[24px]'>{x.name}</h1>
                             <div className=''>{x.description.length > 80 ? x.description.slice(0, 80) + '...' : x.description}</div>
                             <div className='mt-2 ml-2 mb-2 flex flex-col'>
-                                <div><button className='max-w-full max-h-full w-[170px] h-[40px] bg-gradient-to-l from-blue-button1 via-blue-button2 to-blue-button1 border-2 border-black text-white rounded-full hover:bg-right bg-[length:250%] transition-all duration-500 hover:scale-110 focus:scale-110 focus:bg-right focus:outline focus:outline-1 focus:outline-offset-1 focus:utline-1'>Adicionar</button></div>
-                                <div><button className='max-w-full max-h-full w-[170px] h-[40px] bg-gradient-to-l from-blue-button1 via-blue-button2 to-blue-button1 border-2 border-black text-white rounded-full mt-2 hover:bg-right bg-[length:250%] transition-all duration-500 hover:scale-110 focus:scale-110 focus:bg-right focus:outline focus:outline-1 focus:outline-offset-1 focus:utline-1'>Mais informações</button></div>
+                                <div><button className='max-w-full max-h-full w-[170px] h-[40px] bg-gradient-to-l from-blue-button1 via-blue-button2 to-blue-button1 border-2 border-black text-white rounded-full hover:bg-right bg-[length:250%] transition-bg duration-500 hover:scale-110 focus:scale-110 focus:bg-right focus:outline focus:outline-1 focus:outline-offset-1 focus:utline-1 focus:duration-0'>Adicionar</button></div>
+                                <div><button className='max-w-full max-h-full w-[170px] h-[40px] bg-gradient-to-l from-blue-button1 via-blue-button2 to-blue-button1 border-2 border-black text-white rounded-full mt-2 hover:bg-right bg-[length:250%] transition-bg duration-500 hover:scale-110 focus:scale-110 focus:bg-right focus:outline focus:outline-1 focus:outline-offset-1 focus:utline-1 focus:duration-0'>Mais informações</button></div>
                             </div>
                         </div>
                     ))

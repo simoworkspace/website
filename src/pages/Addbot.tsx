@@ -1,5 +1,9 @@
 export const Addbot = () => {
     return(
-        <div>oi</div>
+        <div>
+            <form>
+                <input type='text' />
+            </form>
+        </div>
     )
 };

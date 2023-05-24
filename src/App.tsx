@@ -1,7 +1,7 @@
 import { Header } from './components/Header';
 import { Bots } from './components/Bots';
 import { Addbot } from './pages/Addbot';
-import { Routes, Route, Router } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { NotFound } from './pages/NotFound';
 
 function App() {
