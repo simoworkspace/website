@@ -3,12 +3,14 @@ import { Bots } from './components/Bots';
 import { Addbot } from './pages/Addbot';
 import { Routes, Route } from 'react-router-dom';
 import { NotFound } from './pages/NotFound';
+import { Mobilemenu } from './components/Mobilemenu';
 
 function App() {
     return (
         <>
+        <Mobilemenu/>
             <header>
-                <Header />
+                <Header/>
             </header>
             <body>
                 <Routes>

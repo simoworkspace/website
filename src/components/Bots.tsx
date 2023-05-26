@@ -21,7 +21,7 @@ export const Bots = () => {
                 {
                     data.map((x: BotType) => (
                         <div key={x._id} className='card-bc p-1 border-transparent border-[4px] rounded-[10px]'>
-                            <img className= 'w-[min(100%,100px)] h-[min(100%,100px)] rounded-full mt-2 mr-2 float-right' src={`https://cdn.discordapp.com/avatars/${x._id}/${x.avatar}.png?size=2048`} alt={x.name} />
+                            <img className='w-[min(100%,100px)] h-[min(100%,100px)] rounded-full mt-2 mr-2 float-right' src={`https://cdn.discordapp.com/avatars/${x._id}/${x.avatar}.png?size=2048`} alt={x.name} />
                             <h1 className='text-center text-[24px]'>{x.name}</h1>
                             <div className=''>{x.description.length > 80 ? x.description.slice(0, 80) + '...' : x.description}</div>
                             <div className='mt-2 ml-2 mb-2 flex flex-col'>
