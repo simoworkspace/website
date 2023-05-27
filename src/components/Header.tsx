@@ -27,7 +27,7 @@ export const Header: React.FC = () => {
                 </form>
             </div>
             <div className='flex ml-10 w-[600px] items-center xl:hidden'>
-            <Link to='/addbot'><button className='text-white bg-[#445b86] h-[55px] rounded-[10px] p-1 border-[#3a61aa] border-2 focus:outline focus:outline-2 focus:outline-offset-2 hover:scale-110 focus:scale-110 focus:duration-0 transition-all duration-500'>Adicione seu bot!</button></Link>:
+                <Link to='/addbot'><button className='text-white bg-[#445b86] h-[55px] rounded-[10px] p-1 border-[#3a61aa] border-2 focus:outline focus:outline-2 focus:outline-offset-2 hover:scale-110 focus:scale-110 focus:duration-0 transition-all duration-500'>Adicione seu bot!</button></Link>:
             </div>
             <div className='flex text-white w-[500px] h-[50px] xl:hidden'>
                 <div className='flex items-center h-[100%] border-[#858585] border-[1px] bg-black p-6'>

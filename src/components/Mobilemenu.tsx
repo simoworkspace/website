@@ -1,35 +1,36 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import searchIcon from '../assets/svg/search.svg';
 import plusIcon from '../assets/svg/plus.svg';
 import listIcon from '.././assets/svg/list.svg';
+const avatarImage: string = 'https://cdn.discordapp.com/avatars/955095844275781693/511a594d8af5dd14849cc3e16567f534.png?size=2048';
 
 export const Mobilemenu = () => {
     return (
-        <div className='flex items-center justify-center'>
-            <div className='hidden xl:flex w-[80vw] xl:fixed xl:items-center xl:justify-center xl:rounded-[30px] xl:bottom-2 xl:bg-[#000000]'>
-                <nav className='flex w-[80vw] h-[40px]'>
-                    <div className='flex flex-row'>
-                        <Link to='/'>
-                            <img className='bg-black' src={plusIcon} alt='Plus Icon' />
-                        </Link>
-                    </div>
-                    <div>
-                        <Link to='/'>
-                            <img className='bg-black' src={listIcon} alt='Search Icon' />
-                        </Link>
-                    </div>
-                    <div>
-                        <Link to='/'>
-                            <img className='bg-black' src={searchIcon} alt='Search Icon' />
-                        </Link>
-                    </div>
-                    <div className='flex w-[100%]'>
-                        <Link to='/' className='justify-end items-end'>
-                            <img className='rounded-full w-14 h-14' src='https://cdn.discordapp.com/avatars/955095844275781693/511a594d8af5dd14849cc3e16567f534.png?size=2048' alt='User Image' />
-                        </Link>
-                    </div>
-                </nav>
+        <div className='hidden xl:fixed xl:bottom-0 xl:left-0 xl:w-full xl:bg-gray-900 xl:text-white xl:py-3 xl:flex xl:justify-around xl:items-center'>
+            <div className='flex flex-col items-center'>
+                <Link to='/'>
+                    <img src={searchIcon} alt='Ícone 1' className='h-6 w-6 text-white' />
+                </Link>
+                <span className='text-xs'>Procurar bot</span>
+            </div>
+            <div className='flex flex-col items-center'>
+                <Link to='/'>
+                    <img src={plusIcon} alt='Ícone 2' className='h-6 w-6 text-white' />
+                </Link>
+                <span className='text-xs'>Adicionar bot</span>
+            </div>
+            <div className='flex flex-col items-center'>
+                <Link to='/'>
+                    <img src={listIcon} alt='Ícone 3' className='h-6 w-6 text-white' />
+                </Link>
+                <span className='text-xs'>Servidores</span>
+            </div>
+            <div className='flex flex-col items-center'>
+                <Link to='/'>
+                    <img className='h-6 w-6 text-white rounded-full' src={avatarImage} alt='User Avatar' />
+                </Link>
+                <span className='text-xs'>Perfil</span>
             </div>
         </div>
-    )
+    );
 };
