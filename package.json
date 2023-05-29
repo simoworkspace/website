@@ -13,9 +13,12 @@
     "@heroicons/react": "^2.0.18",
     "@types/axios": "^0.14.0",
     "@types/dotenv": "^8.2.0",
+    "@types/js-cookie": "^3.0.3",
     "axios": "^1.4.0",
     "dotenv": "^16.0.3",
+    "js-cookie": "^3.0.5",
     "react": "^18.2.0",
+    "react-cookie": "^4.1.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2"
   },
