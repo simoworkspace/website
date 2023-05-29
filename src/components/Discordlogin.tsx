@@ -32,7 +32,7 @@ const UserLogin: React.FC = () => {
             {user ? (
                 <div>
                     <button onClick={handleSetArrow} className='flex text-white w-[190px] h-[50px] xl:hidden'>
-                        <div className={`flex items-center h-[100%] border-[#858585] border-[1px] bg-black p-6 ${arrowState ? 'border-b-black' : ''}`}>
+                        <div className={`flex items-center h-[100%] transition-all duration-100 ${arrowState ? 'border-white' : 'border-[#858585]'} border-[1px] bg-black p-6 ${arrowState ? 'border-b-black' : ''}`}>
                             <img className='w-[30px] h-[30px] rounded-full float-right' src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=2048`} alt='User Image' />
                             <div className='m-2'>{user.username}</div>
                             <div>
@@ -40,21 +40,21 @@ const UserLogin: React.FC = () => {
                             </div>
                         </div>
                     </button>
-                    <div className={`xl:hidden border-[#858585] top-[61px] border-[1px] border-t-[0px] absolute bg-black text-white w-[164px] ${arrowState ? 'block' : 'hidden'}`}>
+                    <div className={`xl:hidden transition-all duration-300 border-white border-[1px] border-t-[0px] absolute bg-black text-white w-[164px] top-[61px] ${arrowState ? 'opacity-100' : 'opacity-0'}`}>
                         <div className='flex flex-col justify-center'>
-                            <button className='flex justify-center my-1 hover:bg-gray-900 rounded-md m-[2px] transition-all'>
+                            <button className='p-1 flex justify-center my-1 hover:bg-[#3a3a3a] rounded-md m-[2px] transition-all'>
                                 <div className='flex-2 flex'>
                                     <img className='mr-3' src={dashIcon} alt='Dashboard Icon' />
                                     <span>Dashboard</span>
                                 </div>
                             </button>
-                            <button className='flex justify-center my-1 hover:bg-gray-900 rounded-md m-[2px] transition-all'>
+                            <button className='p-1 flex justify-center my-1 hover:bg-[#3a3a3a] rounded-md m-[2px] transition-all'>
                                 <div className='flex-2 flex'>
                                     <img className='mr-3' src={plusIcon} alt='Plus Icon' />
                                     <span>Adicionar bot</span>
                                 </div>
                             </button>
-                            <button className='flex justify-center my-1 hover:bg-gray-900 rounded-md m-[2px] transition-all'>
+                            <button className='p-1 flex justify-center my-1 hover:bg-[#3a3a3a] rounded-md m-[2px] transition-all'>
                                 <div className='flex-2 flex'>
                                     <img className='mr-3' src={logoutIcon} alt='Logout Icon' />
                                     <span>Sair</span>
