@@ -11,7 +11,8 @@ export const Botloading = () => {
                         <div className='animate-pulse bg-skeleton-blue w-[170px] h-[40px] m-2 rounded-[20px]'></div>
                     </div>
                 </div>
-            )}
+            )
+            }
         </div>
     )
 };

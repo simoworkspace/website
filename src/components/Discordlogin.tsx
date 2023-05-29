@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import arrow from '../assets/svg/arrow.svg';
+import arrowIcon from '../assets/svg/arrow.svg';
+import logoutIcon from '../assets/svg/logout.svg';
+import plusIcon from '../assets/svg/plus.svg';
+import dashIcon from '../assets/svg/dashboard.svg';
 
 const UserLogin: React.FC = () => {
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<boolean | any>(false);
+
 
     useEffect(() => {
         const getUserData = () => {
-            const userCookie = document.cookie.split('discordUser=')[1]
-            if (userCookie == undefined) {
-                setUser(null)
+            const userCookie: string = document.cookie.split('discordUser=')[1]
+            if (!userCookie) {
+                setUser(false)
             } else {
-                const userData = JSON.parse(decodeURIComponent(userCookie));
+                const userData: string = JSON.parse(decodeURIComponent(userCookie));
                 setUser(userData);
             }
         };
@@ -19,14 +23,44 @@ const UserLogin: React.FC = () => {
         getUserData();
     }, []);
 
+    const [arrowState, setArrowState] = useState<boolean>(false);
+
+    const handleSetArrow = () => setArrowState(!arrowState);
+
     return (
         <div>
             {user ? (
-                <div className='flex text-white w-[190px] h-[50px] xl:hidden'>
-                    <div className='flex items-center h-[100%] border-[#858585] border-[1px] bg-black p-6'>
-                        <img className='w-[30px] h-[30px] rounded-full float-right' src='https://cdn.discordapp.com/avatars/955095844275781693/511a594d8af5dd14849cc3e16567f534.png?size=2048' alt='User Image' />
-                        <div className='m-2'>Spyei</div>
-                        <Link to='/auth'><img className='w-[23px] h-[23px] ml-1 rotate-180 transition-all hover:rotate-0' src={arrow} alt='Arrow Icon' /></Link>
+                <div>
+                    <button onClick={handleSetArrow} className='flex text-white w-[190px] h-[50px] xl:hidden'>
+                        <div className={`flex items-center h-[100%] border-[#858585] border-[1px] bg-black p-6 ${arrowState ? 'border-b-black' : ''}`}>
+                            <img className='w-[30px] h-[30px] rounded-full float-right' src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=2048`} alt='User Image' />
+                            <div className='m-2'>{user.username}</div>
+                            <div>
+                                <img className={`w-[23px] h-[23px] ml-1 transition-all ${arrowState ? 'rotate-180' : 'rotate-0'}`} src={arrowIcon} alt='Arrow Icon' />
+                            </div>
+                        </div>
+                    </button>
+                    <div className={`xl:hidden border-[#858585] top-[61px] border-[1px] border-t-[0px] absolute bg-black text-white w-[164px] ${arrowState ? 'block' : 'hidden'}`}>
+                        <div className='flex flex-col justify-center'>
+                            <button className='flex justify-center my-1 hover:bg-gray-900 rounded-md m-[2px] transition-all'>
+                                <div className='flex-2 flex'>
+                                    <img className='mr-3' src={dashIcon} alt='Dashboard Icon' />
+                                    <span>Dashboard</span>
+                                </div>
+                            </button>
+                            <button className='flex justify-center my-1 hover:bg-gray-900 rounded-md m-[2px] transition-all'>
+                                <div className='flex-2 flex'>
+                                    <img className='mr-3' src={plusIcon} alt='Plus Icon' />
+                                    <span>Adicionar bot</span>
+                                </div>
+                            </button>
+                            <button className='flex justify-center my-1 hover:bg-gray-900 rounded-md m-[2px] transition-all'>
+                                <div className='flex-2 flex'>
+                                    <img className='mr-3' src={logoutIcon} alt='Logout Icon' />
+                                    <span>Sair</span>
+                                </div>
+                            </button>
+                        </div>
                     </div>
                 </div>
             ) : (
@@ -36,7 +70,7 @@ const UserLogin: React.FC = () => {
                     </Link>
                 </div>
             )}
-        </div >
+        </div>
     );
 };
 
