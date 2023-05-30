@@ -31,7 +31,7 @@ const UserLogin: React.FC = () => {
             {user ? (
                 <>
                     <div>
-                        <button onClick={handleSetArrow} className='flex text-white w-[190px] h-[50px] xl:hidden'>
+                        <button onClick={handleSetArrow} onBlur={() => {setArrowState(false)}} className='flex text-white w-[190px] h-[50px] xl:hidden'>
                             <div className={`flex items-center h-[100%] transition-all duration-100 ${arrowState ? 'border-white' : 'border-[#858585]'} border-[1px] bg-black p-6`}>
                                 <img className='w-[30px] h-[30px] rounded-full float-right' src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=2048`} alt='User Image' />
                                 <div className='m-2'>{user.username}</div>
