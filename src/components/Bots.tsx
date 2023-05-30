@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { API_KEY, API_URL } from '../../config.json';
 import { BotType } from '../../types';
 import { Botloading } from './Botloading';
+import { Link } from 'react-router-dom';
 
 export const Bots = () => {
     const [data, setData] = useState<any>(null);
@@ -25,8 +26,20 @@ export const Bots = () => {
                             <h1 className='text-center text-[24px]'>{x.name}</h1>
                             <div className=''>{x.description.length > 80 ? x.description.slice(0, 80) + '...' : x.description}</div>
                             <div className='mt-2 ml-2 mb-2 flex flex-col'>
-                                <div><button className='max-w-full max-h-full w-[170px] h-[40px] bg-gradient-to-l from-blue-button1 via-blue-button2 to-blue-button1 border-2 border-black text-white rounded-full hover:bg-right bg-[length:250%] transition-bg duration-500 hover:scale-110 focus:scale-110 focus:bg-right focus:outline focus:outline-1 focus:outline-offset-1 focus:utline-1 focus:duration-0'>Adicionar</button></div>
-                                <div><button className='max-w-full max-h-full w-[170px] h-[40px] bg-gradient-to-l from-blue-button1 via-blue-button2 to-blue-button1 border-2 border-black text-white rounded-full mt-2 hover:bg-right bg-[length:250%] transition-bg duration-500 hover:scale-110 focus:scale-110 focus:bg-right focus:outline focus:outline-1 focus:outline-offset-1 focus:utline-1 focus:duration-0'>Mais informações</button></div>
+                                <div>
+                                    <Link to={`https://discord.com/api/oauth2/authorize?client_id=${x._id}&permissions=70368744177655&scope=bot%20applications.commands`}>
+                                        <button className='max-w-full max-h-full w-[170px] h-[40px] bg-gradient-to-l from-blue-button1 via-blue-button2 to-blue-button1 border-2 border-black text-white rounded-full hover:bg-right bg-[length:250%] transition-bg duration-500 hover:scale-110 focus:scale-110 focus:bg-right focus:outline focus:outline-1 focus:outline-offset-1 focus:utline-1 focus:duration-0'>
+                                            Adicionar
+                                        </button>
+                                    </Link>
+                                </div>
+                                <div>
+                                    <Link to={`/bot/${x._id}`}>
+                                        <button className='max-w-full max-h-full w-[170px] h-[40px] bg-gradient-to-l from-blue-button1 via-blue-button2 to-blue-button1 border-2 border-black text-white rounded-full mt-2 hover:bg-right bg-[length:250%] transition-bg duration-500 hover:scale-110 focus:scale-110 focus:bg-right focus:outline focus:outline-1 focus:outline-offset-1 focus:utline-1 focus:duration-0'>
+                                            Mais informações
+                                        </button>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                     ))
