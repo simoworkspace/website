@@ -5,7 +5,7 @@ import { API_KEY, API_URL } from '../../config.json';
 export const Bot = () => {
     const params = useParams();
     const navigate = useNavigate();
-    const [botData, setBotData] = useState<boolean>(false);
+    const [botData, setBotData] = useState<boolean | any>(false);
     const [verifyBot, setVerifyBot] = useState<boolean>(true)
 
     useEffect(() => {
@@ -26,9 +26,11 @@ export const Bot = () => {
 
     if(!verifyBot) navigate('/notfound')
 
+    console.log(botData)
+
     return (
         botData ?  
-        <div>{JSON.stringify(botData)}</div>
+        <img src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png?size=2048`} alt='Bot Avatar' />
         :
         <div>loading...</div>
     );

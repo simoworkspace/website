@@ -10,6 +10,23 @@
     font-family: 'Inter', sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #292929;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #355875;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #377fbb;
+}
+
 body {
     background: linear-gradient(135deg, #121721 0%, #000000 100%) fixed;
 }
