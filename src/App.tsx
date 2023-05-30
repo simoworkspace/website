@@ -4,7 +4,7 @@ import { Addbot } from './pages/Addbot';
 import { Routes, Route } from 'react-router-dom';
 import { NotFound } from './pages/NotFound';
 import { Mobilemenu } from './components/Mobilemenu';
-import { Requireauth } from './components/Requireauth';
+import { Bot } from './pages/Bot';
 
 function App() {
     return (
@@ -15,9 +15,10 @@ function App() {
             </header>
             <body>
                 <Routes>
+                    <Route path='/bot/:botid' element={<Bot />} />
                     <Route path='/' element={<Bots />} />
                     <Route path='addbot' element={<Addbot />} />
-                    <Route path='*' element={<NotFound/>} />
+                    <Route path='*' element={<NotFound />} />
                 </Routes>
             </body>
         </>
