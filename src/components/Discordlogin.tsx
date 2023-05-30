@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import arrowIcon from '../assets/svg/arrow.svg';
 import { Dropdownmenu } from './Dropdownmenu';
+import { AUTH_LINK } from '../../config.json';
 
 const UserLogin: React.FC = () => {
     const [user, setUser] = useState<boolean | any>(false);
@@ -46,7 +47,7 @@ const UserLogin: React.FC = () => {
                 </>
             ) : (
                 <div className='flex text-white w-[140px] h-[50px] xl:hidden'>
-                    <Link className='flex items-center h-[100%] w-[80%] justify-center border-[#858585] border-[1px] bg-black p-6 transition-all duration-500 hover:scale-105 hover:bg-[#1f1f1f] hover:border-white' to='https://discord.com/oauth2/authorize?client_id=1064594303181131928&redirect_uri=http%3A%2F%2Flocalhost%3A81%2Fauth%2Fcallback&response_type=code&scope=identify%20guilds'>
+                    <Link className='flex items-center h-[100%] w-[80%] justify-center border-[#858585] border-[1px] bg-black p-6 transition-all duration-500 hover:scale-105 hover:bg-[#1f1f1f] hover:border-white' to={AUTH_LINK}>
                         <div>Login</div>
                     </Link>
                 </div>
