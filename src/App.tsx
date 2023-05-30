@@ -4,19 +4,20 @@ import { Addbot } from './pages/Addbot';
 import { Routes, Route } from 'react-router-dom';
 import { NotFound } from './pages/NotFound';
 import { Mobilemenu } from './components/Mobilemenu';
+import { Requireauth } from './components/Requireauth';
 
 function App() {
     return (
         <>
-        <Mobilemenu/>
+            <Mobilemenu />
             <header>
-                <Header/>
+                <Header />
             </header>
             <body>
                 <Routes>
-                    <Route path='/' element={<Bots/>}/>
-                    <Route path='addbot' element={<Addbot/>}/>
-                    <Route path='*' element={<NotFound/>}/>
+                    <Route path='/' element={<Bots />} />
+                    <Route path='addbot' element={<Addbot />} />
+                    <Route path='*' element={<NotFound/>} />
                 </Routes>
             </body>
         </>
