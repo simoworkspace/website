@@ -8,8 +8,7 @@ import { Bot } from './pages/Bot';
 
 function App() {
     return (
-        <>
-            <Mobilemenu />
+        <html>
             <header>
                 <Header />
             </header>
@@ -20,8 +19,10 @@ function App() {
                     <Route path='addbot' element={<Addbot />} />
                     <Route path='*' element={<NotFound />} />
                 </Routes>
+                <Mobilemenu />
             </body>
-        </>
+            
+        </html>
     );
 }
 

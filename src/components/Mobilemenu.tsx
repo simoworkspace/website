@@ -14,7 +14,7 @@ export const Mobilemenu = () => {
                 <span className='text-xs'>Procurar bot</span>
             </div>
             <div className='flex flex-col items-center'>
-                <Link to='/'>
+                <Link to='/addbot'>
                     <img src={plusIcon} alt='Ícone 2' className='h-6 w-6 text-white' />
                 </Link>
                 <span className='text-xs'>Adicionar bot</span>
