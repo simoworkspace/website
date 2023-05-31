@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import { NotFound } from './pages/NotFound';
 import { Mobilemenu } from './components/Mobilemenu';
 import { Bot } from './pages/Bot';
+import { AddbotSubmit } from './pages/AddbotSubmit';
 
 function App() {
     return (

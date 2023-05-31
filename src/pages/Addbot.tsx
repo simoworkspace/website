@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { API_KEY, API_URL } from '../../config.json';
 
 export const Addbot: React.FC = () => {
     /*
@@ -16,14 +17,43 @@ export const Addbot: React.FC = () => {
     const [inputs, setInputs] = useState<any>({});
 
     const handleChange = (event: any) => {
-      const name = event.target.name;
-      const value = event.target.value;
-      setInputs((values:any) => ({...values, [name]: value}));
+        const name = event.target.name;
+        const value = event.target.value;
+        setInputs((values: any) => ({ ...values, [name]: value }));
     };
-  
-    const handleSubmit = (event: any) => {
-      event.preventDefault();
-      console.log(inputs);
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setInputs(inputs)
+        console.log(inputs)
+        const { _id, prefix, longDescription, shortDescription, sourceCode, websiteURL, supportServer, tags } = inputs;
+        
+        const body: any= {
+            _id: _id,
+            prefix: [prefix],
+            longDescription: longDescription,
+            shortDescription: shortDescription,
+            sourceCode: sourceCode, 
+            websiteURL: websiteURL, 
+            supportServer: supportServer,
+            tags: tags
+        }
+
+        console.log(body)
+
+        const oi = async () => {
+            const fetchapi = await fetch(`${API_URL}/bot/${_id}`, {
+                method: 'POST',
+                headers: {
+                    Authorization: API_KEY
+                },
+                body: JSON.stringify(body)
+            })
+            const res = await fetchapi.json();
+            return console.log(res)
+        }
+        oi()
+
     };
 
     return (
@@ -107,5 +137,5 @@ export const Addbot: React.FC = () => {
                 </div>
             </form>
         </div>
-    )
+    );
 };
