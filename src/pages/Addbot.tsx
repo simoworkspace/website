@@ -15,7 +15,13 @@ interface FormData {
 }
 
 export const Addbot: React.FC = () => {
-    const { register, handleSubmit } = useForm<FormData>();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<FormData>();
+
+    console.log(errors._id);
 
     const onSubmit: SubmitHandler<FormData> = async (data) => {
         try {
@@ -36,9 +42,6 @@ export const Addbot: React.FC = () => {
                     },
                 }
             );
-
-            console.log(JSON.stringify(formData));
-            console.log(JSON.stringify(res.data));
         } catch (error: any) {
             console.error(error.message);
         }
@@ -68,12 +71,20 @@ export const Addbot: React.FC = () => {
                             </a>
                         </span>
                     </div>
-                    <div className="flex w-[100%]">
-                        <textarea
-                            {...register("_id")}
-                            name="_id"
-                            className="outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] border-[#8b8b8b] transition-all duration-100 hover:border-roxo-legal focus-within:border-roxo-legal text-white"
-                        />
+                    <div className="flex flex-col items-center w-[100%]">
+                        <div
+                            className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                                errors._id?.message === ""
+                                    ? "border-[#ff0000]"
+                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                            } text-white`}
+                        >
+                            <input
+                                {...register("_id", { required: true })}
+                                name="_id"
+                                className="bg-transparent outline-none w-[100%]"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="text-white xl:w-[98vw] xl:flex-col flex-row flex">
@@ -86,16 +97,24 @@ export const Addbot: React.FC = () => {
                             só escrever slash.
                         </span>
                     </div>
-                    <div className="flex w-[100%]">
-                        <textarea
-                            {...register("prefix")}
-                            name="prefix"
-                            className="outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] border-[#8b8b8b] transition-all duration-100 hover:border-roxo-legal focus-within:border-roxo-legal text-white"
-                        />
+                    <div className="flex flex-col items-center w-[100%]">
+                        <div
+                            className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                                errors.prefix?.message === ""
+                                    ? "border-[#ff0000]"
+                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                            } text-white`}
+                        >
+                            <input
+                                {...register("prefix", { required: true })}
+                                name="prefix"
+                                className="bg-transparent outline-none w-[100%]"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="text-white xl:w-[98vw] xl:flex-col  flex-row flex">
-                    <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
+                    <div className="w-[800px] xl:w-[100%] justify-center  break-words flex-col flex mr-2">
                         <div className="xl:text-center">
                             <strong>Descrição longa</strong>
                         </div>
@@ -104,16 +123,30 @@ export const Addbot: React.FC = () => {
                             colocar informações!
                         </span>
                     </div>
-                    <div className="flex w-[100%]">
-                        <textarea
-                            {...register("longDescription")}
-                            name="longDescription"
-                            className="outline-none justify-center bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] border-[#8b8b8b] transition-all duration-100 hover:border-roxo-legal focus-within:border-roxo-legal text-white"
-                        />
+                    <div className="flex flex-col items-center w-[100%]">
+                        <div
+                            className={`justify-center flex outline-none bg-gray-900 w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                                errors.prefix?.message === ""
+                                    ? "border-[#ff0000]"
+                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                            } text-white`}
+                        >
+                            <textarea
+                                {...register("longDescription", {
+                                    required: true,
+                                })}
+                                rows={5}
+                                maxLength={200}
+                                minLength={200}
+                                cols={22}
+                                name="longDescription"
+                                className="bg-transparent outline-none w-[100%]"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="text-white xl:w-[98vw] xl:flex-col  flex-row flex">
-                    <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
+                    <div className="w-[800px] xl:w-[100%] justify-center break-words flex-col flex mr-2">
                         <div className="xl:text-center">
                             <strong>Descrição Curta</strong>
                         </div>
@@ -122,12 +155,26 @@ export const Addbot: React.FC = () => {
                             lista como destaque.
                         </span>
                     </div>
-                    <div className="flex w-[100%]">
-                        <textarea
-                            {...register("shortDescription")}
-                            name="shortDescription"
-                            className="outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] border-[#8b8b8b] transition-all duration-100 hover:border-roxo-legal focus-within:border-roxo-legal text-white"
-                        />
+                    <div className="flex flex-col items-center w-[100%]">
+                        <div
+                            className={`justify-center flex outline-none bg-gray-900 w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                                errors.prefix?.message === ""
+                                    ? "border-[#ff0000]"
+                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                            } text-white`}
+                        >
+                            <textarea
+                                {...register("shortDescription", {
+                                    required: true,
+                                })}
+                                name="shortDescription"
+                                rows={5}
+                                maxLength={200}
+                                minLength={200}
+                                cols={22}
+                                className="bg-transparent outline-none w-[100%]"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="text-white xl:w-[98vw] xl:flex-col  flex-row flex">
@@ -140,12 +187,21 @@ export const Addbot: React.FC = () => {
                             (opcional){" "}
                         </span>
                     </div>
-                    <div className="flex w-[100%]">
-                        <textarea
-                            {...register("sourceCode")}
-                            name="sourceCode"
-                            className="outline-none justify-center bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] border-[#8b8b8b] transition-all duration-100 hover:border-roxo-legal focus-within:border-roxo-legal text-white"
-                        />
+                    <div className="flex flex-col items-center w-[100%]">
+                        <div
+                            className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                                errors.prefix?.message === ""
+                                    ? "border-[#ff0000]"
+                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                            } text-white`}
+                        >
+                            <input
+                                {...register("sourceCode", { required: true })}
+                                type="text"
+                                name="sourceCode"
+                                className="bg-transparent outline-none w-[100%]"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="text-white xl:w-[98vw] xl:flex-col  flex-row flex">
@@ -158,12 +214,21 @@ export const Addbot: React.FC = () => {
                             bot.
                         </span>
                     </div>
-                    <div className="flex w-[100%]">
-                        <textarea
-                            {...register("websiteURL")}
-                            name="websiteURL"
-                            className="outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] border-[#8b8b8b] transition-all duration-100 hover:border-roxo-legal focus-within:border-roxo-legal text-white"
-                        />
+                    <div className="flex flex-col items-center w-[100%]">
+                        <div
+                            className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                                errors.prefix?.message === ""
+                                    ? "border-[#ff0000]"
+                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                            } text-white`}
+                        >
+                            <input
+                                {...register("websiteURL", { required: true })}
+                                type="text"
+                                name="websiteURL"
+                                className="bg-transparent outline-none w-[100%]"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="text-white xl:w-[98vw] xl:flex-col  flex-row flex">
@@ -176,16 +241,27 @@ export const Addbot: React.FC = () => {
                             suporte do seu bot (discord.gg/)
                         </span>
                     </div>
-                    <div className="flex w-[100%]">
-                        <textarea
-                            {...register("supportServer")}
-                            name="supportServer"
-                            className="outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] border-[#8b8b8b] transition-all duration-100 hover:border-roxo-legal focus-within:border-roxo-legal text-white"
-                        />
+                    <div className="flex flex-col items-center w-[100%]">
+                        <div
+                            className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                                errors.prefix?.message === ""
+                                    ? "border-[#ff0000]"
+                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                            } text-white`}
+                        >
+                            <input
+                                {...register("supportServer", {
+                                    required: true,
+                                })}
+                                type="text"
+                                name="supportServer"
+                                className="bg-transparent outline-none w-[100%]"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="text-white xl:w-[98vw] xl:flex-col  flex-row flex">
-                    <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
+                    <div className="w-[800px] xl:w-[100%] justify-center break-words flex-col flex mr-2">
                         <div className="xl:text-center">
                             <strong>Tags</strong>
                         </div>
@@ -195,12 +271,24 @@ export const Addbot: React.FC = () => {
                             administração)
                         </span>
                     </div>
-                    <div className="flex w-[100%]">
-                        <textarea
-                            {...register("tags")}
-                            name="tags"
-                            className="outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] border-[#8b8b8b] transition-all duration-100 hover:border-roxo-legal focus-within:border-roxo-legal text-white"
-                        />
+                    <div className="flex flex-col items-center w-[100%]">
+                        <div
+                            className={`justify-center flex outline-none bg-gray-900 w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                                errors.prefix?.message === ""
+                                    ? "border-[#ff0000]"
+                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                            } text-white`}
+                        >
+                            <textarea
+                                {...register("tags", { required: true })}
+                                name="tags"
+                                rows={2}
+                                maxLength={200}
+                                minLength={200}
+                                cols={22}
+                                className="bg-transparent outline-none w-[100%]"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="flex justify-center m-4">
