@@ -40,7 +40,7 @@ const UserLogin: React.FC = () => {
                             </div>
                         </button>
                     </div>
-                    <div className={`xl:hidden transition-all duration-300 border-white border-[1px] border-t-[0px] absolute bg-black text-white w-[164px] top-[61px] ${arrowState ? 'opacity-100' : 'opacity-0'}`}>
+                    <div className={`xl:hidden transition-all duration-300 border-white border-[1px] border-t-[0px] absolute bg-black text-white w-[164px] top-[61px] ${arrowState ? 'optacity-100' : 'opacity-0 invisible'}`}>
                         <Dropdownmenu/>
                     </div>
                 </>
