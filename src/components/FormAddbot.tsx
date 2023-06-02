@@ -1,5 +1,4 @@
 import React from "react";
-import { API_KEY, API_URL } from "../../config.json";
 import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
 
@@ -33,12 +32,12 @@ export const FormAddbot: React.FC = () => {
                 createdAt: "hoje",
             };
 
-            const res = await axios.post(
-                `${API_URL}/bot/${data._id}`,
+            await axios.post(
+                `${import.meta.env.VITE_API_URL}/bot/${data._id}`,
                 formData,
                 {
                     headers: {
-                        Authorization: API_KEY,
+                        Authorization: import.meta.env.VITE_API_KEY as string,
                     },
                 }
             );

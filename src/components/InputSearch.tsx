@@ -1,6 +1,5 @@
 import searchIcon from '../assets/svg/search.svg';
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
-import { API_KEY, API_URL } from '../../config.json';
 
 export const InputSearch = () => {
     const [valorInput, setValorInput] = useState<string>('');
@@ -14,7 +13,7 @@ export const InputSearch = () => {
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const fetchData = async () => {
-            const res = await fetch(`${API_URL}/findbotname/${valorInput.toLowerCase()}`, { headers: { Authorization: API_KEY } });
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/findbotname/${valorInput.toLowerCase()}`, { headers: { Authorization: import.meta.env.VITE_API_KEY as string } });
             const raleu = await res.json();
             console.log(raleu)
             setAllBots(raleu);

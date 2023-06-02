@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import arrowIcon from '../assets/svg/arrow.svg';
 import { Dropdownmenu } from './Dropdownmenu';
-import { AUTH_LINK } from '../../config.json';
 
 const UserLogin: React.FC = () => {
     const [user, setUser] = useState<boolean | any>(false);
@@ -47,7 +46,7 @@ const UserLogin: React.FC = () => {
                 </>
             ) : (
                 <div className='flex text-white w-[140px] h-[50px] xl:hidden'>
-                    <Link className='flex items-center h-[100%] w-[80%] justify-center border-[#858585] border-[1px] bg-black p-6 transition-all duration-500 hover:scale-105 hover:bg-[#1f1f1f] hover:border-white' to={AUTH_LINK}>
+                    <Link className='flex items-center h-[100%] w-[80%] justify-center border-[#858585] border-[1px] bg-black p-6 transition-all duration-500 hover:scale-105 hover:bg-[#1f1f1f] hover:border-white' to={import.meta.env.VITE_AUTH_LINK as string}>
                         <div>Login</div>
                     </Link>
                 </div>

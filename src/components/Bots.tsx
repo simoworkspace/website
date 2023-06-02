@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { API_KEY, API_URL } from '../../config.json';
-import { BotType } from '../../types';
+import { BotType } from '../types';
 import { Botloading } from './Botloading';
 import { Link } from 'react-router-dom';
 
@@ -9,7 +8,7 @@ export const Bots = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(API_URL + '/bot/@all', { headers: { Authorization: API_KEY } })
+            const response = await fetch(import.meta.env.VITE_API_URL as string + '/bot/@all', { headers: { Authorization: import.meta.env.VITE_API_KEY as string } })
             const response2 = await response.json();
             setData(response2);
         }

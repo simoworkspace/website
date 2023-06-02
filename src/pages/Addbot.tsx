@@ -1,7 +1,6 @@
 import { FormAddbot } from "../components/FormAddbot";
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import axios, { AxiosResponse } from "axios";
-import { API_KEY, API_URL } from "../../config.json";
 
 export const Addbot: React.FC = () => {
     const [verificarBot, setVerificarBot] = useState<boolean>();
@@ -14,10 +13,10 @@ export const Addbot: React.FC = () => {
     const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
         const res: AxiosResponse = await axios.get(
-            `${API_URL}/bot/${id}/discord`,
+            `${import.meta.env.VITE_API_URL}/bot/${id}/discord`,
             {
                 headers: {
-                    authorization: API_KEY,
+                    Authorization: import.meta.env.VITE_API_KEY as string,
                 },
             }
         );

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { API_KEY, API_URL } from '../../config.json';
 
 export const Bot = () => {
     const params = useParams();
@@ -10,12 +9,12 @@ export const Bot = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const fetchApi = await fetch(`${API_URL}/bot/${params.botid}/discord`, { headers: { Authorization: API_KEY } })
+            const fetchApi = await fetch(`${import.meta.env.VITE_API_URL}/bot/${params.botid}/discord`, { headers: { Authorization: import.meta.env.VITE_API_KEY as string } })
             const res = await fetchApi.json();
             setBotData(res);
         };
         const verifyBotExists = async () => {
-            const fetchApi = await fetch(API_URL + '/findbot/' + params.botid , { headers: { Authorization: API_KEY } })
+            const fetchApi = await fetch(import.meta.env.VITE_API_URL + '/findbot/' + params.botid , { headers: { Authorization: import.meta.env.VITE_API_KEY as string } })
             const res = await fetchApi.json();
             console.log(res.message)
             if(res.length == 0) return setVerifyBot(false)
