@@ -9,7 +9,7 @@ import twofill from "../assets/svg/numbers/two-fill.svg";
 // bg-gradient-to-br from-[#131720] from-[40%] to-[#0c0c0c] to-[80%]
 
 export const Addbot: React.FC = () => {
-    const [verificarBot, setVerificarBot] = useState(false);
+    const [verificarBot, setVerificarBot] = useState<boolean>(false);
 
     return (
         <div className="flex flex-row gap-10 xl:flex-col backdrop-filter m-6">

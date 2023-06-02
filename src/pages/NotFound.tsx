@@ -1,6 +1,7 @@
 import catImage from ".././assets/image/404.jpeg";
+import React from 'react';
 
-export const NotFound = () => {
+export const NotFound: React.FC = () => {
     return (
         <div className="flex justify-center h-[80vh]">
             <img

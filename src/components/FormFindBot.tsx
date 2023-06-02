@@ -17,7 +17,7 @@ export const FormFindBot: React.FC<{
     ): Promise<void> => {
         try {
             event.preventDefault();
-            const res: AxiosResponse = await axios.get(
+            const res: AxiosResponse = await axios.get<AxiosResponse>(
                 `${import.meta.env.VITE_API_URL}/bot/${id}/discord`,
                 {
                     headers: {

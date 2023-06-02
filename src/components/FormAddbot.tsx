@@ -1,30 +1,22 @@
 import React from "react";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
-
-interface FormData {
-    _id: string;
-    prefix: string;
-    longDescription: string;
-    shortDescription: string;
-    sourceCode: string;
-    websiteURL: string;
-    supportServer: string;
-    tags: string;
-}
+import { BotStructure } from "../types";
 
 export const FormAddbot: React.FC = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormData>();
+    } = useForm<BotStructure>();
 
     console.log(errors._id);
 
-    const onSubmit: SubmitHandler<FormData> = async (data) => {
+    const onSubmit: SubmitHandler<BotStructure> = async (
+        data: BotStructure
+    ): Promise<void> => {
         try {
-            const formData = {
+            const formData: BotStructure = {
                 ...data,
                 avatar: "oi",
                 name: "calorbot",
@@ -32,7 +24,7 @@ export const FormAddbot: React.FC = () => {
                 createdAt: "hoje",
             };
 
-            await axios.post(
+            await axios.post<AxiosResponse>(
                 `${import.meta.env.VITE_API_URL}/bot/${data._id}`,
                 formData,
                 {

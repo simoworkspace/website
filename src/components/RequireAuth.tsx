@@ -1,13 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 interface Props {
     children: React.ReactNode;
 }
 
 export const RequireAuth: React.FC<Props> = ({ children }) => {
-    const auth = false;
-    const navigate = useNavigate();
+    const auth: boolean = false;
+    const navigate: NavigateFunction = useNavigate();
 
     React.useEffect(() => {
         if (!auth) {

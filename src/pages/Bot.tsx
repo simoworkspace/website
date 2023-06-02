@@ -1,15 +1,17 @@
+import axios, { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavigateFunction, useNavigate, useParams } from "react-router-dom";
+import { botDataStructure } from '../types';
 
-export const Bot = () => {
-    const params = useParams();
-    const navigate = useNavigate();
-    const [botData, setBotData] = useState<boolean | any>(false);
+export const Bot: React.FC = () => {
+    const params = useParams<string>();
+    const navigate: NavigateFunction = useNavigate();
+    const [botData, setBotData] = useState<botDataStructure>();
     const [verifyBot, setVerifyBot] = useState<boolean>(true);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const fetchApi = await fetch(
+        const fetchData = async (): Promise<void> => {
+            const res: AxiosResponse = await axios.get<AxiosResponse>(
                 `${import.meta.env.VITE_API_URL}/bot/${params.botid}/discord`,
                 {
                     headers: {
@@ -17,11 +19,10 @@ export const Bot = () => {
                     },
                 }
             );
-            const res = await fetchApi.json();
-            setBotData(res);
+            setBotData(res.data);
         };
-        const verifyBotExists = async () => {
-            const fetchApi = await fetch(
+        const verifyBotExists = async (): Promise<void> => {
+            const res: AxiosResponse = await axios.get<AxiosResponse>(
                 import.meta.env.VITE_API_URL + "/findbot/" + params.botid,
                 {
                     headers: {
@@ -29,17 +30,13 @@ export const Bot = () => {
                     },
                 }
             );
-            const res = await fetchApi.json();
-            console.log(res.message);
-            if (res.length == 0) return setVerifyBot(false);
+            if (res.data.length == 0) return setVerifyBot(false);
         };
         verifyBotExists();
         fetchData();
     }, []);
 
     if (!verifyBot) navigate("/notfound");
-
-    console.log(botData);
 
     return botData ? (
         <img

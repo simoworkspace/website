@@ -3,9 +3,10 @@ import plusIcon from "../assets/svg/plus.svg";
 import dashIcon from "../assets/svg/dashboard.svg";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import React from "react";
 
-export const Dropdownmenu = () => {
-    const handleExit = () => {
+export const Dropdownmenu: React.FC = () => {
+    const handleExit = (): void => {
         Cookies.remove("discordUser");
         window.location.reload();
     };

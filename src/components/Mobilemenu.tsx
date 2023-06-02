@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import searchIcon from "../assets/svg/search.svg";
 import plusIcon from "../assets/svg/plus.svg";
 import listIcon from ".././assets/svg/list.svg";
+import React from "react";
 const avatarImage: string =
     "https://cdn.discordapp.com/avatars/955095844275781693/511a594d8af5dd14849cc3e16567f534.png?size=2048";
 
-export const Mobilemenu = () => {
+export const Mobilemenu: React.FC = () => {
     return (
         <div className="hidden xl:fixed xl:bottom-0 xl:left-0 xl:w-full xl:bg-gray-900 xl:text-white xl:py-3 xl:flex xl:justify-around xl:items-center">
             <div className="flex flex-col items-center">

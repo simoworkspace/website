@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
-import { BotType } from "../types";
+import React, { useState, useEffect } from "react";
+import { BotStructure } from "../types";
 import { Botloading } from "./Botloading";
 import { Link } from "react-router-dom";
+import axios, { AxiosResponse } from "axios";
 
-export const Bots = () => {
+export const Bots: React.FC = () => {
     const [data, setData] = useState<any>(null);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await fetch(
+        const fetchData = async (): Promise<void> => {
+            const res: AxiosResponse = await axios.get<AxiosResponse>(
                 (import.meta.env.VITE_API_URL as string) + "/bot/@all",
                 {
                     headers: {
@@ -16,15 +17,14 @@ export const Bots = () => {
                     },
                 }
             );
-            const response2 = await response.json();
-            setData(response2);
+            setData(res.data);
         };
         fetchData();
     }, [data]);
 
     return data ? (
         <div className="grid-cols-3 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left">
-            {data.map((x: BotType) => (
+            {data.map((x: BotStructure) => (
                 <div
                     key={x._id}
                     className="card-bc p-1 border-transparent border-[4px] rounded-[10px]"
@@ -36,9 +36,9 @@ export const Bots = () => {
                     />
                     <h1 className="text-center text-[24px]">{x.name}</h1>
                     <div className="">
-                        {x.description.length > 80
-                            ? x.description.slice(0, 80) + "..."
-                            : x.description}
+                        {x.shortDescription.length > 80
+                            ? x.shortDescription.slice(0, 80) + "..."
+                            : x.shortDescription}
                     </div>
                     <div className="mt-2 ml-2 mb-2 flex flex-col">
                         <div>

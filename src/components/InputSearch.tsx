@@ -1,19 +1,21 @@
 import searchIcon from "../assets/svg/search.svg";
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
+import { BotStructure } from "../types";
+import axios, { AxiosResponse } from "axios";
 
-export const InputSearch = () => {
+export const InputSearch: React.FC = () => {
     const [valorInput, setValorInput] = useState<string>("");
     const [menuAberto, setMenuAberto] = useState<boolean>(false);
-    const [allBots, setAllBots] = useState<boolean | any>(false);
+    const [allBots, setAllBots] = useState<boolean | BotStructure>(false);
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setValorInput(event.target.value);
     };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
         const fetchData = async () => {
-            const res = await fetch(
+            const res: AxiosResponse = await axios.get<AxiosResponse>(
                 `${
                     import.meta.env.VITE_API_URL
                 }/findbotname/${valorInput.toLowerCase()}`,
@@ -23,9 +25,7 @@ export const InputSearch = () => {
                     },
                 }
             );
-            const raleu = await res.json();
-            console.log(raleu);
-            setAllBots(raleu);
+            setAllBots(res.data);
         };
         fetchData();
     };

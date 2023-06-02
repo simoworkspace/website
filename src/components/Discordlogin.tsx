@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import arrowIcon from "../assets/svg/arrow.svg";
 import { Dropdownmenu } from "./Dropdownmenu";
+import { UserStructure } from "../types";
 
 const UserLogin: React.FC = () => {
-    const [user, setUser] = useState<boolean | any>(false);
+    const [user, setUser] = useState<UserStructure | any>();
 
     useEffect(() => {
-        const getUserData = () => {
+        const getUserData = (): void => {
             const userCookie: string = document.cookie.split("discordUser=")[1];
             if (!userCookie) {
                 setUser(false);
             } else {
-                const userData: string = JSON.parse(
+                const userData: UserStructure = JSON.parse(
                     decodeURIComponent(userCookie)
                 );
                 setUser(userData);
@@ -24,7 +25,7 @@ const UserLogin: React.FC = () => {
 
     const [arrowState, setArrowState] = useState<boolean>(false);
 
-    const handleSetArrow = () => setArrowState(!arrowState);
+    const handleSetArrow = (): void => setArrowState(!arrowState);
 
     return (
         <div>
