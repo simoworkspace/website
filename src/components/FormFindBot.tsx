@@ -34,7 +34,7 @@ export const FormFindBot: React.FC<{
     return (
         <div className="text-white flex items-center justify-center w-[100vw] h-[60vh]">
             <form
-                className="flex-row flex items-center justify-center h-[90px]"
+                className="flex-row xl:flex-col-reverse xl: flex items-center justify-center h-[90px]"
                 onSubmit={handleSubmit}
             >
                 <div className="flex items-center flex-col">
@@ -61,8 +61,8 @@ export const FormFindBot: React.FC<{
                 </div>
                 <div className="flex m-2 flex-col">
                     <button
-                        className={`flex rounded-xl flex-row items-center justify-center bg-[#5353eb] hover:bg-[#2d2dda] ${
-                            statusCode == 404 && "mb-[24px]"
+                        className={`flex rounded-xl xl:w-[284px] flex-row items-center justify-center bg-[#5353eb] hover:bg-[#2d2dda] ${
+                            statusCode == 404 && "mb-[24px] xl:mb-0"
                         } transition-all focus:bg-[#2d2dda] duration-300 p-4`}
                         type="submit"
                     >
