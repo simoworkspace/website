@@ -18,7 +18,7 @@ export const Addbot: React.FC = () => {
                     <div className="flex text-xl mb-10 xl:mb-0">
                         <strong>Etapas</strong>
                     </div>
-                    <div className='flex flex-col xl:h-[50px] items-center xl:flex-row'>
+                    <div className="flex flex-col xl:h-[50px] items-center xl:flex-row">
                         <img
                             className="h-[40px] xl:mb-1"
                             src={onefill}

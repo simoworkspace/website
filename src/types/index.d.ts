@@ -15,4 +15,4 @@ export interface BotType {
     creationTimestamp: number;
     verifiedBot: boolean;
     tags: string[];
-}
+};
