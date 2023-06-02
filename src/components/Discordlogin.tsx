@@ -5,11 +5,12 @@ import { Dropdownmenu } from "./Dropdownmenu";
 import { UserStructure } from "../types";
 
 const UserLogin: React.FC = () => {
-    const [user, setUser] = useState<UserStructure | any>();
+    const [user, setUser] = useState<UserStructure | false>();
 
     useEffect(() => {
         const getUserData = (): void => {
-            const userCookie: string = document.cookie.split("discordUser=")[1];
+            const userCookie: string | undefined =
+                document.cookie.split("discordUser=")[1];
             if (!userCookie) {
                 setUser(false);
             } else {
@@ -68,7 +69,7 @@ const UserLogin: React.FC = () => {
                     </div>
                     <div
                         className={`xl:hidden transition-all duration-300 border-white border-[1px] border-t-[0px] absolute bg-black text-white w-[164px] top-[61px] ${
-                            arrowState ? "optacity-100" : "opacity-0 invisible"
+                            arrowState ? "opacity-100" : "opacity-0 invisible"
                         }`}
                     >
                         <Dropdownmenu />

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
 
 export const Bots: React.FC = () => {
-    const [data, setData] = useState<any>(null);
+    const [data, setData] = useState<BotStructure[]>();
 
     useEffect(() => {
         const fetchData = async (): Promise<void> => {
