@@ -28,8 +28,8 @@ export const Addbot: React.FC = () => {
                     />
                 </StepsForm>
             )}
-            <div className="flex self-center xl:w-[90vw] xl:h-[300px] w-[70vw] h-[100%]">
-                <div className="flex rounded-3xl justify-center items-center h-[100%] w-[100%] bg-neutral-900 shadow-md shadow-black text-white">
+            <div className={`flex self-center xl:w-[90vw] ${stepsState === 2 && 'xl:h-[1700px]'} xl:h-[300px] w-[70vw] h-[100%]`}>
+                <div className="flex p-3 rounded-3xl justify-center items-center h-[100%] w-[100%] bg-neutral-900 shadow-md shadow-black text-white">
                     {verificarBot ? (
                         <FormAddbot />
                     ) : (
