@@ -4,7 +4,8 @@ import searchIcon from "../assets/svg/search.svg";
 
 export const FormFindBot: React.FC<{
     setVerificarBot: (value: boolean) => void;
-}> = ({ setVerificarBot }) => {
+    setStepsState: (value: number) => void;
+}> = ({ setVerificarBot, setStepsState }) => {
     const [statusCode, setStatusCode] = useState<number>();
     const [id, setId] = useState<string>("");
 
@@ -26,6 +27,7 @@ export const FormFindBot: React.FC<{
                 }
             );
             res.data.bot ? setVerificarBot(true) : setVerificarBot(false);
+            res.data.bot ? setStepsState(2) : setStepsState(1);
         } catch (error: any) {
             setStatusCode(error.response.status);
         }
