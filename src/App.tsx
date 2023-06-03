@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
 import { Mobilemenu } from "./components/Mobilemenu";
 import { Bot } from "./pages/Bot";
+import { RequireAuth } from "./components/RequireAuth";
 
 function App() {
     return (
@@ -16,7 +17,14 @@ function App() {
                 <Routes>
                     <Route path="/bot/:botid" element={<Bot />} />
                     <Route path="/" element={<Bots />} />
-                    <Route path="addbot" element={<Addbot />} />
+                    <Route
+                        path="addbot"
+                        element={
+                            <RequireAuth>
+                                <Addbot />
+                            </RequireAuth>
+                        }
+                    />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Mobilemenu />

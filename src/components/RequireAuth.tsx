@@ -1,19 +1,26 @@
-import React from "react";
-import { NavigateFunction, useNavigate } from "react-router-dom";
-
+import React, { useEffect, useState } from "react";
 interface Props {
     children: React.ReactNode;
 }
 
 export const RequireAuth: React.FC<Props> = ({ children }) => {
-    const auth: boolean = false;
-    const navigate: NavigateFunction = useNavigate();
+    const [auth, setAuth] = useState<boolean>(true);
 
-    React.useEffect(() => {
-        if (!auth) {
-            navigate(import.meta.env.VITE_AUTH_LINK as string);
-        }
-    }, [auth, navigate]);
+    useEffect(() => {
+        const getUserData = (): void => {
+            const userCookie: string | undefined =
+                document.cookie.split("discordUser=")[1];
+            userCookie ? setAuth(true) : setAuth(false);
+        };
+
+        getUserData();
+    }, []);
+
+    console.log(auth);
+
+    if (!auth) {
+        window.location.href = '/';
+    }
 
     return <>{children}</>;
 };

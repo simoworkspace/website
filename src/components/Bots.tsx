@@ -20,7 +20,7 @@ export const Bots: React.FC = () => {
             setData(res.data);
         };
         fetchData();
-    }, [data]);
+    }, []);
 
     return data ? (
         <div className="grid-cols-3 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left">
