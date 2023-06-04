@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import searchIcon from "../assets/svg/search.svg";
 import plusIcon from "../assets/svg/plus.svg";
-import listIcon from ".././assets/svg/list.svg";
+import serversIcon from ".././assets/svg/servers.svg";
 import React from "react";
 const avatarImage: string =
     "https://cdn.discordapp.com/avatars/955095844275781693/511a594d8af5dd14849cc3e16567f534.png?size=2048";
@@ -32,7 +32,7 @@ export const Mobilemenu: React.FC = () => {
             <div className="flex flex-col items-center">
                 <Link to="/">
                     <img
-                        src={listIcon}
+                        src={serversIcon}
                         alt="Ícone 3"
                         className="h-6 w-6 text-white"
                     />

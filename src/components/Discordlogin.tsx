@@ -44,7 +44,7 @@ const UserLogin: React.FC = () => {
                                 className={`flex items-center h-[100%] transition-all duration-100 ${
                                     arrowState
                                         ? "border-white"
-                                        : "border-[#858585]"
+                                        : "border-[#858585] hover:border-[#a8a8a8]"
                                 } border-[1px] bg-black p-6`}
                             >
                                 <img
@@ -69,7 +69,7 @@ const UserLogin: React.FC = () => {
                     </div>
                     <div
                         className={`xl:hidden transition-all duration-300 border-white border-[1px] border-t-[0px] absolute bg-black text-white w-[164px] top-[61px] ${
-                            arrowState ? "opacity-100" : "opacity-0 invisible"
+                            arrowState ? "opacity-100 border-transparent" : "opacity-0 invisible"
                         }`}
                     >
                         <Dropdownmenu />
