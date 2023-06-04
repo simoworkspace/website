@@ -34,7 +34,7 @@ export const FormFindBot: React.FC<{
     };
 
     return (
-        <div className="text-white flex items-center justify-center w-[100vw] h-[60vh]">
+        <div className="text-white flex items-center justify-center w-[100vw] h-[60vh] xl:h-[100%]">
             <form
                 className="flex-row xl:flex-col-reverse xl: flex items-center justify-center h-[90px]"
                 onSubmit={handleSubmit}

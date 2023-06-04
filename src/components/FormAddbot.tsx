@@ -39,8 +39,8 @@ export const FormAddbot: React.FC = () => {
     };
 
     return (
-        <div className="xl:mb-[10px] flex gap-1 justify-center flex-col items-center">
-            <h1 className="text-white xl:text-[32px] xl:mt-1 text-[40px] m-5">
+        <div className="xl:mb-[0px] flex gap-1 justify-start flex-col items-center">
+            <h1 className="text-white xl:text-[26px] text-[40px] m-5">
                 Adicione seu <strong className="text-roxo-legal">Bot</strong>!
             </h1>
             <form
@@ -282,7 +282,7 @@ export const FormAddbot: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex justify-center m-4">
+                <div className="flex justify-center xl:w-[80vw] m-4">
                     <input
                         type="submit"
                         value="Enviar bot"
