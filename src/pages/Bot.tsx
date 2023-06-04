@@ -63,7 +63,7 @@ export const Bot: React.FC = () => {
                                 ( {botData.id} )
                             </span>
                         </div>
-                        <div className="flex mx-6 mt-3 xl:m-0 xl:justify-center xl:m-1 flex-row">
+                        <div className="flex mx-6 mt-3 xl:justify-center xl:m-1 flex-row">
                             {Array(5).fill(
                                 <img
                                     className="ml-1 w-[17px]"
@@ -76,13 +76,13 @@ export const Bot: React.FC = () => {
                     <div className="flex w-[100%] justify-end ">
                         <div className="flex gap-4 items-center justify-center xl:w-[100vw] flex-row m-4">
                             <Link
-                                className="bg-neutral-900 p-2 rounded-md w-[87px] text-center"
+                                className="bg-neutral-900 transition-all duration-300 hover:bg-neutral-800 p-2 rounded-md w-[87px] text-center"
                                 to={`/vote/${botData.id}`}
                             >
                                 <span>Votar</span>
                             </Link>
                             <Link
-                                className="bg-neutral-900 p-2 rounded-md"
+                                className="bg-neutral-900 transition-all duration-300 hover:bg-neutral-800 p-2 rounded-md"
                                 to={`/bhfuidshduip`}
                             >
                                 <span>Adicionar</span>
