@@ -13,7 +13,7 @@ function App() {
             <header>
                 <Header />
             </header>
-            <body>
+            <body className="overflow-x-hidden">
                 <Routes>
                     <Route path="/bot/:botid" element={<Bot />} />
                     <Route path="/" element={<Bots />} />

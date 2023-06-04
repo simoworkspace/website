@@ -275,7 +275,7 @@ export const FormAddbot: React.FC = () => {
                                 name="tags"
                                 rows={2}
                                 maxLength={200}
-                                minLength={200}
+                                minLength={10}
                                 cols={22}
                                 className="bg-transparent outline-none w-[100%]"
                             />
