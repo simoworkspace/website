@@ -5,7 +5,6 @@ export const StepsForm: React.FC<{
     setStepsState: (value: number) => void;
     children: React.ReactNode;
 }> = ({ setStepsState, children }) => {
-
     return (
         <div className="flex justify-start xl:w-[90vw] xl:h-[100px] w-[30vw] h-[60vh]">
             <div className="flex gap-2 flex-col rounded-3xl h-[100%] w-[100%] justify-center items-center bg-neutral-900 shadow-md shadow-black text-white">

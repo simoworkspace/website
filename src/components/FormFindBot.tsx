@@ -41,7 +41,7 @@ export const FormFindBot: React.FC<{
             >
                 <div className="flex items-center flex-col">
                     <div
-                        className={`border-[#8b8b8b] items-center justify-center h-100px transition-all duration-300 rounded-xl border-2 bg-[#2c2c2c] ${
+                        className={`border-[#8b8b8b] items-center xl:w-[85vw] justify-center h-100px transition-all duration-300 rounded-xl border-2 bg-[#2c2c2c] ${
                             statusCode === 404
                                 ? "border-[#ff0000]"
                                 : "hover:border-roxo-legal focus-within:border-roxo-legal"
@@ -63,7 +63,7 @@ export const FormFindBot: React.FC<{
                 </div>
                 <div className="flex m-2 flex-col">
                     <button
-                        className={`flex rounded-xl xl:w-[284px] flex-row items-center justify-center bg-[#5353eb] hover:bg-[#2d2dda] ${
+                        className={`flex rounded-xl xl:w-[85vw] flex-row items-center justify-center bg-[#5353eb] hover:bg-[#2d2dda] ${
                             statusCode == 404 && "mb-[24px] xl:mb-0"
                         } transition-all focus:bg-[#2d2dda] duration-300 p-4`}
                         type="submit"
