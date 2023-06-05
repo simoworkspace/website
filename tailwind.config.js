@@ -5,7 +5,7 @@ export default {
         extend: {
             colors: {
                 "bg-azul": "#012236",
-                "bg-verde": "#062D28",
+                "bg-verde": "#04484d",
                 "bg-vermelho": "#380e17",
                 "skeleton-blue": "#24313d",
                 "blue-button1": "#202020",

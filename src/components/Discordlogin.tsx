@@ -41,7 +41,7 @@ const UserLogin: React.FC = () => {
                             className="flex text-white w-[190px] h-[50px] xl:hidden"
                         >
                             <div
-                                className={`flex items-center h-[100%] transition-all duration-100 ${
+                                className={`flex items-center h-[100%] transition-all duration-200 ${
                                     arrowState
                                         ? "border-white"
                                         : "border-[#858585] hover:border-[#a8a8a8]"
