@@ -1,5 +1,5 @@
 import { Header } from "./components/Header";
-import { Bots } from "./components/Bots";
+import { Main } from "./components/Main";
 import { Addbot } from "./pages/Addbot";
 import { Routes, Route } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
@@ -16,7 +16,7 @@ function App() {
             <body className="overflow-x-hidden">
                 <Routes>
                     <Route path="/bot/:botid" element={<Bot />} />
-                    <Route path="/" element={<Bots />} />
+                    <Route path="/" element={<Main />} />
                     <Route
                         path="addbot"
                         element={

@@ -4,8 +4,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                "gradient-button": "",
-                "card-blue": "#151b27",
+                "bg-azul": "#012236",
+                "bg-verde": "#062D28",
+                "bg-vermelho": "#380e17",
                 "skeleton-blue": "#24313d",
                 "blue-button1": "#202020",
                 "blue-button2": "#344057",
