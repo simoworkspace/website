@@ -3,13 +3,27 @@ import paletteIcon from "../assets/svg/pallete.svg";
 
 export const ColorButton: React.FC = () => {
     const [menu, setMenu] = useState<boolean>(false);
-    const [theme, setBodyTheme] = useState<string>(() => {
+    const [theme, setTheme] = useState<string>(() => {
         return localStorage.getItem("theme") || "";
     });
 
     useEffect(() => {
         localStorage.setItem("theme", theme as string);
-        theme ? theme : setBodyTheme('bg-gradient-to-b from-[#012236] to-black bg-fixed')
+        theme ? theme : setTheme("azul");
+        switch (theme) {
+            case "azul":
+                setTheme("bg-gradient-to-b from-[#012236] to-black bg-fixed");
+                break;
+            case "vermelho":
+                setTheme("bg-gradient-to-b from-[#380e17] to-black bg-fixed");
+                break;
+            case "verde":
+                setTheme("bg-gradient-to-b from-[#04484d] to-black bg-fixed");
+                break;
+            case "":
+                setTheme("bg-gradient-to-b from-[#012236] to-black bg-fixed");
+                break;
+        }
         document.body.className = theme;
     }, [theme]);
 
@@ -44,9 +58,7 @@ export const ColorButton: React.FC = () => {
                 <div className="flex flex-col">
                     <button
                         onClick={() => {
-                            setBodyTheme(
-                                "bg-gradient-to-b from-[#751515] to-black bg-fixed"
-                            );
+                            setTheme("vermelho");
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
                     >
@@ -57,9 +69,7 @@ export const ColorButton: React.FC = () => {
                     </button>
                     <button
                         onClick={() => {
-                            setBodyTheme(
-                                "bg-gradient-to-b from-[#1B4461] to-black bg-fixed"
-                            );
+                            setTheme("verde");
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
                     >
@@ -70,9 +80,7 @@ export const ColorButton: React.FC = () => {
                     </button>
                     <button
                         onClick={() => {
-                            setBodyTheme(
-                                "bg-gradient-to-b from-[#0d730d] to-black bg-fixed"
-                            );
+                            setTheme("azul");
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
                     >
