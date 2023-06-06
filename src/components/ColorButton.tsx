@@ -45,7 +45,7 @@ export const ColorButton: React.FC = () => {
                     <button
                         onClick={() => {
                             setBodyTheme(
-                                "bg-gradient-to-b from-[#380e17] to-black bg-fixed"
+                                "bg-gradient-to-b from-[#751515] to-black bg-fixed"
                             );
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
@@ -58,7 +58,7 @@ export const ColorButton: React.FC = () => {
                     <button
                         onClick={() => {
                             setBodyTheme(
-                                "bg-gradient-to-b from-[#012236] to-black bg-fixed"
+                                "bg-gradient-to-b from-[#1B4461] to-black bg-fixed"
                             );
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
@@ -71,7 +71,7 @@ export const ColorButton: React.FC = () => {
                     <button
                         onClick={() => {
                             setBodyTheme(
-                                "bg-gradient-to-b from-[#04484d] to-black bg-fixed"
+                                "bg-gradient-to-b from-[#0d730d] to-black bg-fixed"
                             );
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
