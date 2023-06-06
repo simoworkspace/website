@@ -6,6 +6,7 @@ import paletteIcon from "../assets/svg/pallete.svg";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import React, { useState } from "react";
+
 export const Dropdownmenu: React.FC = () => {
     const handleExit = (): void => {
         Cookies.remove("discordUser");

@@ -26,7 +26,3 @@
 ::-webkit-scrollbar-thumb:hover {
     background-color: #377fbb;
 }
-
-body {
-    background: linear-gradient(180deg, #012236, #000000) fixed;
-}

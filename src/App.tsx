@@ -6,14 +6,15 @@ import { NotFound } from "./pages/NotFound";
 import { Mobilemenu } from "./components/Mobilemenu";
 import { Bot } from "./pages/Bot";
 import { RequireAuth } from "./components/RequireAuth";
+import { useEffect } from "react";
 
 function App() {
     return (
-        <>
+        <body className="overflow-x-hidden">
             <header>
                 <Header />
             </header>
-            <body className="overflow-x-hidden">
+            <section>
                 <Routes>
                     <Route path="/bot/:botid" element={<Bot />} />
                     <Route path="/" element={<Main />} />
@@ -28,8 +29,8 @@ function App() {
                     <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Mobilemenu />
-            </body>
-        </>
+            </section>
+        </body>
     );
 }
 
