@@ -6,7 +6,7 @@ import { NotFound } from "./pages/NotFound";
 import { Mobilemenu } from "./components/Mobilemenu";
 import { Bot } from "./pages/Bot";
 import { RequireAuth } from "./components/RequireAuth";
-import { useEffect } from "react";
+import { Guild } from "./pages/Guild";
 
 function App() {
     return (
@@ -16,6 +16,7 @@ function App() {
             </header>
             <section>
                 <Routes>
+                    <Route path="/guild/:guildid" element={<Guild />} />
                     <Route path="/bot/:botid" element={<Bot />} />
                     <Route path="/" element={<Main />} />
                     <Route
