@@ -69,7 +69,7 @@ export const ColorButton: React.FC = () => {
                     </button>
                     <button
                         onClick={() => {
-                            setTheme("verde");
+                            setTheme("azul");
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
                     >
@@ -80,7 +80,7 @@ export const ColorButton: React.FC = () => {
                     </button>
                     <button
                         onClick={() => {
-                            setTheme("azul");
+                            setTheme("verde");
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
                     >
