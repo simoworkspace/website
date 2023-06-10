@@ -68,7 +68,7 @@ export const FormAddbot: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center w-[100%]">
                         <div
-                            className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                            className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors._id?.message === ""
                                     ? "border-[#ff0000]"
                                     : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
@@ -94,7 +94,7 @@ export const FormAddbot: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center w-[100%]">
                         <div
-                            className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                            className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
                                     : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
@@ -120,7 +120,7 @@ export const FormAddbot: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center w-[100%]">
                         <div
-                            className={`justify-center flex outline-none bg-gray-900 w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                            className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
                                     : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
@@ -152,7 +152,7 @@ export const FormAddbot: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center w-[100%]">
                         <div
-                            className={`justify-center flex outline-none bg-gray-900 w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                            className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
                                     : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
@@ -184,7 +184,7 @@ export const FormAddbot: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center w-[100%]">
                         <div
-                            className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                            className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
                                     : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
@@ -211,7 +211,7 @@ export const FormAddbot: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center w-[100%]">
                         <div
-                            className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                            className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
                                     : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
@@ -238,7 +238,7 @@ export const FormAddbot: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center w-[100%]">
                         <div
-                            className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                            className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
                                     : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
@@ -268,7 +268,7 @@ export const FormAddbot: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center w-[100%]">
                         <div
-                            className={`justify-center flex outline-none bg-gray-900 w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${
+                            className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
                                     : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
