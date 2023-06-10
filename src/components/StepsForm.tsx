@@ -7,7 +7,7 @@ export const StepsForm: React.FC<{
 }> = ({ setStepsState, children }) => {
     return (
         <div className="flex xl:justify-center xl:items-center xl:w-[90vw] xl:h-[100px] w-[30vw] h-[60vh]">
-            <div className="flex gap-2 flex-col rounded-3xl h-[106%] w-[100%] justify-center items-center bg-neutral-900 shadow-md shadow-black text-white">
+            <div className="flex gap-2 flex-col rounded-3xl h-[106%] w-[100%] justify-center items-center bg-neutral-950 border-white border-2 shadow-md shadow-black text-white">
                 <div className="flex text-xl mb-10 xl:mb-0">
                     <strong>Etapas</strong>
                 </div>

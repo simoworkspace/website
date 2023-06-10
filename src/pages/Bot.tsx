@@ -20,7 +20,7 @@ export const Bot: React.FC = () => {
     useEffect(() => {
         const fetchData = async (): Promise<void> => {
             const res: AxiosResponse = await axios.get<AxiosResponse>(
-                `${import.meta.env.VITE_API_URL}/bot/${params.botid}/discord`,
+                `${import.meta.env.VITE_API_URL}/users/${params.botid}`,
                 {
                     headers: {
                         Authorization: import.meta.env.VITE_API_KEY as string,

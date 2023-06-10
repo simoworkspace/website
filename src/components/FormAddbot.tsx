@@ -24,7 +24,7 @@ export const FormAddbot: React.FC = () => {
                 createdAt: "hoje",
             };
 
-            await axios.post<AxiosResponse>(
+            await axios.post<AxiosResponse<BotStructure>>(
                 `${import.meta.env.VITE_API_URL}/bot/${data._id}`,
                 formData,
                 {
@@ -41,18 +41,22 @@ export const FormAddbot: React.FC = () => {
     return (
         <div className="xl:mb-[0px] flex gap-1 justify-start flex-col items-center">
             <h1 className="text-white xl:text-[26px] text-[40px] m-5">
-                Adicione seu <strong className="text-roxo-legal">Bot</strong>!
+                <h1 className="text-white flex flex-row text-[32px] mx-10 my-3">
+                    <strong className="text-[#ffffff] xl:text-[24px] xl:mr-0 mr-2">
+                        Adicione seu Bot
+                    </strong>
+                </h1>
             </h1>
             <form
                 onSubmit={handleSubmit(onSubmit)}
-                className="gap-5 items-center pt-1 flex flex-col"
+                className="gap-5 items-center justify-center pt-1 flex flex-col"
             >
                 <div className="text-white xl:w-[88vw] xl:flex-col flex-row flex">
                     <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
-                        <div className="xl:text-center">
+                        <div className="text-center">
                             <strong>ID</strong>
                         </div>
-                        <span className='text-center'>
+                        <span className="text-center">
                             Você consegue encontrar o id do seu bot no{" "}
                             <a
                                 className="text-blue-600 hover:outline"
@@ -67,7 +71,7 @@ export const FormAddbot: React.FC = () => {
                             className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors._id?.message === ""
                                     ? "border-[#ff0000]"
-                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                                    : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                             } text-white`}
                         >
                             <input
@@ -80,10 +84,10 @@ export const FormAddbot: React.FC = () => {
                 </div>
                 <div className="text-white xl:w-[88vw] xl:flex-col flex-row flex">
                     <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
-                        <div className="xl:text-center">
+                        <div className="text-center">
                             <strong>Prefixo</strong>
                         </div>
-                        <span className='text-center'>
+                        <span className="text-center">
                             Me diga qual o prefixo do seu bot, caso não tenha,
                             só escrever slash.
                         </span>
@@ -93,7 +97,7 @@ export const FormAddbot: React.FC = () => {
                             className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
-                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                                    : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                             } text-white`}
                         >
                             <input
@@ -106,10 +110,10 @@ export const FormAddbot: React.FC = () => {
                 </div>
                 <div className="text-white xl:w-[88vw] xl:flex-col  flex-row flex">
                     <div className="w-[800px] xl:w-[100%] justify-center  break-words flex-col flex mr-2">
-                        <div className="xl:text-center">
+                        <div className="text-center">
                             <strong>Descrição longa</strong>
                         </div>
-                        <span className='text-center'>
+                        <span className="text-center">
                             Digite todos os detalhes do seu bot, não exite em
                             colocar informações!
                         </span>
@@ -119,7 +123,7 @@ export const FormAddbot: React.FC = () => {
                             className={`justify-center flex outline-none bg-gray-900 w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
-                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                                    : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                             } text-white`}
                         >
                             <textarea
@@ -138,10 +142,10 @@ export const FormAddbot: React.FC = () => {
                 </div>
                 <div className="text-white xl:w-[88vw] xl:flex-col  flex-row flex">
                     <div className="w-[800px] xl:w-[100%] justify-center break-words flex-col flex mr-2">
-                        <div className="xl:text-center">
+                        <div className="text-center">
                             <strong>Descrição Curta</strong>
                         </div>
-                        <span className='text-center'>
+                        <span className="text-center">
                             Digite uma descrição curta, oque irá aparecer na
                             lista como destaque.
                         </span>
@@ -151,7 +155,7 @@ export const FormAddbot: React.FC = () => {
                             className={`justify-center flex outline-none bg-gray-900 w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
-                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                                    : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                             } text-white`}
                         >
                             <textarea
@@ -170,10 +174,10 @@ export const FormAddbot: React.FC = () => {
                 </div>
                 <div className="text-white xl:w-[88vw] xl:flex-col  flex-row flex">
                     <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
-                        <div className="xl:text-center">
+                        <div className="text-center">
                             <strong>Source Code</strong>
                         </div>
-                        <span className='text-center'>
+                        <span className="text-center">
                             Digite o site onde tem o código fonte do bot
                             (opcional){" "}
                         </span>
@@ -183,7 +187,7 @@ export const FormAddbot: React.FC = () => {
                             className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
-                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                                    : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                             } text-white`}
                         >
                             <input
@@ -197,10 +201,10 @@ export const FormAddbot: React.FC = () => {
                 </div>
                 <div className="text-white xl:w-[88vw] xl:flex-col  flex-row flex">
                     <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
-                        <div className="xl:text-center">
+                        <div className="text-center">
                             <strong>Website</strong>
                         </div>
-                        <span className='text-center'>
+                        <span className="text-center">
                             Digite o website onde se encontra informações do seu
                             bot.
                         </span>
@@ -210,7 +214,7 @@ export const FormAddbot: React.FC = () => {
                             className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
-                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                                    : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                             } text-white`}
                         >
                             <input
@@ -224,10 +228,10 @@ export const FormAddbot: React.FC = () => {
                 </div>
                 <div className="text-white xl:w-[88vw] xl:flex-col  flex-row flex">
                     <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
-                        <div className="xl:text-center">
+                        <div className="text-center">
                             <strong>Servidor de suporte</strong>
                         </div>
-                        <span className='text-center'>
+                        <span className="text-center">
                             Coloque o link do seu servidor de discord onde é o
                             suporte do seu bot (discord.gg/)
                         </span>
@@ -237,7 +241,7 @@ export const FormAddbot: React.FC = () => {
                             className={`justify-center flex outline-none bg-gray-900 w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
-                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                                    : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                             } text-white`}
                         >
                             <input
@@ -253,10 +257,10 @@ export const FormAddbot: React.FC = () => {
                 </div>
                 <div className="text-white xl:w-[88vw] xl:flex-col  flex-row flex">
                     <div className="w-[800px] xl:w-[100%] justify-center break-words flex-col flex mr-2">
-                        <div className="xl:text-center">
+                        <div className="text-center">
                             <strong>Tags</strong>
                         </div>
-                        <span className='text-center'>
+                        <span className="text-center">
                             Digite as palavras chaves das características que
                             seu bot possui, separe por virgula (moderação,
                             administração)
@@ -267,7 +271,7 @@ export const FormAddbot: React.FC = () => {
                             className={`justify-center flex outline-none bg-gray-900 w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${
                                 errors.prefix?.message === ""
                                     ? "border-[#ff0000]"
-                                    : " border-[#8b8b8b] hover:border-roxo-legal focus-within:border-roxo-legal"
+                                    : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                             } text-white`}
                         >
                             <textarea
@@ -286,7 +290,7 @@ export const FormAddbot: React.FC = () => {
                     <input
                         type="submit"
                         value="Enviar bot"
-                        className="cursor-pointer hover:bg-[#2d2dda] focus:duration-0 transition-all duration-300 items-center bg-[#5353eb] w-[300px] rounded-xl h-[60px] text-white focus:outline focus:outline-offset-2 focus:outline-white focus:utline-2"
+                        className="cursor-pointer focus:duration-0 transition-all duration-300 items-center border-neutral-700 bg-neutral-900 hover:bg-neutral-700 border-2 w-[300px] rounded-xl h-[60px] text-white focus:outline focus:outline-offset-2 focus:outline-white focus:utline-2"
                     />
                 </div>
             </form>

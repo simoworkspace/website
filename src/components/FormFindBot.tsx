@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import axios, { AxiosResponse } from "axios";
 import searchIcon from "../assets/svg/search.svg";
 
@@ -19,7 +19,7 @@ export const FormFindBot: React.FC<{
         try {
             event.preventDefault();
             const res: AxiosResponse = await axios.get<AxiosResponse>(
-                `${import.meta.env.VITE_API_URL}/bot/${id}/discord`,
+                `${import.meta.env.VITE_API_URL}/users/${id}`,
                 {
                     headers: {
                         Authorization: import.meta.env.VITE_API_KEY as string,
@@ -44,7 +44,7 @@ export const FormFindBot: React.FC<{
                         className={`border-[#8b8b8b] items-center xl:w-[85vw] justify-center h-100px transition-all duration-300 rounded-xl border-2 bg-[#2c2c2c] ${
                             statusCode === 404
                                 ? "border-[#ff0000]"
-                                : "hover:border-roxo-legal focus-within:border-roxo-legal"
+                                : "hover:border-neutral-300 focus-within:border-white"
                         }`}
                     >
                         <input
@@ -63,9 +63,9 @@ export const FormFindBot: React.FC<{
                 </div>
                 <div className="flex m-2 flex-col">
                     <button
-                        className={`flex rounded-xl xl:w-[85vw] flex-row items-center justify-center bg-[#5353eb] hover:bg-[#2d2dda] ${
+                        className={`flex rounded-xl xl:w-[85vw] flex-row items-center justify-center border-2 border-neutral-700 bg-neutral-900 hover:bg-neutral-700 transition-all duration-300 ${
                             statusCode == 404 && "mb-[24px] xl:mb-0"
-                        } transition-all focus:bg-[#2d2dda] duration-300 p-4`}
+                        } p-4`}
                         type="submit"
                     >
                         <img

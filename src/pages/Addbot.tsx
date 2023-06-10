@@ -32,10 +32,10 @@ export const Addbot: React.FC = () => {
             </div>
             <div
                 className={`flex self-center xl:w-[90vw] ${
-                    stepsState === 2 ? "xl:h-[102rem] xl:mb-12" : "xl:h-[300px]"
+                    stepsState === 2 ? "xl:h-[105rem] xl:mb-12" : "xl:h-[300px]"
                 } w-[70vw]`}
             >
-                <div className="flex p-3 rounded-3xl justify-center items-center h-[100%] w-[100%] bg-neutral-900 shadow-md shadow-black text-white">
+                <div className="flex p-3 rounded-3xl justify-center items-center h-[100%] w-[100%] bg-neutral-950 border-white border-2 shadow-md shadow-black text-white">
                     {verificarBot ? (
                         <div className="flex justify-start h-[100%]">
                             <FormAddbot />

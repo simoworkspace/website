@@ -9,8 +9,8 @@ export const Main: React.FC = () => {
 
     useEffect(() => {
         const fetchData = async (): Promise<void> => {
-            const res: AxiosResponse = await axios.get<AxiosResponse>(
-                (import.meta.env.VITE_API_URL as string) + "/bot/@all",
+            const res: AxiosResponse = await axios.get<AxiosResponse<BotStructure[]>>(
+                (import.meta.env.VITE_API_URL as string) + "/bots/@all",
                 {
                     headers: {
                         Authorization: import.meta.env.VITE_API_KEY as string,
@@ -27,7 +27,7 @@ export const Main: React.FC = () => {
             {data.map((bot: BotStructure) => (
                 <Link to={`/bot/${bot._id}`}
                     key={bot._id}
-                    className="bg-neutral-950 duration-300 transition-colors hover:bg-neutral-900 shadow-md shadow-black p-3 border-white border-[2px] bg-neutral-940 rounded-lg"
+                    className="bg-neutral-950 duration-300 transition-colors hover:bg-neutral-900 shadow-md shadow-black p-3 border-white border-2 bg-neutral-940 rounded-lg"
                 >
                     <img
                         className="w-[min(100%,100px)] h-[min(100%,100px)] rounded-full mt-2 mr-2 float-right"
