@@ -15,7 +15,7 @@ export const Bot: React.FC = () => {
     const params: Params = useParams<string>();
     const navigate: NavigateFunction = useNavigate();
     const [botData, setBotData] = useState<botDataStructure>();
-    const [verifyBot, setVerifyBot] = useState<boolean>(true);
+    const [verifyBot, setVerifyBot] = useState<boolean | object>();
 
     useEffect(() => {
         const fetchData = async (): Promise<void> => {
@@ -31,17 +31,18 @@ export const Bot: React.FC = () => {
         const verifyBotExists = async (): Promise<void> => {
             const res: AxiosResponse = await axios.get<
                 AxiosResponse<BotStructure>
-            >(import.meta.env.VITE_API_URL + "/findbot/" + params.botid, {
+            >(import.meta.env.VITE_API_URL + "/bots/" + params.botid, {
                 headers: {
                     Authorization: import.meta.env.VITE_API_KEY as string,
                 },
             });
-            if (res.data.length === 0) return setVerifyBot(false);
+            if (res.status === 404) return setVerifyBot(false);
+            setVerifyBot(true)
         };
         verifyBotExists();
         fetchData();
     }, []);
-
+    console.log(verifyBot);
     if (!verifyBot) navigate("/notfound");
 
     return botData ? (
@@ -73,14 +74,14 @@ export const Bot: React.FC = () => {
                     <div className="flex w-[100%] justify-end ">
                         <div className="flex gap-4 items-center justify-center xl:w-[100vw] flex-row m-4">
                             <Link
-                                className="bg-neutral-900 transition-all duration-300 hover:bg-neutral-800 p-2 rounded-md w-[87px] text-center"
+                                className="border-2 border-neutral-700 bg-neutral-900 hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
                                 to={`/vote/${botData.id}`}
                             >
                                 <span>Votar</span>
                             </Link>
                             <Link
-                                className="bg-neutral-900 transition-all duration-300 hover:bg-neutral-800 p-2 rounded-md"
-                                to={`/bhfuidshduip`}
+                                className="border-2 border-neutral-700 bg-neutral-900 hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
+                                to={`https://discord.com/api/oauth2/authorize?client_id=${botData.id}&permissions=70368744177655&scope=bot%20applications.commands`}
                             >
                                 <span>Adicionar</span>
                             </Link>
