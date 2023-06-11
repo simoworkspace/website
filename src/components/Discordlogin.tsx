@@ -78,7 +78,7 @@ const UserLogin: React.FC = () => {
             ) : (
                 <div className="flex text-white w-[140px] h-[50px] xl:hidden">
                     <Link
-                        className="flex items-center h-[100%] w-[80%] justify-center border-[#858585] border-[1px] bg-black p-6 transition-all duration-500 hover:scale-105 hover:bg-[#1f1f1f] hover:border-white"
+                        className="flex items-center h-[100%] w-[80%] justify-center border-[#858585] border-[1px] bg-black p-6 transition-colors duration-300 hover:bg-neutral-950 hover:border-white"
                         to={import.meta.env.VITE_AUTH_LINK as string}
                     >
                         <div>Login</div>

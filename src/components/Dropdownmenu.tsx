@@ -2,10 +2,10 @@ import logoutIcon from "../assets/svg/logout.svg";
 import plusIcon from "../assets/svg/plus.svg";
 import dashIcon from "../assets/svg/dashboard.svg";
 import listIcon from "../assets/svg/list.svg";
-import paletteIcon from "../assets/svg/pallete.svg";
+import serversIcon from "../assets/svg/servers.svg";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 
 export const Dropdownmenu: React.FC = () => {
     const handleExit = (): void => {
@@ -32,6 +32,15 @@ export const Dropdownmenu: React.FC = () => {
                     <div className="flex-2 flex">
                         <img className="mr-3" src={listIcon} alt="List Icon" />
                         <span>Botlist</span>
+                    </div>
+                </Link>
+                <Link
+                    to="/"
+                    className="p-1 flex justify-center my-1 hover:bg-[#3a3a3a] rounded-md m-[2px] transition-all"
+                >
+                    <div className="flex-2 flex">
+                        <img className="mr-3 w-[20px]" src={serversIcon} alt="List Icon" />
+                        <span>Servidores</span>
                     </div>
                 </Link>
                 <Link
