@@ -3,25 +3,23 @@ import { Link } from "react-router-dom";
 import arrowIcon from "../assets/svg/arrow.svg";
 import { Dropdownmenu } from "./Dropdownmenu";
 import { UserStructure } from "../types";
+import jwtDecode from "jwt-decode";
 
 const UserLogin: React.FC = () => {
     const [user, setUser] = useState<UserStructure | false>();
+    const token: string | undefined = document.cookie.split("discordUser=")[1];
 
     useEffect(() => {
-        const getUserData = (): void => {
-            const userCookie: string | undefined =
-                document.cookie.split("discordUser=")[1];
-            if (!userCookie) {
+        try {
+            const userData: { data: UserStructure } = jwtDecode(token);
+            if (!userData) {
                 setUser(false);
             } else {
-                const userData: UserStructure = JSON.parse(
-                    decodeURIComponent(userCookie)
-                );
-                setUser(userData);
+                setUser(userData.data);
             }
-        };
-
-        getUserData();
+        } catch (error: any) {
+            setUser(false);
+        }
     }, []);
 
     const [arrowState, setArrowState] = useState<boolean>(false);
@@ -69,7 +67,9 @@ const UserLogin: React.FC = () => {
                     </div>
                     <div
                         className={`xl:hidden transition-all duration-300 border-white border-[1px] border-t-[0px] absolute bg-black text-white w-[164px] top-[61px] ${
-                            arrowState ? "opacity-100 border-transparent" : "opacity-0 invisible"
+                            arrowState
+                                ? "opacity-100 border-transparent"
+                                : "opacity-0 invisible"
                         }`}
                     >
                         <Dropdownmenu />

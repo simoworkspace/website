@@ -39,7 +39,11 @@ export const Dropdownmenu: React.FC = () => {
                     className="p-1 flex justify-center my-1 hover:bg-[#3a3a3a] rounded-md m-[2px] transition-all"
                 >
                     <div className="flex-2 flex">
-                        <img className="mr-3 w-[20px]" src={serversIcon} alt="List Icon" />
+                        <img
+                            className="mr-3 w-[20px]"
+                            src={serversIcon}
+                            alt="List Icon"
+                        />
                         <span>Servidores</span>
                     </div>
                 </Link>
