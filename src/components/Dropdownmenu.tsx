@@ -35,7 +35,7 @@ export const Dropdownmenu: React.FC = () => {
                     </div>
                 </Link>
                 <Link
-                    to="/"
+                    to="guilds"
                     className="p-1 flex justify-center my-1 hover:bg-[#3a3a3a] rounded-md m-[2px] transition-all"
                 >
                     <div className="flex-2 flex">

@@ -7,7 +7,7 @@ import {
     Link,
     Params,
 } from "react-router-dom";
-import { botDataStructure } from "../types";
+import { BotStructure, botDataStructure } from "../types";
 import starIconFill from "../assets/svg/starfill.svg";
 import starIcon from "../assets/svg/star.svg";
 
@@ -19,26 +19,23 @@ export const Bot: React.FC = () => {
 
     useEffect(() => {
         const fetchData = async (): Promise<void> => {
-            const res: AxiosResponse = await axios.get<AxiosResponse>(
-                `${import.meta.env.VITE_API_URL}/users/${params.botid}`,
-                {
-                    headers: {
-                        Authorization: import.meta.env.VITE_API_KEY as string,
-                    },
-                }
-            );
+            const res: AxiosResponse = await axios.get<
+                AxiosResponse<BotStructure>
+            >(`${import.meta.env.VITE_API_URL}/users/${params.botid}`, {
+                headers: {
+                    Authorization: import.meta.env.VITE_API_KEY as string,
+                },
+            });
             setBotData(res.data);
         };
         const verifyBotExists = async (): Promise<void> => {
-            const res: AxiosResponse = await axios.get<AxiosResponse>(
-                import.meta.env.VITE_API_URL + "/findbot/" + params.botid,
-                {
-                    headers: {
-                        Authorization: import.meta.env.VITE_API_KEY as string,
-                    },
-                }
-            );
-            console.log(res.data);
+            const res: AxiosResponse = await axios.get<
+                AxiosResponse<BotStructure>
+            >(import.meta.env.VITE_API_URL + "/findbot/" + params.botid, {
+                headers: {
+                    Authorization: import.meta.env.VITE_API_KEY as string,
+                },
+            });
             if (res.data.length === 0) return setVerifyBot(false);
         };
         verifyBotExists();
