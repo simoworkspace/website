@@ -10,7 +10,7 @@ export const Main: React.FC = () => {
     useEffect(() => {
         const fetchData = async (): Promise<void> => {
             const res: AxiosResponse = await axios.get<AxiosResponse<BotStructure[]>>(
-                (import.meta.env.VITE_API_URL as string) + "/bots/@all",
+                (import.meta.env.VITE_API_URL as string) + "/bots",
                 {
                     headers: {
                         Authorization: import.meta.env.VITE_API_KEY as string,
