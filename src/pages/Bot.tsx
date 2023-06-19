@@ -37,12 +37,12 @@ export const Bot: React.FC = () => {
                 },
             });
             if (res.status === 404) return setVerifyBot(false);
-            setVerifyBot(true)
+            setVerifyBot(true);
         };
         verifyBotExists();
         fetchData();
     }, []);
-    console.log(verifyBot);
+
     if (!verifyBot) navigate("/notfound");
 
     return botData ? (

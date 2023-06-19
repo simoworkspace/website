@@ -3,21 +3,32 @@ import { Link } from "react-router-dom";
 import arrowIcon from "../assets/svg/arrow.svg";
 import { Dropdownmenu } from "./Dropdownmenu";
 import { UserStructure } from "../types";
-import jwtDecode from "jwt-decode";
+import axios, { AxiosResponse } from "axios";
 
 const UserLogin: React.FC = () => {
     const [user, setUser] = useState<UserStructure | false>();
-    const token: string | undefined = document.cookie.split("discordUser=")[1];
 
     useEffect(() => {
         try {
-            const userData: { data: UserStructure } = jwtDecode(token);
-            if (!userData) {
+            const getUserToken = async () => {
+                const tokenAxios = await axios.get<
+                    AxiosResponse<UserStructure>
+                >(`${import.meta.env.VITE_API_URL}/auth/user`, {
+                    headers: {
+                        Authorization: import.meta.env.VITE_API_KEY as string,
+                    },
+                    withCredentials: true,
+                });
+                return setUser(tokenAxios.data.data);
+            };
+            getUserToken();
+            if (!user) {
                 setUser(false);
             } else {
-                setUser(userData.data);
+                setUser(user);
             }
         } catch (error: any) {
+            console.error(error);
             setUser(false);
         }
     }, []);
