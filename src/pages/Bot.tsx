@@ -21,7 +21,7 @@ export const Bot: React.FC = () => {
         const fetchData = async (): Promise<void> => {
             const res: AxiosResponse = await axios.get<
                 AxiosResponse<BotStructure>
-            >(`${import.meta.env.VITE_API_URL}/users/${params.botid}`, {
+            >(`/api/users/${params.botid}`, {
                 headers: {
                     Authorization: import.meta.env.VITE_API_KEY as string,
                 },
@@ -31,7 +31,7 @@ export const Bot: React.FC = () => {
         const verifyBotExists = async (): Promise<void> => {
             const res: AxiosResponse = await axios.get<
                 AxiosResponse<BotStructure>
-            >(import.meta.env.VITE_API_URL + "/bots/" + params.botid, {
+            >("/api" + "/bots/" + params.botid, {
                 headers: {
                     Authorization: import.meta.env.VITE_API_KEY as string,
                 },
