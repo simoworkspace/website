@@ -9,14 +9,13 @@ export const Main: React.FC = () => {
 
     useEffect(() => {
         const fetchData = async (): Promise<void> => {
-            const res: AxiosResponse = await axios.get<AxiosResponse<BotStructure[]>>(
-                (import.meta.env.VITE_API_URL as string) + "/bots",
-                {
-                    headers: {
-                        Authorization: import.meta.env.VITE_API_KEY as string,
-                    },
-                }
-            );
+            const res: AxiosResponse = await axios.get<
+                AxiosResponse<BotStructure[]>
+            >((import.meta.env.VITE_API_URL as string) + "/bots", {
+                headers: {
+                    Authorization: import.meta.env.VITE_API_KEY as string,
+                },
+            });
             setData(res.data);
         };
         fetchData();
@@ -25,7 +24,8 @@ export const Main: React.FC = () => {
     return data ? (
         <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left">
             {data.map((bot: BotStructure) => (
-                <Link to={`/bot/${bot._id}`}
+                <Link
+                    to={`/bot/${bot._id}`}
                     key={bot._id}
                     className="bg-neutral-950 duration-300 transition-colors hover:bg-neutral-900 shadow-md shadow-black p-3 border-white border-2 bg-neutral-940 rounded-lg"
                 >

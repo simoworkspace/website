@@ -13,7 +13,7 @@ const UserLogin: React.FC = () => {
             const getUserToken = async () => {
                 const tokenAxios = await axios.get<
                     AxiosResponse<UserStructure>
-                >(`/api/auth/user`, {
+                >(`${import.meta.env.VITE_API_URL as string}/auth/user`, {
                     headers: {
                         Authorization: import.meta.env.VITE_API_KEY as string,
                         "Content-Type": "application/json",
