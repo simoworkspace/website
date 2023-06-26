@@ -3,14 +3,18 @@ import plusIcon from "../assets/svg/plus.svg";
 import dashIcon from "../assets/svg/dashboard.svg";
 import listIcon from "../assets/svg/list.svg";
 import serversIcon from "../assets/svg/servers.svg";
-import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import React from "react";
+import axios, { AxiosResponse } from "axios";
 
 export const Dropdownmenu: React.FC = () => {
-    const handleExit = (): void => {
-        Cookies.remove("discordUser");
-        window.location.reload();
+    const handleExit = async () => {
+        await axios.get<AxiosResponse<AxiosResponse>>("/api/auth/logout", {
+            headers: {
+                Authorization: import.meta.env.VITE_API_KEY as string,
+            },
+        });
+        return window.location.reload();
     };
 
     return (

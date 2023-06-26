@@ -10,34 +10,28 @@ const UserLogin: React.FC = () => {
 
     useEffect(() => {
         try {
-            const getUserToken = async () => {
-                const tokenAxios = await axios.get<
-                    AxiosResponse<UserStructure>
-                >(`${import.meta.env.VITE_API_URL as string}/auth/user`, {
-                    headers: {
-                        Authorization: import.meta.env.VITE_API_KEY as string,
-                        "Content-Type": "application/json",
-                        "Access-Control-Allow-Origin": "*",
-                    },
-                    withCredentials: true,
-                });
-                return setUser(tokenAxios.data.data);
+            const getUserData = async () => {
+                await axios
+                    .get("/api/auth/user", {
+                        withCredentials: true,
+                        headers: {
+                            Authorization: import.meta.env.VITE_API_KEY,
+                        },
+                    })
+                    .then((res) => {
+                        setUser(res.data.data);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
             };
-            getUserToken();
-            if (!user) {
-                setUser(false);
-            } else {
-                setUser(user);
-            }
+            getUserData();
         } catch (error: any) {
-            console.error(error);
-            setUser(false);
+            return setUser(false);
         }
     }, []);
 
     const [arrowState, setArrowState] = useState<boolean>(false);
-
-    const handleSetArrow = (): void => setArrowState(!arrowState);
 
     return (
         <div>
@@ -45,7 +39,9 @@ const UserLogin: React.FC = () => {
                 <>
                     <div>
                         <button
-                            onClick={handleSetArrow}
+                            onClick={() => {
+                                setArrowState(!arrowState);
+                            }}
                             onBlur={() => {
                                 setArrowState(false);
                             }}
