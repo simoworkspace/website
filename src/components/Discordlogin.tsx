@@ -15,12 +15,10 @@ const UserLogin: React.FC = () => {
                     .get("/api/auth/user", {
                         withCredentials: true,
                         headers: {
-                            "Access-Control-Allow-Credentials": true,
                             Authorization: import.meta.env.VITE_API_KEY,
                         },
                     })
                     .then((res) => {
-                        console.log(res.headers["set-cookie"]);
                         console.log(res.data);
                         setUser(res.data.data);
                     })
