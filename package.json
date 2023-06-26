@@ -3,7 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
-    "proxy": "http://localhost:80",
+    "proxy": "https://botlist-api.squareweb.app/",
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",
