@@ -8,8 +8,8 @@
     ],
     "routes": [
         {
-            "source": "/api/(.*)", 
-            "destination": "https://botlist-api.squareweb.app"
+            "src": "/api/(.*)", 
+            "dest": "https://botlist-api.squareweb.app"
         }
     ]
 }
