@@ -16,9 +16,7 @@ export const InputSearch: React.FC = () => {
         event.preventDefault();
         const fetchData = async () => {
             const res: AxiosResponse = await axios.get<AxiosResponse>(
-                `${
-                    import.meta.env.VITE_API_URL
-                }/findbotname/${valorInput.toLowerCase()}`,
+                `/api/findbotname/${valorInput.toLowerCase()}`,
                 {
                     headers: {
                         Authorization: import.meta.env.VITE_API_KEY as string,

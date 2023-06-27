@@ -25,7 +25,7 @@ export const FormAddbot: React.FC = () => {
             };
 
             await axios.post<AxiosResponse<BotStructure>>(
-                `${import.meta.env.VITE_API_URL}/bot/${data._id}`,
+                `/api/bot/${data._id}`,
                 formData,
                 {
                     headers: {

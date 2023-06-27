@@ -19,7 +19,7 @@ export const FormFindBot: React.FC<{
         try {
             event.preventDefault();
             const res: AxiosResponse = await axios.get<AxiosResponse>(
-                `${import.meta.env.VITE_API_URL}/users/${id}`,
+                `/api/users/${id}`,
                 {
                     headers: {
                         Authorization: import.meta.env.VITE_API_KEY as string,

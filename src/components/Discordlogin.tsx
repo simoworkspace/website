@@ -4,7 +4,6 @@ import arrowIcon from "../assets/svg/arrow.svg";
 import { Dropdownmenu } from "./Dropdownmenu";
 import { UserStructure } from "../types";
 import axios, { AxiosResponse } from "axios";
-import Cookies from "js-cookie";
 
 const UserLogin: React.FC = () => {
     const [user, setUser] = useState<UserStructure | false>();
@@ -21,9 +20,6 @@ const UserLogin: React.FC = () => {
                     .then((res) => {
                         setUser(res.data.data)
                     })
-                    .catch((error) => {
-                        console.log(error);
-                    });
             };
             getUserData();
         } catch (error: any) {
