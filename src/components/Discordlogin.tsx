@@ -10,9 +10,8 @@ const UserLogin: React.FC = () => {
 
     useEffect(() => {
         try {
-            const getUserData = async () => {
-                await axios
-                    .get("/api/auth/user", {
+            const getUserData = () => {
+                axios.get("/api/auth/user", {
                         withCredentials: true,
                         headers: {
                             Authorization: import.meta.env.VITE_API_KEY,
@@ -20,10 +19,10 @@ const UserLogin: React.FC = () => {
                     })
                     .then((res) => {
                         console.log(res.data);
-                        setUser(res.data.data);
+                        setUser(res.data.data)
                     })
                     .catch((error) => {
-                        console.error(error);
+                        console.log(error);
                     });
             };
             getUserData();
