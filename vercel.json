@@ -4,10 +4,12 @@
         { 
             "source": "/(.*)", 
             "destination": "/"
-        },
-        {
-            "source": "/api/auth/user", 
-            "destination": "https://botlist-api.squareweb.app/api/auth/user"
         }
-    ] 
+    ],
+    "routes": [
+        {
+            "source": "/api/(.*)", 
+            "destination": "https://botlist-api.squareweb.app"
+        }
+    ]
 }
