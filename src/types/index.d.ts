@@ -44,5 +44,5 @@ export interface VoteStructure {
 export interface UserStructure {
     username: string;
     id: Snowflake | string;
-    avatar: string
-  };
+    avatar: string;
+};
