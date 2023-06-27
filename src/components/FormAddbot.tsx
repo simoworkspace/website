@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { BotStructure } from "../types";
@@ -10,8 +10,6 @@ export const FormAddbot: React.FC = () => {
         formState: { errors },
     } = useForm<BotStructure>();
 
-    console.log(errors._id);
-
     const onSubmit: SubmitHandler<BotStructure> = async (
         data: BotStructure
     ): Promise<void> => {
@@ -22,10 +20,12 @@ export const FormAddbot: React.FC = () => {
                 name: "calorbot",
                 approved: false,
                 createdAt: "hoje",
+                verifiedBot: true,
+                inviteURL: "oie"
             };
 
             await axios.post<AxiosResponse<BotStructure>>(
-                `/api/bot/${data._id}`,
+                `/api/bots/${data._id}`,
                 formData,
                 {
                     headers: {
@@ -34,7 +34,7 @@ export const FormAddbot: React.FC = () => {
                 }
             );
         } catch (error: any) {
-            console.error(error.message);
+            console.error(error);
         }
     };
 
