@@ -1,12 +1,12 @@
-{ 
+{
     "routes": [
         {
-            "src": "/api/(.*)", 
-            "dest": "https://botlist-api.squareweb.app"
+            "src": "/api/(.*)",
+            "dest": "https://botlist-api.squareweb.app/api/:1"
         },
-        { 
-            "src": "/(.*)", 
-            "dest": "/"
+        {
+            "src": "/(.*)",
+            "dest": "/:1"
         }
     ]
 }
