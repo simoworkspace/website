@@ -5,8 +5,8 @@
             "destination": "/"
         },
         {
-            "source": "/api/:path*/",
-            "destination": "https://botlist-api.squareweb.app/:path*/"
+            "source": "/api/(.*)", 
+            "destination": "https://botlist-api.squareweb.app"
         }
     ] 
 }

@@ -12,7 +12,7 @@ const UserLogin: React.FC = () => {
     useEffect(() => {
         try {
             const getUserData = () => {
-                axios.get("https://botlist-api.squareweb.app/api/auth/user", {
+                axios.get("/api/auth/user", {
                         withCredentials: true,
                         headers: {
                             Authorization: import.meta.env.VITE_API_KEY,

@@ -10,7 +10,7 @@ import Cookies from "js-cookie";
 
 export const Dropdownmenu: React.FC = () => {
     const handleExit = async () => {
-        await axios.get<AxiosResponse<AxiosResponse>>("https://botlist-api.squareweb.app/api/auth/logout", {
+        await axios.get<AxiosResponse<AxiosResponse>>("/api/auth/logout", {
             headers: {
                 Authorization: import.meta.env.VITE_API_KEY as string,
             },
