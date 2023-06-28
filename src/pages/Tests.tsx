@@ -18,29 +18,28 @@ const reducer = (
         case "reset":
             return { ...state, count: (state.count = 0) };
     }
-    return state;
 };
 
 export const Tests: React.FC = () => {
-    const [contagem, dispatch] = useReducer(reducer, initialState);
+    const [contagem, contagemDispatch] = useReducer(reducer, initialState);
     return (
         <div className="text-white flex flex-col gap-2">
             <div>{contagem.count}</div>
             <div>
                 <button
-                    onClick={() => dispatch({ type: "add" })}
+                    onClick={() => contagemDispatch({ type: "add" })}
                     className="p-3 border-2 w-[100px]"
                 >
                     adicionar
                 </button>
                 <button
-                    onClick={() => dispatch({ type: "remove" })}
+                    onClick={() => contagemDispatch({ type: "remove" })}
                     className="p-3 border-2 w-[100px]"
                 >
                     remover
                 </button>
                 <button
-                    onClick={() => dispatch({ type: "reset" })}
+                    onClick={() => contagemDispatch({ type: "reset" })}
                     className="p-3 border-2 w-[100px]"
                 >
                     resetar

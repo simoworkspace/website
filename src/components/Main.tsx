@@ -3,23 +3,16 @@ import { BotStructure } from "../types";
 import { Botloading } from "./Botloading";
 import { Link } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
+import api from "../api/api";
 
 export const Main: React.FC = () => {
     const [data, setData] = useState<BotStructure[]>();
 
-    useEffect(() => {
-        const fetchData = async (): Promise<void> => {
-            const res: AxiosResponse = await axios.get<
-                AxiosResponse<BotStructure[]>
-            >("/api/bots", {
-                headers: {
-                    Authorization: import.meta.env.VITE_API_KEY as string,
-                },
-            });
-            setData(res.data);
-        };
-        fetchData();
-    }, []);
+    const fetchData = async () => {
+        const data: BotStructure[] = await api.getAllBots();
+        setData(data);
+    };
+    fetchData();
 
     return data ? (
         <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left">

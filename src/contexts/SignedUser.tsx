@@ -2,13 +2,8 @@ import React, { createContext, useEffect, useState, useReducer } from "react";
 import { UserStructure } from "../types";
 import axios from "axios";
 
-// const [userData, setUserData] = useState<UserStructure>();
+const [userData, setUserData] = useState<UserStructure>();
 
-const userData = {
-    id: "oie",
-    avatar: "oie",
-    name: "oie"
-}
 useEffect(() => {}, [])
 
 export const SignedUser = createContext(userData);
