@@ -13,7 +13,7 @@ import { Tests } from "./pages/Tests";
 
 function App() {
     return (
-        <body className="overflow-x-hidden">
+        <main className="overflow-x-hidden">
             <header>
                 <Header />
             </header>
@@ -37,7 +37,7 @@ function App() {
                 </Routes>
                 <Mobilemenu />
             </section>
-        </body>
+        </main>
     );
 }
 
