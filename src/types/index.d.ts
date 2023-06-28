@@ -115,7 +115,7 @@ enum DiscordNitroType {
     Nitro,
     NitroBasic
 }
-export interface DiscordUser {
+export interface DiscordUser extends UserStructure {
     discriminator: string;
     bot?: boolean;
     system?: boolean;
