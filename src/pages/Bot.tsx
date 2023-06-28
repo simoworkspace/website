@@ -7,7 +7,7 @@ import {
     Link,
     Params,
 } from "react-router-dom";
-import { BotStructure, botDataStructure } from "../types";
+import { BotStructure, DiscordUser, botDataStructure } from "../types";
 import starIconFill from "../assets/svg/starfill.svg";
 import starIcon from "../assets/svg/star.svg";
 import api from '../api';
@@ -15,36 +15,24 @@ import api from '../api';
 export const Bot: React.FC = () => {
     const params: Params = useParams<string>();
     const navigate: NavigateFunction = useNavigate();
-    const [botData, setBotData] = useState<botDataStructure>();
-    const [verifyBot, setVerifyBot] = useState<boolean | object>();
+    const [botData, setBotData] = useState<DiscordUser>();
+
+    const getBotData = async () => {
+        const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(params.botid as string);
+        return setBotData(res.data);
+    };
+
+    const verifyBot = async () => {
+        const res: AxiosResponse<BotStructure> = await api.getBotInfos(params.botid as string);
+        if (res.status === 404) return navigate("/notfound");
+        return res.data;
+    };
 
     useEffect(() => {
-        const fetchData = async (): Promise<void> => {
-            const res: AxiosResponse = await axios.get<
-                AxiosResponse<BotStructure>
-            >(`/api/users/${params.botid}`, {
-                headers: {
-                    Authorization: import.meta.env.VITE_API_KEY as string,
-                },
-            });
-            setBotData(res.data);
-        };
-        const verifyBotExists = async (): Promise<void> => {
-            const res: AxiosResponse = await axios.get<
-                AxiosResponse<BotStructure>
-            >("/api/bots/" + params.botid, {
-                headers: {
-                    Authorization: import.meta.env.VITE_API_KEY as string,
-                },
-            });
-            if (res.status === 404) return setVerifyBot(false);
-            setVerifyBot(true);
-        };
-        verifyBotExists();
-        fetchData();
-    }, []);
+        verifyBot();
+        getBotData();
+    }, [])
 
-    if (!verifyBot) navigate("/notfound");
 
     return botData ? (
         <div className="h-[100vh] w-[100vw]">
