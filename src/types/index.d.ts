@@ -52,3 +52,21 @@ export interface UserStructure {
     id: Snowflake | string;
     avatar: string;
 };
+
+export interface DiscordUser {
+    discriminator: string;
+    bot?: boolean;
+    system?: boolean;
+    mfa_enabled?: boolean;
+    banner: string | null;
+    accent_color?: string;
+    locale?: keyof Locales;
+    verified: boolean;
+    email?: string;
+    flags: UserFlags;
+    premium_type: DiscordNitroType;
+    public_flags: UserFlags;
+    global_name: string | null;
+    display_name: string | null;
+    banner_color: string | null;
+}
