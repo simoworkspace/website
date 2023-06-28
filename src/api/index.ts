@@ -15,17 +15,21 @@ const header = {
 };
 
 const api = {
-    getAllBots: async (): Promise<BotStructure[]> => {
+    getAllBots: async () => {
         const res: AxiosResponse = await axios.get<AxiosResponse<BotStructure[]>>("/api/bots", header);
-        return res.data;
+        return res;
     },
     getUserData: async () => {
         const res: AxiosResponse = await axios.get<AxiosResponse<UserStructure>>("/api/auth/user", { ...header, withCredentials: true });
-        return res.data;
+        return res;
     },
-    getDiscordUser: async (userId: string | Snowflake) => {
-        const res: AxiosResponse = await axios.get<AxiosResponse<DiscordUser>>("/api/users/" + userId, header);
-        return res.data;
+    getDiscordUser: async (userID: string | Snowflake) => {
+        const res: AxiosResponse = await axios.get<AxiosResponse<DiscordUser>>("/api/users/" + userID, header);
+        return res;
+    },
+    getBotInfos: async (botID: string | Snowflake) => {
+        const res: AxiosResponse = await axios.get<AxiosResponse<BotStructure>>("/api/bots" + botID, header);
+        return res;
     }
 };
 
