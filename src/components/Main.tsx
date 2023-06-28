@@ -11,7 +11,8 @@ export const Main: React.FC = () => {
         const data: BotStructure[] = await api.getAllBots();
         setData(data);
     };
-    fetchData();
+
+    useEffect(() => { fetchData() });
 
     return data ? (
         <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left">

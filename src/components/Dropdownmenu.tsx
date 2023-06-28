@@ -6,7 +6,6 @@ import serversIcon from "../assets/svg/servers.svg";
 import { Link } from "react-router-dom";
 import React from "react";
 import axios, { AxiosResponse } from "axios";
-import Cookies from "js-cookie";
 
 export const Dropdownmenu: React.FC = () => {
     const handleExit = async () => {
