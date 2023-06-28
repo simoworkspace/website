@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState, useReducer } from "react";
 import { UserStructure } from "../types";
-import axios from "axios";
 
 const [userData, setUserData] = useState<UserStructure>();
 

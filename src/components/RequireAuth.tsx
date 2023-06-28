@@ -1,38 +1,21 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-interface Props {
-    children: React.ReactNode;
-}
+import api from "../api";
 
-export const RequireAuth: React.FC<Props> = ({ children }) => {
+export const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [auth, setAuth] = useState<boolean>(true);
 
-    useEffect(() => {
-        const getUserData = async () => {
-            const getUserData = () => {
-                axios.get("/api/auth/user", {
-                        withCredentials: true,
-                        headers: {
-                            Authorization: import.meta.env.VITE_API_KEY,
-                        },
-                    })
-                    .then((res) => {
-                        setAuth(true)
-                    }).catch((error) => {
-                        setAuth(false)
-                    })
-            };
-            getUserData();
-        };
+    const getUserData = async () => {
+        try {
+            await api.getUserData();
+            return setAuth(true); 
+        } catch(error: any) {
+            return setAuth(false);
+        }
+    };
 
-        getUserData();
-    }, []);
+    useEffect(() => { getUserData(); }, []);
 
-    console.log(auth);
-
-    if (!auth) {
-        window.location.href = '/';
-    }
-
+    if (!auth) return window.location.href = "/";
+    
     return <>{children}</>;
 };

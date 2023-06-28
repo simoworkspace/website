@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import {
     NavigateFunction,
