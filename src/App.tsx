@@ -13,14 +13,14 @@ import { Tests } from "./pages/Tests";
 
 function App() {
     return (
-        <Routes>
-            <Route path="/tests" element={<Tests />} />
-            <body className="overflow-x-hidden">
-                <header>
-                    <Header />
-                </header>
-                <section>
+        <body className="overflow-x-hidden">
+            <header>
+                <Header />
+            </header>
+            <section>
+                <Routes>
                     <Route path="/guild/:guildid" element={<Guild />} />
+                    <Route path="/testes" element={ <Tests/> }/>
                     <Route path="/bot/:botid" element={<Bot />} />
                     <Route path="/vote/:botid" element={<Vote />} />
                     <Route path="/guilds" element={<Guilds />} />
@@ -34,11 +34,10 @@ function App() {
                         }
                     />
                     <Route path="*" element={<NotFound />} />
-
-                    <Mobilemenu />
-                </section>
-            </body>
-        </Routes>
+                </Routes>
+                <Mobilemenu />
+            </section>
+        </body>
     );
 }
 
