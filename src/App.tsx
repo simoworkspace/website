@@ -7,7 +7,7 @@ import { Mobilemenu } from "./components/Mobilemenu";
 import { Bot } from "./pages/Bot";
 import { RequireAuth } from "./components/RequireAuth";
 import { Guild } from "./pages/Guild";
-import { Vote } from './pages/Vote';
+import { Vote } from "./pages/Vote";
 import { Guilds } from "./pages/Guilds";
 
 function App() {
@@ -20,8 +20,8 @@ function App() {
                 <Routes>
                     <Route path="/guild/:guildid" element={<Guild />} />
                     <Route path="/bot/:botid" element={<Bot />} />
-                    <Route path="/vote/:botid" element={<Vote /> } />
-                    <Route path="/guilds" element={ <Guilds/> }/>
+                    <Route path="/vote/:botid" element={<Vote />} />
+                    <Route path="/guilds" element={<Guilds />} />
                     <Route path="/" element={<Main />} />
                     <Route
                         path="addbot"
