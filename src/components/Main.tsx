@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BotStructure } from "../types";
 import { Botloading } from "./Botloading";
 import { Link } from "react-router-dom";
-import axios, { AxiosResponse } from "axios";
-import api from "../api/api";
+import api from "../api";
 
 export const Main: React.FC = () => {
     const [data, setData] = useState<BotStructure[]>();

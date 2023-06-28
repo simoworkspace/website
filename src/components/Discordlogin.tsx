@@ -3,23 +3,16 @@ import { Link } from "react-router-dom";
 import arrowIcon from "../assets/svg/arrow.svg";
 import { Dropdownmenu } from "./Dropdownmenu";
 import { UserStructure } from "../types";
-import axios, { AxiosResponse } from "axios";
+import api from "../api";
 
 const UserLogin: React.FC = () => {
     const [user, setUser] = useState<UserStructure | false>();
 
     useEffect(() => {
         try {
-            const getUserData = () => {
-                axios.get("/api/auth/user", {
-                        withCredentials: true,
-                        headers: {
-                            Authorization: import.meta.env.VITE_API_KEY,
-                        },
-                    })
-                    .then((res) => {
-                        setUser(res.data.data)
-                    })
+            const getUserData = async () => {
+                const res: { data: UserStructure } = await api.getUserData();
+                return setUser(res.data);
             };
             getUserData();
         } catch (error: any) {
