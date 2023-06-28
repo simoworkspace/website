@@ -22,7 +22,7 @@ export const Vote: React.FC = () => {
     }, []);
 
     const handleVote = async () => {
-        
+        await axios.get('/api/vote')
     };
 
     return (
