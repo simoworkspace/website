@@ -10,8 +10,8 @@ const UserLogin: React.FC = () => {
     const [user, setUser] = useState<UserStructure | false>();
 
     const getUserData = async () => {
-        const res: AxiosResponse<UserStructure> = await api.getUserData();
-        return setUser(res.data);
+        const res: AxiosResponse<{ data: UserStructure }> = await api.getUserData();
+        return setUser(res.data.data);
     };
 
     useEffect(() => { getUserData() });

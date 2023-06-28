@@ -1,6 +1,8 @@
-import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
-import axios, { AxiosResponse } from "axios";
+import React, { useState, ChangeEvent, FormEvent } from "react";
 import searchIcon from "../assets/svg/search.svg";
+import api from "../api";
+import { AxiosResponse } from "axios";
+import { DiscordUser } from "../types";
 
 export const FormFindBot: React.FC<{
     setVerificarBot: (value: boolean) => void;
@@ -13,19 +15,10 @@ export const FormFindBot: React.FC<{
         setId(event.target.value);
     };
 
-    const handleSubmit = async (
-        event: FormEvent<HTMLFormElement>
-    ): Promise<void> => {
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         try {
             event.preventDefault();
-            const res: AxiosResponse = await axios.get<AxiosResponse>(
-                `/api/users/${id}`,
-                {
-                    headers: {
-                        Authorization: import.meta.env.VITE_API_KEY as string,
-                    },
-                }
-            );
+            const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(id);
             res.data.bot ? setVerificarBot(true) : setVerificarBot(false);
             res.data.bot ? setStepsState(2) : setStepsState(1);
         } catch (error: any) {
