@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios, { AxiosResponse } from "axios";
+import { AxiosResponse } from "axios";
+import api from "../api";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { BotStructure } from "../types";
 
@@ -21,18 +22,9 @@ export const FormAddbot: React.FC = () => {
                 approved: false,
                 createdAt: "hoje",
                 verifiedBot: true,
-                inviteURL: "oie"
+                inviteURL: "oie",
             };
-
-            await axios.post<AxiosResponse<BotStructure>>(
-                `/api/bots/${data._id}`,
-                formData,
-                {
-                    headers: {
-                        Authorization: import.meta.env.VITE_API_KEY as string,
-                    },
-                }
-            );
+            await api.addBot(formData, data._id);
         } catch (error: any) {
             console.error(error);
         }
