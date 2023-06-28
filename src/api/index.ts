@@ -21,7 +21,7 @@ const api = {
     },
     getUserData: async () => {
         const res: AxiosResponse = await axios.get<AxiosResponse<UserStructure>>("/api/auth/user", { ...header, withCredentials: true });
-        return res;
+        return res.data;
     },
     getDiscordUser: async (userID: string | Snowflake) => {
         const res: AxiosResponse = await axios.get<AxiosResponse<DiscordUser>>("/api/users/" + userID, header);

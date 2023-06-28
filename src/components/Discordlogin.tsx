@@ -4,12 +4,13 @@ import arrowIcon from "../assets/svg/arrow.svg";
 import { Dropdownmenu } from "./Dropdownmenu";
 import { UserStructure } from "../types";
 import api from "../api";
+import { AxiosResponse } from "axios";
 
 const UserLogin: React.FC = () => {
     const [user, setUser] = useState<UserStructure | false>();
 
     const getUserData = async () => {
-        const res: { data: UserStructure } = await api.getUserData();
+        const res: AxiosResponse<UserStructure> = await api.getUserData();
         return setUser(res.data);
     };
 

@@ -3,13 +3,14 @@ import { BotStructure } from "../types";
 import { Botloading } from "./Botloading";
 import { Link } from "react-router-dom";
 import api from "../api";
+import { AxiosResponse } from "axios";
 
 export const Main: React.FC = () => {
     const [data, setData] = useState<BotStructure[]>();
 
     const fetchData = async () => {
-        const data: BotStructure[] = await api.getAllBots();
-        setData(data);
+        const res: AxiosResponse<BotStructure[]> = await api.getAllBots();
+        setData(res.data);
     };
 
     useEffect(() => { fetchData() });
