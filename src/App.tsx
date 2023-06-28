@@ -9,15 +9,17 @@ import { RequireAuth } from "./components/RequireAuth";
 import { Guild } from "./pages/Guild";
 import { Vote } from "./pages/Vote";
 import { Guilds } from "./pages/Guilds";
+import { Tests } from "./pages/Tests";
 
 function App() {
     return (
-        <body className="overflow-x-hidden">
-            <header>
-                <Header />
-            </header>
-            <section>
-                <Routes>
+        <Routes>
+            <Route path="/tests" element={<Tests />} />
+            <body className="overflow-x-hidden">
+                <header>
+                    <Header />
+                </header>
+                <section>
                     <Route path="/guild/:guildid" element={<Guild />} />
                     <Route path="/bot/:botid" element={<Bot />} />
                     <Route path="/vote/:botid" element={<Vote />} />
@@ -32,10 +34,11 @@ function App() {
                         }
                     />
                     <Route path="*" element={<NotFound />} />
-                </Routes>
-                <Mobilemenu />
-            </section>
-        </body>
+
+                    <Mobilemenu />
+                </section>
+            </body>
+        </Routes>
     );
 }
 
