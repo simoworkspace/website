@@ -1,5 +1,11 @@
 type Snowflake = string;
 
+export interface reducerActionType {
+    type: string;
+    payload: {
+        [key: string]: any;
+    }
+}
 export interface botDataStructure {
     id: Snowflake | string;
     username?: string;
