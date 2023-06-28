@@ -10,6 +10,7 @@ import {
 import { BotStructure, botDataStructure } from "../types";
 import starIconFill from "../assets/svg/starfill.svg";
 import starIcon from "../assets/svg/star.svg";
+import api from '../api';
 
 export const Bot: React.FC = () => {
     const params: Params = useParams<string>();

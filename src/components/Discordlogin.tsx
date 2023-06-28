@@ -8,12 +8,12 @@ import api from "../api";
 const UserLogin: React.FC = () => {
     const [user, setUser] = useState<UserStructure | false>();
 
-        const getUserData = async () => {
-            const res: { data: UserStructure } = await api.getUserData();
-            return setUser(res.data);
-        };
+    const getUserData = async () => {
+        const res: { data: UserStructure } = await api.getUserData();
+        return setUser(res.data);
+    };
 
-        useEffect(() => {getUserData()});
+    useEffect(() => { getUserData() });
 
     const [arrowState, setArrowState] = useState<boolean>(false);
 

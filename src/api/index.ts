@@ -4,6 +4,8 @@ import {
     UserStructure,
     VoteStructure,
     botDataStructure,
+    DiscordUser,
+    Snowflake
 } from "../types";
 const key = import.meta.env.VITE_API_KEY as string;
 const header = {
@@ -21,6 +23,10 @@ const api = {
         const res: AxiosResponse = await axios.get<AxiosResponse<UserStructure>>("/api/auth/user", { ...header, withCredentials: true });
         return res.data;
     },
+    getDiscordUser: async (userId: string | Snowflake) => {
+        const res: AxiosResponse = await axios.get<AxiosResponse<DiscordUser>>("/api/users/" + userId, header);
+        return res.data;
+    }
 };
 
 export default api;
