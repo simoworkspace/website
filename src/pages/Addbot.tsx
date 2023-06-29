@@ -41,7 +41,7 @@ export const Addbot: React.FC = () => {
             >
                 <div
                     className={`flex p-3 rounded-3xl justify-center items-cente h-[500px] w-[100%] bg-neutral-950 border-white border-2 shadow-md shadow-black text-white ${
-                        stepsState === 2 && "h-[1151px] xl:h-[1750px]"
+                        stepsState === 2 && "h-[1152px] xl:h-[1750px]"
                     }`}
                 >
                     {verificarBot ? (
