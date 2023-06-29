@@ -12,7 +12,7 @@ export const Addbot: React.FC = () => {
     return (
         <div
             className={`flex flex-row gap-10 ${
-                stepsState == 2 && "h-[1200px]"
+                stepsState == 2 ? "h-[1200px]" : "h-[100%] xl:h-[600px] xl:mb-[150px]"
             } xl:items-center xl:flex-col m-6`}
         >
             <div className={`flex xl:w-[85vw] w-[23vw]`}>
@@ -40,8 +40,8 @@ export const Addbot: React.FC = () => {
                 } w-[70vw] h-[600px]`}
             >
                 <div
-                    className={`flex p-3 rounded-3xl justify-center items-center h-[500px] w-[100%] bg-neutral-950 border-white border-2 shadow-md shadow-black text-white ${
-                        stepsState == 2 && "h-[1150px]"
+                    className={`flex p-3 rounded-3xl justify-center items-cente h-[500px] w-[100%] bg-neutral-950 border-white border-2 shadow-md shadow-black text-white ${
+                        stepsState === 2 && "h-[1151px] xl:h-[1750px]"
                     }`}
                 >
                     {verificarBot ? (

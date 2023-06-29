@@ -17,26 +17,24 @@ function App() {
             <header>
                 <Header />
             </header>
-            <section>
-                <Routes>
-                    <Route path="/guild/:guildid" element={<Guild />} />
-                    <Route path="/testes" element={ <Tests/> }/>
-                    <Route path="/bot/:botid" element={<Bot />} />
-                    <Route path="/vote/:botid" element={<Vote />} />
-                    <Route path="/guilds" element={<Guilds />} />
-                    <Route path="/" element={<Main />} />
-                    <Route
-                        path="addbot"
-                        element={
-                            <RequireAuth>
-                                <Addbot />
-                            </RequireAuth>
-                        }
-                    />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-                <Mobilemenu />
-            </section>
+            <Routes>
+                <Route path="/guild/:guildid" element={<Guild />} />
+                <Route path="/testes" element={<Tests />} />
+                <Route path="/bot/:botid" element={<Bot />} />
+                <Route path="/vote/:botid" element={<Vote />} />
+                <Route path="/guilds" element={<Guilds />} />
+                <Route path="/" element={<Main />} />
+                <Route
+                    path="addbot"
+                    element={
+                        <RequireAuth>
+                            <Addbot />
+                        </RequireAuth>
+                    }
+                />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Mobilemenu />
         </main>
     );
 }
