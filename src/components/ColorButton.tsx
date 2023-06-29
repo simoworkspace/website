@@ -1,32 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import paletteIcon from "../assets/svg/pallete.svg";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 export const ColorButton: React.FC = () => {
     const [menu, setMenu] = useState<boolean>(false);
-    const [theme, setTheme] = useState<string>(() => {
-        return localStorage.getItem("theme") || "";
-    });
-
-    useEffect(() => {
-        localStorage.setItem("theme", theme as string);
-        theme ? theme : setTheme("azul");
-        switch (theme) {
-            case "azul":
-                setTheme("bg-gradient-to-b from-[#012236] to-black bg-fixed");
-                break;
-            case "vermelho":
-                setTheme("bg-gradient-to-b from-[#380e17] to-black bg-fixed");
-                break;
-            case "verde":
-                setTheme("bg-gradient-to-b from-[#04484d] to-black bg-fixed");
-                break;
-            case "":
-                setTheme("bg-gradient-to-b from-[#012236] to-black bg-fixed");
-                break;
-        }
-        document.body.className = theme;
-    }, [theme]);
-
+    const { state, dispatch } = useContext(ThemeContext);
+    
     return (
         <div>
             <button
@@ -58,7 +37,12 @@ export const ColorButton: React.FC = () => {
                 <div className="flex flex-col">
                     <button
                         onClick={() => {
-                            setTheme("vermelho");
+                            dispatch({
+                                type: "CHANGE_COLOR",
+                                payload: {
+                                    status: "red",
+                                },
+                            });
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
                     >
@@ -69,7 +53,12 @@ export const ColorButton: React.FC = () => {
                     </button>
                     <button
                         onClick={() => {
-                            setTheme("azul");
+                            dispatch({
+                                type: "CHANGE_COLOR",
+                                payload: {
+                                    status: "blue",
+                                },
+                            });
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
                     >
@@ -80,7 +69,12 @@ export const ColorButton: React.FC = () => {
                     </button>
                     <button
                         onClick={() => {
-                            setTheme("verde");
+                            dispatch({
+                                type: "CHANGE_COLOR",
+                                payload: {
+                                    status: "green",
+                                },
+                            });
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
                     >
