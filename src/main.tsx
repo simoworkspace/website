@@ -14,6 +14,7 @@ import ReactDOM from "react-dom/client";
 import React from 'react';
 import "./index.css";
 import "tailwindcss/tailwind.css";
+import { UserProvider } from "./contexts/UserContext";
 
 function App() {
     return (
@@ -48,7 +49,9 @@ function App() {
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>
         <BrowserRouter>
-            <App />
+            <UserProvider>
+                <App />
+            </UserProvider>
         </BrowserRouter>
     </React.StrictMode>
 );
