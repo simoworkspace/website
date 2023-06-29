@@ -1,20 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import arrowIcon from "../assets/svg/arrow.svg";
 import { Dropdownmenu } from "./Dropdownmenu";
 import { UserStructure } from "../types";
-import api from "../api";
-import { AxiosResponse } from "axios";
+import { UserContext } from "../contexts/UserContext";
 
 const UserLogin: React.FC = () => {
-    const [user, setUser] = useState<UserStructure | false>();
-
-    const getUserData = async () => {
-        const res: AxiosResponse<{ data: UserStructure }> = await api.getUserData();
-        return setUser(res.data.data);
-    };
-
-    useEffect(() => { getUserData() });
+    const { user } = useContext<UserStructure | any>(UserContext);
 
     const [arrowState, setArrowState] = useState<boolean>(false);
 
