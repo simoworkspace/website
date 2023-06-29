@@ -19,13 +19,12 @@ export const UserProvider: React.FC<{ children: any }> = ({
     const [user, setUser] = useState<UserStructure | null>(null);
 
     useEffect(() => {
-        const fetchUserData = async () => {
-            const res: AxiosResponse<{ data: UserStructure }> =
-                await api.getUserData();
+        const getUserData = async () => {
+            const res: AxiosResponse<{ data: UserStructure }> = await api.getUserData();
             setUser(res.data.data);
         };
 
-        fetchUserData();
+        getUserData();
     }, []);
 
     return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
