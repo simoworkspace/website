@@ -1,4 +1,4 @@
-import searchIcon from "../assets/svg/search.svg";
+import searchIcon from "../assets/svgs/search.svg";
 import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { BotStructure } from "../types";
 import axios, { AxiosResponse } from "axios";

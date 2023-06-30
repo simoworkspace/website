@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import paletteIcon from "../assets/svg/pallete.svg";
+import paletteIcon from "../assets/svgs/pallete.svg";
 import { ThemeContext } from "../contexts/ThemeContext";
 
 export const ColorButton: React.FC = () => {

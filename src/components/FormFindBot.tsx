@@ -1,5 +1,5 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import searchIcon from "../assets/svg/search.svg";
+import searchIcon from "../assets/svgs/search.svg";
 import api from "../api";
 import { AxiosResponse } from "axios";
 import { DiscordUser } from "../types";

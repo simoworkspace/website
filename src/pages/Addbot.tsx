@@ -2,8 +2,8 @@ import { FormAddbot } from "../components/FormAddbot";
 import React, { useState } from "react";
 import { FormFindBot } from "../components/FormFindBot";
 import { StepsForm } from "../components/StepsForm";
-import two from "../assets/svg/numbers/two.svg";
-import twofill from "../assets/svg/numbers/two-fill.svg";
+import two from "../assets/svgs/numbers/two.svg";
+import twofill from "../assets/svgs/numbers/two-fill.svg";
 
 export const Addbot: React.FC = () => {
     const [verificarBot, setVerificarBot] = useState<boolean>(false);

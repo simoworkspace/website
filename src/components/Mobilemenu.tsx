@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import searchIcon from "../assets/svg/search.svg";
-import plusIcon from "../assets/svg/plus.svg";
-import serversIcon from ".././assets/svg/servers.svg";
+import searchIcon from "../assets/svgs/search.svg";
+import plusIcon from "../assets/svgs/plus.svg";
+import serversIcon from ".././assets/svgs/servers.svg";
 import React from "react";
 const avatarImage: string =
     "https://cdn.discordapp.com/avatars/955095844275781693/511a594d8af5dd14849cc3e16567f534.png?size=2048";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import arrowIcon from "../assets/svg/arrow.svg";
+import arrowIcon from "../assets/svgs/arrow.svg";
 import { Dropdownmenu } from "./Dropdownmenu";
 import { UserStructure } from "../types";
 import { UserContext } from "../contexts/UserContext";

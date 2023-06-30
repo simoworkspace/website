@@ -1,4 +1,4 @@
-import catImage from ".././assets/image/404.jpeg";
+import catImage from ".././assets/images/404.jpeg";
 import React from 'react';
 
 export const NotFound: React.FC = () => {

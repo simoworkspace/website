@@ -1,8 +1,8 @@
-import logoutIcon from "../assets/svg/logout.svg";
-import plusIcon from "../assets/svg/plus.svg";
-import dashIcon from "../assets/svg/dashboard.svg";
-import listIcon from "../assets/svg/list.svg";
-import serversIcon from "../assets/svg/servers.svg";
+import logoutIcon from "../assets/svgs/logout.svg";
+import plusIcon from "../assets/svgs/plus.svg";
+import dashIcon from "../assets/svgs/dashboard.svg";
+import listIcon from "../assets/svgs/list.svg";
+import serversIcon from "../assets/svgs/servers.svg";
 import { Link } from "react-router-dom";
 import React from "react";
 import axios, { AxiosResponse } from "axios";

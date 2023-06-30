@@ -8,8 +8,8 @@ import {
     Params,
 } from "react-router-dom";
 import { BotStructure, DiscordUser, botDataStructure } from "../types";
-import starIconFill from "../assets/svg/starfill.svg";
-import starIcon from "../assets/svg/star.svg";
+import starIconFill from "../assets/svgs/starfill.svg";
+import starIcon from "../assets/svgs/star.svg";
 import api from '../api';
 
 export const Bot: React.FC = () => {

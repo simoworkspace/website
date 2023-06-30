@@ -1,4 +1,4 @@
-import onefill from "../assets/svg/numbers/one-fill.svg";
+import onefill from "../assets/svgs/numbers/one-fill.svg";
 import React, { useState } from "react";
 
 export const StepsForm: React.FC<{
