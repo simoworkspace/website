@@ -1,31 +1,23 @@
-import React, { createContext, useReducer } from "react";
-import { reducerActionType } from "../types";
-import { ThemeType, themeReducer, themeInitialState } from "../reducers/ThemeReducer";
+import React, { createContext, useEffect, useState } from "react";
+import { ThemeContextProps, Theme } from "../types";
 
-interface initialStateStructure {
-    theme: ThemeType;
-};
-
-interface ContextStructure {
-    state: initialStateStructure;
-    dispatch: React.Dispatch<any>;
-};
-
-const initialState = {
-    theme: themeInitialState
-};
-
-export const ThemeContext = createContext<ContextStructure>({
-    state: initialState,
-    dispatch: () => null
+export const ThemeContext = createContext<ThemeContextProps>({
+    color: "blue",
+    changeTheme: () => {},
 });
 
-const mainReducer = (state: initialStateStructure, action: reducerActionType) => ({
-    theme: themeReducer(state.theme, action)
-});
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+    const [color, setTheme] = useState<Theme>("blue");
 
-export const ThemeProvider: React.FC<{ children: any }> = ({ children }) => {
-    const [state, dispatch] = useReducer(mainReducer, initialState);
+    const changeTheme = (newTheme: Theme) => {
+        setTheme(newTheme);
+        localStorage.setItem("theme", newTheme);
+    };
 
-    return <ThemeContext.Provider value={{ state, dispatch }}>{children}</ThemeContext.Provider>;
+    useEffect(() => {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme && savedTheme !== color) return setTheme(savedTheme as Theme);
+    }, []);
+
+    return <ThemeContext.Provider value={{ color, changeTheme }}>{children}</ThemeContext.Provider>
 };
