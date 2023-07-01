@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { AxiosResponse } from "axios";
 import api from "../api";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { BotStructure } from "../types";
