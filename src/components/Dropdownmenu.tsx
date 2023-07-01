@@ -5,15 +5,11 @@ import listIcon from "../assets/svgs/list.svg";
 import serversIcon from "../assets/svgs/servers.svg";
 import { Link } from "react-router-dom";
 import React from "react";
-import axios, { AxiosResponse } from "axios";
+import api from "../api";
 
 export const Dropdownmenu: React.FC = () => {
     const handleExit = async () => {
-        await axios.get<AxiosResponse<AxiosResponse>>("/api/auth/logout", {
-            headers: {
-                Authorization: import.meta.env.VITE_API_KEY as string,
-            },
-        });
+        await api.logoutUser();
         return window.location.reload();
     };
 
