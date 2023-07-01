@@ -12,10 +12,16 @@ import { Guilds } from "./pages/Guilds";
 import { Tests } from "./pages/Tests";
 import "./index.css";
 import "tailwindcss/tailwind.css";
+import { useContext } from "react";
+import { ThemeContext } from "./contexts/ThemeContext";
 
 function App() {
+    const { color } = useContext(ThemeContext);
+
     return (
-        <main className="overflow-x-hidden">
+        <main
+            className={`overflow-x-hidden min-h-[100vh] bg-${color}-500 bg-fixed`}
+        >
             <header>
                 <Header />
             </header>
