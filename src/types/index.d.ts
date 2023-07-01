@@ -1,11 +1,19 @@
 type Snowflake = string;
 
+export type Theme = "blue" | "red" | "green";
+
+export interface ThemeContextProps {
+    color: Theme;
+    changeTheme: (newTheme: Theme) => void;
+}
+
 export interface reducerActionType {
     type: string;
     payload: {
         [key: string]: any;
     }
 }
+
 export interface botDataStructure {
     id: Snowflake | string;
     username?: string;
