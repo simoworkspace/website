@@ -34,6 +34,10 @@ const api = {
     addBot: async (bodyData: BotStructure, botID: string | Snowflake) => {
         const res = axios.post<AxiosResponse<BotStructure>>("/api/bots/" + botID, { ...header, bodyData });
         return res;
+    },
+    logoutUser: async () => {
+        const res = axios.get<AxiosResponse>("/api/auth/logout", header);
+        return res;
     }
 };
 
