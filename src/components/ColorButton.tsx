@@ -1,11 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import paletteIcon from "../assets/svgs/pallete.svg";
 import { ThemeContext } from "../contexts/ThemeContext";
+import { ThemeContextProps, Theme } from "../types";
 
 export const ColorButton: React.FC = () => {
     const [menu, setMenu] = useState<boolean>(false);
-    const { state, dispatch } = useContext(ThemeContext);
-    
+    const { changeTheme } = useContext<ThemeContextProps>(ThemeContext);
+
+    const toggleTheme = (newTheme: Theme) => {
+        changeTheme(newTheme);
+    };
+
     return (
         <div>
             <button
@@ -37,12 +42,7 @@ export const ColorButton: React.FC = () => {
                 <div className="flex flex-col">
                     <button
                         onClick={() => {
-                            dispatch({
-                                type: "CHANGE_COLOR",
-                                payload: {
-                                    status: "red",
-                                },
-                            });
+                            toggleTheme("red");
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
                     >
@@ -53,12 +53,7 @@ export const ColorButton: React.FC = () => {
                     </button>
                     <button
                         onClick={() => {
-                            dispatch({
-                                type: "CHANGE_COLOR",
-                                payload: {
-                                    status: "blue",
-                                },
-                            });
+                            toggleTheme("blue");
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
                     >
@@ -69,12 +64,7 @@ export const ColorButton: React.FC = () => {
                     </button>
                     <button
                         onClick={() => {
-                            dispatch({
-                                type: "CHANGE_COLOR",
-                                payload: {
-                                    status: "green",
-                                },
-                            });
+                            toggleTheme("green");
                         }}
                         className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
                     >
