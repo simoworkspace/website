@@ -6,7 +6,7 @@ export const ThemeContext = createContext<ThemeContextProps>({
     changeTheme: () => {},
 });
 
-export const ThemeProvider: React.FC<{ children: any }> = ({ children }) => {
+export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }: React.PropsWithChildren) => {
     const [color, setTheme] = useState<Theme>("blue");
 
     const changeTheme = (newTheme: Theme) => {
