@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 export const StepsForm: React.FC<{
     setStepsState: (value: number) => void;
-    children: React.ReactNode;
+    children: any;
 }> = ({ setStepsState, children }) => {
     return (
         <div className="flex items-start justify-end w-[60vw] xl:justify-center xl:w-[85vw]">
