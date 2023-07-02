@@ -24,7 +24,7 @@ export const Main: React.FC = () => {
                     to={`/bot/${bot._id}`}
                     key={bot._id}
                     className={`bg-neutral-950 duration-300 transition-colors hover:bg-neutral-900 shadow-md shadow-black p-3 border-white border-2 bg-neutral-940 rounded-lg xl:h-[220px] ${
-                        index === data.length - 1 && "mb-[80px]"
+                        index === data.length - 1 && "xl:mb-[80px]"
                     }`} 
                 >
                     <img
