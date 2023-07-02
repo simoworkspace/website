@@ -1,8 +1,9 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, ChangeEvent, FormEvent, useContext } from "react";
 import searchIcon from "../assets/svgs/search.svg";
 import api from "../api";
 import { AxiosResponse } from "axios";
 import { DiscordUser } from "../types";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 export const FormFindBot: React.FC<{
     setVerificarBot: (value: boolean) => void;
@@ -10,6 +11,7 @@ export const FormFindBot: React.FC<{
 }> = ({ setVerificarBot, setStepsState }) => {
     const [statusCode, setStatusCode] = useState<number>();
     const [id, setId] = useState<string>("");
+    const { color } = useContext(ThemeContext);
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
         setId(event.target.value);
@@ -67,8 +69,12 @@ export const FormFindBot: React.FC<{
                     </div>
                     <div className="flex m-2 flex-col">
                         <button
-                            className={`flex rounded-xl xl:w-[85vw] flex-row items-center justify-center border-2 border-neutral-700 bg-neutral-900 hover:bg-neutral-700 transition-all duration-300 ${
+                            className={`flex rounded-xl xl:w-[85vw] flex-row items-center border-2 justify-center transition-all duration-300 ${
                                 statusCode == 404 && "mb-[24px] xl:mb-0"
+                            } ${
+                                color === "blue" && "bg-blue-900 hover:bg-blue-500 border-blue-500"
+                            } ${color === "green" && "bg-green-900 hover:bg-green-700 border-green-700"} ${
+                                color === "red" && "bg-red-900 hover:bg-red-500 border-red-500"
                             } p-4`}
                             type="submit"
                         >
