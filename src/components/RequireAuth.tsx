@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { PropsWithChildren, useEffect, useState } from "react";
 import api from "../api";
 
-export const RequireAuth: React.FC<{ children: any }> = ({ children }) => {
+export const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children }: PropsWithChildren) => {
     const [auth, setAuth] = useState<boolean>(true);
 
     const getUserData = async () => {
@@ -15,7 +15,9 @@ export const RequireAuth: React.FC<{ children: any }> = ({ children }) => {
 
     useEffect(() => { getUserData(); }, []);
 
-    if (!auth) return window.location.href = "/";
+    if (!auth) { 
+        window.location.href = "/";
+    }
     
     return <>{children}</>;
 };
