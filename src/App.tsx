@@ -20,7 +20,11 @@ function App() {
 
     return (
         <main
-            className={`overflow-x-hidden min-h-[100vh] bg-${color}-500 bg-fixed`}
+            className={`overflow-x-hidden min-h-[100vh] ${
+                color === "blue" && "bg-gradient-to-b from-[#033757] to-black bg-fixed"
+            } ${color === "green" && "bg-gradient-to-b from-[#056b49] to-black bg-fixed"} ${
+                color === "red" && "bg-gradient-to-b from-[#571423] to-black bg-fixed"
+            } bg-fixed`}
         >
             <header>
                 <Header />
