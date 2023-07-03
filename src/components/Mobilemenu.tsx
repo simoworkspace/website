@@ -33,14 +33,14 @@ export const Mobilemenu: React.FC = () => {
             {user ? (
                 <>
                     <aside
-                        className={`w-[130px] transition-all duration-300 absolute bg-black rounded border-2 left-0 bottom-[64px] ${
+                        className={`transition-all duration-300 absolute bg-black rounded border-2 left-0 bottom-[64px] ${
                             maisClick
                                 ? "visible opacity-100 absolute"
                                 : "opacity-0 absolute invisible"
                         } ${
                             themesClick
-                            ? "h-[150px]"
-                            : "h-[120px]"
+                            ? "h-[150px] w-[130px]"
+                            : "h-[120px] w-[160px]"
                         }`}
                     >
                         <div
@@ -109,7 +109,7 @@ export const Mobilemenu: React.FC = () => {
                                     : "opacity-100 visible"
                             }`}
                         >
-                            <div className="flex gap-1 items-center justify-center">
+                            <div className="flex gap-1 items-center justify-center flex-col">
                                 <button
                                     onClick={() => {
                                         setThemesClick(true);
@@ -118,6 +118,20 @@ export const Mobilemenu: React.FC = () => {
                                 >
                                     <img src={palleteIcon} alt="Pallete Icon" />
                                     <span>Themas</span>
+                                    <img
+                                        className="w-[20px] -rotate-90"
+                                        src={arrowIcon}
+                                        alt="Arrow Icon"
+                                    />
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setThemesClick(true);
+                                    }}
+                                    className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg"
+                                >
+                                    <img src={serversIcon} alt="Servers Icon" />
+                                    <span>Servidores</span>
                                     <img
                                         className="w-[20px] -rotate-90"
                                         src={arrowIcon}
