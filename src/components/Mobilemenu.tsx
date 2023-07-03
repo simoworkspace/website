@@ -10,6 +10,7 @@ import { ThemeContext } from "../contexts/ThemeContext";
 import { ThemeContextProps, Theme } from "../types";
 import palleteIcon from "../assets/svgs/pallete.svg";
 import arrowIcon from "../assets/svgs/arrow.svg";
+import dashboardIcon from '../assets/svgs/dashboard.svg';
 
 export const Mobilemenu: React.FC = () => {
     const { user } = useContext<UserStructure | any>(UserContext);
@@ -132,6 +133,20 @@ export const Mobilemenu: React.FC = () => {
                                 >
                                     <img src={serversIcon} alt="Servers Icon" />
                                     <span>Servidores</span>
+                                    <img
+                                        className="w-[20px] -rotate-90"
+                                        src={arrowIcon}
+                                        alt="Arrow Icon"
+                                    />
+                                </button>
+                                <button
+                                    onClick={() => {
+                                        setThemesClick(true);
+                                    }}
+                                    className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg"
+                                >
+                                    <img src={dashboardIcon} alt="Dashboard Icon" />
+                                    <span>Dashboard</span>
                                     <img
                                         className="w-[20px] -rotate-90"
                                         src={arrowIcon}
