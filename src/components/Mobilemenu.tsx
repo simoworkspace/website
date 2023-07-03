@@ -8,11 +8,14 @@ import { UserStructure } from "../types";
 import { UserContext } from "../contexts/UserContext";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { ThemeContextProps, Theme } from "../types";
+import palleteIcon from "../assets/svgs/pallete.svg";
+import arrowIcon from "../assets/svgs/arrow.svg";
 
 export const Mobilemenu: React.FC = () => {
     const { user } = useContext<UserStructure | any>(UserContext);
     const { color } = useContext(ThemeContext);
     const [maisClick, setMaisClick] = useState<boolean>(false);
+    const [themesClick, setThemesClick] = useState<boolean>(false);
     const { changeTheme } = useContext<ThemeContextProps>(ThemeContext);
 
     const toggleTheme = (newTheme: Theme) => {
@@ -29,12 +32,42 @@ export const Mobilemenu: React.FC = () => {
         >
             {user ? (
                 <>
-                    <aside className={`w-[110px] h-[120px] absolute bg-black rounded border-2 left-0 bottom-[64px] ${
-                        maisClick
-                        ? "visible opacity-100 transition-opacity duration-300 absolute"
-                        : "invisible opacity-0 transition-opacity duration-300 absolute"
-                    }`}>
-                        <div className="flex w-full h-full flex-col gap-2 items-center justify-center">
+                    <aside
+                        className={`w-[130px] transition-all duration-300 absolute bg-black rounded border-2 left-0 bottom-[64px] ${
+                            maisClick
+                                ? "visible opacity-100 absolute"
+                                : "opacity-0 absolute invisible"
+                        } ${
+                            themesClick
+                            ? "h-[150px]"
+                            : "h-[120px]"
+                        }`}
+                    >
+                        <div
+                            className={`flex w-full h-full flex-col gap-2 items-center justify-center ${
+                                themesClick
+                                    ? "opacity-100 visible"
+                                    : "opacity-0 invisible"
+                            }`}
+                        >
+                            <button
+                                onClick={() => {
+                                    setThemesClick(false);
+                                }}
+                                className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg"
+                            >
+                                <img
+                                    className="w-[20px] rotate-90"
+                                    src={arrowIcon}
+                                    alt="Arrow Icon"
+                                />
+                                <span>Menu</span>
+                                <img 
+                                    src={dotsIcon} 
+                                    alt="Dots Icon" 
+                                />
+                            </button>
+                            <hr className="border-[1px] rounded-full w-[90%]" />
                             <button
                                 onClick={() => {
                                     toggleTheme("red");
@@ -69,6 +102,30 @@ export const Mobilemenu: React.FC = () => {
                                 </div>
                             </button>
                         </div>
+                        <div
+                            className={`flex w-full h-full flex-col transition-opacity duration-300 absolute bottom-[1px] ${
+                                themesClick
+                                    ? "opacity-0 invisible"
+                                    : "opacity-100 visible"
+                            }`}
+                        >
+                            <div className="flex gap-1 items-center justify-center">
+                                <button
+                                    onClick={() => {
+                                        setThemesClick(true);
+                                    }}
+                                    className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg"
+                                >
+                                    <img src={palleteIcon} alt="Pallete Icon" />
+                                    <span>Themas</span>
+                                    <img
+                                        className="w-[20px] -rotate-90"
+                                        src={arrowIcon}
+                                        alt="Arrow Icon"
+                                    />
+                                </button>
+                            </div>
+                        </div>
                     </aside>
                     <div className="flex flex-col items-center">
                         {!maisClick ? (
@@ -91,6 +148,7 @@ export const Mobilemenu: React.FC = () => {
                                 <button
                                     onClick={() => {
                                         setMaisClick(false);
+                                        setThemesClick(false);
                                     }}
                                 >
                                     <img
