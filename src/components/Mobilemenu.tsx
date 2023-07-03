@@ -29,45 +29,47 @@ export const Mobilemenu: React.FC = () => {
         >
             {user ? (
                 <>
-                    {maisClick && (
-                        <aside className="w-[110px] h-[120px] absolute bg-black rounded border-2 left-0 bottom-[64px]">
-                            <div className="flex w-full h-full flex-col items-center justify-center">
-                                <button
-                                    onClick={() => {
-                                        toggleTheme("red");
-                                    }}
-                                    className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
-                                >
-                                    <div className="flex gap-2 flex-row items-center justify-center">
-                                        <div className="w-3 h-3 bg-[#802222] rounded-full shadow-[#802222] shadow-2xl"></div>
-                                        <div>Vermelho</div>
-                                    </div>
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        toggleTheme("blue");
-                                    }}
-                                    className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
-                                >
-                                    <div className="flex gap-2 flex-row items-center justify-center">
-                                        <div className="w-3 h-3 bg-[#004d7c] rounded-full shadow-[#004d7c] shadow-2xl"></div>
-                                        <div>Azul</div>
-                                    </div>
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        toggleTheme("green");
-                                    }}
-                                    className="hover:bg-[#3a3a3a] rounded-md m-[6px] transition-all"
-                                >
-                                    <div className="flex gap-2 flex-row items-center justify-center">
-                                        <div className="w-3 h-3 bg-[#04484d] rounded-full shadow-[#04484d] shadow-2xl"></div>
-                                        <div>Verde</div>
-                                    </div>
-                                </button>
-                            </div>
-                        </aside>
-                    )}
+                    <aside className={`w-[110px] h-[120px] absolute bg-black rounded border-2 left-0 bottom-[64px] ${
+                        maisClick
+                        ? "visible opacity-100 transition-opacity duration-300 absolute"
+                        : "invisible opacity-0 transition-opacity duration-300 absolute"
+                    }`}>
+                        <div className="flex w-full h-full flex-col gap-2 items-center justify-center">
+                            <button
+                                onClick={() => {
+                                    toggleTheme("red");
+                                }}
+                                className="hover:bg-[#3a3a3a] rounded-md transition-all w-full"
+                            >
+                                <div className="flex gap-2 flex-row items-center justify-center">
+                                    <div className="w-3 h-3 bg-[#802222] rounded-full shadow-[#802222] shadow-2xl"></div>
+                                    <div>Vermelho</div>
+                                </div>
+                            </button>
+                            <button
+                                onClick={() => {
+                                    toggleTheme("blue");
+                                }}
+                                className="hover:bg-[#3a3a3a] rounded-md transition-all w-full"
+                            >
+                                <div className="flex gap-2 flex-row items-center justify-center">
+                                    <div className="w-3 h-3 bg-[#004d7c] rounded-full shadow-[#004d7c] shadow-2xl"></div>
+                                    <div>Azul</div>
+                                </div>
+                            </button>
+                            <button
+                                onClick={() => {
+                                    toggleTheme("green");
+                                }}
+                                className="hover:bg-[#3a3a3a] rounded-md transition-all w-full"
+                            >
+                                <div className="flex gap-2 flex-row items-center justify-center">
+                                    <div className="w-3 h-3 bg-[#04484d] rounded-full shadow-[#04484d] shadow-2xl"></div>
+                                    <div>Verde</div>
+                                </div>
+                            </button>
+                        </div>
+                    </aside>
                     <div className="flex flex-col items-center">
                         {!maisClick ? (
                             <div className="flex flex-col items-center">
