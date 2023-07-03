@@ -11,6 +11,8 @@ import { ThemeContextProps, Theme } from "../types";
 import palleteIcon from "../assets/svgs/pallete.svg";
 import arrowIcon from "../assets/svgs/arrow.svg";
 import dashboardIcon from '../assets/svgs/dashboard.svg';
+import logoutIcon from '../assets/svgs/logout.svg';
+import api from "../api";
 
 export const Mobilemenu: React.FC = () => {
     const { user } = useContext<UserStructure | any>(UserContext);
@@ -104,7 +106,7 @@ export const Mobilemenu: React.FC = () => {
                             </button>
                         </div>
                         <div
-                            className={`flex w-full h-full flex-col transition-opacity duration-300 absolute bottom-[1px] ${
+                            className={`flex w-full h-full flex-col transition-opacity duration-300 absolute top-[4px] ${
                                 themesClick
                                     ? "opacity-0 invisible"
                                     : "opacity-100 visible"
@@ -147,6 +149,21 @@ export const Mobilemenu: React.FC = () => {
                                 >
                                     <img src={dashboardIcon} alt="Dashboard Icon" />
                                     <span>Dashboard</span>
+                                    <img
+                                        className="w-[20px] -rotate-90"
+                                        src={arrowIcon}
+                                        alt="Arrow Icon"
+                                    />
+                                </button>
+                                <button
+                                    onClick={async () => {
+                                        await api.logoutUser();
+                                        return window.location.reload();
+                                    }}
+                                    className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg"
+                                >
+                                    <img src={logoutIcon} alt="Dashboard Icon" />
+                                    <span>Sair</span>
                                     <img
                                         className="w-[20px] -rotate-90"
                                         src={arrowIcon}
