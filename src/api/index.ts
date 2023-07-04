@@ -10,7 +10,7 @@ import {
 
 const header = {
     headers: {
-        Authorization: import.meta.env.VITE_API_KEY as string,
+        Authorization: "3fd3113e-4da4-4d5c-b034-9f7e5c6eb740"
     },
 };
 
@@ -36,11 +36,14 @@ const api = {
         return res;
     },
     logoutUser: async () => {
-        const res = axios.get<AxiosResponse>("/api/auth/logout", header);
+        const res: AxiosResponse = await axios.get<AxiosResponse>("/api/auth/logout", header);
         return res;
     },
     voteBot: async (userID: string | Snowflake, botID: string | Snowflake) => {
-        const res = axios.post("/api/bots/" + botID + "/votes", { ...header, body: JSON.stringify({ user: userID })  });
+        const voteProps: { user: string } ={ 
+            user: userID,
+        }
+        const res: AxiosResponse = await axios.post<AxiosResponse<VoteStructure>>(`/api/bots/${botID}/votes`, { body: JSON.stringify(voteProps) });
         return res;
     }
 };
