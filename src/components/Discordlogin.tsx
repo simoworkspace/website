@@ -13,7 +13,7 @@ const UserLogin: React.FC = () => {
         <div>
             {user ? (
                 <>
-                    <div>
+                    <div >
                         <button
                             onClick={() => {
                                 setArrowState(!arrowState);
@@ -21,7 +21,7 @@ const UserLogin: React.FC = () => {
                             onBlur={() => {
                                 setArrowState(false);
                             }}
-                            className="flex text-white w-[190px] h-[50px] xl:hidden"
+                            className="flex text-white w-[120px] h-[50px] xl:hidden"
                         >
                             <div
                                 className={`flex items-center h-[100%] transition-all duration-200 ${
@@ -35,10 +35,9 @@ const UserLogin: React.FC = () => {
                                     src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=2048`}
                                     alt="User Image"
                                 />
-                                <div className="m-2">{user.username}</div>
                                 <div>
                                     <img
-                                        className={`w-[23px] h-[23px] ml-1 transition-all ${
+                                        className={`w-[23px] h-[23px] ml-2 transition-all ${
                                             arrowState
                                                 ? "rotate-180"
                                                 : "rotate-0"
@@ -51,7 +50,7 @@ const UserLogin: React.FC = () => {
                         </button>
                     </div>
                     <div
-                        className={`xl:hidden transition-all duration-300 border-white border-[1px] border-t-[0px] absolute bg-black text-white w-[164px] top-[61px] ${
+                        className={`xl:hidden transition-all duration-300 border-white border-[1px] rounded-lg absolute bg-black text-white w-[164px] right-[10px] top-[61px] ${
                             arrowState
                                 ? "opacity-100 border-transparent"
                                 : "opacity-0 invisible"
