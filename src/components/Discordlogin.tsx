@@ -1,12 +1,11 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import arrowIcon from "../assets/svgs/arrow.svg";
 import { Dropdownmenu } from "./Dropdownmenu";
-import { UserStructure } from "../types";
 import { UserContext } from "../contexts/UserContext";
 
 const UserLogin: React.FC = () => {
-    const { user } = useContext<UserStructure | any>(UserContext);
+    const { user } = useContext(UserContext);
 
     const [arrowState, setArrowState] = useState<boolean>(false);
 
