@@ -43,7 +43,7 @@ const api = {
         const voteProps: { user: string } ={ 
             user: userID,
         }
-        const res: AxiosResponse = await axios.post<AxiosResponse<VoteStructure>>(`/api/bots/${botID}/votes`, { body: JSON.stringify(voteProps) });
+        const res = await axios.post(`/api/bots/${botID}/votes`, voteProps, { ...header });
         return res;
     }
 };
