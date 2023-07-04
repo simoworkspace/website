@@ -7,10 +7,10 @@ import {
     DiscordUser,
     Snowflake
 } from "../types";
-const key = import.meta.env.VITE_API_KEY as string;
+
 const header = {
     headers: {
-        Authorization: key,
+        Authorization: import.meta.env.VITE_API_KEY as string,
     },
 };
 
@@ -37,6 +37,10 @@ const api = {
     },
     logoutUser: async () => {
         const res = axios.get<AxiosResponse>("/api/auth/logout", header);
+        return res;
+    },
+    voteBot: async (userID: string | Snowflake, botID: string | Snowflake) => {
+        const res = axios.post("/api/bots/" + botID, { ...header, body: JSON.stringify({ user: userID })  });
         return res;
     }
 };
