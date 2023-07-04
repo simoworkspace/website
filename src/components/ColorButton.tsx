@@ -33,7 +33,7 @@ export const ColorButton: React.FC = () => {
                 />
             </button>
             <div
-                className={`absolute border-white border-[1px] bg-black w-[120px] right-[190px] xl:hidden text-white transition-all duration-200 ${
+                className={`absolute border-white border-[1px] bg-black w-[120px] right-[119px] xl:hidden text-white transition-all duration-200 ${
                     menu
                         ? "opacity-100 border-transparent"
                         : "opacity-0 invisible"
