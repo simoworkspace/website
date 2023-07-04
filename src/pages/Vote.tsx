@@ -1,34 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-import { UserStructure, VoteStructure } from "../types";
+import { AxiosResponse } from "axios";
+import { BotStructure, VoteStructure } from "../types";
+import { UserContext } from "../contexts/UserContext";
+import api from '../api';
 
 export const Vote: React.FC = () => {
-    const params = useParams<string>();
-    const [userId, setUserID] = useState<string>("");
-    const [voteData, setVoteData] = useState<VoteStructure>();
-    const { botid } = params;
+    const { botid } = useParams<string>();
+    const { user } = useContext(UserContext);
+    const [voteData, setVoteData] = useState<{ code?: number; status?: string }>();
+    const [votes, setVotes] = useState<number>();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            axios.get("/api/auth/user", {
-                    headers: {
-                        Authorization: import.meta.env.VITE_API_KEY as string,
-                    },
-                })
-                .then((res: { data: { data: UserStructure } }) => setUserID(res.data.data.id));
-        };
-        fetchData();
-    }, []);
-
+    const fetchVotes = async () => {
+        const botData: AxiosResponse<BotStructure> = await api.getBotInfos(botid as string);
+        return setVotes(botData.data.votes.length);
+    };
+    fetchVotes();
+    
     const handleVote = async () => {
-        await axios.get('/api/vote')
+        try {
+            await api.voteBot(user?.id as string, botid as string);
+            return setVoteData({ code: 201 });
+        } catch(error: any) {
+            return setVoteData({ code: error.response.data.code });
+        };
     };
 
     return (
         <div className="text-white flex flex-col-reverse">
-            <button onClick={handleVote} className="border-2 rounded-lg bg-neutral-900 w-[200px] h-[40px]">Votar em but</button>
-            <span>votar no bot $username[{botid}]</span>
+            <button onClick={() => {
+                fetchVotes();
+                handleVote();
+            }} className="border-2 rounded-lg bg-neutral-900 w-[200px] h-[40px]">Votar em but</button>
+            <span>status: {voteData?.code === 400 && "Você ja votou hoje, aguarde 24 horas para poder votar novamente!"}</span>
+            <span>votos atuais do bot: { votes ? votes : 0 }</span>
         </div>
     );
 };
