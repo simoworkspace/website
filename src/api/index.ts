@@ -16,7 +16,7 @@ const header = {
 
 const api = {
     getAllBots: async () => {
-        const res: AxiosResponse = await axios.get<AxiosResponse<BotStructure[]>>("/api/bots", header).catch();
+        const res: AxiosResponse = await axios.get<AxiosResponse<BotStructure[]>>("/api/bots", header);
         return res;
     },
     getUserData: async () => {
@@ -32,7 +32,7 @@ const api = {
         return res;
     },
     addBot: async (bodyData: BotStructure, botID: string | Snowflake) => {
-        const res = axios.post<AxiosResponse<BotStructure>>("/api/bots/" + botID, { ...header, bodyData });
+        const res = axios.post<AxiosResponse<BotStructure>>("/api/bots/" + botID, bodyData, header);
         return res;
     },
     logoutUser: async () => {
@@ -43,7 +43,7 @@ const api = {
         const voteProps: { user: string } ={ 
             user: userID,
         }
-        const res = await axios.post(`/api/bots/${botID}/votes`, voteProps, { ...header });
+        const res: AxiosResponse = await axios.post<AxiosResponse<VoteStructure>>(`/api/bots/${botID}/votes`, voteProps, header);
         return res;
     }
 };
