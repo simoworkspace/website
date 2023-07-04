@@ -28,7 +28,7 @@ const api = {
         return res;
     },
     getBotInfos: async (botID: string | Snowflake) => {
-        const res: AxiosResponse = await axios.get<AxiosResponse<BotStructure>>("/api/bots" + botID, header);
+        const res: AxiosResponse = await axios.get<AxiosResponse<BotStructure>>("/api/bots/" + botID, header);
         return res;
     },
     addBot: async (bodyData: BotStructure, botID: string | Snowflake) => {
