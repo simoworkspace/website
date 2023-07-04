@@ -40,7 +40,7 @@ const api = {
         return res;
     },
     voteBot: async (userID: string | Snowflake, botID: string | Snowflake) => {
-        const res = axios.post("/api/bots/" + botID, { ...header, body: JSON.stringify({ user: userID })  });
+        const res = axios.post("/api/bots/" + botID + "/votes", { ...header, body: JSON.stringify({ user: userID })  });
         return res;
     }
 };
