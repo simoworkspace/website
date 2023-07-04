@@ -23,7 +23,7 @@ export const ColorButton: React.FC = () => {
                 className={`w-[40px] bg-black ${
                     menu
                         ? "border-white"
-                        : "border-[#858585] hover:border-[#a8a8a8]"
+                        : "border-[#fff] hover:border-[#a8a8a8]"
                 } justify-center border-[1px] transition-all duration-200 h-[50px] flex items-center xl:hidden`}
             >
                 <img

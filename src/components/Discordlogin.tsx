@@ -8,7 +8,7 @@ const UserLogin: React.FC = () => {
     const { user } = useContext(UserContext);
 
     const [arrowState, setArrowState] = useState<boolean>(false);
-
+    
     return (
         <div>
             {user ? (
@@ -50,10 +50,10 @@ const UserLogin: React.FC = () => {
                         </button>
                     </div>
                     <div
-                        className={`xl:hidden transition-all duration-300 border-white border-[1px] rounded-lg absolute bg-black text-white w-[164px] right-[10px] top-[61px] ${
+                        className={`xl:hidden transition-all duration-300 border-white border-[1px] rounded-b-lg absolute bg-black text-white w-[151px] right-[9px] top-[61px] ${
                             arrowState
-                                ? "opacity-100 border-transparent"
-                                : "opacity-0 invisible"
+                                ? "opacity-100 border-transparent h-[200px]"
+                                : "h-[0px] opacity-0"
                         }`}
                     >
                         <Dropdownmenu />
