@@ -1,12 +1,12 @@
 {
-    "routes": [
+    "rewrites": [
         {
-            "src": "/api/(.*)",
-            "dest": "https://botlist-api.squareweb.app"
+            "source": "/(.*)",
+            "destination": "/"
         },
         {
-            "src": "/(.*)",
-            "dest": "/:1"
+            "source": "/api/(.*)",
+            "destination": "https://botlist-api.squareweb.app"
         }
     ]
 }
