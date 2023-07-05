@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { BotStructure } from "../types";
 import { Botloading } from "./Botloading";
 import { Link } from "react-router-dom";
 import api from "../api";
 import { AxiosResponse } from "axios";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 export const Main: React.FC = () => {
     const [data, setData] = useState<BotStructure[]>();
+    const { color } = useContext(ThemeContext);
 
     const fetchData = async () => {
         const res: AxiosResponse<BotStructure[]> = await api.getAllBots();
@@ -23,7 +25,7 @@ export const Main: React.FC = () => {
                 <Link
                     to={`/bot/${bot._id}`}
                     key={bot._id}
-                    className={`bg-neutral-950 duration-300 transition-colors hover:bg-neutral-900 shadow-md shadow-black p-3 border-white border-2 bg-neutral-940 rounded-lg xl:h-[220px] ${
+                    className={`bg-neutral-950 duration-300 transition-colors hover:bg-neutral-900 shadow-md shadow-black p-3 border-${color}-300 border-2 bg-neutral-940 rounded-lg xl:h-[220px] ${
                         index === data.length - 1 && "xl:mb-[80px]"
                     }`} 
                 >
