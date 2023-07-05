@@ -45,7 +45,16 @@ const api = {
         }
         const res: AxiosResponse = await axios.post<AxiosResponse<VoteStructure>>(`/api/bots/${botID}/votes`, voteProps, header);
         return res;
-    }
+    },
+    postFeedback: async (stars: number, postedAt: string, content: string, botID: string | Snowflake, userID: string | Snowflake) => {
+        const feedbackProps: { stars: number, postedAt: string, content: string } = {
+            stars: stars,
+            postedAt: postedAt,
+            content: content
+        };
+        const res: AxiosResponse = await axios.post(`/api/bots/${botID}/feedbacks/${userID}`, feedbackProps, header);
+        return res;
+    },
 };
 
 export default api;
