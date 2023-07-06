@@ -7,10 +7,11 @@ import {
     DiscordUser,
     Snowflake
 } from "../types";
+import Cookies from "js-cookie";
 
 const header = {
     headers: {
-        Authorization: "3fd3113e-4da4-4d5c-b034-9f7e5c6eb740"
+        Authorization: Cookies.get("discordUser")
     },
 };
 
@@ -22,6 +23,10 @@ const api = {
     getUserData: async () => {
         const res: AxiosResponse = await axios.get<AxiosResponse<UserStructure>>("/api/auth/user", { ...header, withCredentials: true });
         return res;
+    },
+    getToken: async () => {
+        const res: AxiosResponse<{ token: string }> = await axios.get("/api/auth/token");
+        return res.data.token;
     },
     getDiscordUser: async (userID: string | Snowflake) => {
         const res: AxiosResponse = await axios.get<AxiosResponse<DiscordUser>>("/api/users/" + userID, header);
