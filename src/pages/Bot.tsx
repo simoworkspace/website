@@ -11,6 +11,7 @@ import { BotStructure, DiscordUser, botDataStructure } from "../types";
 import starIconFill from "../assets/svgs/starfill.svg";
 import starIcon from "../assets/svgs/star.svg";
 import api from '../api';
+import { Feedbacks } from "../components/Feedbacks"; 
 
 export const Bot: React.FC = () => {
     const params: Params = useParams<string>();
@@ -78,6 +79,7 @@ export const Bot: React.FC = () => {
                     </div>
                 </div>
             </div>
+            <Feedbacks/>
         </div>
     ) : (
         <div>loading...</div>
