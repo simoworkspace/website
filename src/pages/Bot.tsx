@@ -11,29 +11,36 @@ import { BotStructure, DiscordUser, botDataStructure } from "../types";
 import starIconFill from "../assets/svgs/starfill.svg";
 import starIcon from "../assets/svgs/star.svg";
 import api from '../api';
-import { Feedbacks } from "../components/Feedbacks"; 
+import { Feedbacks } from "../components/Feedbacks";
 
 export const Bot: React.FC = () => {
     const params: Params = useParams<string>();
+    const botid: string = params.botid as string;
     const navigate: NavigateFunction = useNavigate();
     const [botData, setBotData] = useState<DiscordUser>();
+    const [bot, setBot] = useState<BotStructure>();
 
     const getBotData = async () => {
-        const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(params.botid as string);
+        const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(botid);
         return setBotData(res.data);
     };
 
     const verifyBot = async () => {
-        const res: AxiosResponse<BotStructure> = await api.getBotInfos(params.botid as string);
-        if (res.status === 404) return navigate("/notfound");
-        return res.data;
+        const res: AxiosResponse<{ exists: boolean }> = await api.verifyBotExists(botid);
+        if (!res.data.exists) return navigate("/");
+        return;
     };
+
+    const getBotInDB = async () => {
+        const res: AxiosResponse<BotStructure> = await api.getBotInfos(botid);
+        return res.data;
+    }
 
     useEffect(() => {
         verifyBot();
         getBotData();
+        getBotInDB();
     }, [])
-
 
     return botData ? (
         <div className="h-[100vh] w-[100vw]">
@@ -78,6 +85,9 @@ export const Bot: React.FC = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div>
+                {bot?.inviteURL}
             </div>
         </div>
     ) : (
