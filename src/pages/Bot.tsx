@@ -1,17 +1,12 @@
 import { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
-import {
-    NavigateFunction,
-    useNavigate,
-    useParams,
-    Link,
-    Params,
-} from "react-router-dom";
+import { NavigateFunction, useNavigate, useParams, Link, Params, } from "react-router-dom";
 import { BotStructure, DiscordUser, botDataStructure } from "../types";
 import starIconFill from "../assets/svgs/starfill.svg";
 import starIcon from "../assets/svgs/star.svg";
 import api from '../api';
 import { Feedbacks } from "../components/Feedbacks";
+import { Markdown } from "../components/Markdown";
 
 export const Bot: React.FC = () => {
     const params: Params = useParams<string>();
@@ -33,8 +28,8 @@ export const Bot: React.FC = () => {
 
     const getBotInDB = async () => {
         const res: AxiosResponse<BotStructure> = await api.getBotInfos(botid);
-        return res.data;
-    }
+        return setBot(res.data);
+    };
 
     useEffect(() => {
         verifyBot();
@@ -71,13 +66,13 @@ export const Bot: React.FC = () => {
                     <div className="flex w-[100%] justify-end ">
                         <div className="flex gap-4 items-center justify-center xl:w-[100vw] flex-row m-4">
                             <Link
-                                className="border-2 border-neutral-700 bg-neutral-900 hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
+                                className="border-2 border-neutral-700 bg-neutral-900 text-white hover:text-white hover:no-underline hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
                                 to={`/vote/${botData.id}`}
                             >
                                 <span>Votar</span>
                             </Link>
                             <Link
-                                className="border-2 border-neutral-700 bg-neutral-900 hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
+                                className="border-2 border-neutral-700 bg-neutral-900 text-white hover:text-white hover:no-underline hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
                                 to={`https://discord.com/api/oauth2/authorize?client_id=${botData.id}&permissions=70368744177655&scope=bot%20applications.commands`}
                             >
                                 <span>Adicionar</span>
@@ -87,7 +82,7 @@ export const Bot: React.FC = () => {
                 </div>
             </div>
             <div>
-                {bot?.inviteURL}
+                <Markdown/>
             </div>
         </div>
     ) : (
