@@ -11,7 +11,6 @@ import { Vote } from "./pages/Vote";
 import { Guilds } from "./pages/Guilds";
 import { Tests } from "./pages/Tests";
 import "./index.css";
-import "tailwindcss/tailwind.css";
 import { useContext } from "react";
 import { ThemeContext } from "./contexts/ThemeContext";
 
