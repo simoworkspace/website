@@ -45,7 +45,7 @@ const api = {
         return res;
     },
     voteBot: async (userID: string | Snowflake, botID: string | Snowflake) => {
-        const voteProps: { user: string } ={ 
+        const voteProps: { user: string } = {
             user: userID,
         }
         const res: AxiosResponse = await axios.post<AxiosResponse<VoteStructure>>(`/api/bots/${botID}/votes`, voteProps, header);
@@ -60,6 +60,10 @@ const api = {
         const res: AxiosResponse = await axios.post(`/api/bots/${botID}/feedbacks/${userID}`, feedbackProps, header);
         return res;
     },
+    verifyBotExists: async (botID: Snowflake | string) => {
+        const res: AxiosResponse = await axios.get(`/api/bots/${botID}/exists`, header);
+        return res;
+    }
 };
 
 export default api;
