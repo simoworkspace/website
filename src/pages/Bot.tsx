@@ -79,7 +79,6 @@ export const Bot: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <Feedbacks/>
         </div>
     ) : (
         <div>loading...</div>
