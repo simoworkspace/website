@@ -28,7 +28,6 @@ export const Vote: React.FC = () => {
 
     useEffect(() => {
         fetchBotData();
-        handleVote();
     }, []);
 
     return user ? (
