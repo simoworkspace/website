@@ -40,6 +40,6 @@ export const Vote: React.FC = () => {
             <span>votos atuais do bot: { botData?.votes.length ? botData?.votes.length : 0 }</span>
         </div>
     ) : (
-        <Link to={import.meta.env.VITE_AUTH_LINK} className="bg-black border-2 text-white hover:text-white hover:no-underline h-[50px] text-white rounded-lg">você precisa fazer login para poder faser voto clica aqui</Link>
+        <Link to={import.meta.env.VITE_AUTH_LINK} className="bg-black border-2 hover:text-white hover:no-underline h-[50px] text-white rounded-lg">você precisa fazer login para poder faser voto clica aqui</Link>
     ); 
 };
