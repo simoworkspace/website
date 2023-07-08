@@ -8,14 +8,26 @@ export const Markdown: React.FC = () => {
         setMarkdown(event.target.value);
     };
 
+    const renderMarkdown = () => {
+        const processedMarkdown = markdown.replace(/\n/g, '  \n');
+        return (
+            <ReactMarkdown
+                className="m-3 text-white"
+                transformLinkUri={null}
+            >
+                {processedMarkdown}
+            </ReactMarkdown>
+        );
+    };
+
     return (
-        <div>
+        <>
             <textarea
                 value={markdown}
                 onChange={handleInputChange}
                 placeholder="Digite aqui!"
             />
-            <ReactMarkdown className="m-3 text-white whitespace-break-spaces">{markdown}</ReactMarkdown>
-        </div>
+            {renderMarkdown()}
+        </>
     );
 };
