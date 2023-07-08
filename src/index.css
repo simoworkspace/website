@@ -39,20 +39,3 @@
     padding: 0;
     font-family: "Inter", sans-serif;
 }
-
-::-webkit-scrollbar {
-    width: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background-color: #292929;
-}
-
-::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: #355875;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #377fbb;
-}
