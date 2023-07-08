@@ -1,25 +1,33 @@
 import React, { useContext, useState } from "react";
 import api from "../api";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { BotStructure } from "../types";
+import { BotStructure, DiscordUser } from "../types";
 import { ThemeContext } from "../contexts/ThemeContext";
+import { AxiosResponse } from "axios";
 
 export const FormAddbot: React.FC = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<BotStructure>();
     const { color } = useContext(ThemeContext);
+    const [botData, setBotData] = useState<DiscordUser>();
 
     const onSubmit: SubmitHandler<BotStructure> = async (data: BotStructure): Promise<void> => {
         try {
+
+            const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(data._id);
+            await setBotData(res.data);
+            const createdAt = await Math.round(new Date(botData?.id as any / 4194304 + 1420070400000).getTime() / 1000);
+
             const formData: BotStructure = {
                 ...data,
-                avatar: "oi",
-                name: "calorbot",
+                avatar: botData?.avatar as string,
+                name: botData?.username as string,
                 approved: false,
-                createdAt: "hoje",
-                verifiedBot: true,
-                inviteURL: "oie",
+                createdAt: createdAt as any,
+                verifiedBot: false,
+                inviteURL: `https://discord.com/api/oauth2/authorize?client_id=${data._id}&permissions=70368744177655&scope=bot%20applications.commands`,
             };
-            await api.addBot(formData, data._id);
+            console.log(formData);
+            await api.addBot(formData, data._id)
         } catch (error: any) {
             console.error(error);
         }
@@ -130,7 +138,7 @@ export const FormAddbot: React.FC = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="text-white xl:w-[88vw] xl:flex-col  flex-row flex">
+                        <div className="text-white xl:w-[88vw] xl:flex-col flex-row flex">
                             <div className="w-[800px] xl:w-[100%] justify-center break-words flex-col flex mr-2">
                                 <div className="text-center">
                                     <strong>Descrição Curta</strong>
