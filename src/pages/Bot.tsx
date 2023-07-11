@@ -6,7 +6,6 @@ import starIconFill from "../assets/svgs/starfill.svg";
 import starIcon from "../assets/svgs/star.svg";
 import api from '../api';
 import { Feedbacks } from "../components/Feedbacks";
-import { Markdown } from "../components/Markdown";
 
 export const Bot: React.FC = () => {
     const params: Params = useParams<string>();
@@ -80,9 +79,6 @@ export const Bot: React.FC = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <Markdown/>
             </div>
         </div>
     ) : (
