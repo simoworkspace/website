@@ -1,45 +1,45 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { AxiosResponse } from "axios";
-import { BotStructure, VoteStructure } from "../types";
+import { BotStructure, UserStructure, VoteStructure } from "../types";
 import { UserContext } from "../contexts/UserContext";
 import api from '../api';
 
 export const Vote: React.FC = () => {
-    const { botid } = useParams<string>();
     const { user } = useContext(UserContext);
+    const { botid } = useParams<string>();
+
+    const [voteStatus, setVoteStatus] = useState<{ canVote: boolean; restTime: string; }>();
     const [botData, setBotData] = useState<BotStructure>();
-    const [votes, setVotes] = useState<{ code: number }>();
-    const [voteInfo, setVoteInfos] = useState<VoteStructure>();
-    
-    const fetchBotData = async () => {
-        const botData: AxiosResponse<BotStructure> = await api.getBotInfos(botid as string);
-        return setBotData(botData.data);
+    const [time, setTime] = useState<string>();
+
+    const getVoteStatus = async () => {
+        const res: AxiosResponse<{ canVote: boolean; restTime: string; }> = await api.voteStatus(botid as string, user?.id as string);
+        return setVoteStatus(res.data);
     };
-    
+
     const handleVote = async () => {
-        try {
-            const req: AxiosResponse<VoteStructure> = await api.voteBot(user?.id as string, botid as string);
-            return setVoteInfos(req.data);
-        } catch(error: any) {
-            return setVotes({ code: error.response.data.code });
-        };
+        await api.voteBot(user?.id as string, botid as string);
+        return;
     };
+
+    const timeStatus = voteStatus?.restTime as any;
+    const restTime = () => { return new Date(timeStatus - Date.now()).toLocaleString().split(", ")[1]; };
+
+    useEffect(() => setTime(restTime()), [restTime]);
 
     useEffect(() => {
-        fetchBotData();
-    }, []);
+        if (user) {
+            getVoteStatus();
+        };
+    }, [user]);
 
     return user ? (
-        <div className="text-white flex flex-col-reverse">
-            <button onClick={() => {
-                fetchBotData();
-                handleVote();
-            }} className="border-2 rounded-lg bg-neutral-900 w-[200px] h-[40px]">Votar em but</button>
-            <span>status: {voteInfo === undefined ? "Você ja votou hoje, aguarde 24 horas para poder votar novamente!" : "Você pode votar agora!"}</span>
-            <span>votos atuais do bot: { botData?.votes.length ? botData?.votes.length : 0 }</span>
+        <div className="flex flex-col text-white">
+            <span>status do voto: {voteStatus?.canVote ? "você pode votar agora" : "calma lá amigão, volte daqui " + time + " horas"}</span>
+            <button className="border-2 rounded-lg bg-black hover:bg-neutral-800 w-[200px]" onClick={handleVote}>vota nessa bosta</button>
         </div>
     ) : (
-        <Link to={import.meta.env.VITE_AUTH_LINK} className="bg-black border-2 hover:text-white hover:no-underline h-[50px] text-white rounded-lg">você precisa fazer login para poder faser voto clica aqui</Link>
-    ); 
+        <div>você precisa logar para votar</div>
+    )
 };
