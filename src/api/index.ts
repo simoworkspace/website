@@ -63,6 +63,10 @@ const api = {
     verifyBotExists: async (botID: Snowflake | string) => {
         const res: AxiosResponse = await axios.get(`/api/bots/${botID}/exists`, header);
         return res;
+    },
+    voteStatus: async (botID: string | Snowflake, userID: string | Snowflake) => {
+        const res: AxiosResponse = await axios.get<AxiosResponse>(`/api/bots/${botID}/vote-status/${userID}`, header);
+        return res;
     }
 };
 
