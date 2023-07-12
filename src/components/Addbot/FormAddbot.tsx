@@ -20,12 +20,7 @@ export const FormAddbot: React.FC = () => {
     const renderMarkdown = () => {
         const processedMarkdown = markdown.replace(/\n/g, '  \n');
         return (
-            <ReactMarkdown
-                className="m-3 text-white"
-                transformLinkUri={null}
-            >
-                {processedMarkdown}
-            </ReactMarkdown>
+            <ReactMarkdown>{processedMarkdown}</ReactMarkdown>
         );
     };
 

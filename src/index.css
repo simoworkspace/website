@@ -3,36 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    h1 {
-        @apply text-3xl;
-    }
-
-    h2 {
-        @apply text-2xl
-    }
-
-    blockquote {
-        @apply p-1 border-l-4 border-gray-300
-    }
-
-    h3 {
-        @apply text-xl
-    }
-
-    li {
-        @apply list-disc list-inside
-    }
-
-    code {
-        @apply flex p-2 bg-neutral-800 text-white border-neutral-900 border-2 rounded-md
-    }
-
-    a {
-        @apply hover:underline text-blue-600 hover:text-blue-800 transition-colors duration-300
-    }
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
