@@ -27,11 +27,12 @@ export const Mobilemenu: React.FC = () => {
 
     return (
         <div
-            className={`hidden xl:fixed xl:bottom-0 xl:left-0 xl:w-full border-t-2 ${
-                color === "blue" && "bg-[#033757]"
-            } ${color === "green" && "bg-[#056b49]"} ${
-                color === "red" && "bg-[#571423]"
-            } xl:text-white xl:py-3 xl:flex xl:justify-around xl:items-center`}
+            className={`hidden xl:fixed xl:bottom-0 xl:left-0 xl:w-full border-t-2 
+            ${color === "blue" && "bg-[#033757]"} 
+            ${color === "green" && "bg-[#056b49]"} 
+            ${color === "red" && "bg-[#571423]"} 
+            ${color === "purple" && "bg-[#351a7c]"}
+            xl:text-white xl:py-3 xl:flex xl:justify-around xl:items-center`}
         >
             {user ? (
                 <>

@@ -69,7 +69,8 @@ export const VoteComponent: React.FC = () => {
                         className={`transition-all duration-300 border-2 rounded-xl w-[100px] h-[50px] disabled:opacity-40
                             ${color === "blue" && "bg-blue-900 hover:bg-blue-500 border-blue-500 disabled:hover:bg-blue-900"} 
                             ${color === "green" && "bg-green-900 hover:bg-green-700 border-green-700 disabled:hover:bg-green-900"} 
-                            ${color === "red" && "bg-red-900 hover:bg-red-500 border-red-500 disabled:hover:bg-red-900"}`}
+                            ${color === "red" && "bg-red-900 hover:bg-red-500 border-red-500 disabled:hover:bg-red-900"}
+                            ${color === "purple" && "bg-purple-900 hover:bg-purple-500 border-purple-500 disabled:hover:bg-purple-900"}`}
                         disabled={!voteStatus?.canVote}
                         onClick={handleVote}
                     >Votar</button>

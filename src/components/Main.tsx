@@ -25,11 +25,12 @@ export const Main: React.FC = () => {
                 <Link
                     to={`/bot/${bot._id}`}
                     key={bot._id}
-                    className={`bg-neutral-950 duration-300 transition-colors text-white hover:text-white hover:no-underline hover:bg-neutral-900 shadow-md shadow-black p-3 ${
-                        color === "blue" && "border-blue-300"
-                    } ${color === "green" && "border-green-300"} ${
-                        color === "red" && "border-red-300"
-                    } border-2 bg-neutral-940 rounded-lg xl:h-[220px] ${
+                    className={`bg-neutral-950 duration-300 transition-colors text-white hover:text-white hover:no-underline hover:bg-neutral-900 shadow-md shadow-black p-3 
+                        ${color === "blue" && "border-blue-300"} 
+                        ${color === "green" && "border-green-300"} 
+                        ${color === "red" && "border-red-300"} 
+                        ${color === "purple" && "border-purple-300"}
+                    border-2 bg-neutral-940 rounded-lg xl:h-[220px] ${
                         index === data.length - 1 && "xl:mb-[80px]"
                     }`} 
                 >
