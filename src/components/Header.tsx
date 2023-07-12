@@ -1,7 +1,7 @@
 import React from "react";
 import UserLogin from "./Discordlogin";
 import { InputSearch } from "./InputSearch";
-import { ColorButton } from "./ColorButton";
+import { ColorButton } from "./Colors/ColorButton";
 
 export const Header: React.FC = () => {
     return (
