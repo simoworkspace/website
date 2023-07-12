@@ -13,6 +13,7 @@ import arrowIcon from "../assets/svgs/arrow.svg";
 import dashboardIcon from '../assets/svgs/dashboard.svg';
 import logoutIcon from '../assets/svgs/logout.svg';
 import api from "../api";
+import { ChoiceColor } from "./Colors/Choice";
 
 export const Mobilemenu: React.FC = () => {
     const { user } = useContext<UserStructure | any>(UserContext);
@@ -43,7 +44,7 @@ export const Mobilemenu: React.FC = () => {
                                 : "opacity-0 absolute invisible"
                         } ${
                             themesClick
-                            ? "h-[150px] w-[130px]"
+                            ? "h-[180px] w-[130px]"
                             : "h-[120px] w-[160px]"
                         }`}
                     >
@@ -72,39 +73,10 @@ export const Mobilemenu: React.FC = () => {
                                 />
                             </button>
                             <hr className="border-[1px] rounded-full w-[90%]" />
-                            <button
-                                onClick={() => {
-                                    toggleTheme("red");
-                                }}
-                                className="hover:bg-[#3a3a3a] rounded-md transition-all w-full"
-                            >
-                                <div className="flex gap-2 flex-row items-center justify-center">
-                                    <div className="w-3 h-3 bg-[#802222] rounded-full shadow-[#802222] shadow-2xl"></div>
-                                    <div>Vermelho</div>
-                                </div>
-                            </button>
-                            <button
-                                onClick={() => {
-                                    toggleTheme("blue");
-                                }}
-                                className="hover:bg-[#3a3a3a] rounded-md transition-all w-full"
-                            >
-                                <div className="flex gap-2 flex-row items-center justify-center">
-                                    <div className="w-3 h-3 bg-[#004d7c] rounded-full shadow-[#004d7c] shadow-2xl"></div>
-                                    <div>Azul</div>
-                                </div>
-                            </button>
-                            <button
-                                onClick={() => {
-                                    toggleTheme("green");
-                                }}
-                                className="hover:bg-[#3a3a3a] rounded-md transition-all w-full"
-                            >
-                                <div className="flex gap-2 flex-row items-center justify-center">
-                                    <div className="w-3 h-3 bg-[#04484d] rounded-full shadow-[#04484d] shadow-2xl"></div>
-                                    <div>Verde</div>
-                                </div>
-                            </button>
+                            <ChoiceColor color="#802222" name="Vermelho" theme="red" margin="0px" />
+                            <ChoiceColor color="#004d7c" name="Azul" theme="blue" margin="0px" />
+                            <ChoiceColor color="#2b195c" name="Roxo" theme="purple" margin="0px" />
+                            <ChoiceColor color="#04484d" name="Verde" theme="green" margin="0px" />
                         </div>
                         <div
                             className={`flex w-full h-full flex-col transition-opacity duration-300 absolute top-[4px] ${
