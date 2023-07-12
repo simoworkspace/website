@@ -73,10 +73,10 @@ export const Mobilemenu: React.FC = () => {
                                 />
                             </button>
                             <hr className="border-[1px] rounded-full w-[90%]" />
-                            <ChoiceColor color="#802222" name="Vermelho" theme="red" margin="0px" />
-                            <ChoiceColor color="#004d7c" name="Azul" theme="blue" margin="0px" />
-                            <ChoiceColor color="#2b195c" name="Roxo" theme="purple" margin="0px" />
-                            <ChoiceColor color="#04484d" name="Verde" theme="green" margin="0px" />
+                            <ChoiceColor name="Vermelho" theme="red" margin="0px" />
+                            <ChoiceColor name="Azul" theme="blue" margin="0px" />
+                            <ChoiceColor name="Roxo" theme="purple" margin="0px" />
+                            <ChoiceColor name="Verde" theme="green" margin="0px" />
                         </div>
                         <div
                             className={`flex w-full h-full flex-col transition-opacity duration-300 absolute top-[4px] ${

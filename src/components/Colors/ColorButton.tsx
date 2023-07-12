@@ -3,7 +3,7 @@ import { ChoiceColor } from "./Choice";
 import { ToggleColorMenu } from "./ToggleMenu";
 
 export const ColorButton: React.FC = () => {
-    const [menu, setMenu] = useState<boolean>(true);
+    const [menu, setMenu] = useState<boolean>(false);
 
     return (
         <div>
@@ -15,10 +15,10 @@ export const ColorButton: React.FC = () => {
                 }`}
             >
                 <div className="flex flex-col w-[100%]">
-                    <ChoiceColor color="#802222" name="Vermelho" theme="red" />
-                    <ChoiceColor color="#004d7c" name="Azul" theme="blue" />
-                    <ChoiceColor color="#2B195C" name="Roxo" theme="purple" />
-                    <ChoiceColor color="#04484d" name="Verde" theme="green" />
+                    <ChoiceColor name="Vermelho" theme="red" margin="6px" />
+                    <ChoiceColor name="Azul" theme="blue" margin="6px" />
+                    <ChoiceColor name="Roxo" theme="purple" margin="6px" />
+                    <ChoiceColor name="Verde" theme="green" margin="6px" />
                 </div>
             </div>
         </div>
