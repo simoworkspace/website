@@ -53,7 +53,7 @@ const UserLogin: React.FC = () => {
                         className={`xl:hidden transition-all duration-300 border-white border-[1px] rounded-b-lg absolute bg-black text-white w-[151px] right-[9px] top-[61px] ${
                             arrowState
                                 ? "opacity-100 border-transparent h-[200px]"
-                                : "h-[0px] opacity-0"
+                                : "h-[0px] opacity-0 invisible"
                         }`}
                     >
                         <Dropdownmenu />
