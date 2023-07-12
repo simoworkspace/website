@@ -17,6 +17,7 @@ export const ColorButton: React.FC = () => {
                 <div className="flex flex-col w-[100%]">
                     <ChoiceColor color="#802222" name="Vermelho" theme="red" />
                     <ChoiceColor color="#004d7c" name="Azul" theme="blue" />
+                    <ChoiceColor color="#2B195C" name="Roxo" theme="purple" />
                     <ChoiceColor color="#04484d" name="Verde" theme="green" />
                 </div>
             </div>
