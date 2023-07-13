@@ -19,7 +19,7 @@ function App() {
 
     return (
         <main
-            className={`overflow-x-hidden min-h-[100vh] 
+            className={`xl:no-scrollbar overflow-x-hidden min-h-[100vh] 
                 ${color === "blue" && "bg-gradient-to-b from-[#033757] to-black bg-fixed scrollbar-thumb-blue-500 hover:scrollbar-thumb-blue-400"}   
                 ${color === "green" && "bg-gradient-to-b from-[#056b49] to-black bg-fixed  scrollbar-thumb-green-500 hover:scrollbar-thumb-green-400"}
                 ${color === "red" && "bg-gradient-to-b from-[#571423] to-black bg-fixed  scrollbar-thumb-red-500 hover:scrollbar-thumb-red-400"}   
