@@ -23,7 +23,8 @@ export const ChoiceColor: React.FC<ButtonProps> = ({ name, theme, margin }) => {
                         ${theme === "blue" && "bg-[#004d7c]"} 
                         ${theme === "green" && "bg-[#04484d]"} 
                         ${theme === "red" && "bg-[#802222]"} 
-                        ${theme === "purple" && "bg-[#2B195C]"} rounded-full justify-start`}></div>
+                        ${theme === "purple" && "bg-[#2B195C]"}
+                        ${theme === "black" && "bg-[#2e2e2e]"} rounded-full justify-start`}></div>
                 </div>
                 <div className="flex items-center justify-center w-full">
                     <div>{name}</div>
