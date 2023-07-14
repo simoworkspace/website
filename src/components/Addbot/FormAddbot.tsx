@@ -92,6 +92,7 @@ export const FormAddbot: React.FC = () => {
             ${color === "green" && "border-green-500 shadow-green-500"} 
             ${color === "red" && "border-red-500 shadow-red-500"}
             ${color === "purple" && "border-purple-500 shadow-purple-500"}
+            ${color === "black" && "border-white shadow-white"}
              rounded-lg p-2`}>
                 <div className="xl:mb-[0px] flex gap-1 justify-start flex-col items-center">
                     <h1 className="text-white xl:text-[26px] text-[40px] m-5">

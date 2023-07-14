@@ -21,7 +21,7 @@ export const Main: React.FC = () => {
 
     return data ? (
         <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left xl:mb-[80px]">
-            {data.map((bot: BotStructure, index: number) => (
+            {data.map((bot: BotStructure) => (
                 <Link
                     to={`/bot/${bot._id}`}
                     key={bot._id}
@@ -30,6 +30,7 @@ export const Main: React.FC = () => {
                         ${color === "green" && "border-green-300"} 
                         ${color === "red" && "border-red-300"} 
                         ${color === "purple" && "border-purple-300"}
+                        ${color === "black" && "border-white"}
                     border-2 bg-neutral-940 rounded-lg`} 
                 >
                     <img
@@ -61,6 +62,6 @@ export const Main: React.FC = () => {
             ))}
         </div>
     ) : (
-        <Botloading></Botloading>
+        <Botloading/>
     );
 };
