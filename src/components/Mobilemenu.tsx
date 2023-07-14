@@ -33,6 +33,7 @@ export const Mobilemenu: React.FC = () => {
             ${color === "green" && "bg-[#056b49]"} 
             ${color === "red" && "bg-[#571423]"} 
             ${color === "purple" && "bg-[#351a7c]"}
+            ${color === "black" && "bg-[#000]"}
             xl:text-white xl:py-3 xl:flex xl:justify-around xl:items-center`}
         >
             {user ? (
@@ -44,7 +45,7 @@ export const Mobilemenu: React.FC = () => {
                                 : "opacity-0 absolute invisible"
                         } ${
                             themesClick
-                            ? "h-[180px] w-[130px]"
+                            ? "h-[220px] w-[130px]"
                             : "h-[120px] w-[160px]"
                         }`}
                     >
