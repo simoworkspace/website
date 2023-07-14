@@ -19,6 +19,7 @@ export const ColorButton: React.FC = () => {
                     <ChoiceColor name="Azul" theme="blue" margin="6px" />
                     <ChoiceColor name="Roxo" theme="purple" margin="6px" />
                     <ChoiceColor name="Verde" theme="green" margin="6px" />
+                    <ChoiceColor name="Preto" theme="black" margin="6px" />
                 </div>
             </div>
         </div>
