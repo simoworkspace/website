@@ -14,7 +14,7 @@ export const VoteComponent: React.FC = () => {
 
     const [voteStatus, setVoteStatus] = useState<{ canVote: boolean; restTime: string; }>();
     const [discordBotData, setDiscordBotData] = useState<DiscordUser>();
-    const [botData, setBotData] = useState<BotStructure>();
+    const [votes, setVotes] = useState<number>(0);
 
     const getVoteStatus = async () => {
         const res: AxiosResponse<{ canVote: boolean; restTime: string; }> = await api.voteStatus(botid as string, user?.id as string);
@@ -23,7 +23,9 @@ export const VoteComponent: React.FC = () => {
 
     const getBotData = async () => {
         const res: AxiosResponse<BotStructure> = await api.getBotInfos(botid as string);
-        return setBotData(res.data);
+        let totalVotes = 0;
+        res.data.votes.forEach(vote => totalVotes += vote.votes);
+        setVotes(totalVotes);
     };
 
     const getDiscordBotData = async () => {
@@ -59,26 +61,28 @@ export const VoteComponent: React.FC = () => {
                     />
                     <div>
                         <h1 className="flex">Votar em {discordBotData?.username}</h1>
-                        <span>Votos: {botData?.votes.length}</span>
+                        <span>Votos: {votes}</span>
                     </div>
                 </div>
                 <div className="flex border-2 w-[60vw] h-[80px] flex-row rounded-lg items-center bg-neutral-900">
                     <span className="text-[20px] w-[82%] ml-3">{voteStatus?.canVote ? "Você pode votar agora!" : "Calma lá amigão, você ja votou hoje, volte amanhã."}</span>
                     <div className="flex justify-end">
-                        <button 
-                        className={`transition-all duration-300 border-2 rounded-xl w-[100px] h-[50px] disabled:opacity-40
+                        <button
+                            className={`transition-all duration-300 border-2 rounded-xl w-[100px] h-[50px] disabled:opacity-40
                             ${color === "blue" && "bg-blue-900 hover:bg-blue-500 border-blue-500 disabled:hover:bg-blue-900"} 
                             ${color === "green" && "bg-green-900 hover:bg-green-700 border-green-700 disabled:hover:bg-green-900"} 
                             ${color === "red" && "bg-red-900 hover:bg-red-500 border-red-500 disabled:hover:bg-red-900"}
-                            ${color === "purple" && "bg-purple-900 hover:bg-purple-500 border-purple-500 disabled:hover:bg-purple-900"}`}
-                        disabled={!voteStatus?.canVote}
-                        onClick={handleVote}
-                    >Votar</button>
+                            ${color === "purple" && "bg-purple-900 hover:bg-purple-500 border-purple-500 disabled:hover:bg-purple-900"}
+                            ${color === "black" && "bg-black hover:bg-neutral-900 disabled:bg-neutral-700"}
+                            `}
+                            disabled={!voteStatus?.canVote}
+                            onClick={handleVote}
+                        >Votar</button>
                     </div>
                 </div>
             </section>
         ) : (
-            <VoteLoading/>
+            <VoteLoading />
         )
     ) : (
         <div className="text-white">você precisa logar para votar</div>
