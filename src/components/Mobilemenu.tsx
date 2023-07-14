@@ -77,6 +77,7 @@ export const Mobilemenu: React.FC = () => {
                             <ChoiceColor name="Azul" theme="blue" margin="0px" />
                             <ChoiceColor name="Roxo" theme="purple" margin="0px" />
                             <ChoiceColor name="Verde" theme="green" margin="0px" />
+                            <ChoiceColor name="Preto" theme="black" margin="0px" />
                         </div>
                         <div
                             className={`flex w-full h-full flex-col transition-opacity duration-300 absolute top-[4px] ${
