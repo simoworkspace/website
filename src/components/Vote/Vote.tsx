@@ -21,7 +21,7 @@ export const VoteComponent: React.FC = () => {
         return setVoteStatus(res.data);
     };
 
-    const getBotData = async () => {
+    const getVoteData = async () => {
         const res: AxiosResponse<BotStructure> = await api.getBotInfos(botid as string);
         let totalVotes = 0;
         res.data.votes.forEach(vote => totalVotes += vote.votes);
@@ -35,13 +35,13 @@ export const VoteComponent: React.FC = () => {
 
     const handleVote = async () => {
         await api.voteBot(user?.id as string, botid as string);
-        getBotData();
+        getVoteData();
         return;
     };
 
     useEffect(() => {
         getDiscordBotData();
-        getBotData();
+        getVoteData();
     }, []);
 
     useEffect(() => {
