@@ -72,7 +72,7 @@ export const VoteComponent: React.FC = () => {
                         voted
                             ?
                             <>
-                                <div>Voto confirmado com sucesso.</div>
+                                <div>Voto confirmado com sucesso!</div>
                                 <span className="text-[14px]">Obrigado por votar em {discordBotData?.username}.</span>
                             </>
                             : (
