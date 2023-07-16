@@ -95,7 +95,7 @@ export const Mobilemenu: React.FC = () => {
                                     className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg"
                                 >
                                     <img src={palleteIcon} alt="Pallete Icon" />
-                                    <span>Themas</span>
+                                    <span>Temas</span>
                                     <img
                                         className="w-[20px] -rotate-90"
                                         src={arrowIcon}
