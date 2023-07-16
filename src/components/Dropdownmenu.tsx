@@ -14,7 +14,7 @@ export const Dropdownmenu: React.FC = () => {
     };
 
     return (
-        <div className="flex w-[151px] h-[200px]">
+        <div className="flex w-[151px] h-[200px] justify-center items-center">
             <div className="flex flex-col justify-center">
                 <Link
                     to="/addbot"

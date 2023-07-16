@@ -15,12 +15,8 @@ export const UserLogin: React.FC = () => {
                 <>
                     <div >
                         <button
-                            onClick={() => {
-                                setArrowState(!arrowState);
-                            }}
-                            onBlur={() => {
-                                setArrowState(false);
-                            }}
+                            onClick={() => setArrowState(!arrowState)}
+                            onBlur={() => setArrowState(false)}
                             className="flex text-white w-[120px] h-[50px] xl:hidden"
                         >
                             <div
@@ -62,7 +58,7 @@ export const UserLogin: React.FC = () => {
             ) : (
                 <div className="flex text-white w-[140px] h-[50px] xl:hidden">
                     <Link
-                        className="flex text-white hover:text-white items-center h-[100%] w-[80%] justify-center border-[#858585] border-[1px] bg-black p-6 transition-colors duration-300 hover:bg-neutral-950 hover:border-white"
+                        className="flex text-white items-center h-[100%] w-[80%] justify-center border-[#858585] border-[1px] bg-black p-6 transition-colors duration-300 hover:bg-neutral-950 hover:border-white"
                         to={import.meta.env.VITE_AUTH_LINK as string}
                     >
                         <div>Login</div>
