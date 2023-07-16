@@ -15,6 +15,7 @@ export const VoteComponent: React.FC = () => {
     const [voteStatus, setVoteStatus] = useState<{ canVote: boolean; restTime: string; }>();
     const [discordBotData, setDiscordBotData] = useState<DiscordUser>();
     const [votes, setVotes] = useState<number>(0);
+    const [voted, setVoted] = useState<boolean>();
 
     const getVoteStatus = async () => {
         const res: AxiosResponse<{ canVote: boolean; restTime: string; }> = await api.voteStatus(botid as string, user?.id as string);
@@ -36,6 +37,8 @@ export const VoteComponent: React.FC = () => {
     const handleVote = async () => {
         await api.voteBot(user?.id as string, botid as string);
         getVoteData();
+        setVoted(true);
+        getVoteStatus();
         return;
     };
 
@@ -65,7 +68,19 @@ export const VoteComponent: React.FC = () => {
                     </div>
                 </div>
                 <div className="flex border-2 w-[60vw] h-[80px] flex-row rounded-lg items-center bg-neutral-900">
-                    <span className="text-[20px] w-[82%] ml-3">{voteStatus?.canVote ? "Você pode votar agora!" : "Calma lá amigão, você ja votou hoje, volte amanhã."}</span>
+                    <span className="text-[20px] w-[82%] ml-3">{
+                        voted
+                            ?
+                            <>
+                                <div>Voto confirmado com sucesso.</div>
+                                <span className="text-[14px]">Obrigado por votar em {discordBotData?.username}.</span>
+                            </>
+                            : (
+                                voteStatus?.canVote
+                                    ? "Você pode votar agora!"
+                                    : "Calma lá amigão, você ja votou hoje, volte amanhã."
+                            )
+                    }</span>
                     <div className="flex justify-end">
                         <button
                             className={`transition-all duration-300 border-2 rounded-xl w-[100px] h-[50px] disabled:opacity-40
