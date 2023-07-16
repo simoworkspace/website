@@ -14,7 +14,7 @@ export const Dropdownmenu: React.FC = () => {
     };
 
     return (
-        <div>
+        <div className="flex w-[151px] h-[200px]">
             <div className="flex flex-col justify-center">
                 <Link
                     to="/addbot"
@@ -22,7 +22,7 @@ export const Dropdownmenu: React.FC = () => {
                 >
                     <div className="flex-2 flex">
                         <img className="mr-3" src={plusIcon} alt="Plus Icon" />
-                        <span>Adicionar bot</span>
+                        <span className="">Adicionar bot</span>
                     </div>
                 </Link>
                 <Link
@@ -31,7 +31,7 @@ export const Dropdownmenu: React.FC = () => {
                 >
                     <div className="flex-2 flex">
                         <img className="mr-3" src={listIcon} alt="List Icon" />
-                        <span>Botlist</span>
+                        <span className="w-[100px] text-center">Botlist</span>
                     </div>
                 </Link>
                 <Link
@@ -44,7 +44,7 @@ export const Dropdownmenu: React.FC = () => {
                             src={serversIcon}
                             alt="List Icon"
                         />
-                        <span>Servidores</span>
+                        <span className="w-[100px] text-center">Servidores</span>
                     </div>
                 </Link>
                 <Link
@@ -57,7 +57,7 @@ export const Dropdownmenu: React.FC = () => {
                             src={dashIcon}
                             alt="Dashboard Icon"
                         />
-                        <span>Dashboard</span>
+                        <span className="w-[100px] text-center">Dashboard</span>
                     </div>
                 </Link>
                 <button
@@ -70,7 +70,7 @@ export const Dropdownmenu: React.FC = () => {
                             src={logoutIcon}
                             alt="Logout Icon"
                         />
-                        <span>Sair</span>
+                        <span className="w-[100px] text-center">Sair</span>
                     </div>
                 </button>
             </div>
