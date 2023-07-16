@@ -183,7 +183,7 @@ export const Mobilemenu: React.FC = () => {
                         )}
                     </div>
                     <div className="flex flex-col items-center">
-                        <Link to="/addbot" className="text-white hover:text-white hover:no-underline">
+                        <Link to="/addbot" className="text-white">
                             <img
                                 src={plusIcon}
                                 alt="Ícone 2"
@@ -193,7 +193,7 @@ export const Mobilemenu: React.FC = () => {
                         <span className="text-xs">Adicionar bot</span>
                     </div>
                     <div className="flex flex-col items-center">
-                        <Link to="/" className="text-white hover:text-white hover:no-underline">
+                        <Link to="/" className="text-white">
                             <img
                                 src={serversIcon}
                                 alt="Ícone 3"
@@ -216,7 +216,7 @@ export const Mobilemenu: React.FC = () => {
             ) : (
                 <div className="w-[100vw] flex items-center justify-center">
                     <Link
-                        className="w-[100%] self-center text-center text-white hover:text-white hover:no-underline"
+                        className="w-[100%] self-center text-center text-white"
                         to={import.meta.env.VITE_AUTH_LINK}
                     >
                         login
