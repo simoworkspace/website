@@ -67,21 +67,21 @@ export const VoteComponent: React.FC = () => {
                         <span>Votos: {votes}</span>
                     </div>
                 </div>
-                <div className="flex border-2 w-[60vw] h-[80px] flex-row rounded-lg items-center bg-neutral-900">
-                    <span className="text-[20px] w-[82%] ml-3">{
+                <div className="flex xl:flex-col border-2 xl:w-[100%] xl:justify-center xl:items-center xl:h-[100%] w-[60vw] h-[80px] flex-row rounded-lg items-center bg-neutral-900">
+                    <span className="text-[20px] w-[82%] ml-3 xl:items-center xl:flex xl:justify-center xl:ml-0 xl:mb-2 xl:flex-col">{
                         voted
                             ?
-                            <>
+                            <div className="xl:p-2 xl:text-center">
                                 <div>Voto confirmado com sucesso!</div>
                                 <span className="text-[14px]">Obrigado por votar em {discordBotData?.username}.</span>
-                            </>
+                            </div>
                             : (
                                 voteStatus?.canVote
-                                    ? "Você pode votar agora!"
-                                    : "Calma lá amigão, você ja votou hoje, volte amanhã."
+                                    ? <span className="text-center p-2">Você pode votar agora!</span>
+                                    : <span className="text-center p-2">Calma lá amigão, você ja votou hoje, volte amanhã.</span>
                             )
                     }</span>
-                    <div className="flex justify-end">
+                    <div className="flex justify-end xl:mb-3">
                         <button
                             className={`transition-all duration-300 border-2 rounded-xl w-[100px] h-[50px] disabled:opacity-40
                             ${color === "blue" && "bg-blue-900 hover:bg-blue-500 border-blue-500 disabled:hover:bg-blue-900"} 
@@ -112,8 +112,8 @@ export const VoteComponent: React.FC = () => {
                     <span>Votos: {votes}</span>
                 </div>
             </div>
-            <div className="flex border-2 w-[60vw] h-[80px] flex-row rounded-lg items-center bg-neutral-900">
-                <span className="text-[20px] w-[82%] ml-3">Você precisar estar logado para poder votar.</span>
+            <div className="flex border-2 w-[60vw] h-[80px] flex-row rounded-lg items-center bg-neutral-900 xl:flex-col xl:h-[160px] xl:justify-center xl:w-full">
+                <span className="text-[20px] w-[82%] ml-3 xl:flex xl:text-center xl:ml-0 xl:mb-3">Você precisar estar logado para poder votar.</span>
                 <div className="flex justify-end">
                     <button
                         className={`transition-all duration-300 border-2 rounded-xl w-[100px] h-[50px] disabled:opacity-40
