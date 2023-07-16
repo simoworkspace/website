@@ -4,7 +4,7 @@ import arrowIcon from "../assets/svgs/arrow.svg";
 import { Dropdownmenu } from "./Dropdownmenu";
 import { UserContext } from "../contexts/UserContext";
 
-const UserLogin: React.FC = () => {
+export const UserLogin: React.FC = () => {
     const { user } = useContext(UserContext);
 
     const [arrowState, setArrowState] = useState<boolean>(false);
@@ -72,5 +72,3 @@ const UserLogin: React.FC = () => {
         </div>
     );
 };
-
-export default UserLogin;
