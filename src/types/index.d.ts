@@ -1,6 +1,6 @@
 type Snowflake = string;
 
-export type Theme = "blue" | "red" | "green" | "black" | "purple" | "yellow";
+export type Theme = "blue" | "red" | "green" | "black" | "purple";
 
 export interface ThemeContextProps {
     color: Theme;
@@ -12,6 +12,14 @@ export interface reducerActionType {
     payload: {
         [key: string]: any;
     }
+}
+
+export interface ThemeStructure {
+    blue: string,
+    green: string,
+    red: string,
+    purple: string,
+    black: string
 }
 
 export interface botDataStructure {
