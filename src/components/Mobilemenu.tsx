@@ -22,7 +22,8 @@ export const Mobilemenu: React.FC = () => {
     const [maisClick, setMaisClick] = useState<boolean>(false);
     const [themesClick, setThemesClick] = useState<boolean>(false);
     const { changeTheme } = useContext<ThemeContextProps>(ThemeContext);
-
+    const selectedTheme = localStorage.getItem("theme") || "blue";
+    
     const toggleTheme = (newTheme: Theme) => {
         changeTheme(newTheme);
     };
@@ -67,11 +68,11 @@ export const Mobilemenu: React.FC = () => {
                                 />
                             </button>
                             <hr className="border-[1px] rounded-full w-[90%]" />
-                            <ChoiceColor name="Vermelho" theme="red" margin="0px" />
-                            <ChoiceColor name="Azul" theme="blue" margin="0px" />
-                            <ChoiceColor name="Roxo" theme="purple" margin="0px" />
-                            <ChoiceColor name="Verde" theme="green" margin="0px" />
-                            <ChoiceColor name="Preto" theme="black" margin="0px" />
+                            <ChoiceColor name="Vermelho" theme="red" margin="0px" selected={selectedTheme === "red"} />
+                            <ChoiceColor name="Azul" theme="blue" margin="0px" selected={selectedTheme === "blue"}/>
+                            <ChoiceColor name="Roxo" theme="purple" margin="0px" selected={selectedTheme === "purple"}/>
+                            <ChoiceColor name="Verde" theme="green" margin="0px" selected={selectedTheme === "green"} />
+                            <ChoiceColor name="Preto" theme="black" margin="0px" selected={selectedTheme === "black"} />
                         </div>
                         <div
                             className={`flex w-full h-full flex-col transition-opacity duration-300 absolute top-[4px] ${
