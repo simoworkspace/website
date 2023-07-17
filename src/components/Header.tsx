@@ -1,5 +1,5 @@
 import React from "react";
-import { UserLogin } from "./Discordlogin";
+import { UserLogin } from "./Login/Discordlogin";
 import { InputSearch } from "./InputSearch";
 import { ColorButton } from "./Colors/ColorButton";
 
