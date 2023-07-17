@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import api from "../utils/api";
 import { AxiosResponse } from "axios";
 import { ThemeContext } from "../contexts/ThemeContext";
+import { borderColor } from "../utils/theme/border";
 
 export const Main: React.FC = () => {
     const [data, setData] = useState<BotStructure[]>();
@@ -25,13 +26,7 @@ export const Main: React.FC = () => {
                 <Link
                     to={`/bot/${bot._id}`}
                     key={bot._id}
-                    className={`bg-neutral-950 duration-300 transition-colors text-white hover:bg-neutral-900 shadow-md shadow-black p-3 
-                        ${color === "blue" && "border-blue-300"} 
-                        ${color === "green" && "border-green-300"} 
-                        ${color === "red" && "border-red-300"} 
-                        ${color === "purple" && "border-purple-300"}
-                        ${color === "black" && "border-white"}
-                    border-2 bg-neutral-940 rounded-lg`} 
+                    className={`bg-neutral-950 duration-300 transition-colors text-white hover:bg-neutral-900 shadow-md shadow-black p-3 ${borderColor[color]}-300 border-2 bg-neutral-940 rounded-lg`}
                 >
                     <img
                         className="w-[min(100%,100px)] h-[min(100%,100px)] rounded-full mt-2 mr-2 float-right"
@@ -62,6 +57,6 @@ export const Main: React.FC = () => {
             ))}
         </div>
     ) : (
-        <Botloading/>
+        <Botloading />
     );
 };
