@@ -6,6 +6,8 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { AxiosResponse } from "axios";
 import ReactMarkdown from 'react-markdown';
 import { Input } from "./Input";
+import { borderColor } from "../../utils/theme/border";
+import { shadowColor } from "../../utils/theme/shadow";
 
 export const FormAddbot: React.FC = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<BotStructure>();
@@ -87,13 +89,7 @@ export const FormAddbot: React.FC = () => {
 
     return (
         <div className="mb-[70px] p-3 w-[100vw] flex items-center justify-center">
-            <div className={`bg-black border-2 shadow-lg transition-all duration-300
-            ${color === "blue" && "border-blue-500 shadow-blue-500"} 
-            ${color === "green" && "border-green-500 shadow-green-500"} 
-            ${color === "red" && "border-red-500 shadow-red-500"}
-            ${color === "purple" && "border-purple-500 shadow-purple-500"}
-            ${color === "black" && "border-white shadow-white"}
-             rounded-lg p-2`}>
+            <div className={`bg-black border-2 shadow-lg transition-all duration-300 ${borderColor[color]}-500 ${shadowColor[color]} rounded-lg p-2`}>
                 <div className="xl:mb-[0px] flex gap-1 justify-start flex-col items-center">
                     <h1 className="text-white xl:text-[26px] text-[40px] m-5">
                         <h1 className="text-white flex flex-row text-[32px] mx-10 my-3">
