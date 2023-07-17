@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { AxiosResponse } from "axios";
 import { BotStructure, DiscordUser } from "../../types";
 import { UserContext } from "../../contexts/UserContext";
-import api from '../../api';
+import api from '../../utils/api';
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { VoteLoading } from "./Loading";
 

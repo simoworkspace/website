@@ -4,7 +4,7 @@ import { NavigateFunction, useNavigate, useParams, Link, Params, } from "react-r
 import { BotStructure, DiscordUser, botDataStructure } from "../types";
 import starIconFill from "../assets/svgs/starfill.svg";
 import starIcon from "../assets/svgs/star.svg";
-import api from '../api';
+import api from '../utils/api';
 import { Feedbacks } from "../components/Feedbacks";
 
 export const Bot: React.FC = () => {

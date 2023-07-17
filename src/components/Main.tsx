@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { BotStructure } from "../types";
 import { Botloading } from "./Botloading";
 import { Link } from "react-router-dom";
-import api from "../api";
+import api from "../utils/api";
 import { AxiosResponse } from "axios";
 import { ThemeContext } from "../contexts/ThemeContext";
 

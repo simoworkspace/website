@@ -12,7 +12,7 @@ import palleteIcon from "../assets/svgs/pallete.svg";
 import arrowIcon from "../assets/svgs/arrow.svg";
 import dashboardIcon from '../assets/svgs/dashboard.svg';
 import logoutIcon from '../assets/svgs/logout.svg';
-import api from "../api";
+import api from "../utils/api";
 import { ChoiceColor } from "./Colors/Choice";
 
 export const Mobilemenu: React.FC = () => {

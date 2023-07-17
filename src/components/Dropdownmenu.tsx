@@ -5,7 +5,7 @@ import listIcon from "../assets/svgs/list.svg";
 import serversIcon from "../assets/svgs/servers.svg";
 import { Link } from "react-router-dom";
 import React from "react";
-import api from "../api";
+import api from "../utils/api";
 
 export const Dropdownmenu: React.FC = () => {
     const handleExit = async () => {

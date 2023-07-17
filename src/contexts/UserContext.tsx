@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { UserStructure } from "../types";
-import api from "../api";
+import api from "../utils/api";
 import { AxiosResponse } from "axios";
 
 interface UserContextProps {

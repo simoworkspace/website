@@ -1,5 +1,5 @@
 import React, { useContext, useState, ChangeEvent } from "react";
-import api from "../../api";
+import api from "../../utils/api";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { BotStructure, DiscordUser } from "../../types";
 import { ThemeContext } from "../../contexts/ThemeContext";
