@@ -6,6 +6,7 @@ import { UserContext } from "../../contexts/UserContext";
 import api from '../../utils/api';
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { VoteLoading } from "./Loading";
+import { buttonColor } from "../../utils/theme/button";
 
 export const VoteComponent: React.FC = () => {
     const { user } = useContext(UserContext);
@@ -83,13 +84,7 @@ export const VoteComponent: React.FC = () => {
                     }</span>
                     <div className="flex justify-end xl:mb-3">
                         <button
-                            className={`transition-all duration-300 border-2 rounded-xl w-[100px] h-[50px] disabled:opacity-40
-                            ${color === "blue" && "bg-blue-900 hover:bg-blue-500 border-blue-500 disabled:hover:bg-blue-900"} 
-                            ${color === "green" && "bg-green-900 hover:bg-green-700 border-green-700 disabled:hover:bg-green-900"} 
-                            ${color === "red" && "bg-red-900 hover:bg-red-500 border-red-500 disabled:hover:bg-red-900"}
-                            ${color === "purple" && "bg-purple-900 hover:bg-purple-500 border-purple-500 disabled:hover:bg-purple-900"}
-                            ${color === "black" && "bg-black hover:bg-neutral-900 disabled:bg-neutral-700"}
-                            `}
+                            className={`transition-all duration-300 border-2 rounded-xl ${buttonColor[color]} w-[100px] h-[50px] disabled:opacity-40`}
                             disabled={!voteStatus?.canVote}
                             onClick={handleVote}
                         >Votar</button>
@@ -115,14 +110,8 @@ export const VoteComponent: React.FC = () => {
             <div className="flex border-2 w-[60vw] h-[80px] flex-row rounded-lg items-center bg-neutral-900 xl:flex-col xl:h-[160px] xl:justify-center xl:w-full">
                 <span className="text-[20px] w-[82%] ml-3 xl:flex xl:text-center xl:ml-0 xl:mb-3">Você precisar estar logado para poder votar.</span>
                 <div className="flex justify-end">
-                    <button
-                        className={`transition-all duration-300 border-2 rounded-xl w-[100px] h-[50px] disabled:opacity-40
-                    ${color === "blue" && "bg-blue-900 hover:bg-blue-500 border-blue-500 disabled:hover:bg-blue-900"} 
-                    ${color === "green" && "bg-green-900 hover:bg-green-700 border-green-700 disabled:hover:bg-green-900"} 
-                    ${color === "red" && "bg-red-900 hover:bg-red-500 border-red-500 disabled:hover:bg-red-900"}
-                    ${color === "purple" && "bg-purple-900 hover:bg-purple-500 border-purple-500 disabled:hover:bg-purple-900"}
-                    ${color === "black" && "bg-black hover:bg-neutral-900 disabled:bg-neutral-700"}
-                    `}
+                    <button 
+                        className={`transition-all duration-300 border-2 rounded-xl ${buttonColor[color]} w-[100px] h-[50px] disabled:opacity-40`}
                         disabled
                         onClick={handleVote}
                     >Votar</button>

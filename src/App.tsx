@@ -13,20 +13,13 @@ import { Tests } from "./pages/Tests";
 import "./index.css";
 import { useContext } from "react";
 import { ThemeContext } from "./contexts/ThemeContext";
+import { appColor } from "./utils/theme/app";
 
 function App() {
     const { color } = useContext(ThemeContext);
 
     return (
-        <main
-            className={`xl:no-scrollbar overflow-x-hidden min-h-[100vh] 
-             ${color === "blue" && "bg-gradient-to-b from-[#033757] to-black bg-fixed scrollbar-thumb-blue-500 hover:scrollbar-thumb-blue-400"}   
-                ${color === "green" && "bg-gradient-to-b from-[#056b49] to-black bg-fixed  scrollbar-thumb-green-500 hover:scrollbar-thumb-green-400"}
-                ${color === "red" && "bg-gradient-to-b from-[#571423] to-black bg-fixed  scrollbar-thumb-red-500 hover:scrollbar-thumb-red-400"}   
-                ${color === "purple" && "bg-gradient-to-b from-[#4e1c86] to-black bg-fixed  scrollbar-thumb-[#5732bd] hover:scrollbar-thumb-[#6439db]"} 
-                ${color === "black" && "bg-black scrollbar-thumb-[#222] hover:scrollbar-thumb-[#2c2c2c]"} 
-            bg-fixed h-1 scrollbar-track-neutral-900 scrollbar-thin`}
-        >
+        <main className={`xl:no-scrollbar overflow-x-hidden min-h-[100vh] ${appColor[color]} bg-fixed h-1 scrollbar-track-neutral-900 scrollbar-thin`}>
             <header>
                 <Header />
             </header>
