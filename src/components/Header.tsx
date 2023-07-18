@@ -1,6 +1,6 @@
 import React from "react";
 import { UserLogin } from "./Login/Discordlogin";
-import { InputSearch } from "./InputSearch";
+import { InputSearch } from "./Search/InputSearch";
 import { ColorButton } from "./Colors/ColorButton";
 
 export const Header: React.FC = () => {
