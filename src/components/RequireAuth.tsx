@@ -7,17 +7,17 @@ export const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children 
     const getUserData = async () => {
         try {
             await api.getUserData();
-            return setAuth(true); 
-        } catch(error: any) {
+            return setAuth(true);
+        } catch (error: any) {
             return setAuth(false);
         }
     };
 
     useEffect(() => { getUserData(); }, []);
 
-    if (!auth) { 
+    if (!auth) {
         window.location.href = "/";
     }
-    
+
     return <>{children}</>;
 };

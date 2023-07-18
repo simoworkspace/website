@@ -15,130 +15,58 @@ import logoutIcon from '../assets/svgs/logout.svg';
 import api from "../utils/api";
 import { ChoiceColor } from "./Colors/Choice";
 import { mobileMenu } from "../utils/theme/mobileMenu";
+import { MenuOption } from "./DropdownMenu/Option";
 
 export const Mobilemenu: React.FC = () => {
     const { user } = useContext<UserStructure | any>(UserContext);
     const { color } = useContext(ThemeContext);
     const [maisClick, setMaisClick] = useState<boolean>(false);
     const [themesClick, setThemesClick] = useState<boolean>(false);
-    const { changeTheme } = useContext<ThemeContextProps>(ThemeContext);
     const selectedTheme = localStorage.getItem("theme") || "blue";
-    
-    const toggleTheme = (newTheme: Theme) => {
-        changeTheme(newTheme);
-    };
 
     return (
         <div className={`hidden xl:fixed xl:bottom-0 xl:left-0 xl:w-full border-t-2 transition-colors duration-300 ${mobileMenu[color]} xl:text-white xl:py-3 xl:flex xl:justify-around xl:items-center`}>
             {user ? (
                 <>
                     <aside
-                        className={`transition-all duration-300 absolute bg-black rounded border-2 left-0 bottom-[64px] ${
-                            maisClick
-                                ? "visible opacity-100 absolute"
-                                : "opacity-0 absolute invisible"
-                        } ${
-                            themesClick
-                            ? "h-[220px] w-[130px]"
-                            : "h-[120px] w-[160px]"
-                        }`}
+                        className={`transition-all duration-300 absolute bg-black rounded border-2 left-0 bottom-[64px] ${maisClick
+                            ? "visible opacity-100 absolute"
+                            : "opacity-0 absolute invisible"
+                            } ${themesClick
+                                ? "h-[220px] w-[130px]"
+                                : "h-[130px] w-[160px]"
+                            }`}
                     >
                         <div
                             className={`flex w-full h-full flex-col gap-2 items-center justify-center ${
                                 themesClick
                                     ? "opacity-100 visible"
                                     : "opacity-0 invisible"
-                            }`}
+                                }`}
                         >
-                            <button
-                                onClick={() => {
-                                    setThemesClick(false);
-                                }}
-                                className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg"
-                            >
-                                <img
-                                    className="w-[20px] rotate-90"
-                                    src={arrowIcon}
-                                    alt="Arrow Icon"
-                                />
+                            <button onClick={() => setThemesClick(false)} className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg w-[96%] h-[28px]">
+                                <img className="w-[20px] rotate-90" src={arrowIcon} alt="Arrow Icon" />
                                 <span>Menu</span>
-                                <img 
-                                    src={dotsIcon} 
-                                    alt="Dots Icon" 
+                                <img src={dotsIcon} alt="Dots Icon"
                                 />
                             </button>
                             <hr className="border-[1px] rounded-full w-[90%]" />
-                            <ChoiceColor name="Vermelho" theme="red" margin="0px" selected={selectedTheme === "red"} />
-                            <ChoiceColor name="Azul" theme="blue" margin="0px" selected={selectedTheme === "blue"}/>
-                            <ChoiceColor name="Roxo" theme="purple" margin="0px" selected={selectedTheme === "purple"}/>
-                            <ChoiceColor name="Verde" theme="green" margin="0px" selected={selectedTheme === "green"} />
-                            <ChoiceColor name="Preto" theme="black" margin="0px" selected={selectedTheme === "black"} />
+                            <ChoiceColor name="Vermelho" theme="red" margin="0px" mobile selected={selectedTheme === "red"} />
+                            <ChoiceColor name="Azul" theme="blue" margin="0px" mobile selected={selectedTheme === "blue"} />
+                            <ChoiceColor name="Roxo" theme="purple" margin="0px" mobile selected={selectedTheme === "purple"} />
+                            <ChoiceColor name="Verde" theme="green" margin="0px" mobile selected={selectedTheme === "green"} />
+                            <ChoiceColor name="Preto" theme="black" margin="0px" mobile selected={selectedTheme === "black"} />
                         </div>
                         <div
-                            className={`flex w-full h-full flex-col transition-opacity duration-300 absolute top-[4px] ${
-                                themesClick
-                                    ? "opacity-0 invisible"
-                                    : "opacity-100 visible"
-                            }`}
+                            className={`flex w-full h-full flex-col transition-opacity duration-300 absolute top-[4px] items-center justify-center  ${themesClick
+                                ? "opacity-0 invisible"
+                                : "opacity-100 visible"
+                                }`}
                         >
-                            <div className="flex gap-1 items-center justify-center flex-col">
-                                <button
-                                    onClick={() => {
-                                        setThemesClick(true);
-                                    }}
-                                    className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg"
-                                >
-                                    <img src={palleteIcon} alt="Pallete Icon" />
-                                    <span>Temas</span>
-                                    <img
-                                        className="w-[20px] -rotate-90"
-                                        src={arrowIcon}
-                                        alt="Arrow Icon"
-                                    />
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        setThemesClick(true);
-                                    }}
-                                    className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg"
-                                >
-                                    <img src={serversIcon} alt="Servers Icon" />
-                                    <span>Servidores</span>
-                                    <img
-                                        className="w-[20px] -rotate-90"
-                                        src={arrowIcon}
-                                        alt="Arrow Icon"
-                                    />
-                                </button>
-                                <button
-                                    onClick={() => {
-                                        setThemesClick(true);
-                                    }}
-                                    className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg"
-                                >
-                                    <img src={dashboardIcon} alt="Dashboard Icon" />
-                                    <span>Dashboard</span>
-                                    <img
-                                        className="w-[20px] -rotate-90"
-                                        src={arrowIcon}
-                                        alt="Arrow Icon"
-                                    />
-                                </button>
-                                <button
-                                    onClick={async () => {
-                                        await api.logoutUser();
-                                        return window.location.reload();
-                                    }}
-                                    className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg"
-                                >
-                                    <img src={logoutIcon} alt="Dashboard Icon" />
-                                    <span>Sair</span>
-                                    <img
-                                        className="w-[20px] -rotate-90"
-                                        src={arrowIcon}
-                                        alt="Arrow Icon"
-                                    />
-                                </button>
+                            <div className="flex gap-2 items-center justify-center flex-col">
+                                <MenuOption alt="Pallete icon" icon={palleteIcon} title="Temas" type="button" action={() => setThemesClick(!themesClick)} mobile />
+                                <MenuOption alt="Pallete icon" icon={dashboardIcon} title="Dashboard" type="link" to="/dashboard" mobile />
+                                <MenuOption alt="Logout Icon" icon={logoutIcon} title="Sair" type="button" action={async () => { await api.logoutUser(); return window.location.reload(); }} mobile />
                             </div>
                         </div>
                     </aside>
