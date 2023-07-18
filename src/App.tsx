@@ -1,5 +1,5 @@
 import { Header } from "./components/Header";
-import { Main } from "./components/Main";
+import { Bots } from "./components/Bots";
 import { Addbot } from "./pages/Addbot";
 import { Routes, Route } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
@@ -30,7 +30,7 @@ function App() {
                     <Route path="/bot/:botid" element={<Bot />} />
                     <Route path="/vote/:botid" element={<Vote />} />
                     <Route path="/guilds" element={<Guilds />} />
-                    <Route path="/" element={<Main />} />
+                    <Route path="/" element={<Bots />} />
                     <Route
                         path="addbot"
                         element={
