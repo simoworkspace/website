@@ -31,13 +31,7 @@ function App() {
                     <Route path="/vote/:botid" element={<Vote />} />
                     <Route path="/guilds" element={<Guilds />} />
                     <Route path="/" element={<Bots />} />
-                    <Route
-                        path="addbot"
-                        element={
-                            <RequireAuth>
-                                <Addbot />
-                            </RequireAuth>
-                        }
+                    <Route path="addbot" element={<RequireAuth><Addbot /></RequireAuth>}
                     />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
