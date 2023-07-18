@@ -1,5 +1,5 @@
 import { Header } from "./components/Header";
-import { Bots } from "./components/Bots";
+import { Bots } from "./components/Bot/Bots";
 import { Addbot } from "./pages/Addbot";
 import { Routes, Route } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
@@ -10,10 +10,11 @@ import { Guild } from "./pages/Guild";
 import { Vote } from "./pages/Vote";
 import { Guilds } from "./pages/Guilds";
 import { Tests } from "./pages/Tests";
-import "./index.css";
 import { useContext } from "react";
 import { ThemeContext } from "./contexts/ThemeContext";
 import { appColor } from "./utils/theme/app";
+import { Search } from "./pages/Search";
+import "./index.css";
 
 function App() {
     const { color } = useContext(ThemeContext);
@@ -31,6 +32,7 @@ function App() {
                     <Route path="/vote/:botid" element={<Vote />} />
                     <Route path="/guilds" element={<Guilds />} />
                     <Route path="/" element={<Bots />} />
+                    <Route path="/search" element={ <Search/> }/>
                     <Route path="addbot" element={<RequireAuth><Addbot /></RequireAuth>}
                     />
                     <Route path="*" element={<NotFound />} />
