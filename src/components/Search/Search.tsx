@@ -20,9 +20,7 @@ export const SearchComponent: React.FC = () => {
     const botsFilter = bots?.filter(a => a.name.toLowerCase().includes(filter?.toLocaleLowerCase() as string));
 
     return (
-        <section className="flex flex-col items-center justify-center">
-            <h1 className="text-white m-2 text-[29px]">Bots encontrados com a pesquisa: <strong>{filter}</strong></h1>
-            <hr className="w-[90vw] mb-2 rounded-full"/>
+        <section>
             <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left xl:mb-[80px]">
                 {botsFilter?.map(bot => (<BotCard bot={bot} />))}
             </div>
