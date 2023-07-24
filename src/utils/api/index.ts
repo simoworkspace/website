@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake } from "../../types";
+import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure } from "../../types";
 import Cookies from "js-cookie";
 
 const header = {
@@ -64,6 +64,9 @@ const api = {
     searchBot: async (botName: string): Promise<AxiosResponse> => {
         const res: AxiosResponse = await axios.get(`/api/bots?name=${botName}`, header);
         return res;
+    },
+    getBotFeedbacks: async (botID: Snowflake): Promise<AxiosResponse<FeedbackStructure[]>> => {
+        return axios.get<FeedbackStructure[]>(`/api/bots/${botID}/feedbacks`, header);
     }
 };
 
