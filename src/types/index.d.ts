@@ -14,6 +14,14 @@ export interface reducerActionType {
     }
 }
 
+export interface FeedbackStructure {
+    author: string;
+    stars: number;
+    postedAt: string;
+    content: string;
+    targetBot: string;
+}
+
 export interface ThemeStructure {
     blue: string,
     green: string,
