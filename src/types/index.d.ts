@@ -15,11 +15,14 @@ export interface reducerActionType {
 }
 
 export interface FeedbackStructure {
-    author: string;
+    author: {
+        id: string;
+        avatar: string;
+        username: string;
+    }
     stars: number;
     postedAt: string;
     content: string;
-    targetBot: string;
 }
 
 export interface ThemeStructure {
