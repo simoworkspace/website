@@ -25,11 +25,11 @@ export const Feedbacks: React.FC = () => {
                     <div className="flex flex-col">
                         <div className="flex flex-row items-center m-1 justify">
                             <img
-                                src={`https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png?size=2048`}
-                                alt={`${user?.username}'s avatar`}
+                                src={`https://cdn.discordapp.com/avatars/${feedback?.author.id}/${feedback?.author.avatar}.png?size=2048`}
+                                alt={`${feedback?.author.username}'s avatar`}
                                 className="w-[30px] h-[30px] rounded-full"
                             />
-                            <span className="p-1">{user?.username}</span>
+                            <span className="p-1">{feedback?.author.username}</span>
                         </div>
                         <div className="p-2">{feedback.content}</div>
                         <div className="flex flex-row">
