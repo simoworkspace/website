@@ -4,8 +4,12 @@ import { NavigateFunction, useNavigate, useParams, Link, Params, } from "react-r
 import { BotStructure, DiscordUser, botDataStructure } from "../types";
 import starIconFill from "../assets/svgs/starfill.svg";
 import starIcon from "../assets/svgs/star.svg";
+import discordIcon from "../assets/svgs/discord.svg";
 import api from '../utils/api';
 import { Feedbacks } from "../components/Feedbacks/Feedbacks";
+import { Markdown } from "../components/Markdown/Markdown";
+import githubIcon from "../assets/svgs/github.svg";
+import globIcon from "../assets/svgs/globo.svg";
 
 export const Bot: React.FC = () => {
     const params: Params = useParams<string>();
@@ -36,51 +40,115 @@ export const Bot: React.FC = () => {
         getBotInDB();
     }, [])
 
-    return botData ? (
-        <div className="h-[100vh] w-[100vw]">
-            <div className="flex items-center xl:flex-col justify-center w-[100%] xl:h-[300px] h-[200px] text-white">
-                <img
-                    className="w-[min(100%,100px)] h-[min(100%,100px)] xl:my-2 rounded-full xl:float-none float-left"
-                    src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png?size=2048`}
-                    alt={botData.username + "'s Avatar"}
-                />
-                <div className="border-2 border-l-0 xl:border-l-2 rounded-xl flex xl:flex-col xl:h-[200px] h-[100px] w-[85vw]">
-                    <div className="flex flex-col w-[100%]">
-                        <div className="ml-6 xl:m-0 xl:my-1 text-white flex xl:flex-col xl:items-center flex-row gap-3 text-[26px]">
-                            <strong>{botData.username}</strong>
-                            <span className="text-[#797979] items-center flex text-[13px]">
-                                ( {botData.id} )
-                            </span>
+    return botData && bot ? (
+        <div className="w-[100vw]">
+            <div className="flex flex-col items-center justify-center">
+                <section className="flex items-center xl:flex-col justify-center w-[100%] xl:h-[300px] h-[200px] text-white">
+                    <img
+                        className="w-[min(100%,100px)] h-[min(100%,100px)] xl:my-2 rounded-full xl:float-none float-left"
+                        src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png?size=2048`}
+                        alt={botData.username + "'s Avatar"}
+                    />
+                    <div className="border-2 border-l-0 xl:border-l-2 rounded-xl flex xl:flex-col xl:h-[200px] h-[100px] w-[85vw]">
+                        <div className="flex flex-col w-[100%]">
+                            <div className="ml-6 xl:m-0 xl:my-1 text-white flex xl:flex-col xl:items-center flex-row gap-3 text-[26px]">
+                                <strong>{botData.username}</strong>
+                                <span className="text-[#797979] items-center flex text-[13px]">
+                                    ( {botData.id} )
+                                </span>
+                            </div>
+                            <div className="flex mx-6 mt-3 xl:justify-center xl:m-1 flex-row">
+                                {Array(5).fill(
+                                    <img
+                                        className="ml-1 w-[17px]"
+                                        src={starIconFill}
+                                        alt="Star Icon"
+                                    />
+                                )}
+                            </div>
                         </div>
-                        <div className="flex mx-6 mt-3 xl:justify-center xl:m-1 flex-row">
-                            {Array(5).fill(
-                                <img
-                                    className="ml-1 w-[17px]"
-                                    src={starIconFill}
-                                    alt="Star Icon"
-                                />
-                            )}
+                        <div className="flex w-[100%] justify-end ">
+                            <div className="flex gap-4 items-center justify-center xl:w-[100vw] flex-row m-4">
+                                <Link
+                                    className="border-2 border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
+                                    to={`/vote/${botData.id}`}
+                                >
+                                    <span>Votar</span>
+                                </Link>
+                                <Link
+                                    className="border-2 border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
+                                    to={`https://discord.com/api/oauth2/authorize?client_id=${botData.id}&permissions=70368744177655&scope=bot%20applications.commands`}
+                                >
+                                    <span>Adicionar</span>
+                                </Link>
+                            </div>
                         </div>
                     </div>
-                    <div className="flex w-[100%] justify-end ">
-                        <div className="flex gap-4 items-center justify-center xl:w-[100vw] flex-row m-4">
-                            <Link
-                                className="border-2 border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
-                                to={`/vote/${botData.id}`}
-                            >
-                                <span>Votar</span>
-                            </Link>
-                            <Link
-                                className="border-2 border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
-                                to={`https://discord.com/api/oauth2/authorize?client_id=${botData.id}&permissions=70368744177655&scope=bot%20applications.commands`}
-                            >
-                                <span>Adicionar</span>
-                            </Link>
+                </section>
+                <section className="w-[90%]">
+                    <div className="flex flex-row">
+                        <div className="w-[70%] flex items-center justify-center">
+                            <Markdown markdown={bot.longDescription} className="w-[100%]" />
+                        </div>
+                        <div className="h-[650px] w-[1px] bg-[#8b8b8b]" />
+                        <div className="flex flex-col gap-5 text-white px-5 w-[35%]">
+                            <div className="w-[100%]">
+                                <div className="w-[100%]">
+                                    <h1 className="text-2xl text-center">{bot.owners.length > 1 ? "Developers" : "Developer"}</h1>
+                                    <hr className="my-4 w-[100%]" />
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <Link to="/users/963124227911860264" className="bg-neutral-900 p-2 rounded-lg flex flex-row items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
+                                            <img className="rounded-full h-[60px]" src="https://cdn.discordapp.com/avatars/963124227911860264/3dfec61bb721d7e4650c98fcb49e2e4e.png?size=2048" alt="" />
+                                            <span className="text-center">unreau</span>
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <h1 className="text-2xl text-center">Informações</h1>
+                                <hr className="my-4 w-[100%]" />
+                                <div className="flex flex-col w-[100%] gap-3">
+                                    <div>
+                                        <strong className="text-lg">Prefixo </strong><span>{bot.prefix}</span>
+                                    </div>
+                                    <div>
+                                        <strong className="text-lg">Votos </strong><span>{bot.votes.length}</span>
+                                    </div>
+                                    <div>
+                                        <div className="flex flex-row gap-3 flex-wrap">
+                                            <strong className="text-lg">Tags</strong>
+                                            {bot.tags.map(tag => (
+                                                <div className="bg-neutral-800 p-2 rounded-lg">{tag}</div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <h1 className="text-2xl text-center">Links</h1>
+                                    <hr className="my-1 w-[100%]" />
+                                    <div className="flex flex-col gap-3 flex-wrap">
+                                        <Link to={bot.supportServer} className="flex items-center gap-3 p-2">
+                                            <img className="w-[30px]" src={discordIcon} alt="Discord Icon" />
+                                            <span>Servidor de suporte</span>
+                                        </Link>
+                                        {bot.sourceCode && (
+                                            <Link to={bot.sourceCode} className="flex items-center gap-3 p-2">
+                                                <img className="w-[30px]" src={githubIcon} alt="Github Icon" />
+                                                <span>Repositório</span>
+                                            </Link>
+                                        )}
+                                        {bot.websiteURL && (
+                                            <Link to={bot.websiteURL} className="flex items-center gap-3 p-2">
+                                                <img className="w-[30px]" src={globIcon} alt="Globe Icon" />
+                                                <span>Website (<span className="text-blue-600">{bot.websiteURL}</span>)</span>
+                                            </Link>
+                                        )}
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-            <Feedbacks/>
+            <Feedbacks />
         </div>
     ) : (
         <div>loading...</div>
