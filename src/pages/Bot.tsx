@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
-import { NavigateFunction, useNavigate, useParams, Link, Params, } from "react-router-dom";
-import { BotStructure, DiscordUser, botDataStructure } from "../types";
+import { NavigateFunction, useNavigate, useParams, Link, Params } from "react-router-dom";
+import { BotStructure, DiscordUser } from "../types";
 import starIconFill from "../assets/svgs/starfill.svg";
 import starIcon from "../assets/svgs/star.svg";
 import discordIcon from "../assets/svgs/discord.svg";
@@ -15,21 +15,30 @@ export const Bot: React.FC = () => {
     const params: Params = useParams<string>();
     const botid: string = params.botid as string;
     const navigate: NavigateFunction = useNavigate();
+
     const [botData, setBotData] = useState<DiscordUser>();
     const [bot, setBot] = useState<BotStructure>();
+    const [stars, setStars] = useState<number>(0);
 
-    const getBotData = async () => {
+    const getBotStars = async () => {
+        const res = await api.getBotFeedbacks(params.botid as string);
+        const stars = res.data.map(a => a.stars);
+        let count = 0;
+        stars.forEach(value => count += value);
+        return setStars(Math.round(count / stars.length));
+    };
+
+    const getBotData = async (): Promise<void> => {
         const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(botid);
         return setBotData(res.data);
     };
 
-    const verifyBot = async () => {
+    const verifyBot = async (): Promise<void> => {
         const res: AxiosResponse<{ exists: boolean }> = await api.verifyBotExists(botid);
         if (!res.data.exists) return navigate("/");
-        return;
     };
 
-    const getBotInDB = async () => {
+    const getBotInDB = async (): Promise<void> => {
         const res: AxiosResponse<BotStructure> = await api.getBotInfos(botid);
         return setBot(res.data);
     };
@@ -38,6 +47,7 @@ export const Bot: React.FC = () => {
         verifyBot();
         getBotData();
         getBotInDB();
+        getBotStars();
     }, [])
 
     return botData && bot ? (
@@ -57,14 +67,13 @@ export const Bot: React.FC = () => {
                                     ( {botData.id} )
                                 </span>
                             </div>
-                            <div className="flex mx-6 mt-3 xl:justify-center xl:m-1 flex-row">
-                                {Array(5).fill(
-                                    <img
-                                        className="ml-1 w-[17px]"
-                                        src={starIconFill}
-                                        alt="Star Icon"
-                                    />
-                                )}
+                            <div className="flex mx-6 mt-3 xl:justify-center xl:m-1 flex-row gap-1">
+                                {Array(stars).fill(0).map(() => (
+                                    <img src={starIconFill} alt="Star" />
+                                ))}
+                                {Array(5 - stars).fill(0).map((_, index) => (
+                                    <img key={index + stars} src={starIcon} alt="Empty Star" />
+                                ))}
                             </div>
                         </div>
                         <div className="flex w-[100%] justify-end ">
@@ -98,8 +107,8 @@ export const Bot: React.FC = () => {
                                     <hr className="my-4 w-[100%]" />
                                     <div className="grid grid-cols-2 gap-4">
                                         <Link to="/users/963124227911860264" className="bg-neutral-900 p-2 rounded-lg flex flex-row items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
-                                            <img className="rounded-full h-[60px]" src="https://cdn.discordapp.com/avatars/963124227911860264/3dfec61bb721d7e4650c98fcb49e2e4e.png?size=2048" alt="" />
-                                            <span className="text-center">unreau</span>
+                                            <img className="rounded-full h-[60px] w-[60px]" src="https://cdn.discordapp.com/avatars/955095844275781693/a7bcea9877fc1f1de51756e0091d5e71.png?size=2048" alt="oi" />
+                                            <span className="text-center">spyei</span>
                                         </Link>
                                     </div>
                                 </div>
@@ -125,18 +134,18 @@ export const Bot: React.FC = () => {
                                     <h1 className="text-2xl text-center">Links</h1>
                                     <hr className="my-1 w-[100%]" />
                                     <div className="flex flex-col gap-3 flex-wrap">
-                                        <Link to={bot.supportServer} className="flex items-center gap-3 p-2">
+                                        <Link to={bot.supportServer.includes("https://") ? bot.supportServer : "https://" + bot.supportServer} className="flex items-center gap-3 p-2">
                                             <img className="w-[30px]" src={discordIcon} alt="Discord Icon" />
                                             <span>Servidor de suporte</span>
                                         </Link>
                                         {bot.sourceCode && (
-                                            <Link to={bot.sourceCode} className="flex items-center gap-3 p-2">
+                                            <Link to={bot.sourceCode.includes("https://") ? bot.sourceCode : "https://" + bot.sourceCode} className="flex items-center gap-3 p-2">
                                                 <img className="w-[30px]" src={githubIcon} alt="Github Icon" />
                                                 <span>Repositório</span>
                                             </Link>
                                         )}
                                         {bot.websiteURL && (
-                                            <Link to={bot.websiteURL} className="flex items-center gap-3 p-2">
+                                            <Link to={bot.websiteURL.includes("https://") ? bot.websiteURL : "https://" + bot.websiteURL} className="flex items-center gap-3 p-2">
                                                 <img className="w-[30px]" src={globIcon} alt="Globe Icon" />
                                                 <span>Website (<span className="text-blue-600">{bot.websiteURL}</span>)</span>
                                             </Link>
