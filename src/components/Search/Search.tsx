@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import api from "../../utils/api";
 import { AxiosResponse } from "axios";
 import { BotStructure } from "../../types";
-import { BotCard } from "../../components/Bot/BotCard";
+import { BotCard } from "../BotList/BotCard";
 
 export const SearchComponent: React.FC = () => {
     const [searchParams] = useSearchParams();

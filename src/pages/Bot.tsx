@@ -48,7 +48,7 @@ export const Bot: React.FC = () => {
         getBotData();
         getBotInDB();
         getBotStars();
-    }, [])
+    }, []);
 
     return botData && bot ? (
         <div className="w-[100vw]">
