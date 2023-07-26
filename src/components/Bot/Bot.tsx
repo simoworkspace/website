@@ -2,14 +2,15 @@ import { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { NavigateFunction, useNavigate, useParams, Link, Params } from "react-router-dom";
 import { BotStructure, DiscordUser } from "../../types";
-import starIconFill from "../assets/svgs/starfill.svg";
-import starIcon from "../assets/svgs/star.svg";
-import discordIcon from "../assets/svgs/discord.svg";
 import api from '../../utils/api';
 import { Feedbacks } from "../../components/Feedbacks/Feedbacks";
 import { Markdown } from "../../components/Markdown/Markdown";
-import githubIcon from "../assets/svgs/github.svg";
-import globIcon from "../assets/svgs/globo.svg";
+
+import starIconFill from "../../assets/svgs/starfill.svg";
+import starIcon from "../../assets/svgs/star.svg";
+import discordIcon from "../../assets/svgs/discord.svg";
+import githubIcon from "../../assets/svgs/github.svg";
+import globIcon from "../../assets/svgs/globo.svg";
 
 export const BotComponent: React.FC = () => {
     const params: Params = useParams<string>();
