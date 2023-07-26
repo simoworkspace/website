@@ -96,10 +96,10 @@ export const Bot: React.FC = () => {
                 </section>
                 <section className="w-[90%]">
                     <div className="flex flex-row">
-                        <div className="w-[70%] flex items-center justify-center">
+                        <div className="w-[70%] flex justify-center">
                             <Markdown markdown={bot.longDescription} className="w-[100%]" />
                         </div>
-                        <div className="h-[650px] w-[1px] bg-[#8b8b8b]" />
+                        <div className="w-[1px] bg-[#8b8b8b]" />
                         <div className="flex flex-col gap-5 text-white px-5 w-[35%]">
                             <div className="w-[100%]">
                                 <div className="w-[100%]">
