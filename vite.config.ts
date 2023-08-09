@@ -7,7 +7,7 @@ export default defineConfig({
         // port: 80,
         proxy: {
             "/api": {
-                target: (import.meta.env.VITE_API_URL as string).replace("/api", ""),
+                target: "https://botlist-api.spyei.repl.co",
                 changeOrigin: true,
                 secure: false,
                 ws: true,
