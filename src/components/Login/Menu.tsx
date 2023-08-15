@@ -9,11 +9,10 @@ export const LoggedMenu: React.FC = () => {
 
     return (
         <>
-            <div>
+            <div className="w-[800px] flex justify-end mr-[14px]">
                 <button
                     onClick={() => setArrowState(!arrowState)}
-                    onBlur={() => setArrowState(false)}
-                    className="flex text-white w-[120px] h-[50px] xl:hidden"
+                    className="flex text-white w-[128] h-[50px] xl:hidden flex-row-reverse"
                 >
                     <div
                         className={`flex items-center h-[100%] transition-all duration-200 ${arrowState
@@ -26,9 +25,10 @@ export const LoggedMenu: React.FC = () => {
                             src={`https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png?size=2048`}
                             alt={`${user?.username}'s Avatar`}
                         />
+                        <span className="p-2">{user?.username}</span>
                         <div>
                             <img
-                                className={`w-[23px] h-[23px] ml-2 transition-all ${arrowState
+                                className={`w-[23px] h-[23px] transition-all ${arrowState
                                     ? "rotate-180"
                                     : "rotate-0"
                                     }`}
@@ -40,13 +40,13 @@ export const LoggedMenu: React.FC = () => {
                 </button>
             </div>
             <div
-                className={`xl:hidden transition-all duration-300 border-white border-[1px] rounded-b-lg absolute bg-black text-white w-[151px] right-[9px] top-[61px] ${
+                className={`xl:hidden transition-all duration-300 border-white border-[1px] rounded-b-lg absolute bg-black text-white w-[151px] right-[14px] top-[61px] ${
                     arrowState
-                        ? "opacity-100 border-transparent h-[162px]"
+                        ? "opacity-100 border-transparent h-[202px]"
                         : "h-[0px] opacity-0 invisible"
                     }`}
             >
-                <Dropdownmenu />
+                <Dropdownmenu setArrowState={setArrowState}/>
             </div>
         </>
     );
