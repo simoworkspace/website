@@ -33,7 +33,7 @@ export const Mobilemenu: React.FC = () => {
                             ? "visible opacity-100 absolute"
                             : "opacity-0 absolute invisible"
                             } ${themesClick
-                                ? "h-[220px] w-[130px]"
+                                ? "h-[220px] w-[150px]"
                                 : "h-[130px] w-[160px]"
                             }`}
                     >
