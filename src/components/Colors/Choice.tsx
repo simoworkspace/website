@@ -26,7 +26,7 @@ export const ChoiceColor: React.FC<ButtonProps> = ({ name, theme, margin, select
     };
 
     return mobile ? (
-        <button onClick={() => toggleTheme(theme)} className={`${selected ? "bg-[#3a3a3a]" : null} hover:bg-[#3a3a3a] rounded-md ${margin === "6px" ? "m-[6px]" : "m-0"} transition-all`}>
+        <button onClick={() => toggleTheme(theme)} className={`${selected ? "bg-[#3a3a3a]" : null} hover:bg-[#3a3a3a] rounded-md ${margin === "6px" ? "m-[6px]" : "m-0"} transition-all px-2`}>
             <div className="flex gap-2 flex-row items-center justify-center w-[120px] h-[27px]">
                 <div className="flex items-center justify-start">
                     <div className={`w-3 h-3 ${themesOptions[theme]} rounded-full justify-start`}></div>
@@ -37,7 +37,7 @@ export const ChoiceColor: React.FC<ButtonProps> = ({ name, theme, margin, select
             </div>
         </button>
     ) : (
-        <button onClick={() => toggleTheme(theme)} className={`${selected ? "bg-[#3a3a3a]" : null} hover:bg-[#3a3a3a] rounded-md ${margin === "6px" ? "m-[6px]" : "m-0"} transition-all`}>
+        <button onClick={() => toggleTheme(theme)} className={`${selected ? "bg-[#3a3a3a]" : null} hover:bg-[#3a3a3a] rounded-md ${margin === "6px" ? "m-[6px]" : "m-0"} transition-all px-2`}>
             <div className="flex gap-4 flex-row items-center justify-center">
                 <div className="flex items-center justify-start">
                     <div className={`w-3 h-3 ${themesOptions[theme]} rounded-full justify-start`}></div>
