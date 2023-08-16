@@ -9,7 +9,7 @@ export const LoggedMenu: React.FC = () => {
 
     return (
         <>
-            <div className="w-[800px] flex justify-end mr-[14px]">
+            <div className="w-[600px] flex-grow flex justify-end mr-[14px]">
                 <button
                     onClick={() => setArrowState(!arrowState)}
                     className="flex text-white w-[128] h-[50px] xl:hidden flex-row-reverse"
