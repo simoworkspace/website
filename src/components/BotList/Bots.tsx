@@ -18,7 +18,7 @@ export const Bots: React.FC = () => {
     }, []);
 
     return data ? (
-        <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left xl:mb-[80px]">
+        <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left">
             {data.map((bot: BotStructure) => (<BotCard bot={bot} />))}
         </div>
     ) : (
