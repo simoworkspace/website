@@ -60,7 +60,7 @@ export interface BotStructure {
     shortDescription: string;
     longDescription: string;
     prefix: string[] | string;
-    owners: Snowflake[] | string;
+    owners: Snowflake[];
     createdAt: string;
     verifiedBot: boolean;
     tags: string[];
