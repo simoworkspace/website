@@ -1,10 +1,13 @@
 import { AxiosResponse } from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { NavigateFunction, useNavigate, useParams, Link, Params } from "react-router-dom";
 import { BotStructure, DiscordUser, UserStructure } from "../../types";
 import api from '../../utils/api';
+import { ThemeContext } from "../../contexts/ThemeContext";
 import { Feedbacks } from "../../components/Feedbacks/Feedbacks";
 import { Markdown } from "../../components/Markdown/Markdown";
+import { borderAndBg } from "../../utils/theme/border&bg";
+import { borderColor } from "../../utils/theme/border";
 
 import starIconFill from "../../assets/svgs/starfill.svg";
 import starIcon from "../../assets/svgs/star.svg";
@@ -16,6 +19,7 @@ export const BotComponent: React.FC = () => {
     const params: Params = useParams<string>();
     const botid: string = params.botid as string;
     const navigate: NavigateFunction = useNavigate();
+    const { color } = useContext(ThemeContext);
 
     const [botData, setBotData] = useState<DiscordUser>();
     const [bot, setBot] = useState<BotStructure>();
@@ -63,21 +67,21 @@ export const BotComponent: React.FC = () => {
     return botData && bot ? (
         <div className="w-[100vw]">
             <div className="flex flex-col items-center justify-center">
-                <section className="flex items-center xl:flex-col justify-center w-[100%] xl:h-[300px] h-[200px] text-white">
-                    <img
-                        className="w-[min(100%,100px)] h-[min(100%,100px)] xl:my-2 rounded-full xl:float-none float-left"
-                        src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png?size=2048`}
-                        alt={botData.username + "'s Avatar"}
-                    />
-                    <div className="border-2 border-l-0 xl:border-l-2 rounded-xl flex xl:flex-col xl:h-[200px] h-[100px] w-[85vw]">
-                        <div className="flex flex-col w-[100%]">
+                <section className="flex items-center xl:flex-col justify-center w-[100%] xl:h-[300px] mt-[30px] text-white">
+                    <div className={`bg-neutral-900 rounded-xl flex xl:flex-col xl:h-[200px] h-[120px] w-[95%] border-2 ${borderColor[color]} items-center`}>
+                        <img
+                            className="w-[min(100%,100px)] h-[min(100%,100px)] xl:my-2 rounded-full xl:float-none ml-2"
+                            src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png?size=2048`}
+                            alt={botData.username + "'s Avatar"}
+                        />
+                        <div className="flex flex-col w-[100%] justify-center gap-2">
                             <div className="ml-6 xl:m-0 xl:my-1 text-white flex xl:flex-col xl:items-center flex-row gap-3 text-[26px]">
                                 <strong>{botData.username}</strong>
                                 <span className="text-[#797979] items-center flex text-[13px]">
                                     ( {botData.id} )
                                 </span>
                             </div>
-                            <div className="flex mx-6 mt-3 xl:justify-center xl:m-1 flex-row gap-1">
+                            <div className="flex mx-6 xl:justify-center xl:m-1 flex-row gap-1">
                                 {Array(stars).fill(0).map(() => (
                                     <img src={starIconFill} alt="Star" />
                                 ))}
@@ -87,7 +91,7 @@ export const BotComponent: React.FC = () => {
                             </div>
                         </div>
                         <div className="flex w-[100%] justify-end ">
-                            <div className="flex gap-4 items-center justify-center xl:w-[100vw] flex-row m-4">
+                        <div className="flex gap-4 items-center justify-center xl:w-[100vw] flex-row m-4">
                                 <Link
                                     className="border-2 border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
                                     to={`/vote/${botData.id}`}
@@ -104,20 +108,20 @@ export const BotComponent: React.FC = () => {
                         </div>
                     </div>
                 </section>
-                <section className="w-[90%]">
+                <section className={`w-[90%] bg-neutral-900 border-2 ${borderColor[color]} border-t-0 rounded-t-none rounded-lg p-10`}>
                     <div className="flex flex-row">
                         <div className="w-[70%] flex justify-center">
                             <Markdown markdown={bot.longDescription} className="w-[100%]" />
                         </div>
                         <div className="w-[1px] bg-[#8b8b8b]" />
-                        <div className="flex flex-col gap-5 text-white px-5 w-[35%]">
+                        <div className="flex flex-col gap-5 text-white px-5 w-[45%]">
                             <div className="w-[100%]">
                                 <div className="w-[100%]">
                                     <h1 className="text-2xl text-center">{bot.owners.length > 1 ? "Developers" : "Developer"}</h1>
                                     <hr className="my-4 w-[100%]" />
                                     <div className="grid grid-cols-2 gap-4">
                                         {devs.map((user: UserStructure) => (
-                                            <Link to={`/users/${user.id}`} className="bg-neutral-900 p-2 rounded-lg flex flex-row items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
+                                            <Link to={`/users/${user.id}`} className="bg-neutral-900 border-2 border-neutral-700 p-2 rounded-lg flex flex-row items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
                                                 <img className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=2048`} alt={`${user.username}'s Avatar`} />
                                                 <span className="text-center">{user.username}</span>
                                             </Link>
@@ -139,7 +143,7 @@ export const BotComponent: React.FC = () => {
                                         <div className="flex flex-row gap-3 flex-wrap">
                                             <strong className="text-lg">Tags</strong>
                                             {bot.tags.map(tag => (
-                                                <div className="bg-neutral-800 p-2 rounded-lg">{tag}</div>
+                                                <div className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
                                             ))}
                                         </div>
                                     </div>
