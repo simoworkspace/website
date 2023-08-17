@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import React, { useEffect, useState } from "react";
 import { NavigateFunction, useNavigate, useParams, Link, Params } from "react-router-dom";
-import { BotStructure, DiscordUser } from "../../types";
+import { BotStructure, DiscordUser, UserStructure } from "../../types";
 import api from '../../utils/api';
 import { Feedbacks } from "../../components/Feedbacks/Feedbacks";
 import { Markdown } from "../../components/Markdown/Markdown";
@@ -20,6 +20,7 @@ export const BotComponent: React.FC = () => {
     const [botData, setBotData] = useState<DiscordUser>();
     const [bot, setBot] = useState<BotStructure>();
     const [stars, setStars] = useState<number>(0);
+    const [devs, setDevs] = useState<Array<UserStructure>>([]);
 
     const getBotStars = async () => {
         const res = await api.getBotFeedbacks(params.botid as string);
@@ -41,6 +42,14 @@ export const BotComponent: React.FC = () => {
 
     const getBotInDB = async (): Promise<void> => {
         const res: AxiosResponse<BotStructure> = await api.getBotInfos(botid);
+        const { owners } = res.data;
+
+        for (let i = 0; i < owners.length; i++) {
+            const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(owners[i]);
+            const { username, avatar, id } = res.data;
+            setDevs(devs => [...devs, { username: username, avatar: avatar, id: id }]);
+        }
+
         return setBot(res.data);
     };
 
@@ -107,10 +116,12 @@ export const BotComponent: React.FC = () => {
                                     <h1 className="text-2xl text-center">{bot.owners.length > 1 ? "Developers" : "Developer"}</h1>
                                     <hr className="my-4 w-[100%]" />
                                     <div className="grid grid-cols-2 gap-4">
-                                        <Link to="/users/963124227911860264" className="bg-neutral-900 p-2 rounded-lg flex flex-row items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
-                                            <img className="rounded-full h-[60px] w-[60px]" src="https://cdn.discordapp.com/avatars/955095844275781693/a7bcea9877fc1f1de51756e0091d5e71.png?size=2048" alt="oi" />
-                                            <span className="text-center">spyei</span>
-                                        </Link>
+                                        {devs.map((user: UserStructure) => (
+                                            <Link to={`/users/${user.id}`} className="bg-neutral-900 p-2 rounded-lg flex flex-row items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
+                                                <img className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=2048`} alt={`${user.username}'s Avatar`} />
+                                                <span className="text-center">{user.username}</span>
+                                            </Link>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
