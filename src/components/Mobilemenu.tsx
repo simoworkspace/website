@@ -34,7 +34,7 @@ export const Mobilemenu: React.FC = () => {
                             : "opacity-0 absolute invisible"
                             } ${themesClick
                                 ? "h-[220px] w-[150px]"
-                                : maisClick ? "h-[130px] w-[160px]" : "opacity-0 invisible"
+                                : !maisClick ? "h-[130px] w-[160px]" : "opacity-0 invisible"
                             }`}
                     >
                         <div
