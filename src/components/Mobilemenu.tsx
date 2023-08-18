@@ -29,7 +29,7 @@ export const Mobilemenu: React.FC = () => {
             {user ? (
                 <>
                     <aside
-                        className={`transition-all duration-300 absolute bg-black rounded border-2 left-0 bottom-[64px] ${maisClick
+                        className={`transition-all duration-300 absolute bg-black rounded border-2 left-0 bottom-[64px] ${!maisClick
                             ? "visible opacity-100 absolute"
                             : "opacity-0 absolute invisible"
                             } ${themesClick
