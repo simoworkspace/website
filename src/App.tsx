@@ -19,7 +19,7 @@ function App() {
     const { color } = useContext(ThemeContext);
 
     return (
-        <main className={`xl:scrollbar-hide overflow-x-hidden min-h-[100vh] ${appColor[color]} bg-fixed h-1 scrollbar-track-neutral-900 scrollbar-thin`}>
+        <main className={`xl:scrollbar-hide overflow-x-hidden min-h-[100vh] ${appColor[color]} bg-fixed h-1 xl:h-0 scrollbar-track-neutral-900 scrollbar-thin`}>
             <header>
                 <Header />
             </header>
