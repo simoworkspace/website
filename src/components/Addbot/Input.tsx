@@ -56,10 +56,8 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         } text-white`}
                 >
                     <textarea
-                        {...register("shortDescription", {
-                            required: true,
-                        })}
-                        name="shortDescription"
+                        {...register(name, { required } || { required: true })}
+                        name={name}
                         rows={5}
                         maxLength={200}
                         minLength={200}
