@@ -14,6 +14,23 @@ export interface reducerActionType {
     }
 }
 
+interface DiscordWebhookStructure {
+    content: string;
+    username?: string;
+    avatar_url?: string;
+    tts?: boolean;
+    embeds?: [{
+        title?: string;
+        description?: string;
+        color?: number;
+        fields?: [{
+            name: string;
+            value: string;
+            inline?: boolean;
+        }]
+    }]
+}
+
 export interface FeedbackStructure {
     author: {
         id: string;
