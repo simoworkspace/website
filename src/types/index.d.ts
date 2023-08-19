@@ -15,7 +15,7 @@ export interface reducerActionType {
 }
 
 interface DiscordWebhookStructure {
-    content: string;
+    content?: string;
     username?: string;
     avatar_url?: string;
     tts?: boolean;
@@ -23,11 +23,14 @@ interface DiscordWebhookStructure {
         title?: string;
         description?: string;
         color?: number;
-        fields?: [{
+        thumbnail?: {
+            url: string;
+        }
+        fields?: {
             name: string;
             value: string;
             inline?: boolean;
-        }]
+        }[]
     }]
 }
 
