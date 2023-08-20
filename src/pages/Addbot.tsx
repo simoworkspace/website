@@ -1,5 +1,5 @@
-import { FormAddbot } from "../components/Addbot/FormAddbot";
+import { AddbotComponent } from "../components/Addbot/Addbot";
 
 export const Addbot: React.FC = () => {
-    return <FormAddbot/>;
+    return <AddbotComponent/>;
 };
