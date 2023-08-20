@@ -1,4 +1,5 @@
-import React from "react";
+import React, { ChangeEvent, useState } from "react";
+import ReactMarkdown from 'react-markdown';
 
 interface InputProps {
     register: any;
@@ -7,14 +8,69 @@ interface InputProps {
     text: string;
     title: string;
     errors: any;
-    type: "textarea" | "input";
+    type: "textarea" | "input" | "textlong";
     rows?: number;
     maxLength?: number;
     minLength?: number;
     cols?: number;
+    preview?: boolean;
+    setPreview?: (value: boolean) => void;
 }
 
-export const Input: React.FC<InputProps> = ({ register, name, required, text, title, errors, type }) => {
+export const Input: React.FC<InputProps> = ({ register, name, required, text, title, errors, type, preview, setPreview }) => {
+    const [markdown, setMarkdown] = useState<string>('');
+
+    const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        setMarkdown(event.target.value);
+    };
+
+    const renderMarkdown = () => {
+        const processedMarkdown = markdown.replace(/\n/g, '  \n');
+        return (
+            <ReactMarkdown className="
+            prose
+            prose-p:before:content-none
+            prose-p:after:content-none
+            prose-code:before:content-none
+            prose-code:after:content-none
+            prose-code:p-1
+            prose-code:rounded-md
+            prose-hr:text-white
+            prose-lead:text-white
+            prose-blockquote:text-white
+            prose-headings:text-white
+            prose-h1:text-white
+            prose-h2:text-white
+            prose-h3:text-white
+            prose-h4:text-white
+            prose-h5:text-white
+            prose-h6:text-white
+            prose-p:text-white
+            prose-a:text-blue-500
+            prose-a:hover:text-blue-700
+            prose-a:transition-colors
+            prose-a:duraton-300
+            prose-figure:text-white
+            prose-figcaption:text-white
+            prose-strong:text-white
+            prose-em:text-white
+            prose-code:text-white
+            prose-pre:text-white
+            prose-ol:text-white
+            prose-ul:text-white
+            prose-li:text-white
+            prose-table:text-white
+            prose-thead:text-white
+            prose-tr:text-white
+            prose-th:text-white
+            prose-td:text-white
+            prose-img:text-white
+            prose-video:text-white
+            ">{processedMarkdown}</ReactMarkdown>
+        );
+    };
+
+
     return type === "input" ? (
         <div className="text-white xl:w-[88vw] xl:flex-col flex-row flex">
             <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
@@ -36,6 +92,48 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         className="bg-transparent outline-none w-[100%]"
                     />
                 </div>
+            </div>
+        </div>
+    ) : type === "textlong" ? (
+        <div className={`text-white xl:w-[88vw] w-[100%] xl:flex-col ${preview ? "flex-col" : "flex-row"} flex items-center justify-center`}>
+            <div className="w-[800px] xl:w-[100%] justify-center break-words flex-col flex mr-2">
+                <div className="text-center">
+                    <strong>Descrição longa</strong>
+                </div>
+                <span className="text-center">
+                    Digite todos os detalhes do seu bot, não exite em
+                    colocar informações!
+                </span>
+                <div className="flex items-center justify-center my-2">
+                    <button className="bg-neutral-900 p-1 rounded-lg border-2 border-neutral-700 transition-colors duration-300 hover:bg-neutral-700" onClick={() => setPreview(!preview)}>{preview ? "Ocultar preview" : "Mostrar preview"}</button>
+                </div>
+            </div>
+            <div className={`flex flex-col items-center w-[100%] ${preview ? "" : "max-w-[800px] xl:max-w-[9999px]"}`}>
+                <div
+                    className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${errors.prefix?.message === ""
+                        ? "border-[#ff0000]"
+                        : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
+                        } text-white`}
+                >
+                    <textarea
+                        value={markdown}
+                        {...register("longDescription", {
+                            required: true,
+                        })}
+                        onChange={handleInputChange}
+                        rows={5}
+                        maxLength={500}
+                        minLength={200}
+                        cols={22}
+                        name="longDescription"
+                        className="bg-transparent outline-none w-[100%] scrollbar-thin"
+                    />
+                </div>
+                {preview &&
+                    <div className="max-w-[616px] break-all flex bg-neutral-800 p-2 min-w-[99%] rounded-lg rounded-t-none">
+                        <span>{renderMarkdown()}</span>
+                    </div>
+                }
             </div>
         </div>
     ) : (
