@@ -14,6 +14,7 @@ import starIcon from "../../assets/svgs/star.svg";
 import discordIcon from "../../assets/svgs/discord.svg";
 import githubIcon from "../../assets/svgs/github.svg";
 import globIcon from "../../assets/svgs/globo.svg";
+import { BotLoading } from "./BotLoading";
 
 export const BotComponent: React.FC = () => {
     const params: Params = useParams<string>();
@@ -177,6 +178,6 @@ export const BotComponent: React.FC = () => {
             <Feedbacks />
         </div>
     ) : (
-        <div>loading...</div>
+        <BotLoading/>
     );
 };
