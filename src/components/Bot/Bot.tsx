@@ -67,8 +67,8 @@ export const BotComponent: React.FC = () => {
     return botData && bot ? (
         <div className="w-[100vw]">
             <div className="flex flex-col items-center justify-center">
-                <section className="flex items-center xl:flex-col justify-center w-[100%] xl:h-[300px] mt-[30px] text-white">
-                    <div className={`bg-neutral-900 rounded-xl flex xl:flex-col xl:h-[200px] h-[120px] w-[95%] border-2 ${borderColor[color]} items-center`}>
+                <section className="flex items-center xl:flex-col justify-center w-[100%] xl:mt-2 mt-[30px] text-white">
+                    <div className={`bg-neutral-900 rounded-xl flex xl:flex-col xl:h-[320px] h-[120px] w-[95%] border-2 ${borderColor[color]} items-center justify-center`}>
                         <img
                             className="w-[min(100%,100px)] h-[min(100%,100px)] xl:my-2 rounded-full xl:float-none ml-2"
                             src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png?size=2048`}
@@ -108,20 +108,20 @@ export const BotComponent: React.FC = () => {
                         </div>
                     </div>
                 </section>
-                <section className={`w-[90%] bg-neutral-900 border-2 ${borderColor[color]} border-t-0 rounded-t-none rounded-lg p-10`}>
-                    <div className="flex flex-row">
-                        <div className="w-[70%] flex justify-center">
+                <section className={`w-[90%] bg-neutral-900 border-2 ${borderColor[color]} border-t-0 rounded-t-none rounded-lg p-10 xl:p-3`}>
+                    <div className="flex flex-row xl:flex-col">
+                        <div className="w-[70%] xl:w-[100%] flex justify-center break-words">
                             <Markdown markdown={bot.longDescription} className="w-[100%]" />
                         </div>
-                        <div className="w-[1px] bg-[#8b8b8b]" />
-                        <div className="flex flex-col gap-5 text-white px-5 w-[45%]">
+                        <hr className="xl:my-4 xl:w-[100%]" />
+                        <div className="flex flex-col gap-5 text-white px-5 w-[45%] xl:w-[100%]">
                             <div className="w-[100%]">
                                 <div className="w-[100%]">
                                     <h1 className="text-2xl text-center">{bot.owners.length > 1 ? "Developers" : "Developer"}</h1>
                                     <hr className="my-4 w-[100%]" />
                                     <div className="grid grid-cols-2 gap-4">
                                         {devs.map((user: UserStructure) => (
-                                            <Link to={`/users/${user.id}`} className="bg-neutral-900 border-2 border-neutral-700 p-2 rounded-lg flex flex-row items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
+                                            <Link to={`/users/${user.id}`} className="bg-neutral-900 border-2 border-neutral-700 p-2 rounded-lg flex flex-row xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
                                                 <img className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=2048`} alt={`${user.username}'s Avatar`} />
                                                 <span className="text-center">{user.username}</span>
                                             </Link>
