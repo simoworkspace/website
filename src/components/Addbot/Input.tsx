@@ -14,7 +14,7 @@ interface InputProps {
     minLength?: number;
     cols?: number;
     preview?: boolean;
-    setPreview?: (value: boolean) => void;
+    setPreview?: any | ((value: boolean) => void);
 }
 
 export const Input: React.FC<InputProps> = ({ register, name, required, text, title, errors, type, preview, setPreview }) => {
