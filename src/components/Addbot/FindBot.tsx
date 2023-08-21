@@ -65,11 +65,16 @@ export const FindBot: React.FC<{
                     botData ? (
                         <>
                             {isBot ? (
-                                <div className={`bg-neutral-800 flex p-2 h-[110px] items-center justify-center gap-3 rounded-lg border-2 ${borderColor[color]}`}>
-                                    <img className="rounded-full w-[80px]" src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png`} alt={`${botData.username}'s Avatar`} />
-                                    <div className="flex gap-2 text-white">
-                                        <span><strong>{botData.username}</strong></span>
-                                        <span className="text-neutral-300">({botData.id})</span>
+                                <div className="flex flex-col items-center justify-center gap-3">
+                                    <div className={`bg-neutral-800 flex p-2 h-[110px] items-center justify-center gap-3 rounded-lg border-2 ${borderColor[color]}`}>
+                                        <img className="rounded-full w-[80px]" src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png`} alt={`${botData.username}'s Avatar`} />
+                                        <div className="flex gap-2 text-white">
+                                            <span><strong>{botData.username}</strong></span>
+                                            <span className="text-neutral-300">({botData.id})</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <button onClick={() => setSteps(1)} className={`text-white ${buttonColor[color]} p-2 rounded-lg w-[160px] transition-colors duration-300 border-2`}>Próximo paço</button>
                                     </div>
                                 </div>
                             ) : (
@@ -110,7 +115,7 @@ export const FindBot: React.FC<{
                         <div className="flex flex-row items-center w-[100%] text-white">
                             <div className="flex justify-center flex-grow items-center xl:w-[80vw] m-4">
                                 <button type="submit" onClick={() => setSubmit(true)} className="cursor-pointer focus:duration-0 transition-all duration-300 items-center border-neutral-700 bg-neutral-900 hover:bg-neutral-700 border-2 w-[300px] rounded-xl h-[60px] text-white focus:bg-neutral-700">
-                                    <span>Verificar bot</span>
+                                    <span>Verificar ID</span>
                                 </button>
                             </div>
                         </div>
