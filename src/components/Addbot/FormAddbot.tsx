@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import api from "../../utils/api";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { BotStructure, DiscordUser, DiscordWebhookStructure } from "../../types";
+import { BotStructure, DiscordUser, DiscordWebhookStructure, UserStructure } from "../../types";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { AxiosResponse } from "axios";
 import { Input } from "./Input";
@@ -14,7 +14,7 @@ interface botInfos extends DiscordUser {
     createdAt: number;
 };
 
-export const FormAddbot: React.FC = () => {
+export const FormAddbot: React.FC<{ botData: UserStructure | undefined }> = ({ botData }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<BotStructure>();
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);

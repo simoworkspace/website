@@ -49,8 +49,6 @@ export const FindBot: React.FC<{
         getBotData(id as string);
     }, [submit]);
 
-    console.log(isBot)
-
     return (
         <section className="flex items-center justify-center w-[100vw] h-[600px]">
             <div className={`bg-black ${borderColor[color]} border-2 ${shadowColor[color]} h-[400px] w-[80%] max-w-[1200px] rounded-lg shadow-md flex items-center justify-center flex-col`}>

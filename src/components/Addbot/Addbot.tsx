@@ -7,5 +7,7 @@ export const AddbotComponent: React.FC = () => {
     const [steps, setSteps] = useState<number>(0);
     const [botData, setBotData] = useState<UserStructure>();
     
-    return steps === 0 ? <FindBot setSteps={setSteps} setBotData={setBotData} botData={botData}/> : <FormAddbot/> ;
+    return steps === 0 
+        ? <FindBot setSteps={setSteps} setBotData={setBotData} botData={botData}/> 
+        : <FormAddbot botData={botData}/>;
 };
