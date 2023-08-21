@@ -110,9 +110,10 @@ export const BotComponent: React.FC = () => {
                 </section>
                 <section className={`w-[90%] bg-neutral-900 border-2 ${borderColor[color]} border-t-0 rounded-t-none rounded-lg p-10 xl:p-3`}>
                     <div className="flex flex-row xl:flex-col">
-                        <div className="w-[70%] xl:w-[100%] flex justify-center break-words">
+                        <div className="w-[80%] xl:w-[100%] flex break-words xl:justify-center">
                             <Markdown markdown={bot.longDescription} className="w-[100%]" />
                         </div>
+                        <div className="w-[1px] bg-[#8b8b8b]" />
                         <hr className="xl:my-4 xl:w-[100%]" />
                         <div className="flex flex-col gap-5 text-white px-5 w-[45%] xl:w-[100%]">
                             <div className="w-[100%]">
