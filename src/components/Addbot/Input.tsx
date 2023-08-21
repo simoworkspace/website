@@ -105,7 +105,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                     colocar informações!
                 </span>
                 <div className="flex items-center justify-center my-2">
-                    <button className="bg-neutral-900 p-1 rounded-lg border-2 border-neutral-700 transition-colors duration-300 hover:bg-neutral-700" onClick={() => setPreview(!preview)}>{preview ? "Ocultar preview" : "Mostrar preview"}</button>
+                    <button type="button" className="bg-neutral-900 p-1 rounded-lg border-2 border-neutral-700 transition-colors duration-300 hover:bg-neutral-700" onClick={() => setPreview(!preview)}>{preview ? "Ocultar preview" : "Mostrar preview"}</button>
                 </div>
             </div>
             <div className={`flex flex-col items-center w-[100%] ${preview ? "" : "max-w-[800px] xl:max-w-[9999px]"}`}>
