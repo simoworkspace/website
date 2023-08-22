@@ -2,15 +2,15 @@ import React, { ChangeEvent, FormEvent, useContext, useEffect, useState } from "
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { borderColor } from "../../utils/theme/border";
 import { shadowColor } from "../../utils/theme/shadow";
-import { DiscordUser, UserStructure } from "../../types";
+import { DiscordUser, FindBotStructure } from "../../types";
 import { AxiosResponse } from "axios";
 import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
 
 export const FindBot: React.FC<{
     setSteps: (value: number) => void;
-    setBotData: (value: UserStructure) => void;
-    botData: UserStructure | undefined;
+    setBotData: (value: FindBotStructure) => void;
+    botData: FindBotStructure | undefined;
 }> = ({ setSteps, setBotData, botData }) => {
     const { color } = useContext(ThemeContext);
     const [submit, setSubmit] = useState<boolean>(false);
@@ -21,13 +21,15 @@ export const FindBot: React.FC<{
         try {
             const req: AxiosResponse<DiscordUser> = await api.getDiscordUser(botid);
             const { id, avatar, username } = req.data;
+            const createdAt = Math.round(new Date(id as any / 4194304 + 1420070400000).getTime() / 1000);
 
             setIsBot(Object.keys(req.data).includes("bot"));
 
             setBotData({
                 id: id,
                 avatar: avatar,
-                username: username
+                username: username,
+                createdAt: createdAt
             });
 
         } catch (error) {
