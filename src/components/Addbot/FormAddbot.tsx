@@ -1,64 +1,43 @@
-import React, { useContext, useEffect, useState } from "react";
-import api from "../../utils/api";
+import React, { useContext, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { BotStructure, DiscordUser, DiscordWebhookStructure, UserStructure } from "../../types";
+import { BotStructure, DiscordWebhookStructure, UserStructure } from "../../types";
 import { ThemeContext } from "../../contexts/ThemeContext";
-import { AxiosResponse } from "axios";
 import { Input } from "./Input";
 import { borderColor } from "../../utils/theme/border";
 import { shadowColor } from "../../utils/theme/shadow";
 import axios from "axios";
 import { UserContext } from "../../contexts/UserContext";
 
-interface botInfos extends DiscordUser {
-    createdAt: number;
-};
-
 export const FormAddbot: React.FC<{ botData: UserStructure | undefined }> = ({ botData }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<BotStructure>();
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
     const [preview, setPreview] = useState<boolean>(false);
-    const [botInfos, setBotInfos] = useState<botInfos>();
-
-    const getBotInfos = async (botid: string): Promise<any> => {
-        const req: AxiosResponse<DiscordUser> = await api.getDiscordUser(botid);
-        const createdAt = Math.round(new Date(req.data.id as any / 4194304 + 1420070400000).getTime() / 1000);
-
-        return setBotInfos({ ...req.data, createdAt: createdAt });
-    };
-
     const onSubmit: SubmitHandler<BotStructure> = async (data: BotStructure): Promise<void> => {
-        if (!user) return;
-        
         try {
-            const botInfoResponse: AxiosResponse<botInfos> = await getBotInfos(data._id);
-
-            const botInfoData = await botInfoResponse.data;
-
             const formData: BotStructure = {
                 ...data,
-                avatar: botInfoData.avatar as string,
-                name: botInfoData.username as string,
+                avatar: botData?.avatar as string,
+                name: botData?.username as string,
                 approved: false,
-                createdAt: botInfoData.createdAt as any,
+                createdAt: botData?.id as any,
                 verifiedBot: false,
-                owners: [user?.id],
-                inviteURL: `https://discord.com/api/oauth2/authorize?client_id=${data._id}&permissions=70368744177655&scope=bot%20applications.commands`,
+                owners: [user?.id as string],
+                inviteURL: `https://discord.com/api/oauth2/authorize?client_id=${botData?.id}&permissions=70368744177655&scope=bot%20applications.commands`,
             };
             console.log(formData);
-            console.log(botInfos)
+            console.log(botData);
             const bodyVerificar: DiscordWebhookStructure = {
                 embeds: [{
                     title: "📎 | Novo bot para ser verificado",
                     color: 0x58b4f5,
                     thumbnail: {
-                        url: `https://cdn.discordapp.com/avatars/${formData._id}/${formData.avatar}.png`
+                        url: `https://cdn.discordapp.com/avatars/${botData?.id}/${botData?.avatar}.png`
                     },
                     fields: [
                         {
                             name: "**Informações**",
-                            value: `**Nome:** ${formData.name} (\`${formData._id}\`)\n**Prefixo:** ${formData.prefix}\n**Descrição:** ${formData.shortDescription}\n**Criado em:** <t:${formData.createdAt}:F>`,
+                            value: `**Nome:** ${botData?.username} (\`${botData?.id}\`)\n**Prefixo:** ${formData.prefix}\n**Descrição:** ${formData.shortDescription}\n**Criado em:** <t:${formData.createdAt}:F>`,
                         },
                         {
                             name: "Clique abaixo para adiciona-lo no servidor",
@@ -76,13 +55,12 @@ export const FormAddbot: React.FC<{ botData: UserStructure | undefined }> = ({ b
                     },
                     title: "✅ | Análise",
                     color: 0x5fff57,
-                    description: `O seu bot: **${formData.name}** (\`${formData._id}\`) foi enviado pra análise.`
+                    description: `O seu bot: **${botData?.username}** (\`${botData?.id}\`) foi enviado pra análise.`
                 }]
             };
 
             await axios.post("https://discord.com/api/webhooks/1142153843455570062/bvnUKDshzJKT5Ih3sKCkD1YyPWMYRZMeQDioIWLu95_aK3dVUpUlk8MpZrp5kB7u90EX", bodyOwner);
             await axios.post("https://discord.com/api/webhooks/1142478183137017947/Mq13YWEmj6FXj3WPnbInfBuEzV-0ioI8NsSg_Rv6PotORusw6rkjzaGtqRVwmsn2wuQm", bodyVerificar);
-            // await api.addBot(formData, data._id)
         } catch (error: any) {
             console.error(error);
         }
@@ -100,7 +78,6 @@ export const FormAddbot: React.FC<{ botData: UserStructure | undefined }> = ({ b
                         </h1>
                     </h1>
                     <form onSubmit={handleSubmit(onSubmit)} className="gap-5 items-center justify-center pt-1 flex flex-col">
-                        <Input register={register} name="_id" required text="Você consegue encontrar o id do seu bot no Discord Developer Portal" title="ID" errors={errors} type="input" />
                         <Input register={register} name="prefix" required text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash." title="Prefixo" errors={errors} type="input" />
                         <Input register={register} name="longDescription" text="Digite uma descrição longa que mostre todas as capacidades do seu bot (markdown habilitado!)" title="Descrição longa" errors={errors} type="textlong" setPreview={setPreview} preview={preview} required />
                         <Input register={register} name="shortDescription" text="Digite uma descrição curta que irá aparecer na página inicial." title="Descrição curta" required errors={errors} type="input" />
