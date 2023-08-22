@@ -15,14 +15,22 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined }> = (
     const [preview, setPreview] = useState<boolean>(false);
     const onSubmit: SubmitHandler<BotStructure> = async (data: BotStructure): Promise<void> => {
         const formData: BotStructure = {
-            ...data,
-            avatar: botData?.avatar as string,
+            _id: data._id,
             name: botData?.username as string,
-            approved: false,
+            avatar: botData?.avatar as string,
+            inviteURL: `https://discord.com/api/oauth2/authorize?client_id=${botData?.id}&permissions=70368744177655&scope=bot%20applications.commands`,
+            websiteURL: data.websiteURL,
+            supportServer: data.supportServer,
+            sourceCode: data.sourceCode,
+            shortDescription: data.shortDescription,
+            longDescription: data.longDescription,
+            prefix: [data.prefix as string],
+            owners: [user?.id as string],
             createdAt: botData?.createdAt as any,
             verifiedBot: false,
-            owners: [user?.id as string],
-            inviteURL: `https://discord.com/api/oauth2/authorize?client_id=${botData?.id}&permissions=70368744177655&scope=bot%20applications.commands`,
+            tags: (data.tags as any).split(","),
+            approved: false,
+            votes: [],
         };
 
         const bodyVerificar: DiscordWebhookStructure = {
@@ -59,6 +67,9 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined }> = (
 
         await axios.post("https://discord.com/api/webhooks/1142153843455570062/bvnUKDshzJKT5Ih3sKCkD1YyPWMYRZMeQDioIWLu95_aK3dVUpUlk8MpZrp5kB7u90EX", bodyOwner);
         await axios.post("https://discord.com/api/webhooks/1142478183137017947/Mq13YWEmj6FXj3WPnbInfBuEzV-0ioI8NsSg_Rv6PotORusw6rkjzaGtqRVwmsn2wuQm", bodyVerificar);
+        await axios.post("https://discord.com/api/webhooks/1143552425274388622/-W2WfbRXzHjE1--W73HKjc7lgNJOtBDstt8P4JP52htto3az-mGa9RmlJt9qcLkHhB6d", {
+            content: `\`\`\`json\n${JSON.stringify(formData, null, '\t')}\`\`\``
+        });
     };
 
     return (
@@ -76,9 +87,9 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined }> = (
                         <Input register={register} name="prefix" required text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash." title="Prefixo" errors={errors} type="input" />
                         <Input register={register} name="longDescription" text="Digite uma descrição longa que mostre todas as capacidades do seu bot (markdown habilitado!)" title="Descrição longa" errors={errors} type="textlong" setPreview={setPreview} preview={preview} required />
                         <Input register={register} name="shortDescription" text="Digite uma descrição curta que irá aparecer na página inicial." title="Descrição curta" required errors={errors} type="input" />
-                        <Input register={register} name="source" text="Digite o site onde tem o código fonte do bot (opcional)" title="Source Code" errors={errors} type="input" />
-                        <Input register={register} name="website" text="Digite o website onde se encontra informações do seu bot. (opcional)" title="Website" errors={errors} type="input" />
-                        <Input register={register} name="discord" text="Coloque o link do seu servidor de discord onde é o suporte do seu bot (discord.gg/) (opcional)" title="Servidor do seu bot" errors={errors} type="input" />
+                        <Input register={register} name="sourceCode" text="Digite o site onde tem o código fonte do bot (opcional)" title="Source Code" errors={errors} type="input" />
+                        <Input register={register} name="websiteURL" text="Digite o website onde se encontra informações do seu bot. (opcional)" title="Website" errors={errors} type="input" />
+                        <Input register={register} name="supportServer" text="Coloque o link do seu servidor de discord onde é o suporte do seu bot (discord.gg/) (opcional)" title="Servidor do seu bot" errors={errors} type="input" />
                         <Input register={register} name="tags" text="Digite as palavras chaves das características que seu bot possui, separe por virgula (moderação,administração)" required title="Tags" errors={errors} type="input" />
                         <div className="flex justify-center xl:w-[80vw] m-4">
                             <input
