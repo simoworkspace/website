@@ -50,29 +50,28 @@ export const FindBot: React.FC<{
     }, [submit]);
 
     return (
-        <section className="flex items-center justify-center w-[100vw] h-[600px]">
-            <div className={`bg-black ${borderColor[color]} border-2 ${shadowColor[color]} h-[400px] w-[80%] max-w-[1200px] rounded-lg shadow-md flex items-center justify-center flex-col`}>
-                <h1 className="text-white xl:text-[26px] text-[40px] m-5">
-                    <h1 className="text-white flex flex-row text-[32px] mx-10 my-3">
-                        <strong className="text-[#ffffff] xl:text-[24px] xl:mr-0 mr-2">
-                            Adicione seu Bot
-                        </strong>
+        <section className="flex items-center justify-center w-[100vw] h-[600px] p-3">
+            <div className={`bg-black ${borderColor[color]} border-2 ${shadowColor[color]} h-[400px] max-w-[1200px] w-[900px] rounded-lg shadow-md flex items-center justify-center flex-col p-2`}>
+                <div className="text-white xl:text-[26px] text-[40px] mb-8 xl:m-0 xl:mb-8">
+                    <h1 className="text-white flex flex-row mx-10">
+                        <strong className="text-[#ffffff] text-[32px] xl:text-[28px] xl:mr-0">Adicione seu Bot</strong>
                     </h1>
-                </h1>
+                </div>
                 {submit ? (
                     botData ? (
                         <>
                             {isBot ? (
-                                <div className="flex flex-col items-center justify-center gap-3">
-                                    <div className={`bg-neutral-800 flex p-2 h-[110px] items-center justify-center gap-3 rounded-lg border-2 ${borderColor[color]}`}>
+                                <div className="flex flex-col items-center justify-center gap-3 p-3">
+                                    <div className={`bg-neutral-800 flex p-2 xl:w-[100%] h-[110px] items-center justify-center gap-3 rounded-lg border-2 ${borderColor[color]}`}>
                                         <img className="rounded-full w-[80px]" src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png`} alt={`${botData.username}'s Avatar`} />
-                                        <div className="flex gap-2 text-white">
+                                        <div className="flex xl:flex-col gap-2 text-white">
                                             <span><strong>{botData.username}</strong></span>
                                             <span className="text-neutral-300">({botData.id})</span>
                                         </div>
                                     </div>
-                                    <div>
+                                    <div className="flex gap-3 flex-row-reverse">
                                         <button onClick={() => setSteps(1)} className={`text-white ${buttonColor[color]} p-2 rounded-lg w-[160px] transition-colors duration-300 border-2`}>Próximo paço</button>
+                                        <button onClick={() => window.location.reload()} className={`text-white ${buttonColor[color]} p-2 rounded-lg w-[160px] transition-colors duration-300 border-2`}>Trocar ID</button>
                                     </div>
                                 </div>
                             ) : (
@@ -87,16 +86,16 @@ export const FindBot: React.FC<{
                             )}
                         </>
                     ) : (
-                        <div className={`bg-neutral-800 flex p-2 h-[110px] items-center justify-center gap-3 rounded-lg border-2 ${borderColor[color]}`}>
+                        <div className={`bg-neutral-800 flex p-2 h-[110px] xl:w-[80vw] items-center justify-center gap-3 rounded-lg border-2 ${borderColor[color]}`}>
                             <div className="rounded-full w-[80px] h-[80px] bg-neutral-900 animate-pulse"></div>
-                            <div className="flex gap-2 text-white flex-row">
-                                <div className="bg-enutr bg-neutral-900 w-[120px] rounded-full animate-pulse"></div>
-                                <span className="text-neutral-300 flex flex-row animate-pulse">(<div className="bg-neutral-900 w-[180px] rounded-full"></div>)</span>
+                            <div className="flex gap-2 text-white flex-row xl:flex-col">
+                                <div className="bg-neutral-900 w-[120px] h-[23px] rounded-full animate-pulse"></div>
+                                <div className="text-neutral-300 flex flex-row animate-pulse">(<div className="bg-neutral-900 w-[180px] rounded-full"></div>)</div>
                             </div>
                         </div>
                     )
                 ) : (
-                    <form onSubmit={handleSubmit} className="flex items-center justify-center flex-col">
+                    <form onSubmit={handleSubmit} className="flex items-center justify-center flex-col gap-3">
                         <div className="text-white xl:w-[88vw] xl:flex-col flex-row flex">
                             <div className="w-[700px] xl:w-[100%] break-words flex-col flex mr-2">
                                 <div className="text-center">
@@ -111,8 +110,8 @@ export const FindBot: React.FC<{
                             </div>
                         </div>
                         <div className="flex flex-row items-center w-[100%] text-white">
-                            <div className="flex justify-center flex-grow items-center xl:w-[80vw] m-4">
-                                <button type="submit" onClick={() => setSubmit(true)} className="cursor-pointer focus:duration-0 transition-all duration-300 items-center border-neutral-700 bg-neutral-900 hover:bg-neutral-700 border-2 w-[300px] rounded-xl h-[60px] text-white focus:bg-neutral-700">
+                            <div className="flex justify-center flex-grow items-center m-4 xl:m-0 xl:mt-2">
+                                <button type="submit" onClick={() => setSubmit(true)} className="cursor-pointer xl:w-[100%] w-[300px] transition-all duration-300 items-center border-neutral-700 bg-neutral-900 hover:bg-neutral-700 border-2 rounded-xl h-[60px] text-white focus:bg-neutral-700">
                                     <span>Verificar ID</span>
                                 </button>
                             </div>
