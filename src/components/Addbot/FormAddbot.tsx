@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { BotStructure, DiscordWebhookStructure, UserStructure } from "../../types";
+import { BotStructure, DiscordWebhookStructure, FindBotStructure } from "../../types";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { Input } from "./Input";
 import { borderColor } from "../../utils/theme/border";
@@ -8,62 +8,57 @@ import { shadowColor } from "../../utils/theme/shadow";
 import axios from "axios";
 import { UserContext } from "../../contexts/UserContext";
 
-export const FormAddbot: React.FC<{ botData: UserStructure | undefined }> = ({ botData }) => {
+export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined }> = ({ botData }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<BotStructure>();
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
     const [preview, setPreview] = useState<boolean>(false);
     const onSubmit: SubmitHandler<BotStructure> = async (data: BotStructure): Promise<void> => {
-        try {
-            const formData: BotStructure = {
-                ...data,
-                avatar: botData?.avatar as string,
-                name: botData?.username as string,
-                approved: false,
-                createdAt: botData?.id as any,
-                verifiedBot: false,
-                owners: [user?.id as string],
-                inviteURL: `https://discord.com/api/oauth2/authorize?client_id=${botData?.id}&permissions=70368744177655&scope=bot%20applications.commands`,
-            };
-            console.log(formData);
-            console.log(botData);
-            const bodyVerificar: DiscordWebhookStructure = {
-                embeds: [{
-                    title: "📎 | Novo bot para ser verificado",
-                    color: 0x58b4f5,
-                    thumbnail: {
-                        url: `https://cdn.discordapp.com/avatars/${botData?.id}/${botData?.avatar}.png`
-                    },
-                    fields: [
-                        {
-                            name: "**Informações**",
-                            value: `**Nome:** ${botData?.username} (\`${botData?.id}\`)\n**Prefixo:** ${formData.prefix}\n**Descrição:** ${formData.shortDescription}\n**Criado em:** <t:${formData.createdAt}:F>`,
-                        },
-                        {
-                            name: "Clique abaixo para adiciona-lo no servidor",
-                            value: formData.inviteURL
-                        }
-                    ]
-                }]
-            };
+        const formData: BotStructure = {
+            ...data,
+            avatar: botData?.avatar as string,
+            name: botData?.username as string,
+            approved: false,
+            createdAt: botData?.createdAt as any,
+            verifiedBot: false,
+            owners: [user?.id as string],
+            inviteURL: `https://discord.com/api/oauth2/authorize?client_id=${botData?.id}&permissions=70368744177655&scope=bot%20applications.commands`,
+        };
 
-            const bodyOwner = {
-                content: `<@${formData.owners[0]}>`,
-                embeds: [{
-                    thumbnail: {
-                        url: `https://cdn.discordapp.com/avatars/${formData._id}/${formData.avatar}.png`
+        const bodyVerificar: DiscordWebhookStructure = {
+            embeds: [{
+                title: "📎 | Novo bot para ser verificado",
+                color: 0x58b4f5,
+                thumbnail: {
+                    url: `https://cdn.discordapp.com/avatars/${botData?.id}/${botData?.avatar}.png`
+                },
+                fields: [
+                    {
+                        name: "**Informações**",
+                        value: `**Nome:** ${botData?.username} (\`${botData?.id}\`)\n**Prefixo:** ${formData.prefix}\n**Descrição:** ${formData.shortDescription}\n**Criado em:** <t:${formData.createdAt}:F> (<t:${formData.createdAt}:R>)`,
                     },
-                    title: "✅ | Análise",
-                    color: 0x5fff57,
-                    description: `O seu bot: **${botData?.username}** (\`${botData?.id}\`) foi enviado pra análise.`
-                }]
-            };
+                    {
+                        name: "Clique abaixo para adiciona-lo no servidor",
+                        value: formData.inviteURL
+                    }
+                ]
+            }]
+        };
 
-            await axios.post("https://discord.com/api/webhooks/1142153843455570062/bvnUKDshzJKT5Ih3sKCkD1YyPWMYRZMeQDioIWLu95_aK3dVUpUlk8MpZrp5kB7u90EX", bodyOwner);
-            await axios.post("https://discord.com/api/webhooks/1142478183137017947/Mq13YWEmj6FXj3WPnbInfBuEzV-0ioI8NsSg_Rv6PotORusw6rkjzaGtqRVwmsn2wuQm", bodyVerificar);
-        } catch (error: any) {
-            console.error(error);
-        }
+        const bodyOwner = {
+            content: `<@${formData.owners[0]}>`,
+            embeds: [{
+                thumbnail: {
+                    url: `https://cdn.discordapp.com/avatars/${formData._id}/${formData.avatar}.png`
+                },
+                title: "✅ | Análise",
+                color: 0x5fff57,
+                description: `O seu bot: **${botData?.username}** (\`${botData?.id}\`) foi enviado pra análise.`
+            }]
+        };
+
+        await axios.post("https://discord.com/api/webhooks/1142153843455570062/bvnUKDshzJKT5Ih3sKCkD1YyPWMYRZMeQDioIWLu95_aK3dVUpUlk8MpZrp5kB7u90EX", bodyOwner);
+        await axios.post("https://discord.com/api/webhooks/1142478183137017947/Mq13YWEmj6FXj3WPnbInfBuEzV-0ioI8NsSg_Rv6PotORusw6rkjzaGtqRVwmsn2wuQm", bodyVerificar);
     };
 
     return (
