@@ -34,6 +34,10 @@ interface DiscordWebhookStructure {
     }]
 }
 
+export interface FindBotStructure extends UserStructure {
+    createdAt: number;
+}
+
 export interface FeedbackStructure {
     author: {
         id: string;
