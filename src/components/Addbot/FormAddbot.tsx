@@ -15,7 +15,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined }> = (
     const [preview, setPreview] = useState<boolean>(false);
     const onSubmit: SubmitHandler<BotStructure> = async (data: BotStructure): Promise<void> => {
         const formData: BotStructure = {
-            _id: data._id,
+            _id: botData?.id as string,
             name: botData?.username as string,
             avatar: botData?.avatar as string,
             inviteURL: `https://discord.com/api/oauth2/authorize?client_id=${botData?.id}&permissions=70368744177655&scope=bot%20applications.commands`,
