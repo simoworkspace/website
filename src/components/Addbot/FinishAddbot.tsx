@@ -16,7 +16,7 @@ export const FinishAddbot: React.FC<{ botData: FindBotStructure | undefined }> =
                         <BsCheckCircleFill fill="#2cd459" size={180} />
                     </div>
                     <div className="flex flex-col gap-1 items-center justify-start w-[100%] text-center">
-                        <h1 className="text-[26px]"><strong>Seu bot {botData ? botData.username : "..."} foi enviado para a análise!</strong></h1> 
+                        <h1 className="text-[26px]"><strong>Seu bot {botData?.username} foi enviado para a análise!</strong></h1> 
                         <span>Após ele ser aprovado ou recusado, você vai ser mencionado no canal |📥・logs|, do servidor: <a href="https://discord.gg/DGDEJtRsms" className="underline text-blue-500 transition-colors hover:text-blue-400">discord.gg/DGDEJtRsms</a></span>
                         <span>Você pode ver uma preview do seu bot clicando nesse link: <Link to={`/bot/${botData?.id}`} className="underline text-blue-500 transition-colors hover:text-blue-400">/bot/{botData?.id}</Link></span>
                     </div>
