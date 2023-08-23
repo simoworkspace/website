@@ -8,7 +8,7 @@ import { shadowColor } from "../../utils/theme/shadow";
 import axios from "axios";
 import { UserContext } from "../../contexts/UserContext";
 
-export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined }> = ({ botData }) => {
+export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSteps: (value: number) => void }> = ({ botData, setSteps }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<BotStructure>();
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
@@ -93,6 +93,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined }> = (
                         <Input register={register} name="tags" text="Digite as palavras chaves das características que seu bot possui, separe por virgula (moderação,administração)" required title="Tags" errors={errors} type="input" />
                         <div className="flex justify-center xl:w-[80vw] m-4">
                             <input
+                                onClick={() => setSteps(2)}
                                 type="submit"
                                 value="Enviar bot"
                                 className="cursor-pointer focus:duration-0 transition-all duration-300 items-center border-neutral-700 bg-neutral-900 hover:bg-neutral-700 border-2 w-[300px] rounded-xl h-[60px] text-white focus:outline focus:outline-offset-2 focus:outline-white focus:utline-2"
