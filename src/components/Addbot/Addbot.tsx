@@ -14,6 +14,6 @@ export const AddbotComponent: React.FC = () => {
         case 1:
             return <FormAddbot botData={botData} setSteps={setSteps} />;
         case 2:
-            return <FinishAddbot botData={botData}/>;
+            return <FinishAddbot botData={botData} />;
     };
 };

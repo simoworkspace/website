@@ -2,7 +2,7 @@ import React, { ChangeEvent, FormEvent, useContext, useEffect, useState } from "
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { borderColor } from "../../utils/theme/border";
 import { shadowColor } from "../../utils/theme/shadow";
-import { DiscordUser, FindBotStructure } from "../../types";
+import { BotStructure, DiscordUser, FindBotStructure } from "../../types";
 import { AxiosResponse } from "axios";
 import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
@@ -16,14 +16,17 @@ export const FindBot: React.FC<{
     const [submit, setSubmit] = useState<boolean>(false);
     const [id, setID] = useState<string>();
     const [isBot, setIsBot] = useState<boolean>(false);
+    const [alreadyExists, setAlreadyExists] = useState<boolean>();
 
     const getBotData = async (botid: string): Promise<void> => {
         try {
             const req: AxiosResponse<DiscordUser> = await api.getDiscordUser(botid);
             const { id, avatar, username } = req.data;
             const createdAt = Math.round(new Date(id as any / 4194304 + 1420070400000).getTime() / 1000);
+            const allbots: AxiosResponse<BotStructure[]> = await api.getAllBots();
 
             setIsBot(Object.keys(req.data).includes("bot"));
+            setAlreadyExists(allbots.data.map((bot: BotStructure) => bot._id).includes(botid));
 
             setBotData({
                 id: id,
@@ -62,7 +65,7 @@ export const FindBot: React.FC<{
                 {submit ? (
                     botData ? (
                         <>
-                            {isBot ? (
+                            {!alreadyExists && isBot ? (
                                 <div className="flex flex-col items-center justify-center gap-3 p-3">
                                     <div className={`bg-neutral-800 flex p-2 xl:w-[100%] h-[110px] items-center justify-center gap-3 rounded-lg border-2 ${borderColor[color]}`}>
                                         <img className="rounded-full w-[80px]" src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png`} alt={`${botData.username}'s Avatar`} />
@@ -79,7 +82,7 @@ export const FindBot: React.FC<{
                             ) : (
                                 <div className="w-[100%] flex-col flex items-center justify-center">
                                     <div className="text-white p-2 mb-1 bg-red-600 border-2 rounded-lg border-red-500 flex w-[50%] justify-center items-center">
-                                        <span>Digite um ID válido.</span>
+                                        <span>{alreadyExists ? "Esse bot ja está na botlist." : "Digite um ID válido."}</span>
                                     </div>
                                     <div>
                                         <button onClick={() => window.location.reload()} className={`${buttonColor[color]} text-white transition-colors duration-300 w-[130px] p-2 border-2 rounded-lg`}>Voltar</button>
