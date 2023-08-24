@@ -7,7 +7,6 @@ import React, { useContext, useState } from "react";
 import { UserStructure } from "../types";
 import { UserContext } from "../contexts/UserContext";
 import { ThemeContext } from "../contexts/ThemeContext";
-import { ThemeContextProps, Theme } from "../types";
 import palleteIcon from "../assets/svgs/pallete.svg";
 import arrowIcon from "../assets/svgs/arrow.svg";
 import dashboardIcon from '../assets/svgs/dashboard.svg';
@@ -24,27 +23,30 @@ export const Mobilemenu: React.FC = () => {
     const [themesClick, setThemesClick] = useState<boolean>(false);
     const selectedTheme = localStorage.getItem("theme") || "blue";
 
+    console.log(maisClick, themesClick)
+
     return (
         <div className={`hidden xl:fixed xl:bottom-0 xl:left-0 xl:w-full border-t-2 transition-colors duration-300 ${mobileMenu[color]} xl:text-white xl:py-3 xl:flex xl:justify-around xl:items-center`}>
             {user ? (
                 <>
                     <aside
-                        className={`transition-all duration-300 absolute bg-black rounded border-2 left-0 bottom-[64px] ${maisClick
-                            ? "visible opacity-100 absolute"
-                            : "opacity-0 absolute invisible"
+                        className={`transition-all duration-300 absolute bg-black rounded border-2 left-0 bottom-[64px] ${
+                            maisClick || themesClick
+                                ? "visible opacity-100"
+                                : "opacity-0 absolute hidden"
                             } ${themesClick
-                                ? "h-[220px] w-[150px]"
-                                : maisClick ? "h-[130px] w-[160px]" : "opacity-0 invisible"
+                                ? "h-[220px] w-[150px] visible opacity-100"
+                                : maisClick ? "h-[130px] w-[160px] visible opacity-100" : "opacity-0 hidden"
                             }`}
                     >
                         <div
-                            className={`flex w-full h-full flex-col gap-2 items-center justify-center ${
+                            className={`flex w-full flex-col gap-2 items-center justify-center ${
                                 themesClick
                                     ? "opacity-100 visible"
-                                    : "opacity-0 invisible"
+                                    : "opacity-0 hidden"
                                 }`}
                         >
-                            <button onClick={() => setThemesClick(false)} className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg w-[96%] h-[28px]">
+                            <button onClick={() => {setThemesClick(false); setMaisClick(true)}} className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg w-[96%] h-[28px]">
                                 <img className="w-[20px] rotate-90" src={arrowIcon} alt="Arrow Icon" />
                                 <span>Menu</span>
                                 <img src={dotsIcon} alt="Dots Icon"
@@ -58,20 +60,23 @@ export const Mobilemenu: React.FC = () => {
                             <ChoiceColor name="Preto" theme="black" margin="0px" mobile selected={selectedTheme === "black"} />
                         </div>
                         <div
-                            className={`flex w-full h-full flex-col transition-opacity duration-300 absolute top-[4px] items-center justify-center  ${themesClick
-                                ? "opacity-0 invisible"
-                                : "opacity-100 visible"
+                            className={`flex w-full h-full flex-col transition-opacity duration-300 top-[4px] items-center justify-center  ${
+                                themesClick || !maisClick
+                                    ? "opacity-0 hidden"
+                                    : "opacity-100 visible"
                                 }`}
                         >
-                            <div className="flex gap-2 items-center justify-center flex-col">
-                                <MenuOption alt="Pallete icon" icon={palleteIcon} title="Temas" type="button" action={() => setThemesClick(!themesClick)} mobile />
-                                <MenuOption alt="Pallete icon" icon={dashboardIcon} title="Dashboard" type="link" to="/dashboard" mobile />
-                                <MenuOption alt="Logout Icon" icon={logoutIcon} title="Sair" type="button" action={async () => { await api.logoutUser(); return window.location.reload(); }} mobile />
+                            <div className={`${
+                                maisClick ? "visible opacity-100" : "hidden opacity-0"
+                            }`}>
+                                <MenuOption alt="Pallete icon" icon={palleteIcon} title="Temas" type="button" action={() => {setThemesClick(!themesClick); setMaisClick(false)}} mobile/>
+                                <MenuOption alt="Pallete icon" icon={dashboardIcon} title="Dashboard" type="link" to="/dashboard" mobile/>
+                                <MenuOption alt="Logout Icon" icon={logoutIcon} title="Sair" type="button" action={async () => { await api.logoutUser(); return window.location.reload(); }} mobile/>
                             </div>
                         </div>
                     </aside>
                     <div className="flex flex-col items-center">
-                        {!maisClick ? (
+                        {!maisClick && !themesClick ? (
                             <div className="flex flex-col items-center">
                                 <button
                                     onClick={() => {
