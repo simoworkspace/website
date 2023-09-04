@@ -7,7 +7,7 @@ export default defineConfig({
         // port: 80,
         proxy: {
             "/api": {
-                target: "https://botlist-api.spyei.repl.co",
+                target: "http://localhost:80",
                 changeOrigin: true,
                 secure: false,
                 ws: true,

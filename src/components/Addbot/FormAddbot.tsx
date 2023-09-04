@@ -67,9 +67,9 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             }]
         };
 
-        await axios.post("https://discord.com/api/webhooks/1142153843455570062/bvnUKDshzJKT5Ih3sKCkD1YyPWMYRZMeQDioIWLu95_aK3dVUpUlk8MpZrp5kB7u90EX", bodyOwner);
-        await axios.post("https://discord.com/api/webhooks/1142478183137017947/Mq13YWEmj6FXj3WPnbInfBuEzV-0ioI8NsSg_Rv6PotORusw6rkjzaGtqRVwmsn2wuQm", bodyVerificar);
-        await axios.post("https://discord.com/api/webhooks/1143552425274388622/-W2WfbRXzHjE1--W73HKjc7lgNJOtBDstt8P4JP52htto3az-mGa9RmlJt9qcLkHhB6d", {
+        await axios.post(import.meta.env.VITE_WBHK_LOGS_ADDBOT as string, bodyOwner);
+        await axios.post(import.meta.env.VITE_WBHK_LOGS as string, bodyVerificar);
+        await axios.post(import.meta.env.VITE_WBHK_RAW as string, {
             content: `\`\`\`json\n${JSON.stringify(formData, null, '\t')}\`\`\``
         });
     };
