@@ -3,13 +3,9 @@ import { FeedbackStructure } from "../../types";
 import starIcon from "../../assets/svgs/star.svg";
 import starIconFill from '../../assets/svgs/starfill.svg';
 
-import { borderColor } from "../../utils/theme/border";
-import { ThemeContext } from "../../contexts/ThemeContext";
-
 export const FeedbackCard: React.FC<{ feedback: FeedbackStructure }> = ({ feedback }) => {
-    const { color } = React.useContext(ThemeContext);
     return (
-        <div className={`border-2 ${borderColor[color]} border-t rounded-t rounded-lg bg-neutral-900 rounded-lg p-1 text-white break-words`}>
+        <div className="bg-neutral-900 rounded-lg p-1 text-white break-words">
             <div className="flex flex-col p-3 gap-2">
                 <div className="flex flex-row items-center justify">
                     <img

@@ -66,7 +66,7 @@ export const BotComponent: React.FC = () => {
     }, []);
 
     return botData && bot ? (
-        <div className="w-[100vw] flex flex-col items-center justify-center gap-2 mb-5">
+        <div className="w-[100vw]">
             <div className="flex flex-col items-center justify-center">
                 <section className="flex items-center xl:flex-col justify-center w-[100%] xl:mt-2 mt-[30px] text-white">
                     <div className={`bg-neutral-900 rounded-xl flex xl:flex-col xl:h-[320px] h-[120px] w-[95%] border-2 ${borderColor[color]} items-center justify-center`}>
@@ -142,7 +142,7 @@ export const BotComponent: React.FC = () => {
                                         <strong className="text-lg">Votos </strong><span>{bot.votes.length}</span>
                                     </div>
                                     <div>
-                                        <div className="flex flex-row gap-3 items-center flex-wrap">
+                                        <div className="flex flex-row gap-3 flex-wrap">
                                             <strong className="text-lg">Tags</strong>
                                             {bot.tags.map(tag => (
                                                 <div className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
@@ -163,12 +163,10 @@ export const BotComponent: React.FC = () => {
                                             </Link>
                                         )}
                                         {bot.websiteURL && (
-                                            <div>
-                                                <Link to={bot.websiteURL.includes("https://") ? bot.websiteURL : "https://" + bot.websiteURL} className="flex items-center gap-3 p-2" >
-                                                <img className="w-[30px] " src={globIcon} alt="Globe Icon" />
-                                                 <span className="text-blue-600">{bot.websiteURL}</span>
-                                                </Link>
-                                            </div>
+                                            <Link to={bot.websiteURL.includes("https://") ? bot.websiteURL : "https://" + bot.websiteURL} className="flex items-center gap-3 p-2">
+                                                <img className="w-[30px]" src={globIcon} alt="Globe Icon" />
+                                                <span>Website (<span className="text-blue-600">{bot.websiteURL}</span>)</span>
+                                            </Link>
                                         )}
                                     </div>
                                 </div>
