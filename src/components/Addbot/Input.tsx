@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, ReactNode, useState } from "react";
 import ReactMarkdown from 'react-markdown';
 
 interface InputProps {
@@ -26,7 +26,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
 
     const renderMarkdown = () => {
         const processedMarkdown = markdown.replace(/\n/g, '  \n');
-        return (
+        (
             <ReactMarkdown className="
             prose
             prose-p:before:content-none
@@ -131,7 +131,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                 </div>
                 {preview &&
                     <div className="max-w-[616px] break-all flex bg-neutral-800 p-2 min-w-[99%] rounded-lg rounded-t-none">
-                        <span>{renderMarkdown()}</span>
+                        <span>{renderMarkdown() as ReactNode}</span>
                     </div>
                 }
             </div>
