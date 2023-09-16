@@ -34,7 +34,10 @@ interface DiscordWebhookStructure {
     }]
 }
 
-export interface FindBotStructure extends UserStructure {
+export interface FindBotStructure {
+    username: string;
+    id: Snowflake | string;
+    avatar: string;
     createdAt: number;
 }
 

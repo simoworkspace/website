@@ -52,7 +52,7 @@ export const BotComponent: React.FC = () => {
         for (let i = 0; i < owners.length; i++) {
             const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(owners[i]);
             const { username, avatar, id } = res.data;
-            setDevs(devs => [...devs, { username: username, avatar: avatar, id: id }]);
+            setDevs(devs => [...devs, { username: username, avatar: avatar, id: id, signed: true }]);
         }
 
         return setBot(res.data);
