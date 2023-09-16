@@ -67,9 +67,9 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             }]
         };
 
-        await axios.post(import.meta.env.VITE_WBHK_LOGS_ADDBOT as string, bodyOwner);
-        await axios.post(import.meta.env.VITE_WBHK_LOGS as string, bodyVerificar);
-        await axios.post(import.meta.env.VITE_WBHK_RAW as string, {
+        await axios.post("/api/webhook/addbot", bodyOwner);
+        await axios.post("/api/webhook/bot", bodyVerificar);
+        await axios.post("/api/webhook/raw", {
             content: `\`\`\`json\n${JSON.stringify(formData, null, '\t')}\`\`\``
         });
     };
