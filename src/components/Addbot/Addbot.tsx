@@ -4,7 +4,7 @@ import { FindBot } from "./FindBot";
 import { FindBotStructure } from "../../types";
 import { FinishAddbot } from "./FinishAddbot";
 
-export const AddbotComponent: React.FC = () => {
+export const AddbotComponent: React.FC | undefined = () => {
     const [steps, setSteps] = useState<number>(0);
     const [botData, setBotData] = useState<FindBotStructure>();
 
