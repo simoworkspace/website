@@ -1,10 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { FormAddbot } from "./FormAddbot";
 import { FindBot } from "./FindBot";
 import { FindBotStructure } from "../../types";
 import { FinishAddbot } from "./FinishAddbot";
 
-export const AddbotComponent = () => {
+export const AddbotComponent: React.FC = () => {
     const [steps, setSteps] = useState<number>(0);
     const [botData, setBotData] = useState<FindBotStructure>();
 

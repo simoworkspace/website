@@ -44,10 +44,10 @@ export const FindBot: React.FC<{
         setID(event.target.value);
     };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>): Promise<void> => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
         event.preventDefault();
 
-        return getBotData(id as string);
+        getBotData(id as string);
     };
 
     useEffect(() => {
