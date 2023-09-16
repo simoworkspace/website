@@ -102,6 +102,7 @@ export interface UserStructure {
     username: string;
     id: Snowflake | string;
     avatar: string;
+    signed: boolean;
 };
 
 interface Locales {

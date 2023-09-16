@@ -19,7 +19,11 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     useEffect(() => {
         const getUserData = async () => {
             const res: AxiosResponse<UserStructure> = await api.getUserData();
-            setUser(res.data);
+            if(res.data.signed) {
+                setUser(res.data);
+            } else {
+                setUser(null);
+            }
         };
 
         getUserData();
