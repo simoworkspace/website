@@ -1,13 +1,14 @@
 import React from "react";
 import { UserLogin } from "./Login/Discordlogin";
 import { InputSearch } from "./Search/InputSearch";
+import { Link } from "react-router-dom";
 
 export const Header: React.FC = () => {
     return (
         <div className="w-[100vw] border-b-[1px] border-[#8b8b8b] flex justify-center items-center bg-tansparent xl:flex-wrap">
-            <div className="flex w-[600px] xl:w-[100vw] xl:justify-center xl:items-center">
+            <Link to="/" className="flex w-[600px] xl:w-[100vw] xl:justify-center xl:items-center">
                 <h1 className="text-white flex flex-row text-[32px] mx-10 my-3"><strong>Simo</strong></h1>
-            </div>
+            </Link>
             <InputSearch />
             <UserLogin />
         </div>
