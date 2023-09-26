@@ -175,7 +175,6 @@ export const BotComponent: React.FC = () => {
                     </div>
                 </section>
             </div>
-            <Feedbacks />
         </div>
     ) : (
         <BotLoading/>
