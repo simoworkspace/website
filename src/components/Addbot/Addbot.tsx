@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FormAddbot } from "./FormAddbot";
 import { FindBot } from "./FindBot";
 import { FindBotStructure } from "../../types";

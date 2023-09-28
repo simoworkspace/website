@@ -8,6 +8,7 @@ import { Feedbacks } from "../../components/Feedbacks/Feedbacks";
 import { Markdown } from "../../components/Markdown/Markdown";
 import { borderAndBg } from "../../utils/theme/border&bg";
 import { borderColor } from "../../utils/theme/border";
+import * as icon from "react-icons/bs";
 
 import starIconFill from "../../assets/svgs/starfill.svg";
 import starIcon from "../../assets/svgs/star.svg";
@@ -67,6 +68,14 @@ export const BotComponent: React.FC = () => {
 
     return botData && bot ? (
         <div className="w-[100vw]">
+            {!bot.approved && (
+                <div className="fixed flex items-center justify-center backdrop-blur-sm inset-0 ">
+                    <div className="flex gap-3 items-center justify-center flex-col w-full h-[150px] border-2 rounded-lg bg-[#e8a60c] border-[#9e7514]">
+                        <icon.BsClockFill size={35}/>
+                        <span className="text-lg text-center px-2">Bot {bot.name} está em análise, aguarde até que ela seja finalizada.</span>
+                    </div>
+                </div>
+            )}
             <div className="flex flex-col items-center justify-center">
                 <section className="flex items-center xl:flex-col justify-center w-[100%] xl:mt-2 mt-[30px] text-white">
                     <div className={`bg-neutral-900 rounded-xl flex xl:flex-col xl:h-[320px] h-[120px] w-[95%] border-2 ${borderColor[color]} items-center justify-center`}>
@@ -92,7 +101,7 @@ export const BotComponent: React.FC = () => {
                             </div>
                         </div>
                         <div className="flex w-[100%] justify-end ">
-                        <div className="flex gap-4 items-center justify-center xl:w-[100vw] flex-row m-4">
+                            <div className="flex gap-4 items-center justify-center xl:w-[100vw] flex-row m-4">
                                 <Link
                                     className="border-2 border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
                                     to={`/vote/${botData.id}`}
@@ -177,6 +186,6 @@ export const BotComponent: React.FC = () => {
             </div>
         </div>
     ) : (
-        <BotLoading/>
+        <BotLoading />
     );
 };

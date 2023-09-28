@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BotStructure } from "../../types";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { borderColor } from "../../utils/theme/border";
-
+import * as icon from "react-icons/bs";
 
 export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
     const { color } = useContext(ThemeContext);
@@ -14,6 +14,11 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
             key={bot._id}
             className={`bg-neutral-950 duration-300 transition-colors text-white hover:bg-neutral-900 shadow-md shadow-black p-3 ${borderColor[color]} border-2 bg-neutral-940 rounded-lg`}
         >
+            {!bot.approved && (
+                <figure className="flex w-full h-0 items-center justify-end relative top-20 right-1">
+                    <icon.BsClockFill className="fill-[#e8a60c]" size={23} />
+                </figure>
+            )}
             <img
                 className="w-[min(100%,100px)] h-[min(100%,100px)] rounded-full mt-2 mr-2 float-right"
                 src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png?size=2048`}
