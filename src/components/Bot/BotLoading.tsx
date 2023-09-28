@@ -5,7 +5,7 @@ export const BotLoading: React.FC = () => {
         <div className="w-[100vw]">
             <div className="flex flex-col items-center justify-center">
                 <section className="flex items-center xl:flex-col justify-center w-[100%] xl:mt-2 mt-[30px] text-white">
-                    <div className={`bg-neutral-900 rounded-xl flex xl:flex-col xl:h-[320px] h-[120px] w-[95%] border-2 items-center justify-center`}>
+                    <div className="bg-neutral-900 rounded-xl flex xl:flex-col xl:h-[320px] h-[120px] w-[95%] border-2 items-center justify-center">
                         <div className="w-[220px] h-[100px] xl:my-2 rounded-full xl:float-none ml-2 bg-neutral-800 animate-pulse"></div>
                         <div className="flex flex-col w-[100%] justify-center gap-2">
                             <div className="ml-6 xl:m-0 xl:my-1 text-white flex xl:flex-col xl:items-center flex-row gap-3 text-[26px] w-[400px] h-[60px] rounded-lg bg-neutral-800 animate-pulse">
@@ -24,7 +24,7 @@ export const BotLoading: React.FC = () => {
                         </div>
                     </div>
                 </section>
-                <section className={`w-[90%] bg-neutral-900 border-2 border-t-0 rounded-t-none rounded-lg p-10 xl:p-3`}>
+                <section className="w-[90%] bg-neutral-900 border-2 border-t-0 rounded-t-none rounded-lg p-10 xl:p-3">
                     <div className="flex flex-row xl:flex-col">
                         <div className="w-[80%] xl:w-[100%] flex break-words xl:justify-center">
                             <div className="w-[93%] bg-neutral-800 rounded-lg animate-pulse"></div>

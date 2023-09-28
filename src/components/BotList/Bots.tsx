@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { BotStructure } from "../../types";
-import { Botloading } from "../Botloading";
+import { Botloading } from "./Botloading";
 import api from "../../utils/api";
 import { AxiosResponse } from "axios";
 import { BotCard } from "./BotCard";
