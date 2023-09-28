@@ -7,6 +7,7 @@ import { borderColor } from "../../utils/theme/border";
 import { shadowColor } from "../../utils/theme/shadow";
 import axios from "axios";
 import { UserContext } from "../../contexts/UserContext";
+import api from "../../utils/api";
 
 export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSteps: (value: number) => void }> = ({ botData, setSteps }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<BotStructure>();
@@ -66,12 +67,20 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                 description: `O seu bot: **${botData?.username}** (\`${botData?.id}\`) foi enviado pra análise.`
             }]
         };
-
-        await axios.post("/api/webhook/addbot", bodyOwner);
-        await axios.post("/api/webhook/bot", bodyVerificar);
+        const header: {
+            headers: {
+                Authorization: string
+            }
+        } = {
+            headers: {
+                Authorization: await api.getToken()
+            }
+        };
+        await axios.post("/api/webhook/addbot", bodyOwner, header);
+        await axios.post("/api/webhook/bot", bodyVerificar, header);
         await axios.post("/api/webhook/raw", {
             content: `\`\`\`json\n${JSON.stringify(formData, null, '\t')}\`\`\``
-        });
+        }, header);
     };
 
     return (
