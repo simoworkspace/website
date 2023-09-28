@@ -1,15 +1,18 @@
 import React, { PropsWithChildren, useEffect, useState } from "react";
 import api from "../utils/api";
+import { UserStructure } from "../types";
+import { AxiosResponse } from "axios";
 
 export const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children }: PropsWithChildren) => {
     const [auth, setAuth] = useState<boolean>(true);
 
     const getUserData = async () => {
-        try {
-            await api.getUserData();
-            return setAuth(true);
-        } catch (error: any) {
-            return setAuth(false);
+        const userData: AxiosResponse<UserStructure> = await api.getUserData();
+
+        if (userData.data.signed) {
+            setAuth(true);
+        } else {
+            setAuth(false);
         }
     };
 
