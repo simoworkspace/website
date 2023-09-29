@@ -80,7 +80,7 @@ export const BotComponent: React.FC = () => {
                 <section className="flex items-center xl:flex-col justify-center w-[100%] xl:mt-2 mt-[30px] text-white">
                     <div className={`bg-neutral-900 rounded-xl flex xl:flex-col xl:h-[320px] h-[120px] w-[95%] border-2 ${borderColor[color]} items-center justify-center`}>
                         <img
-                            className="w-[min(100%,100px)] h-[min(100%,100px)] xl:my-2 rounded-full xl:float-none ml-2"
+                            className="w-[100px] h-[100px] xl:my-2 rounded-full xl:float-none ml-2"
                             src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png?size=2048`}
                             alt={botData.username + "'s Avatar"}
                         />
