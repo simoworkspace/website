@@ -26,9 +26,9 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
             />
             <h1 className="text-center text-[24px]">{bot.name}</h1>
             <div className="">
-                {bot.shortDescription.length > 80
-                    ? bot.shortDescription.slice(0, 80) + "..."
-                    : bot.shortDescription}
+                {bot.short_description.length > 80
+                    ? bot.short_description.slice(0, 80) + "..."
+                    : bot.short_description}
             </div>
             <div className="mt-2 ml-2 mb-2 gap-2 flex flex-row">
                 <Link

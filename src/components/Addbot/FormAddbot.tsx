@@ -25,7 +25,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             websiteURL: data.websiteURL,
             supportServer: data.supportServer,
             sourceCode: data.sourceCode,
-            shortDescription: data.shortDescription,
+            short_description: data.short_description,
             longDescription: data.longDescription,
             prefix: [data.prefix as string],
             owners: [user?.id as string],
@@ -46,7 +46,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                 fields: [
                     {
                         name: "**Informações**",
-                        value: `**Nome:** ${botData?.username} (\`${botData?.id}\`)\n**Prefixo:** ${formData.prefix}\n**Descrição:** ${formData.shortDescription}\n**Criado em:** <t:${formData.createdAt}:F> (<t:${formData.createdAt}:R>)`,
+                        value: `**Nome:** ${botData?.username} (\`${botData?.id}\`)\n**Prefixo:** ${formData.prefix}\n**Descrição:** ${formData.short_description}\n**Criado em:** <t:${formData.createdAt}:F> (<t:${formData.createdAt}:R>)`,
                     },
                     {
                         name: "Clique abaixo para adiciona-lo no servidor",
@@ -97,7 +97,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                     <form onSubmit={handleSubmit(onSubmit)} className="gap-5 items-center justify-center pt-1 flex flex-col">
                         <Input register={register} name="prefix" required text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash." title="Prefixo" errors={errors} type="input" />
                         <Input register={register} name="longDescription" text="Digite uma descrição longa que mostre todas as capacidades do seu bot (markdown habilitado!)" title="Descrição longa" errors={errors} type="textlong" setPreview={setPreview} preview={preview} required />
-                        <Input register={register} name="shortDescription" text="Digite uma descrição curta que irá aparecer na página inicial." title="Descrição curta" required errors={errors} type="input" />
+                        <Input register={register} name="short_description" text="Digite uma descrição curta que irá aparecer na página inicial." title="Descrição curta" required errors={errors} type="input" />
                         <Input register={register} name="sourceCode" text="Digite o site onde tem o código fonte do bot (opcional)" title="Source Code" errors={errors} type="input" />
                         <Input register={register} name="websiteURL" text="Digite o website onde se encontra informações do seu bot. (opcional)" title="Website" errors={errors} type="input" />
                         <Input register={register} name="supportServer" text="Coloque o link do seu servidor de discord onde é o suporte do seu bot (discord.gg/) (opcional)" title="Servidor do seu bot" errors={errors} type="input" />

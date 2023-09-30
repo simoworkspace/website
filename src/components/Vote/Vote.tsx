@@ -7,6 +7,7 @@ import api from '../../utils/api';
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { VoteLoading } from "./Loading";
 import { buttonColor } from "../../utils/theme/button";
+import { BotCard } from "../BotList/BotCard";
 
 export const VoteComponent: React.FC = () => {
     const { user } = useContext(UserContext);

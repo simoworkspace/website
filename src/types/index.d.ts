@@ -84,7 +84,7 @@ export interface BotStructure {
     websiteURL: string;
     supportServer: string;
     sourceCode: string;
-    shortDescription: string;
+    short_description: string;
     longDescription: string;
     prefix: string[] | string;
     owners: Snowflake[];
