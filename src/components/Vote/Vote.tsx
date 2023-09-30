@@ -13,13 +13,13 @@ export const VoteComponent: React.FC = () => {
     const { botid } = useParams<string>();
     const { color } = useContext(ThemeContext);
 
-    const [voteStatus, setVoteStatus] = useState<{ canVote: boolean; restTime: string; }>();
+    const [voteStatus, setVoteStatus] = useState<{ can_vote: boolean; restTime: string; }>();
     const [discordBotData, setDiscordBotData] = useState<DiscordUser>();
     const [votes, setVotes] = useState<number>(0);
     const [voted, setVoted] = useState<boolean>();
 
     const getVoteStatus = async () => {
-        const res: AxiosResponse<{ canVote: boolean; restTime: string; }> = await api.voteStatus(botid as string, user?.id as string);
+        const res: AxiosResponse<{ can_vote: boolean; restTime: string; }> = await api.voteStatus(botid as string, user?.id as string);
         return setVoteStatus(res.data);
     };
 
@@ -77,7 +77,7 @@ export const VoteComponent: React.FC = () => {
                                 <span className="text-[14px]">Obrigado por votar em {discordBotData?.username}.</span>
                             </div>
                             : (
-                                voteStatus?.canVote
+                                voteStatus?.can_vote
                                     ? <span className="text-center p-2">Você pode votar agora!</span>
                                     : <span className="text-center p-2">Calma lá amigão, você ja votou hoje, volte amanhã.</span>
                             )
@@ -85,7 +85,7 @@ export const VoteComponent: React.FC = () => {
                     <div className="flex justify-end xl:mb-3">
                         <button
                             className={`transition-all duration-300 border-2 rounded-xl ${buttonColor[color]} w-[100px] h-[50px] disabled:opacity-40`}
-                            disabled={!voteStatus?.canVote}
+                            disabled={!voteStatus?.can_vote}
                             onClick={handleVote}
                         >Votar</button>
                     </div>
