@@ -10,39 +10,32 @@ const header = {
 
 const api = {
     getAllBots: async (): Promise<AxiosResponse> => {
-        const res: AxiosResponse = await axios.get<AxiosResponse<BotStructure[]>>("/api/bots", header);
-        return res;
+        return axios.get<AxiosResponse<BotStructure[]>>("/api/bots", header);
     },
     getUserData: async (): Promise<AxiosResponse> => {
-        const res: AxiosResponse = await axios.get<AxiosResponse<UserStructure>>("/api/auth/user", { ...header, withCredentials: true });
-        return res;
+        return axios.get<AxiosResponse<UserStructure>>("/api/auth/user", { ...header, withCredentials: true });
     },
     getToken: async (): Promise<string> => {
         const res: AxiosResponse<{ token: string }> = await axios.get("/api/auth/token");
         return res.data.token;
     },
     getDiscordUser: async (userID: string | Snowflake): Promise<AxiosResponse> => {
-        const res: AxiosResponse = await axios.get<AxiosResponse<DiscordUser>>("/api/users/" + userID, header);
-        return res;
+        return axios.get<AxiosResponse<DiscordUser>>("/api/users/" + userID, header);
     },
     getBotInfos: async (botID: string | Snowflake): Promise<AxiosResponse> => {
-        const res: AxiosResponse = await axios.get<AxiosResponse<BotStructure>>("/api/bots/" + botID, header);
-        return res;
+        return axios.get<AxiosResponse<BotStructure>>("/api/bots/" + botID, header);
     },
     addBot: async (bodyData: BotStructure, botID: string | Snowflake): Promise<AxiosResponse> => {
-        const res = axios.post<AxiosResponse<BotStructure>>("/api/bots/" + botID, bodyData, header);
-        return res;
+        return axios.post<AxiosResponse<BotStructure>>("/api/bots/" + botID, bodyData, header);
     },
     logoutUser: async (): Promise<AxiosResponse> => {
-        const res: AxiosResponse = await axios.get<AxiosResponse>("/api/auth/logout", header);
-        return res;
+        return axios.get<AxiosResponse>("/api/auth/logout", header);
     },
     voteBot: async (userID: string | Snowflake, botID: string | Snowflake): Promise<AxiosResponse> => {
         const voteProps: { user: string } = {
             user: userID,
         }
-        const res: AxiosResponse = await axios.post<AxiosResponse<VoteStructure>>(`/api/bots/${botID}/votes`, voteProps, header);
-        return res;
+        return axios.post<AxiosResponse<VoteStructure>>(`/api/bots/${botID}/votes`, voteProps, header);
     },
     postFeedback: async (stars: number, postedAt: string, content: string, botID: string | Snowflake, userID: string | Snowflake): Promise<AxiosResponse> => {
         const feedbackProps: { stars: number, postedAt: string, content: string } = {
@@ -50,20 +43,16 @@ const api = {
             postedAt: postedAt,
             content: content
         };
-        const res: AxiosResponse = await axios.post(`/api/bots/${botID}/feedbacks/${userID}`, feedbackProps, header);
-        return res;
+        return axios.post(`/api/bots/${botID}/feedbacks/${userID}`, feedbackProps, header);
     },
     verifyBotExists: async (botID: Snowflake | string): Promise<AxiosResponse> => {
-        const res: AxiosResponse = await axios.get(`/api/bots/${botID}/exists`, header);
-        return res;
+        return axios.get(`/api/bots/${botID}/exists`, header);
     },
     voteStatus: async (botID: string | Snowflake, userID: string | Snowflake): Promise<AxiosResponse> => {
-        const res: AxiosResponse = await axios.get<AxiosResponse>(`/api/bots/${botID}/vote-status/${userID}`, header);
-        return res;
+        return axios.get<AxiosResponse>(`/api/bots/${botID}/vote-status/${userID}`, header);
     },
     searchBot: async (botName: string): Promise<AxiosResponse> => {
-        const res: AxiosResponse = await axios.get(`/api/bots?name=${botName}`, header);
-        return res;
+        return axios.get(`/api/bots?name=${botName}`, header);
     },
     getBotFeedbacks: async (botID: Snowflake): Promise<AxiosResponse<FeedbackStructure[]>> => {
         return axios.get<FeedbackStructure[]>(`/api/bots/${botID}/feedbacks`, header);
