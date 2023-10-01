@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { BotStructure, DiscordWebhookStructure, FindBotStructure } from "../../types";
 import { ThemeContext } from "../../contexts/ThemeContext";
-import { Input } from "./Input";
+import { Input, TagInput } from "./Input";
 import { borderColor } from "../../utils/theme/border";
 import { shadowColor } from "../../utils/theme/shadow";
 import axios from "axios";
@@ -101,7 +101,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                         <Input register={register} name="sourceCode" text="Digite o site onde tem o código fonte do bot (opcional)" title="Source Code" errors={errors} type="input" />
                         <Input register={register} name="websiteURL" text="Digite o website onde se encontra informações do seu bot. (opcional)" title="Website" errors={errors} type="input" />
                         <Input register={register} name="supportServer" text="Coloque o link do seu servidor de discord onde é o suporte do seu bot (discord.gg/) (opcional)" title="Servidor do seu bot" errors={errors} type="input" />
-                        <Input register={register} name="tags" text="Digite as palavras chaves das características que seu bot possui, separe por virgula (moderação,administração)" required title="Tags" errors={errors} type="input" />
+                        <TagInput register={register} errors={errors} name="tags" text="Digite as palavras chaves das características que seu bot possui, separe por virgula (moderação,administração)" required title="Tags" />
                         <div className="flex justify-center xl:w-[80vw] m-4">
                             <input
                                 type="submit"

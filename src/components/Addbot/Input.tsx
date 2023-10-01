@@ -1,5 +1,7 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useContext, useState } from "react";
 import ReactMarkdown from 'react-markdown';
+import { borderAndBg } from "../../utils/theme/border&bg";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 interface InputProps {
     register: any;
@@ -162,6 +164,59 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         cols={22}
                         className="bg-transparent outline-none w-[100%]"
                     />
+                </div>
+            </div>
+        </div>
+    )
+};
+
+export const TagInput: React.FC<{
+    register: any;
+    title: string;
+    text: string;
+    required: boolean;
+    name: string;
+    errors: any;
+}> = ({ register, title, text, required, name, errors }) => {
+    const { color } = useContext(ThemeContext);
+    const [inputValue, setInputValue] = useState<string>("");
+    const [tags, setTags] = useState<string[]>([]);
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(e.target.value);
+
+        const values = e.target.value.split(',').map((value) => value.trim());
+        setTags(values);
+    };
+
+    return (
+        <div className="text-white xl:w-[88vw] xl:flex-col flex-row flex max-w-[1062px]">
+            <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
+                <div className="text-center">
+                    <strong>{title}</strong>
+                </div>
+                <span className="text-center">{text}</span>
+            </div>
+            <div className="flex flex-col items-center w-[100%] gap-2">
+                <div
+                    className={`justify-center flex outline-none max-w-[600px] xl:max-w-none bg-[#2c2c2c] w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${errors && errors[name]?.message === ""
+                        ? "border-[#ff0000]"
+                        : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
+                        } text-white`}
+                >
+                    <input
+                        {...register(name, { required } || { required: true })}
+                        name={name}
+                        type="text"
+                        value={inputValue}
+                        onChange={handleInputChange}
+                        className="bg-transparent outline-none w-[100%]"
+                    />
+                </div>
+                <div className="flex flex-row gap-3 flex-wrap w-[100%] break-all">
+                    {tags.map(tag => (
+                        <div className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
+                    ))}
                 </div>
             </div>
         </div>
