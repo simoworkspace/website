@@ -45,9 +45,6 @@ const api = {
         };
         return axios.post(`/api/bots/${botID}/feedbacks/${userID}`, feedbackProps, header);
     },
-    verifyBotExists: async (botID: Snowflake | string): Promise<AxiosResponse> => {
-        return axios.get(`/api/bots/${botID}/exists`, header);
-    },
     voteStatus: async (botID: string | Snowflake, userID: string | Snowflake): Promise<AxiosResponse> => {
         return axios.get<AxiosResponse>(`/api/bots/${botID}/vote-status/${userID}`, header);
     },
