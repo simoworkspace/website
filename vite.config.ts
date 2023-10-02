@@ -7,7 +7,7 @@ export default defineConfig({
         // port: 80,
         proxy: {
             "/api": {
-                target: "https://botlist.squareweb.app",
+                target: "http://localhost:80",
                 changeOrigin: true,
                 secure: false,
                 ws: true,
