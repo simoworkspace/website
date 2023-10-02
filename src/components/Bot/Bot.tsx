@@ -42,8 +42,8 @@ export const BotComponent: React.FC = () => {
     };
 
     const verifyBot = async (): Promise<void> => {
-        const res: AxiosResponse<{ exists: boolean }> = await api.verifyBotExists(botid);
-        if (!res.data.exists) return navigate("/");
+        const res: BotStructure = (await api.getAllBots()).data.find((bot: BotStructure) => bot._id === botid);
+        if (!res) return navigate("/"); 
     };
 
     const getBotInDB = async (): Promise<void> => {
