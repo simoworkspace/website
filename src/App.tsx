@@ -1,11 +1,11 @@
-import { Header } from "./components/Header";
+import { Header } from "./components/Header/Header";
 import { Bots } from "./components/BotList/Bots";
 import { Addbot } from "./pages/Addbot";
 import { Routes, Route } from "react-router-dom";
 import { NotFound } from "./pages/NotFound";
-import { Mobilemenu } from "./components/Mobilemenu";
+import { Mobilemenu } from "./components/Mobile/Mobilemenu";
 import { Bot } from "./pages/Bot";
-import { RequireAuth } from "./components/RequireAuth";
+import { RequireAuth } from "./components/Login/RequireAuth";
 import { Vote } from "./pages/Vote";
 import { Tests } from "./pages/Tests";
 import { useContext } from "react";

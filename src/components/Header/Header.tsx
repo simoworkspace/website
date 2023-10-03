@@ -1,6 +1,6 @@
 import React from "react";
-import { UserLogin } from "./Login/Discordlogin";
-import { InputSearch } from "./Search/InputSearch";
+import { UserLogin } from "../Login/Discordlogin";
+import { InputSearch } from "../Search/InputSearch";
 import { Link } from "react-router-dom";
 
 export const Header: React.FC = () => {

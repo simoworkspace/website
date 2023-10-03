@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useEffect, useState } from "react";
-import api from "../utils/api";
-import { UserStructure } from "../types";
+import api from "../../utils/api";
+import { UserStructure } from "../../types";
 import { AxiosResponse } from "axios";
 
 export const RequireAuth: React.FC<{ children: React.ReactNode }> = ({ children }: PropsWithChildren) => {

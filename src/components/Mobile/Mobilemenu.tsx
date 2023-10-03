@@ -4,17 +4,17 @@ import plusIcon from "../assets/svgs/plus.svg";
 import serversIcon from ".././assets/svgs/servers.svg";
 import dotsIcon from "../assets/svgs/dots.svg";
 import React, { useContext, useState } from "react";
-import { UserStructure } from "../types";
-import { UserContext } from "../contexts/UserContext";
-import { ThemeContext } from "../contexts/ThemeContext";
+import { UserStructure } from "../../types";
+import { UserContext } from "../../contexts/UserContext";
+import { ThemeContext } from "../../contexts/ThemeContext";
 import palleteIcon from "../assets/svgs/pallete.svg";
 import arrowIcon from "../assets/svgs/arrow.svg";
 import dashboardIcon from '../assets/svgs/dashboard.svg';
 import logoutIcon from '../assets/svgs/logout.svg';
-import api from "../utils/api";
-import { ChoiceColor } from "./Colors/Choice";
-import { mobileMenu } from "../utils/theme/mobileMenu";
-import { MenuOption } from "./DropdownMenu/Option";
+import api from "../../utils/api";
+import { ChoiceColor } from "../Colors/Choice";
+import { mobileMenu } from "../../utils/theme/mobileMenu";
+import { MenuOption } from "../DropdownMenu/Option";
 
 export const Mobilemenu: React.FC = () => {
     const { user } = useContext<UserStructure | any>(UserContext);
