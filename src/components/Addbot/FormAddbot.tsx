@@ -21,16 +21,16 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             _id: botData?.id as string,
             name: botData?.username as string,
             avatar: botData?.avatar as string,
-            inviteURL: `https://discord.com/api/oauth2/authorize?client_id=${botData?.id}&permissions=70368744177655&scope=bot%20applications.commands`,
-            websiteURL: data.websiteURL,
-            supportServer: data.supportServer,
-            sourceCode: data.sourceCode,
+            invite_url: `https://discord.com/api/oauth2/authorize?client_id=${botData?.id}&permissions=70368744177655&scope=bot%20applications.commands`,
+            website_url: data.website_url,
+            support_server: data.support_server,
+            source_code: data.source_code,
             short_description: data.short_description,
-            longDescription: data.longDescription,
-            prefix: [data.prefix as string],
+            long_description: data.long_description,
+            prefixes: data.prefixes,
             owners: [user?.id as string],
-            createdAt: botData?.createdAt as any,
-            verifiedBot: false,
+            created_at: botData?.createdAt as any,
+            verified: false,
             tags: (data.tags as any).split(","),
             approved: false,
             votes: [],
@@ -46,11 +46,11 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                 fields: [
                     {
                         name: "**Informações**",
-                        value: `**Nome:** ${botData?.username} (\`${botData?.id}\`)\n**Prefixo:** ${formData.prefix}\n**Descrição:** ${formData.short_description}\n**Criado em:** <t:${formData.createdAt}:F> (<t:${formData.createdAt}:R>)`,
+                        value: `**Nome:** ${botData?.username} (\`${botData?.id}\`)\n**Prefixo:** ${formData.prefixes}\n**Descrição:** ${formData.short_description}\n**Criado em:** <t:${formData.created_at}:F> (<t:${formData.created_at}:R>)`,
                     },
                     {
                         name: "Clique abaixo para adiciona-lo no servidor",
-                        value: formData.inviteURL
+                        value: formData.invite_url
                     }
                 ]
             }]
@@ -95,12 +95,12 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                         </h1>
                     </h1>
                     <form onSubmit={handleSubmit(onSubmit)} className="gap-5 items-center justify-center pt-1 flex flex-col">
-                        <Input register={register} name="prefix" required text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash." title="Prefixo" errors={errors} type="input" />
-                        <Input register={register} name="longDescription" text="Digite uma descrição longa que mostre todas as capacidades do seu bot (markdown habilitado!)" title="Descrição longa" errors={errors} type="textlong" setPreview={setPreview} preview={preview} required />
+                        <Input register={register} name="prefixes" required text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash." title="Prefixo" errors={errors} type="input" />
+                        <Input register={register} name="long_description" text="Digite uma descrição longa que mostre todas as capacidades do seu bot (markdown habilitado!)" title="Descrição longa" errors={errors} type="textlong" setPreview={setPreview} preview={preview} required />
                         <Input register={register} name="short_description" text="Digite uma descrição curta que irá aparecer na página inicial." title="Descrição curta" required errors={errors} type="input" />
-                        <Input register={register} name="sourceCode" text="Digite o site onde tem o código fonte do bot (opcional)" title="Source Code" errors={errors} type="input" />
-                        <Input register={register} name="websiteURL" text="Digite o website onde se encontra informações do seu bot. (opcional)" title="Website" errors={errors} type="input" />
-                        <Input register={register} name="supportServer" text="Coloque o link do seu servidor de discord onde é o suporte do seu bot (discord.gg/) (opcional)" title="Servidor do seu bot" errors={errors} type="input" />
+                        <Input register={register} name="source_code" text="Digite o site onde tem o código fonte do bot (opcional)" title="Source Code" errors={errors} type="input" />
+                        <Input register={register} name="website_url" text="Digite o website onde se encontra informações do seu bot. (opcional)" title="Website" errors={errors} type="input" />
+                        <Input register={register} name="support_server" text="Coloque o link do seu servidor de discord onde é o suporte do seu bot (discord.gg/) (opcional)" title="Servidor do seu bot" errors={errors} type="input" />
                         <TagInput register={register} errors={errors} name="tags" text="Digite as palavras chaves das características que seu bot possui, separe por virgula (moderação,administração)" required title="Tags" />
                         <div className="flex justify-center xl:w-[80vw] m-4">
                             <input
