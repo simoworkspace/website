@@ -20,7 +20,7 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
                 </figure>
             )}
             <img
-                className="w-[min(100%,100px)] h-[min(100%,100px)] rounded-full mt-2 mr-2 float-right"
+                className="w-[100px] h-[100px] rounded-full mt-2 mr-2 float-right"
                 src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png?size=2048`}
                 alt={bot.name}
             />
