@@ -14,6 +14,7 @@ import { appColor } from "./utils/theme/app";
 import { Search } from "./pages/Search";
 import "./index.css";
 import { Footer } from "./components/Footer/Footer";
+import { User } from "./components/User/User";
 
 function App() {
     const { color } = useContext(ThemeContext);
@@ -30,8 +31,8 @@ function App() {
                     <Route path="/vote/:botid" element={<Vote />} />
                     <Route path="/" element={<Bots />} />
                     <Route path="/search" element={<Search />} />
-                    <Route path="addbot" element={<RequireAuth><Addbot /></RequireAuth>}
-                    />
+                    <Route path="addbot" element={<RequireAuth><Addbot /></RequireAuth>}/>
+                    <Route path="/users/:userid" element={<User/>}/>
                     <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Mobilemenu />
