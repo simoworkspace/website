@@ -80,16 +80,16 @@ export interface BotStructure {
     _id: Snowflake;
     name: string;
     avatar: string;
-    inviteURL: string;
-    websiteURL: string;
-    supportServer: string;
-    sourceCode: string;
+    invite_url: string;
+    website_url: string;
+    support_server: string;
+    source_code: string;
     short_description: string;
-    longDescription: string;
-    prefix: string[] | string;
+    long_description: string;
+    prefixes: string[];
     owners: Snowflake[];
-    createdAt: string;
-    verifiedBot: boolean;
+    created_at: string;
+    verified: boolean;
     tags: string[];
     approved: boolean;
     votes: VoteStructure[];
@@ -98,7 +98,7 @@ export interface BotStructure {
 export interface VoteStructure {
     votes: number;
     user: Snowflake;
-    lastVote: string;
+    last_vote: string;
 }
 
 export interface UserStructure {
