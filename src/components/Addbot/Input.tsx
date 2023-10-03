@@ -124,7 +124,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         })}
                         onChange={handleInputChange}
                         rows={5}
-                        maxLength={500}
+                        maxLength={2048}
                         minLength={200}
                         cols={22}
                         name="longDescription"
