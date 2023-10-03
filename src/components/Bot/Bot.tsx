@@ -121,7 +121,7 @@ export const BotComponent: React.FC = () => {
                 <section className={`w-[90%] bg-neutral-900 border-2 ${borderColor[color]} border-t-0 rounded-t-none rounded-lg p-10 xl:p-3`}>
                     <div className="flex flex-row xl:flex-col">
                         <div className="w-[80%] xl:w-[100%] flex break-words xl:justify-center">
-                            <Markdown markdown={bot.longDescription} className="w-[100%]" />
+                            <Markdown markdown={bot.long_description} className="w-[100%]" />
                         </div>
                         <div className="w-[1px] bg-[#8b8b8b]" />
                         <hr className="xl:my-4 xl:w-[100%]" />
@@ -145,7 +145,7 @@ export const BotComponent: React.FC = () => {
                                 <hr className="my-4 w-[100%]" />
                                 <div className="flex flex-col w-[100%] gap-3">
                                     <div>
-                                        <strong className="text-lg">Prefixo </strong><span>{bot.prefix}</span>
+                                        <strong className="text-lg">Prefixo </strong><span>{bot.prefixes.join(", ")}</span>
                                     </div>
                                     <div>
                                         <strong className="text-lg">Votos </strong><span>{bot.votes.length}</span>
@@ -161,20 +161,20 @@ export const BotComponent: React.FC = () => {
                                     <h1 className="text-2xl text-center">Links</h1>
                                     <hr className="my-1 w-[100%]" />
                                     <div className="flex flex-col gap-3 flex-wrap">
-                                        <Link to={bot.supportServer.includes("https://") ? bot.supportServer : "https://" + bot.supportServer} className="flex items-center gap-3 p-2">
+                                        <Link to={bot.support_server.includes("https://") ? bot.support_server : "https://" + bot.support_server} className="flex items-center gap-3 p-2">
                                             <img className="w-[30px]" src={discordIcon} alt="Discord Icon" />
                                             <span>Servidor de suporte</span>
                                         </Link>
-                                        {bot.sourceCode && (
-                                            <Link to={bot.sourceCode.includes("https://") ? bot.sourceCode : "https://" + bot.sourceCode} className="flex items-center gap-3 p-2">
+                                        {bot.source_code && (
+                                            <Link to={bot.source_code.includes("https://") ? bot.source_code : "https://" + bot.source_code} className="flex items-center gap-3 p-2">
                                                 <img className="w-[30px]" src={githubIcon} alt="Github Icon" />
                                                 <span>Repositório</span>
                                             </Link>
                                         )}
-                                        {bot.websiteURL && (
-                                            <Link to={bot.websiteURL.includes("https://") ? bot.websiteURL : "https://" + bot.websiteURL} className="flex items-center gap-3 p-2">
+                                        {bot.website_url && (
+                                            <Link to={bot.website_url.includes("https://") ? bot.website_url : "https://" + bot.website_url} className="flex items-center gap-3 p-2">
                                                 <img className="w-[30px]" src={globIcon} alt="Globe Icon" />
-                                                <span>Website (<span className="text-blue-600">{bot.websiteURL}</span>)</span>
+                                                <span>Website (<span className="text-blue-600">{bot.website_url}</span>)</span>
                                             </Link>
                                         )}
                                     </div>
