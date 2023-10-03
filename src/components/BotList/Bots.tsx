@@ -22,6 +22,6 @@ export const Bots: React.FC = () => {
             {data.map((bot: BotStructure) => (<BotCard bot={bot} />))}
         </div>
     ) : (
-        <Botloading />
+        <Botloading fills={6}/>
     );
 };
