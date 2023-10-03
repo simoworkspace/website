@@ -10,12 +10,10 @@ import { UserLoading } from "./UserLoading";
 
 export const User: React.FC = () => {
     const params: Params = useParams<string>();
-    const userid: string | undefined = params.userid;
+    const userid: string = params.userid as string;
     const [discordUser, setDiscordUser] = useState<DiscordUser>();
     const [userBots, setUserBots] = useState<BotStructure[]>();
     const { color } = useContext(ThemeContext);
-
-    if (!userid) return window.location.href = "/";
 
     const getUserData: () => Promise<void> = async (): Promise<void> => {
         const req: AxiosResponse<DiscordUser> = await api.getDiscordUser(userid);
