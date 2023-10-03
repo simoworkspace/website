@@ -6,7 +6,7 @@ import { AxiosResponse } from "axios";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { borderColor } from "../../utils/theme/border";
 import { BotCard } from "../BotList/BotCard";
-import { Botloading } from "../BotList/Botloading";
+import { UserLoading } from "./UserLoading";
 
 export const User: React.FC = () => {
     const params: Params = useParams<string>();
@@ -36,7 +36,7 @@ export const User: React.FC = () => {
     return (
         <main>
             {!discordUser || !userBots ? (
-                <div>carregando</div>
+                <UserLoading />
             ) : (
                 <section className="w-[100vw] flex flex-row p-5 text-white items-center justify-center gap-10 xl:flex-col">
                     <div className={`${borderColor[color]} border-2 w-[300px] h-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col`}>
@@ -55,9 +55,13 @@ export const User: React.FC = () => {
                         <h1 className="text-[33px]">Perfil de <strong>{discordUser.username}</strong></h1>
                         <hr className="w-full my-3" />
                         <section className="w-full">
-                            <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left">
-                                {userBots.map((bot: BotStructure) => (<BotCard bot={bot} />))}
-                            </div>
+                            {userBots.length === 0 ? (
+                                <div className="text-center text-[22px]">{discordUser.username} não tem bots para serem listados.</div>
+                            ) : (
+                                <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left">
+                                    {userBots.map((bot: BotStructure) => (<BotCard bot={bot} />))}
+                                </div>
+                            )}
                         </section>
                     </div>
                 </section>
