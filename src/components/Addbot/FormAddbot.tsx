@@ -8,6 +8,7 @@ import { shadowColor } from "../../utils/theme/shadow";
 import axios from "axios";
 import { UserContext } from "../../contexts/UserContext";
 import api from "../../utils/api";
+import { buttonColor } from "../../utils/theme/button";
 
 export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSteps: (value: number) => void }> = ({ botData, setSteps }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<BotStructure>();
@@ -63,7 +64,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                     url: `https://cdn.discordapp.com/avatars/${formData._id}/${formData.avatar}.png`
                 },
                 title: "✅ | Análise",
-                color: 0x5fff57,
+                color: 0x0000ff,
                 description: `O seu bot: **${botData?.username}** (\`${botData?.id}\`) foi enviado pra análise.`
             }]
         };
@@ -106,7 +107,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                             <input
                                 type="submit"
                                 value="Enviar bot"
-                                className="cursor-pointer focus:duration-0 transition-all duration-300 items-center border-neutral-700 bg-neutral-900 hover:bg-neutral-700 border-2 w-[300px] rounded-xl h-[60px] text-white focus:outline focus:outline-offset-2 focus:outline-white focus:utline-2"
+                                className={`cursor-pointer transition-all duration-300 items-center border-2 w-[300px] rounded-xl h-[60px] text-white ${buttonColor[color]}`}
                             />
                         </div>
                     </form>

@@ -116,7 +116,7 @@ export const FindBot: React.FC<{
                         </div>
                         <div className="flex flex-row items-center w-[100%] text-white">
                             <div className="flex justify-center flex-grow items-center m-4 xl:m-0 xl:mt-2">
-                                <button type="submit" onClick={() => setSubmit(true)} className="cursor-pointer xl:w-[100%] w-[300px] transition-all duration-300 items-center border-neutral-700 bg-neutral-900 hover:bg-neutral-700 border-2 rounded-xl h-[60px] text-white focus:bg-neutral-700">
+                                <button type="submit" onClick={() => setSubmit(true)} className={`cursor-pointer xl:w-[100%] w-[300px] transition-all duration-300 items-center border-2 rounded-xl h-[60px] text-white ${buttonColor[color]}`}>
                                     <span>Verificar ID</span>
                                 </button>
                             </div>
