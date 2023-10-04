@@ -119,7 +119,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                 >
                     <textarea
                         value={markdown}
-                        {...register("longDescription", {
+                        {...register(name, {
                             required: true,
                         })}
                         onChange={handleInputChange}
