@@ -127,7 +127,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         maxLength={2048}
                         minLength={200}
                         cols={22}
-                        name="longDescription"
+                        name={name}
                         className="bg-transparent outline-none w-[100%] scrollbar-thin"
                     />
                 </div>
