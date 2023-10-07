@@ -82,7 +82,9 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
         await axios.post("/api/webhook/bot", bodyVerificar, header);
         await axios.post("/api/webhook/raw", {
             content: `\`\`\`json\n${JSON.stringify(formData, null, '\t')}\`\`\``
-        }, header).then(() => setSteps(2));
+        }, header);
+
+        setSteps(2)
     };
 
     return (
