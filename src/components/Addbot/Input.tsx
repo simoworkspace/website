@@ -6,8 +6,10 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 interface InputProps {
     register: any;
     name: string;
+    data?: any
     required?: boolean;
     text: string;
+    inputType?: React.HTMLInputTypeAttribute;
     title: string;
     errors: any;
     type: "textarea" | "input" | "textlong";
@@ -19,7 +21,7 @@ interface InputProps {
     setPreview?: any | ((value: boolean) => void);
 }
 
-export const Input: React.FC<InputProps> = ({ register, name, required, text, title, errors, type, preview, setPreview }) => {
+export const Input: React.FC<InputProps> = ({ register, name, required, text, title, errors, type, preview, setPreview, maxLength, minLength, inputType }) => {
     const [markdown, setMarkdown] = useState<string>('');
 
     const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -91,6 +93,9 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                     <input
                         {...register(name, { required } || { required: true })}
                         name={name}
+                        maxLength={maxLength}
+                        minLength={minLength}
+                        type={inputType}
                         className="bg-transparent outline-none w-[100%]"
                     />
                 </div>
