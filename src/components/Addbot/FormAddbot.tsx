@@ -32,7 +32,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             source_code: data.source_code,
             short_description: data.short_description,
             long_description: data.long_description,
-            prefixes: (data.prefixes as any).join(", "),
+            prefixes: data.prefixes,
             owners: [user?.id as string],
             created_at: botData?.createdAt as any,
             verified: false,
