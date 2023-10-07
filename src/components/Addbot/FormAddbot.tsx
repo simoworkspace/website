@@ -12,11 +12,15 @@ import { buttonColor } from "../../utils/theme/button";
 
 export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSteps: (value: number) => void }> = ({ botData, setSteps }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<BotStructure>();
+
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
+
+    const [submited, setSubmited] = useState<boolean>(false);
     const [preview, setPreview] = useState<boolean>(false);
+
     const onSubmit: SubmitHandler<BotStructure> = async (data: BotStructure): Promise<void> => {
-        setSteps(2);
+        setSubmited(true);
 
         const formData: BotStructure = {
             _id: botData?.id as string,
@@ -28,7 +32,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             source_code: data.source_code,
             short_description: data.short_description,
             long_description: data.long_description,
-            prefixes: data.prefixes,
+            prefixes: (data.prefixes as any).join(", "),
             owners: [user?.id as string],
             created_at: botData?.createdAt as any,
             verified: false,
@@ -51,7 +55,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                     },
                     {
                         name: "Clique abaixo para adiciona-lo no servidor",
-                        value: formData.invite_url
+                        value: `https://discord.com/api/oauth2/authorize?client_id=${botData?.id}&scope=bot%20applications.commands`
                     }
                 ]
             }]
@@ -68,20 +72,17 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                 description: `O seu bot: **${botData?.username}** (\`${botData?.id}\`) foi enviado pra análise.`
             }]
         };
-        const header: {
-            headers: {
-                Authorization: string
-            }
-        } = {
+        const header = {
             headers: {
                 Authorization: await api.getToken()
             }
         };
+        
         await axios.post("/api/webhook/addbot", bodyOwner, header);
         await axios.post("/api/webhook/bot", bodyVerificar, header);
         await axios.post("/api/webhook/raw", {
             content: `\`\`\`json\n${JSON.stringify(formData, null, '\t')}\`\`\``
-        }, header);
+        }, header).then(() => setSteps(2));
     };
 
     return (
@@ -96,17 +97,18 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                         </h1>
                     </h1>
                     <form onSubmit={handleSubmit(onSubmit)} className="gap-5 items-center justify-center pt-1 flex flex-col">
-                        <Input register={register} name="prefixes" required text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash." title="Prefixo" errors={errors} type="input" />
+                        <Input register={register} name="prefixes" required text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash. separe por virgula (s!, S!)" title="Prefixo" errors={errors} type="input" />
                         <Input register={register} name="long_description" text="Digite uma descrição longa que mostre todas as capacidades do seu bot (markdown habilitado!)" title="Descrição longa" errors={errors} type="textlong" setPreview={setPreview} preview={preview} required />
-                        <Input register={register} name="short_description" text="Digite uma descrição curta que irá aparecer na página inicial." title="Descrição curta" required errors={errors} type="input" />
-                        <Input register={register} name="source_code" text="Digite o site onde tem o código fonte do bot (opcional)" title="Source Code" errors={errors} type="input" />
-                        <Input register={register} name="website_url" text="Digite o website onde se encontra informações do seu bot. (opcional)" title="Website" errors={errors} type="input" />
-                        <Input register={register} name="support_server" text="Coloque o link do seu servidor de discord onde é o suporte do seu bot (discord.gg/) (opcional)" title="Servidor do seu bot" errors={errors} type="input" />
-                        <TagInput register={register} errors={errors} name="tags" text="Digite as palavras chaves das características que seu bot possui, separe por virgula (moderação,administração)" required title="Tags" />
+                        <Input register={register} name="short_description" text="Digite uma descrição curta que irá aparecer na página inicial." title="Descrição curta" required errors={errors} type="input" minLength={50} maxLength={80} />
+                        <Input register={register} name="source_code" text="Digite o site onde tem o código fonte do bot (opcional)" title="Source Code" errors={errors} type="input" inputType="url" />
+                        <Input register={register} name="website_url" text="Digite o website onde se encontra informações do seu bot. (opcional)" title="Website" errors={errors} type="input" inputType="url" />
+                        <Input register={register} name="support_server" text="Coloque o link do seu servidor de discord onde é o suporte do seu bot (https://discord.gg/) (opcional)" title="Servidor do seu bot" errors={errors} type="input" inputType="url" />
+                        <TagInput register={register} errors={errors} name="tags" text="Digite as palavras chaves das características que seu bot possui, separe por virgula (moderação, administração)" required title="Tags" />
                         <div className="flex justify-center xl:w-[80vw] m-4">
                             <input
                                 type="submit"
                                 value="Enviar bot"
+                                disabled={submited}
                                 className={`cursor-pointer transition-all duration-300 items-center border-2 w-[300px] rounded-xl h-[60px] text-white ${buttonColor[color]}`}
                             />
                         </div>
