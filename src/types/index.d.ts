@@ -38,7 +38,8 @@ export interface FindBotStructure {
     username: string;
     id: Snowflake | string;
     avatar: string;
-    createdAt: number;
+    created_at: string;
+    verified: boolean;
 }
 
 export interface FeedbackStructure {
