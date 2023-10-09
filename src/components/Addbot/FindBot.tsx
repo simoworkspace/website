@@ -13,18 +13,22 @@ export const FindBot: React.FC<{
     botData: FindBotStructure | undefined;
 }> = ({ setSteps, setBotData, botData }) => {
     const { color } = useContext(ThemeContext);
-    const [submit, setSubmit] = useState<boolean>(false);
+
     const [id, setID] = useState<string>();
     const [isBot, setIsBot] = useState<boolean>(false);
+
+    const [submit, setSubmit] = useState<boolean>(false);
     const [alreadyExists, setAlreadyExists] = useState<boolean>();
 
     const getBotData = async (botid: string): Promise<void> => {
         try {
             const req: AxiosResponse<DiscordUser> = await api.getDiscordUser(botid);
-            const { id, avatar, username } = req.data;
-            const createdAt = Math.round(new Date(id as any / 4194304 + 1420070400000).getTime() / 1000);
+            const { id, avatar, username, public_flags, flags } = req.data;
+            const date: number = Math.round(new Date(id as any / 4194304 + 1420070400000).getTime() / 1000);
+            const createdAt: string = `${new Date(date)}`;
             const allbots: AxiosResponse<BotStructure[]> = await api.getAllBots();
-
+            const verified: boolean = (flags & (1 << 16)) !== 0;
+            
             setIsBot(Object.keys(req.data).includes("bot"));
             setAlreadyExists(allbots.data.map((bot: BotStructure) => bot._id).includes(botid));
 
@@ -32,10 +36,11 @@ export const FindBot: React.FC<{
                 id: id,
                 avatar: avatar,
                 username: username,
-                createdAt: createdAt
+                created_at: createdAt,
+                verified: verified
             });
 
-        } catch (error) {
+        } catch {
             setIsBot(false);
         };
     };
