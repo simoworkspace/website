@@ -20,6 +20,8 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
     const [preview, setPreview] = useState<boolean>(false);
 
     const onSubmit: SubmitHandler<BotStructure> = async (data: BotStructure): Promise<void> => {
+        const token = await api.getToken();
+
         setSubmited(true);
 
         const formData: BotStructure = {
@@ -32,13 +34,13 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             source_code: data.source_code,
             short_description: data.short_description,
             long_description: data.long_description,
-            prefixes: data.prefixes,
+            prefixes: (data.prefixes as any).split(", "),
             owners: [user?.id as string],
-            created_at: botData?.createdAt as any,
-            verified: false,
+            created_at: botData?.created_at as string,
+            verified: botData?.verified as boolean,
             tags: (data.tags as any).split(","),
             approved: false,
-            votes: [],
+            votes: []
         };
 
         const bodyVerificar: DiscordWebhookStructure = {
@@ -51,7 +53,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                 fields: [
                     {
                         name: "**Informações**",
-                        value: `**Nome:** ${botData?.username} (\`${botData?.id}\`)\n**Prefixo:** ${formData.prefixes}\n**Descrição:** ${formData.short_description}\n**Criado em:** <t:${formData.created_at}:F> (<t:${formData.created_at}:R>)`,
+                        value: `**Nome:** ${botData?.username} (\`${botData?.id}\`)\n**Prefixo:** ${formData.prefixes}\n**Descrição:** ${formData.short_description}\n**Criado em:** <t:${new Date(formData.created_at)}:F> (<t:${new Date(formData.created_at)}:R>)`,
                     },
                     {
                         name: "Clique abaixo para adiciona-lo no servidor",
@@ -71,21 +73,27 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                 color: 0x0000ff,
                 description: `O seu bot: **${botData?.username}** (\`${botData?.id}\`) foi enviado pra análise.`
             }]
-        };
-        const header = {
-            headers: {
-                Authorization: await api.getToken()
-            }
-        };
-        
-        await axios.post("/api/webhook/addbot", bodyOwner, header);
-        await axios.post("/api/webhook/bot", bodyVerificar, header);
-        await axios.post("/api/webhook/raw", {
-            content: `\`\`\`json\n${JSON.stringify(formData, null, '\t')}\`\`\``
-        }, header);
+            };
 
-        setSteps(2)
-    };
+            const header = {
+                headers: {
+                    Authorization: token
+                }
+            };
+
+            await axios.post("/api/webhook/addbot", bodyOwner, header);
+            await axios.post("/api/webhook/bot", bodyVerificar, header);
+
+            await api.addBot(formData, formData._id);
+
+            formData.long_description = formData.long_description.slice(0, 800);
+
+            await axios.post("/api/webhook/raw", {
+                content: `\`\`\`json\n${JSON.stringify(formData, null, "\t")}\`\`\``
+            }, header);
+
+            setSteps(2);
+        };
 
     return (
         <div className="mb-[70px] p-3 w-[100vw] flex items-center justify-center">
@@ -99,7 +107,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                         </h1>
                     </h1>
                     <form onSubmit={handleSubmit(onSubmit)} className="gap-5 items-center justify-center pt-1 flex flex-col">
-                        <Input register={register} name="prefixes" required text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash. separe por virgula (s!, S!)" title="Prefixo" errors={errors} type="input" />
+                    <TagInput register={register} errors={errors} name="prefixes" text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash. separe por virgula (s!, S!)" required title="Prefixo" />
                         <Input register={register} name="long_description" text="Digite uma descrição longa que mostre todas as capacidades do seu bot (markdown habilitado!)" title="Descrição longa" errors={errors} type="textlong" setPreview={setPreview} preview={preview} required />
                         <Input register={register} name="short_description" text="Digite uma descrição curta que irá aparecer na página inicial." title="Descrição curta" required errors={errors} type="input" minLength={50} maxLength={80} />
                         <Input register={register} name="source_code" text="Digite o site onde tem o código fonte do bot (opcional)" title="Source Code" errors={errors} type="input" inputType="url" />
