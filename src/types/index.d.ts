@@ -39,6 +39,7 @@ export interface FindBotStructure {
     id: Snowflake | string;
     avatar: string;
     created_at: string;
+    discord_date: number
     verified: boolean;
 }
 
