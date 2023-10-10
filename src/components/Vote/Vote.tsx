@@ -8,6 +8,7 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { VoteLoading } from "./Loading";
 import { buttonColor } from "../../utils/theme/button";
 import { BotCard } from "../BotList/BotCard";
+import { borderColor } from "../../utils/theme/border";
 
 export const VoteComponent: React.FC = () => {
     const { user } = useContext(UserContext);
@@ -58,7 +59,7 @@ export const VoteComponent: React.FC = () => {
     return user ? (
         discordBotData ? (
             <section className="text-white p-3 w-[100vw] flex flex-col items-center justify-center">
-                <div className="flex flex-row p-3 rounded-lg items-center gap-3">
+                <div className={`flex flex-row rounded-lg items-center gap-3 bg-neutral-900 w-[70%] max-w-[900px] xl:text-center xl:flex-col xl:w-[80vw] p-4 justify-center border-2 ${borderColor[color]} border-b-0 rounded-b-none`}>
                     <img
                         className="w-[100px] rounded-full"
                         src={`https://cdn.discordapp.com/avatars/${discordBotData?.id}/${discordBotData?.avatar}.png?size=2048`}
@@ -69,7 +70,7 @@ export const VoteComponent: React.FC = () => {
                         <span>Votos: {votes}</span>
                     </div>
                 </div>
-                <div className="flex xl:flex-col border-2 xl:w-[100%] xl:justify-center xl:items-center xl:h-[100%] w-[60vw] h-[80px] flex-row rounded-lg items-center bg-neutral-900">
+                <div className={`flex xl:flex-col border-2 ${borderColor[color]} xl:w-[100%] xl:justify-center xl:items-center xl:h-[100%] w-[80%] h-[80px] flex-row rounded-lg items-center bg-neutral-900  max-w-[1500px]`}>
                     <span className="text-[20px] w-[82%] ml-3 xl:items-center xl:flex xl:justify-center xl:ml-0 xl:mb-2 xl:flex-col">{
                         voted
                             ?
