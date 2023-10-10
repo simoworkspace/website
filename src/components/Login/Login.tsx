@@ -1,8 +1,14 @@
+import { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import { buttonColor } from "../../utils/theme/button";
+
 export const LoginButton: React.FC = () => {
+    const { color } = useContext(ThemeContext);
+
     return (
         <div className="flex text-white w-[200px] h-[50px] xl:hidden">
-            <a className="flex text-white items-center h-[100%] w-[80%] justify-center border-[#858585] border-[1px] bg-black p-6 transition-colors duration-300 hover:bg-neutral-950 hover:border-white" href={import.meta.env.VITE_AUTH_LINK as string}>
-                <div>Login</div>
+            <a className={`${buttonColor[color]} duration-300 transtion-colors py-4 px-6 rounded-lg border-2 flex items-center`} href={import.meta.env.VITE_AUTH_LINK as string}>
+                <span>Login</span>
             </a>
         </div>
     )
