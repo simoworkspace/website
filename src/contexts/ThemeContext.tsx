@@ -2,12 +2,12 @@ import React, { createContext, useEffect, useState } from "react";
 import { ThemeContextProps, Theme } from "../types";
 
 export const ThemeContext = createContext<ThemeContextProps>({
-    color: "blue",
+    color: "purple",
     changeTheme: () => {},
 });
 
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }: React.PropsWithChildren) => {
-    const [color, setTheme] = useState<Theme>("blue");
+    const [color, setTheme] = useState<Theme>("purple");
 
     const changeTheme = (newTheme: Theme) => {
         setTheme(newTheme);
