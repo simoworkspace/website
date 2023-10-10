@@ -32,7 +32,7 @@ export const User: React.FC = () => {
     }, []);
 
     return (
-        <main>
+        <main className="max-w-[1500px] flex justify-center">
             {!discordUser || !userBots ? (
                 <UserLoading />
             ) : (
