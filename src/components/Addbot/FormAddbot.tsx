@@ -46,7 +46,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
         const bodyVerificar: DiscordWebhookStructure = {
             embeds: [{
                 title: "📎 | Novo bot para ser verificado",
-                color: 0x58b4f5,
+                color: 0x054F77,
                 thumbnail: {
                     url: `https://cdn.discordapp.com/avatars/${botData?.id}/${botData?.avatar}.png`
                 },
@@ -70,7 +70,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                     url: `https://cdn.discordapp.com/avatars/${formData._id}/${formData.avatar}.png`
                 },
                 title: "✅ | Análise",
-                color: 0x0000ff,
+                color: 0x054F77,
                 description: `O seu bot: **${botData?.username}** (\`${botData?.id}\`) foi enviado pra análise.`
             }]
             };
