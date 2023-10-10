@@ -12,18 +12,17 @@ import { useContext } from "react";
 import { ThemeContext } from "./contexts/ThemeContext";
 import { appColor } from "./utils/theme/app";
 import { Search } from "./pages/Search";
-import "./index.css";
 import { Footer } from "./components/Footer/Footer";
 import { User } from "./components/User/User";
+
+import "./index.css";
 
 function App() {
     const { color } = useContext(ThemeContext);
 
     return (
-        <main className={`xl:scrollbar-hide overflow-x-hidden min-h-[100vh] ${appColor[color]} bg-fixed h-1 xl:h-0 scrollbar-track-neutral-900 scrollbar-thin`}>
-            <header>
-                <Header />
-            </header>
+        <main className={`xl:scrollbar-hide flex flex-col items-center overflow-x-hidden min-h-[100vh] ${appColor[color]} bg-fixed h-1 xl:h-0 scrollbar-track-neutral-900 scrollbar-thin`}>
+            <Header />
             <section>
                 <Routes>
                     <Route path="/testes" element={<Tests />} />
