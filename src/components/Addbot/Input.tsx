@@ -195,7 +195,6 @@ export const TagInput: React.FC<{
         if (values.length > 4) {
             setInputValue(values.join(","));
             setTags(values.splice(0, 4));
-            console.log(tags, inputValue);
         } else {
             setTags(values);
         }

@@ -23,8 +23,6 @@ export const Mobilemenu: React.FC = () => {
     const [themesClick, setThemesClick] = useState<boolean>(false);
     const selectedTheme = localStorage.getItem("theme") || "blue";
 
-    console.log(maisClick, themesClick)
-
     return (
         <div className={`hidden xl:fixed xl:bottom-0 xl:left-0 xl:w-full border-t-2 transition-colors duration-300 ${mobileMenu[color]} xl:text-white xl:py-3 xl:flex xl:justify-around xl:items-center`}>
             {user ? (
