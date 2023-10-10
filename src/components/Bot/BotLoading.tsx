@@ -2,7 +2,7 @@ import React from "react";
 
 export const BotLoading: React.FC = () => {
     return (
-        <div className="w-[100vw]">
+        <div className="w-[100vw] max-w-[1500px]">
             <div className="flex flex-col items-center justify-center">
                 <section className="flex items-center xl:flex-col justify-center w-[100%] xl:mt-2 mt-[30px] text-white">
                     <div className="bg-neutral-900 rounded-xl flex xl:flex-col xl:h-[320px] h-[120px] w-[95%] border-2 items-center justify-center">
