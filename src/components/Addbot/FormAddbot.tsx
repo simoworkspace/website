@@ -9,6 +9,7 @@ import axios from "axios";
 import { UserContext } from "../../contexts/UserContext";
 import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
+import * as icon from "react-icons/ai"
 
 export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSteps: (value: number) => void }> = ({ botData, setSteps }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<BotStructure>();
@@ -20,9 +21,9 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
     const [preview, setPreview] = useState<boolean>(false);
 
     const onSubmit: SubmitHandler<BotStructure> = async (data: BotStructure): Promise<void> => {
-        const token = await api.getToken();
-
         setSubmited(true);
+
+        const token = await api.getToken();
 
         const formData: BotStructure = {
             _id: botData?.id as string,
@@ -34,7 +35,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             source_code: data.source_code,
             short_description: data.short_description,
             long_description: data.long_description,
-            prefixes: (data.prefixes as any).split(", "),
+            prefixes: (data.prefixes as any).split(",").map((a: string) => a.trim()),
             owners: [user?.id as string],
             created_at: botData?.created_at as string,
             verified: botData?.verified as boolean,
@@ -53,7 +54,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                 fields: [
                     {
                         name: "**Informações**",
-                        value: `**Nome:** ${botData?.username} (\`${botData?.id}\`)\n**Prefixo:** ${formData.prefixes}\n**Descrição:** ${formData.short_description}\n**Criado em:** <t:${new Date(formData.created_at)}:F> (<t:${new Date(formData.created_at)}:R>)`,
+                        value: `**Nome:** ${botData?.username} (\`${botData?.id}\`)\n**Prefixo:** ${formData.prefixes}\n**Descrição:** ${formData.short_description}\n**Criado em:** <t:${botData?.discord_date}:F> (<t:${botData?.discord_date}:R>)`,
                     },
                     {
                         name: "Clique abaixo para adiciona-lo no servidor",
@@ -107,20 +108,21 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                         </h1>
                     </h1>
                     <form onSubmit={handleSubmit(onSubmit)} className="gap-5 items-center justify-center pt-1 flex flex-col">
-                    <TagInput register={register} errors={errors} name="prefixes" text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash. separe por virgula (s!, S!)" required title="Prefixo" />
+                        <Input register={register} errors={errors} name="prefixes" text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash. separe por virgula (s!, S!)" required title="Prefixo" type="input" maxLength={16}/>
                         <Input register={register} name="long_description" text="Digite uma descrição longa que mostre todas as capacidades do seu bot (markdown habilitado!)" title="Descrição longa" errors={errors} type="textlong" setPreview={setPreview} preview={preview} required />
                         <Input register={register} name="short_description" text="Digite uma descrição curta que irá aparecer na página inicial." title="Descrição curta" required errors={errors} type="input" minLength={50} maxLength={80} />
                         <Input register={register} name="source_code" text="Digite o site onde tem o código fonte do bot (opcional)" title="Source Code" errors={errors} type="input" inputType="url" />
                         <Input register={register} name="website_url" text="Digite o website onde se encontra informações do seu bot. (opcional)" title="Website" errors={errors} type="input" inputType="url" />
                         <Input register={register} name="support_server" text="Coloque o link do seu servidor de discord onde é o suporte do seu bot (https://discord.gg/) (opcional)" title="Servidor do seu bot" errors={errors} type="input" inputType="url" />
                         <TagInput register={register} errors={errors} name="tags" text="Digite as palavras chaves das características que seu bot possui, separe por virgula (moderação, administração)" required title="Tags" />
-                        <div className="flex justify-center xl:w-[80vw] m-4">
+                        <div className="flex justify-center xl:w-[80vw] m-4 items-center gap-3">
                             <input
                                 type="submit"
                                 value="Enviar bot"
                                 disabled={submited}
-                                className={`cursor-pointer transition-all duration-300 items-center border-2 w-[300px] rounded-xl h-[60px] text-white ${buttonColor[color]}`}
+                                className={`disabled:cursor-default disabled:opacity-70 cursor-pointer transition-all duration-300 items-center border-2 w-[300px] rounded-xl h-[60px] text-white ${buttonColor[color]}`}
                             />
+                            {submited && <icon.AiOutlineLoading3Quarters fill="#fff" size={30} className="animate-spin"/>}
                         </div>
                     </form>
                 </div>
