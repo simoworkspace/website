@@ -190,8 +190,8 @@ export const TagInput: React.FC<{
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setInputValue(e.target.value);
 
-        const values = e.target.value.split(',').map((value) => value.trim());
-
+        const values = e.target.value.split(",").map((value) => value.trim());
+        
         if (values.length > 4) {
             setInputValue(values.join(","));
             setTags(values.splice(0, 4));
