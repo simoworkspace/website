@@ -21,8 +21,15 @@ export const FeedbackCard: React.FC<{ feedback: FeedbackStructure, botid: string
         setEditedContent(event.target.value);
     };
 
-    const handleSubmitEdit  = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
+    const handleSubmitEdit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
         setSubmited(true);
+
+        if (editedContent === "") {
+            setSubmited(false);
+            setIsEdit(false);
+            return;
+        }
+
         event.preventDefault();
 
         await api.deleteFeedback(botid, user?.id as string);
