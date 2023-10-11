@@ -37,13 +37,17 @@ const api = {
         }
         return axios.post<AxiosResponse<VoteStructure>>(`/api/bots/${botID}/votes`, voteProps, header);
     },
-    postFeedback: async (stars: number, postedAt: string, content: string, botID: string | Snowflake, userID: string | Snowflake): Promise<AxiosResponse> => {
-        const feedbackProps: { stars: number, postedAt: string, content: string } = {
+    postFeedback: async (stars: number, posted_at: string, content: string, botID: string | Snowflake, userID: string | Snowflake): Promise<AxiosResponse> => {
+        const feedbackProps = {
             stars: stars,
-            postedAt: postedAt,
-            content: content
+            posted_at: posted_at,
+            content: content,
+            target_bot: botID
         };
         return axios.post(`/api/bots/${botID}/feedbacks/${userID}`, feedbackProps, header);
+    },
+    deleteFeedback: async (botID: string, userID: string): Promise<AxiosResponse> => {
+        return axios.delete(`/api/bots/${botID}/feedbacks/${userID}`, header);
     },
     voteStatus: async (botID: string | Snowflake, userID: string | Snowflake): Promise<AxiosResponse> => {
         return axios.get<AxiosResponse>(`/api/bots/${botID}/vote-status/${userID}`, header);
