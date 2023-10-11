@@ -49,6 +49,9 @@ const api = {
     deleteFeedback: async (botID: string, userID: string): Promise<AxiosResponse> => {
         return axios.delete(`/api/bots/${botID}/feedbacks/${userID}`, header);
     },
+    editFeedback: async (userID: Snowflake | undefined, botID: Snowflake, content: string, stars: number): Promise<AxiosResponse> => {
+        return axios.patch(`api/bots/${botID}/feedbacks/${userID}`,  { content: content, stars: stars } ,header);
+    },
     voteStatus: async (botID: string | Snowflake, userID: string | Snowflake): Promise<AxiosResponse> => {
         return axios.get<AxiosResponse>(`/api/bots/${botID}/vote-status/${userID}`, header);
     },
