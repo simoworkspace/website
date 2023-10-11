@@ -8,9 +8,9 @@ export const Header: React.FC = () => {
         <>
             <div className="xlr:sticky xlr:top-0 w-[100vw] max-w-[1500px] xlr:z-10 backdrop-blur-sm bg-transparent h-[74px]">
                 <div className="w-[100%] flex justify-center items-center bg-transparent xl:flex-wrap">
-                    <Link to="/" className="flex w-[300px] xl:w-[100vw] xl:justify-center xl:items-center">
-                        <h1 className="text-white flex flex-row text-[32px] mx-10 my-3"><strong>Simo</strong></h1>
-                    </Link>
+                    <div className="flex xl:w-[100vw] xl:justify-center xl:items-center">
+                        <Link to="/" className="text-white flex flex-grow flex-row text-[32px] mx-10 my-3"><strong>Simo</strong></Link>
+                    </div>
                     <InputSearch />
                     <UserLogin />
                 </div>
