@@ -7,27 +7,14 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { borderColor } from "../../utils/theme/border";
 import { Link } from "react-router-dom";
 import api from "../../utils/api";
-import { Theme, ThemeStructure } from "../../types";
 import { ChoiceColor } from "../Colors/Choice";
 
 export const LoggedMenu: React.FC = () => {
     const { user } = useContext(UserContext);
-    const { color, changeTheme } = useContext(ThemeContext);
+    const { color } = useContext(ThemeContext);
 
     const selectedTheme = localStorage.getItem("theme") || "purple";
     const [themeShow, setThemeShow] = useState<boolean>();
-
-    const themesOptions: ThemeStructure = {
-        black: "bg-[#2e2e2e]",
-        blue: "bg-[#004d7c]",
-        green: "bg-[#04484d]",
-        purple: "bg-[#2B195C]",
-        red: "bg-[#802222]"
-    }
-
-    const toggleTheme = (newTheme: Theme) => {
-        changeTheme(newTheme);
-    };
 
     const [selected, setSelected] = useState<string>();
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -59,7 +46,7 @@ export const LoggedMenu: React.FC = () => {
                         setIsOpen(!isOpen); 
                         setThemeShow(false); 
                     }}
-                    className={`${borderColor[color]} xl:invisible bg-neutral-900 flex text-white border-2 p-2 gap-3 rounded-lg max-w-[600px] items-center justify-center`}
+                    className={`${borderColor[color]} mr-10 xl:invisible bg-neutral-900 flex text-white border-2 p-2 gap-3 rounded-lg max-w-[600px] min-w-[150px] items-center justify-center`}
                 >
                     <div className="h-[30px] w-[30px]">
                         <img src={`https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`} className="w-full h-full rounded-full" alt="Avatar" />
@@ -71,7 +58,7 @@ export const LoggedMenu: React.FC = () => {
                         <iconMD.MdOutlineKeyboardArrowDown className={`transition-all duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`} size={25} />
                     </div>
                 </button>
-                <div className={`${isOpen ? "opacity-100" : "opacity-0 invisible"} rounded-t-none border-t-0 text-white p-3 rounded-lg absolute right-1 origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
+                <div className={`${isOpen ? "opacity-100" : "opacity-0 invisible"} rounded-t-none border-t-0 text-white p-3 rounded-lg absolute right-[45px] origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
                     <Link to="/addbot" className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-[100px]">
                         <div className="flex w-[100%] items-center justify-start gap-2">
                             <iconBS.BiPlus fill="#fff" size={20} />
@@ -96,7 +83,7 @@ export const LoggedMenu: React.FC = () => {
                 </div>
             </section>
             <section ref={themeRef}>
-                <div className={`${themeShow ? "opacity-100" : "opacity-0 invisible"} flex-col flex text-white p-1 rounded-lg absolute right-[131px] top-[120px] origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
+                <div className={`${themeShow ? "opacity-100" : "opacity-0 invisible"} flex-col flex text-white p-1 rounded-lg absolute right-[175px] top-[120px] origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
                     <ChoiceColor name="Vermelho" theme="red" margin="6px" selected={selectedTheme === "red"} />
                     <ChoiceColor name="Azul" theme="blue" margin="6px" selected={selectedTheme === "blue"} />
                     <ChoiceColor name="Roxo" theme="purple" margin="6px" selected={selectedTheme === "purple"} />
