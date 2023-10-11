@@ -43,7 +43,7 @@ export const BotComponent: React.FC = () => {
 
     const verifyBot = async (): Promise<void> => {
         const res: BotStructure = (await api.getAllBots()).data.find((bot: BotStructure) => bot._id === botid);
-        if (!res) return navigate("/"); 
+        if (!res) { navigate("/") };
     };
 
     const getBotInDB = async (): Promise<void> => {
@@ -71,7 +71,7 @@ export const BotComponent: React.FC = () => {
             {!bot.approved && (
                 <div className="fixed flex items-center justify-center backdrop-blur-sm inset-0">
                     <div className="flex gap-3 items-center justify-center flex-col w-full h-[150px] border-2 rounded-lg bg-[#e8a60c] border-[#9e7514]">
-                        <icon.BsClockFill size={35}/>
+                        <icon.BsClockFill size={35} />
                         <span className="text-lg text-center px-2">Bot {bot.name} está em análise, aguarde até que ela seja finalizada.</span>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ export const BotComponent: React.FC = () => {
                         </div>
                     </div>
                 </section>
-                <section className={`w-[90%] mb-[30px] bg-neutral-900 border-2 ${borderColor[color]} border-t-0 rounded-t-none rounded-lg p-10 xl:p-3`}>
+                <section className={`w-[90%] mb-5 bg-neutral-900 border-2 ${borderColor[color]} border-t-0 rounded-t-none rounded-lg p-10 xl:p-3`}>
                     <div className="flex flex-row xl:flex-col">
                         <div className="w-[80%] xl:w-[100%] flex break-words xl:justify-center p-2">
                             <Markdown markdown={bot.long_description} className="w-[100%]" />
@@ -183,6 +183,7 @@ export const BotComponent: React.FC = () => {
                         </div>
                     </div>
                 </section>
+                <Feedbacks botid={botid}/>
             </div>
         </section>
     ) : (
