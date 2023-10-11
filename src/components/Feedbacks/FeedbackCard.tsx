@@ -23,7 +23,10 @@ export const FeedbackCard: React.FC<{ feedback: FeedbackStructure, botid: string
                         alt={`${feedback?.author.username}'s avatar`}
                         className="w-[30px] h-[30px] rounded-full"
                     />
-                    <span className="p-1 ml-1">{feedback?.author.username}</span>
+                    <div className="flex gap-2 items-center justify-center">
+                        <span className="p-1 ml-1">{feedback?.author.username}</span>
+                        <span className="text-neutral-500">{new Date(feedback.posted_at).toLocaleString().split(", ")[0]}</span>
+                    </div>
                     {user?.id === feedback?.author.id && (
                         <button onClick={async () => {
                             setDeleted(true);
@@ -31,17 +34,17 @@ export const FeedbackCard: React.FC<{ feedback: FeedbackStructure, botid: string
                             await updateFeedbacks();
                             setDeleted(false);
                         }} className="flex flex-grow justify-end">
-                            {!deleted ? <icon.BsTrash size={20} className="hover:fill-red-500 transition-colors duration-300"/> : <iconAI.AiOutlineLoading3Quarters fill="#fff" size={20} className="animate-spin" />}
+                            {!deleted ? <icon.BsTrash size={20} className="hover:fill-red-500 transition-colors duration-300" /> : <iconAI.AiOutlineLoading3Quarters fill="#fff" size={20} className="animate-spin" />}
                         </button>
                     )}
                 </div>
                 <div className="py-2">{feedback.content}</div>
                 <div className="flex flex-row gap-1">
                     {Array(feedback.stars).fill(0).map(() => (
-                        <icon.BsStarFill/>
+                        <icon.BsStarFill />
                     ))}
                     {Array(5 - feedback.stars).fill(0).map((_, index) => (
-                        <icon.BsStar/>
+                        <icon.BsStar />
                     ))}
                 </div>
             </div>
