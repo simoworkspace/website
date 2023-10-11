@@ -50,7 +50,7 @@ export interface FeedbackStructure {
         username: string;
     }
     stars: number;
-    postedAt: string;
+    posted_at: string;
     content: string;
 }
 
