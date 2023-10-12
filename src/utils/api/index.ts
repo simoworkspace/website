@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure } from "../../types";
+import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure } from "../../types";
 import Cookies from "js-cookie";
 
 const header = {
@@ -60,6 +60,9 @@ const api = {
     },
     getBotFeedbacks: async (botID: Snowflake): Promise<AxiosResponse<FeedbackStructure[]>> => {
         return axios.get<FeedbackStructure[]>(`/api/bots/${botID}/feedbacks`, header);
+    },
+    getNotifications: async (userId: Snowflake | undefined): Promise<AxiosResponse<NotificationStructure>> => {
+        return axios.get(`/api/users/${userId}/notifications`, header);
     }
 };
 
