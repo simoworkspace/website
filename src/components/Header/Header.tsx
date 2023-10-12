@@ -2,6 +2,7 @@ import React from "react";
 import { UserLogin } from "../Login/Discordlogin";
 import { InputSearch } from "../Search/InputSearch";
 import { Link } from "react-router-dom";
+import { NotificationButton } from "../Notification/Button";
 
 export const Header: React.FC = () => {
     return (
@@ -12,6 +13,7 @@ export const Header: React.FC = () => {
                         <Link to="/" className="text-white flex flex-grow flex-row text-[32px] mx-10 my-3"><strong>Simo</strong></Link>
                     </div>
                     <InputSearch />
+                    <NotificationButton/>
                     <UserLogin />
                 </div>
             </div>
