@@ -186,17 +186,17 @@ export const TagInput: React.FC<{
     const { color } = useContext(ThemeContext);
     const [inputValue, setInputValue] = useState<string>("");
     const [tags, setTags] = useState<string[]>([]);
+    const maxTags = 5;
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(e.target.value);
+        const value = e.target.value;
+        const values = value.split(",").map((value) => value.trim());
 
-        const values = e.target.value.split(",").map((value) => value.trim());
-        
-        if (values.length > 4) {
-            setInputValue(values.join(","));
-            setTags(values.splice(0, 4));
-        } else {
+        if (values.length <= maxTags) {
+            setInputValue(value);
             setTags(values);
+        } else {
+            setInputValue(tags.slice(0, maxTags).join(", "));
         }
     };
 
@@ -225,11 +225,14 @@ export const TagInput: React.FC<{
                     />
                 </div>
                 <div className="flex flex-row gap-3 flex-wrap w-[100%] break-all">
-                    {tags.map(tag => (
-                        <div className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
+                    {tags.map((tag, index) => (
+                        <div key={index} className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
                     ))}
                 </div>
+                {tags.length >= maxTags && (
+                    <div className="text-red-500">Limite de tags atingido (máximo 5).</div>
+                )}
             </div>
         </div>
-    )
+    );
 };
