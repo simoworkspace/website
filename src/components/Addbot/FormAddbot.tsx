@@ -117,9 +117,9 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                         <Input register={register} errors={errors} name="prefixes" text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash. separe por virgula (s!, S!)" required title="Prefixo" type="input" maxLength={16} />
                         <Input register={register} name="long_description" text="Digite uma descrição longa que mostre todas as capacidades do seu bot (markdown habilitado!)" title="Descrição longa" errors={errors} type="textlong" setPreview={setPreview} preview={preview} required />
                         <Input register={register} name="short_description" text="Digite uma descrição curta que irá aparecer na página inicial." title="Descrição curta" required errors={errors} type="input" minLength={50} maxLength={80} />
-                        <Input register={register} name="source_code" text="Digite o site onde tem o código fonte do bot (opcional)" title="Source Code" errors={errors} type="input" inputType="url" />
-                        <Input register={register} name="website_url" text="Digite o website onde se encontra informações do seu bot. (opcional)" title="Website" errors={errors} type="input" inputType="url" />
-                        <Input register={register} name="support_server" text="Coloque o link do seu servidor de discord onde é o suporte do seu bot (https://discord.gg/) (opcional)" title="Servidor do seu bot" errors={errors} type="input" inputType="url" />
+                        <Input register={register} name="source_code" text="Digite o site onde tem o código fonte do bot" optional title="Source Code" errors={errors} type="input" inputType="url" />
+                        <Input register={register} name="website_url" text="Digite o website onde se encontra informações do seu bot" optional title="Website" errors={errors} type="input" inputType="url" />
+                        <Input register={register} name="support_server" text="Coloque o link do seu servidor de discord onde é o suporte do seu bot (https://discord.gg/)" optional title="Servidor do seu bot" errors={errors} type="input" inputType="url" />
                         <TagInput register={register} errors={errors} name="tags" text="Digite as palavras chaves das características que seu bot possui, separe por virgula (moderação, administração)" required title="Tags" />
                         <div className="flex justify-center xl:w-[80vw] m-4 items-center gap-3">
                             <input

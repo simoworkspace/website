@@ -18,10 +18,11 @@ interface InputProps {
     minLength?: number;
     cols?: number;
     preview?: boolean;
+    optional?: boolean;
     setPreview?: any | ((value: boolean) => void);
 }
 
-export const Input: React.FC<InputProps> = ({ register, name, required, text, title, errors, type, preview, setPreview, maxLength, minLength, inputType }) => {
+export const Input: React.FC<InputProps> = ({ register, name, required, text, title, errors, type, preview, setPreview, maxLength, minLength, inputType, optional }) => {
     const [markdown, setMarkdown] = useState<string>('');
 
     const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -78,8 +79,9 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
     return type === "input" ? (
         <div className="text-white xl:w-[88vw] xl:flex-col flex-row flex">
             <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
-                <div className="text-center">
+                <div className="items-center justify-center flex gap-3">
                     <strong>{title}</strong>
+                    {!optional && <div className="text-red-500">*</div>}
                 </div>
                 <span className="text-center">{text}</span>
             </div>
@@ -104,8 +106,9 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
     ) : type === "textlong" ? (
         <div className={`text-white xl:w-[88vw] w-[100%] xl:flex-col ${preview ? "flex-col" : "flex-row"} flex items-center justify-center`}>
             <div className="w-[800px] xl:w-[100%] justify-center break-words flex-col flex mr-2">
-                <div className="text-center">
-                    <strong>Descrição longa</strong>
+                <div className="items-center justify-center flex gap-3">
+                    <strong>{title}</strong>
+                    {!optional && <div className="text-red-500">*</div>}
                 </div>
                 <span className="text-center">
                     Digite todos os detalhes do seu bot, não exite em
@@ -117,7 +120,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
             </div>
             <div className={`flex flex-col items-center w-[100%] ${preview ? "" : "max-w-[800px] xl:max-w-[9999px]"}`}>
                 <div
-                    className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${errors.prefix?.message === ""
+                    className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${errors.long_description?.message === ""
                         ? "border-[#ff0000]"
                         : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                         } text-white`}
@@ -146,8 +149,9 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
     ) : (
         <div className="text-white xl:w-[88vw] xl:flex-col flex-row flex">
             <div className="w-[800px] xl:w-[100%] justify-center break-words flex-col flex mr-2">
-                <div className="text-center">
+                <div className="items-center justify-center flex gap-3">
                     <strong>{title}</strong>
+                    {!optional && <div className="text-red-500">*</div>}
                 </div>
                 <span className="text-center">
                     {text}
@@ -203,8 +207,9 @@ export const TagInput: React.FC<{
     return (
         <div className="text-white xl:w-[88vw] xl:flex-col flex-row flex max-w-[1062px]">
             <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
-                <div className="text-center">
+                <div className="items-center justify-center flex gap-3">
                     <strong>{title}</strong>
+                    <div className="text-red-500">*</div>
                 </div>
                 <span className="text-center">{text}</span>
             </div>
