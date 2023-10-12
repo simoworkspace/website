@@ -14,10 +14,12 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
 
+    const [isDeleted, setisDeleted] = useState<boolean>(false);
     const [rating, setRating] = useState<number>(1);
     const [feedback, setFeedback] = useState<string>("");
     const [feedbackSent, setFeedbackSent] = useState<boolean>(false);
     const [submited, setSubmited] = useState<boolean>(false);
+    const [feedbackLoading, setFeedbackLoading] = useState<boolean>(false);
 
     const handleStarClick = (selectedRating: number) => {
         setRating(selectedRating);
@@ -27,8 +29,10 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
     const params = useParams();
 
     const getBotFeedbacks = async (): Promise<void> => {
+        setFeedbackLoading(true);
         const res = await api.getBotFeedbacks(params.botid as string);
-        return setFeedbacks(res.data);
+        setFeedbacks(res.data);
+        setFeedbackLoading(false);
     };
 
     useEffect(() => { getBotFeedbacks(); }, []);
@@ -76,12 +80,23 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
             </div>
             <div className="w-[800px] xl:w-[90vw] flex flex-col gap-4">
                 <span className="text-[26px] mb-2"><strong>Feedbacks</strong></span>
-                {feedbacks ? (
-                    feedbacks?.map(feedback => (<FeedbackCard feedback={feedback} botid={botid} updateFeedbacks={getBotFeedbacks} />))
+                {feedbackLoading ? (
+                    <div className="flex flex-col gap-3">
+                        <div className="bg-neutral-900 animate-pulse w-[100%] h-[200px] rounded-lg border-2"></div>
+                        <div className="bg-neutral-900 animate-pulse w-[100%] h-[200px] rounded-lg border-2"></div>
+                        <div className="bg-neutral-900 animate-pulse w-[100%] h-[200px] rounded-lg border-2"></div>
+                    </div>
+                ) : feedbacks && feedbacks.length > 0 ? (
+                    feedbacks.map((feedback, index) => (
+                        <div key={index} className={`fade-in ${isDeleted && "fade-out"}`}>
+                            <FeedbackCard feedback={feedback} botid={botid} updateFeedbacks={getBotFeedbacks} isDeleted={isDeleted} setIsDeleted={setisDeleted} />
+                        </div>
+                    ))
                 ) : (
                     <div>Sem feedbacks.</div>
                 )}
             </div>
+
         </div>
     )
 };

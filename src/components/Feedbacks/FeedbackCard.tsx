@@ -8,11 +8,16 @@ import { UserContext } from "../../contexts/UserContext";
 import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
 
-export const FeedbackCard: React.FC<{ feedback: FeedbackStructure, botid: string, updateFeedbacks: () => Promise<void> }> = ({ feedback, botid, updateFeedbacks }) => {
+export const FeedbackCard: React.FC<{
+    feedback: FeedbackStructure, 
+    botid: string, 
+    isDeleted: boolean,
+    setIsDeleted: (value: boolean) => void;
+    updateFeedbacks: () => Promise<void>
+}> = ({ feedback, botid, updateFeedbacks, setIsDeleted, isDeleted }) => {
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
 
-    const [isDeleted, setisDeleted] = useState<boolean>(false);
     const [isEdit, setIsEdit] = useState<boolean>(false);
     const [editedContent, setEditedContent] = useState<string>("");
     const [submited, setSubmited] = useState<boolean>(false);
@@ -55,10 +60,10 @@ export const FeedbackCard: React.FC<{ feedback: FeedbackStructure, botid: string
                     {user?.id === feedback?.author.id && (
                         <div className="flex gap-3 justify-end w-[100%]">
                             <button onClick={async () => {
-                                setisDeleted(true);
+                                setIsDeleted(true);
                                 await api.deleteFeedback(botid, user?.id);
                                 await updateFeedbacks();
-                                setisDeleted(false);
+                                setIsDeleted(false);
                             }} className="flex flex-grow justify-end">
                                 {!isDeleted ? <icon.BsTrash size={20} className="hover:fill-red-500 transition-colors duration-300" /> : <iconAI.AiOutlineLoading3Quarters fill="#fff" size={20} className="animate-spin" />}
                             </button>
