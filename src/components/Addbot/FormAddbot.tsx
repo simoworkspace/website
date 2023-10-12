@@ -74,27 +74,33 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                 color: 0x054F77,
                 description: `O seu bot: **${botData?.username}** (\`${botData?.id}\`) foi enviado pra análise.`
             }]
-            };
-
-            const header = {
-                headers: {
-                    Authorization: token
-                }
-            };
-
-            await axios.post("/api/webhook/addbot", bodyOwner, header);
-            await axios.post("/api/webhook/bot", bodyVerificar, header);
-
-            await api.addBot(formData, formData._id);
-
-            formData.long_description = formData.long_description.slice(0, 800);
-
-            await axios.post("/api/webhook/raw", {
-                content: `\`\`\`json\n${JSON.stringify(formData, null, "\t")}\`\`\``
-            }, header);
-
-            setSteps(2);
         };
+
+        const header = {
+            headers: {
+                Authorization: token
+            }
+        };
+
+        await axios.post("/api/webhook/addbot", bodyOwner, header);
+        await axios.post("/api/webhook/bot", bodyVerificar, header);
+
+        for (let i in formData) {
+            if (formData[i as keyof BotStructure] === "") {
+                delete formData[i as keyof BotStructure];
+            }
+        }
+
+        await api.addBot(formData, formData._id);
+
+        formData.long_description = formData.long_description.slice(0, 800);
+
+        await axios.post("/api/webhook/raw", {
+            content: `\`\`\`json\n${JSON.stringify(formData, null, "\t")}\`\`\``
+        }, header);
+
+        setSteps(2);
+    };
 
     return (
         <div className="mb-[70px] p-3 w-[100vw] flex items-center justify-center">
@@ -108,7 +114,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                         </h1>
                     </h1>
                     <form onSubmit={handleSubmit(onSubmit)} className="gap-5 items-center justify-center pt-1 flex flex-col">
-                        <Input register={register} errors={errors} name="prefixes" text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash. separe por virgula (s!, S!)" required title="Prefixo" type="input" maxLength={16}/>
+                        <Input register={register} errors={errors} name="prefixes" text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash. separe por virgula (s!, S!)" required title="Prefixo" type="input" maxLength={16} />
                         <Input register={register} name="long_description" text="Digite uma descrição longa que mostre todas as capacidades do seu bot (markdown habilitado!)" title="Descrição longa" errors={errors} type="textlong" setPreview={setPreview} preview={preview} required />
                         <Input register={register} name="short_description" text="Digite uma descrição curta que irá aparecer na página inicial." title="Descrição curta" required errors={errors} type="input" minLength={50} maxLength={80} />
                         <Input register={register} name="source_code" text="Digite o site onde tem o código fonte do bot (opcional)" title="Source Code" errors={errors} type="input" inputType="url" />
@@ -122,7 +128,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                                 disabled={submited}
                                 className={`disabled:cursor-default disabled:opacity-70 cursor-pointer transition-all duration-300 items-center border-2 w-[300px] rounded-xl h-[60px] text-white ${buttonColor[color]}`}
                             />
-                            {submited && <icon.AiOutlineLoading3Quarters fill="#fff" size={30} className="animate-spin"/>}
+                            {submited && <icon.AiOutlineLoading3Quarters fill="#fff" size={30} className="animate-spin" />}
                         </div>
                     </form>
                 </div>
