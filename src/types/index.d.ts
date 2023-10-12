@@ -108,7 +108,6 @@ export interface UserStructure {
     id: Snowflake | string;
     avatar: string;
     signed: boolean;
-    notifications: Map<string, NotificationBody>;
 };
 
 interface Locales {
