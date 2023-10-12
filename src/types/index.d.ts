@@ -108,6 +108,7 @@ export interface UserStructure {
     id: Snowflake | string;
     avatar: string;
     signed: boolean;
+    notifications: Map<string, NotificationBody>;
 };
 
 interface Locales {
@@ -188,4 +189,21 @@ export interface DiscordUser extends UserStructure {
     global_name: string | null;
     display_name: string | null;
     banner_color: string | null;
+}
+
+export interface NotificationStructure {
+    [key: string]: NotificationBody
+}
+
+export interface NotificationBody {
+    content: string;
+    sent_at: number;
+    type: NotificationType;
+}
+
+export enum NotificationType {
+    Comment,
+    ApprovedBot,
+    RefusedBot,
+    Mixed
 }
