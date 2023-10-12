@@ -87,8 +87,8 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
                         <div className="bg-neutral-900 animate-pulse w-[100%] h-[200px] rounded-lg border-2"></div>
                     </div>
                 ) : feedbacks && feedbacks.length > 0 ? (
-                    feedbacks.map((feedback, index) => (
-                        <div key={index} className={`fade-in ${isDeleted && "fade-out"}`}>
+                    feedbacks.map((feedback: FeedbackStructure, index: number) => (
+                        <div key={index}>
                             <FeedbackCard feedback={feedback} botid={botid} updateFeedbacks={getBotFeedbacks} isDeleted={isDeleted} setIsDeleted={setisDeleted} />
                         </div>
                     ))
