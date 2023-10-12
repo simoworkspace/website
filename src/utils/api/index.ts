@@ -63,6 +63,9 @@ const api = {
     },
     getNotifications: async (userId: Snowflake | undefined): Promise<AxiosResponse<NotificationStructure>> => {
         return axios.get(`/api/users/${userId}/notifications`, header);
+    },
+    deleteNotification: async (userId: Snowflake | undefined, notificationId: string): Promise<AxiosResponse> => {
+        return axios.delete(`/api/users/${userId}/notifications/${notificationId}`, header);
     }
 };
 
