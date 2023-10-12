@@ -20,3 +20,33 @@
     padding: 0;
     font-family: "Inter", sans-serif;
 }
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 500ms ease-in forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.fade-out {
+    opacity: 1;
+    animation: fadeOut 500ms ease-in forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
