@@ -25,7 +25,7 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
                 alt={bot.name}
             />
             <h1 className="text-center text-[24px]">{bot.name}</h1>
-            <div className="">
+            <div className="h-[50px] break-words w-[70%]">
                 {bot.short_description.length > 80
                     ? bot.short_description.slice(0, 80) + "..."
                     : bot.short_description}

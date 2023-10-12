@@ -28,7 +28,7 @@ export const BotComponent: React.FC = () => {
     const [stars, setStars] = useState<number>(0);
     const [devs, setDevs] = useState<Array<UserStructure>>([]);
 
-    const getBotStars = async () => {
+    const getBotStars = async (): Promise<void> => {
         const res = await api.getBotFeedbacks(params.botid as string);
         const stars = res.data.map(a => a.stars);
         let count = 0;
