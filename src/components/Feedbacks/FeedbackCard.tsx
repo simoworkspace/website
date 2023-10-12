@@ -32,8 +32,7 @@ export const FeedbackCard: React.FC<{ feedback: FeedbackStructure, botid: string
 
         event.preventDefault();
 
-        await api.deleteFeedback(botid, user?.id as string);
-        await api.postFeedback(feedback?.stars, feedback.posted_at, editedContent, botid, user?.id as string);
+        await api.editFeedback(user?.id, botid, editedContent, feedback.stars);
         await updateFeedbacks();
 
         setSubmited(false);
