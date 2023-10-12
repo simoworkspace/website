@@ -161,20 +161,22 @@ export const BotComponent: React.FC = () => {
                                     <h1 className="text-2xl text-center">Links</h1>
                                     <hr className="my-1 w-[100%]" />
                                     <div className="flex flex-col gap-3 flex-wrap">
-                                        <Link to={bot.support_server.includes("https://") ? bot.support_server : "https://" + bot.support_server} className="flex items-center gap-3 p-2">
-                                            <img className="w-[30px]" src={discordIcon} alt="Discord Icon" />
-                                            <span>Servidor de suporte</span>
-                                        </Link>
-                                        {bot.source_code && (
-                                            <Link to={bot.source_code.includes("https://") ? bot.source_code : "https://" + bot.source_code} className="flex items-center gap-3 p-2">
+                                        {bot?.support_server && (
+                                            <Link to={bot?.support_server.includes("https://") ? bot?.support_server : "https://" + bot?.support_server} className="flex items-center gap-3 p-2">
+                                                <img className="w-[30px]" src={discordIcon} alt="Discord Icon" />
+                                                <span>Servidor de suporte</span>
+                                            </Link>
+                                        )}
+                                        {bot?.source_code && (
+                                            <Link to={bot?.source_code.includes("https://") ? bot?.source_code : "https://" + bot?.source_code} className="flex items-center gap-3 p-2">
                                                 <img className="w-[30px]" src={githubIcon} alt="Github Icon" />
                                                 <span>Repositório</span>
                                             </Link>
                                         )}
-                                        {bot.website_url && (
-                                            <Link to={bot.website_url.includes("https://") ? bot.website_url : "https://" + bot.website_url} className="flex items-center gap-3 p-2">
+                                        {bot?.website_url && (
+                                            <Link to={bot?.website_url.includes("https://") ? bot?.website_url : "https://" + bot?.website_url} className="flex items-center gap-3 p-2">
                                                 <img className="w-[30px]" src={globIcon} alt="Globe Icon" />
-                                                <span>Website (<span className="text-blue-600">{bot.website_url}</span>)</span>
+                                                <span>Website (<span className="text-blue-600">{bot?.website_url}</span>)</span>
                                             </Link>
                                         )}
                                     </div>
@@ -183,7 +185,7 @@ export const BotComponent: React.FC = () => {
                         </div>
                     </div>
                 </section>
-                <Feedbacks botid={botid}/>
+                <Feedbacks botid={botid} />
             </div>
         </section>
     ) : (
