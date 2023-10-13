@@ -197,6 +197,7 @@ export interface NotificationStructure {
 export interface NotificationBody {
     content: string;
     sent_at: number;
+    url?: string;
     type: NotificationType;
 }
 
