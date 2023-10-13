@@ -61,6 +61,7 @@ export const NotificationButton: FC = () => {
                     </div>
                 ) : (
                     <div>
+                        <h1 className="text-[22px] text-center my-4"><strong>Suas notificações</strong></h1>
                         {Object.keys(notifications).length > 0 ? (
                             <div className="flex flex-col gap-3 xl:invisible">
                                 {Object.keys(notifications).map(key => (
@@ -68,7 +69,7 @@ export const NotificationButton: FC = () => {
                                 ))}
                             </div>
                         ) : (
-                            <div className="w-[100%] text-center text-[20px] h-[270px] flex items-center justify-center">
+                            <div className="w-[100%] text-center text-[20px] h-[190px] flex items-center justify-center">
                                 <span>Você não tem notificações.</span>
                             </div>
                         )}
