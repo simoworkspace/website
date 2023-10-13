@@ -66,6 +66,9 @@ const api = {
     },
     deleteNotification: async (userId: Snowflake | undefined, notificationId: string): Promise<AxiosResponse> => {
         return axios.delete(`/api/users/${userId}/notifications/${notificationId}`, header);
+    },
+    deleteAllNotifications: async (userId: Snowflake | undefined) => {
+        return axios.delete(`/api/users/${userId}/notifications/bulk-delete`, header);
     }
 };
 
