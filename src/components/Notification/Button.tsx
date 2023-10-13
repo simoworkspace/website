@@ -62,9 +62,11 @@ export const NotificationButton: FC = () => {
                 ) : (
                     <div>
                         {Object.keys(notifications).length > 0 ? (
-                            Object.keys(notifications).map(key => (
-                                <NotificationCard updateNotifications={getNotifications} user={user} notification={notifications[key]} key={key} keyc={key} color={color} />
-                            ))
+                            <div className="flex flex-col gap-3">
+                                {Object.keys(notifications).map(key => (
+                                    <NotificationCard updateNotifications={getNotifications} user={user} notification={notifications[key]} key={key} keyc={key} color={color} />
+                                ))}
+                            </div>
                         ) : (
                             <div className="w-[100%] text-center text-[20px] h-[270px] flex items-center justify-center">
                                 <span>Você não tem notificações.</span>
