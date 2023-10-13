@@ -16,10 +16,13 @@ export const NotificationButton: FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const menuRef = useRef<HTMLDivElement | null>(null);
     const [notifications, setNotifications] = useState<NotificationStructure>({});
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const getNotifications = async (): Promise<void> => {
+        setIsLoading(true);
         const req: AxiosResponse<NotificationStructure> = await api.getNotifications(user?.id);
         setNotifications(req.data);
+        setIsLoading(false);
     };
 
     useEffect(() => {
@@ -37,24 +40,37 @@ export const NotificationButton: FC = () => {
     }, []);
 
     useEffect(() => {
-        if (user) { 
+        if (user) {
             getNotifications();
         }
-    }, [user])
+    }, [user, isOpen])
 
     return (
-        <section ref={menuRef}>
-            {Object.keys(notifications).length > 0 && <div className="h-3 w-3 bg-red-500 absolute rounded-lg"/>}
+        <section ref={menuRef} className={`${!user && "invisible"}`}>
+            {Object.keys(notifications).length > 0 && <div className="h-3 w-3 bg-red-500 absolute rounded-lg xl:hidden" />}
             <button onClick={() => setIsOpen(!isOpen)} className={`xl:invisible ${borderColor[color]} mr-1 flex border-2 p-3 items-center justify-center rounded-lg bg-neutral-900 h-[50px]`}>
                 <icon.BsBell fill="#fff" />
             </button>
             <div className={`${isOpen ? "opacity-100" : "opacity-0 invisible"} ${scrollBar[color]} p-3 xl:invisible overflow-auto flex-col flex text-white rounded-lg absolute right-[195px] h-[300px] w-[500px] top-16 origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
-                {notifications ? (
-                    <div>
-                        {Object.keys(notifications).map(key => ( <NotificationCard updateNotifications={getNotifications} user={user} notification={notifications[key]} keyc={key} color={color} /> ))}
+                {isLoading ? (
+                    <div className="flex flex-col gap-3">
+                        <div className="w-[100%] bg-neutral-800 animate-pulse h-[50px] rounded-lg"></div>
+                        <div className="w-[100%] bg-neutral-800 animate-pulse h-[70px] rounded-lg"></div>
+                        <div className="w-[100%] bg-neutral-800 animate-pulse h-[50px] rounded-lg"></div>
+                        <div className="w-[100%] bg-neutral-800 animate-pulse h-[66px] rounded-lg"></div>
                     </div>
                 ) : (
-                    <div>Você não tem notificações.</div>
+                    <div>
+                        {Object.keys(notifications).length > 0 ? (
+                            Object.keys(notifications).map(key => (
+                                <NotificationCard updateNotifications={getNotifications} user={user} notification={notifications[key]} key={key} keyc={key} color={color} />
+                            ))
+                        ) : (
+                            <div className="w-[100%] text-center text-[20px] h-[270px] flex items-center justify-center">
+                                <span>Você não tem notificações.</span>
+                            </div>
+                        )}
+                    </div>
                 )}
             </div>
         </section>
