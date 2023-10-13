@@ -43,7 +43,7 @@ export const NotificationButton: FC = () => {
         if (user) {
             getNotifications();
         }
-    }, [user, isOpen])
+    }, [user, isOpen]);
 
     return (
         <section ref={menuRef} className={`${!user && "invisible"}`}>
@@ -53,7 +53,7 @@ export const NotificationButton: FC = () => {
             </button>
             <div className={`${isOpen ? "opacity-100" : "opacity-0 invisible"} ${scrollBar[color]} p-3 xl:invisible overflow-auto flex-col flex text-white rounded-lg absolute right-[195px] h-[300px] w-[500px] top-16 origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
                 {isLoading ? (
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-3 xl:invisible">
                         <div className="w-[100%] bg-neutral-800 animate-pulse h-[50px] rounded-lg"></div>
                         <div className="w-[100%] bg-neutral-800 animate-pulse h-[70px] rounded-lg"></div>
                         <div className="w-[100%] bg-neutral-800 animate-pulse h-[50px] rounded-lg"></div>
@@ -62,7 +62,7 @@ export const NotificationButton: FC = () => {
                 ) : (
                     <div>
                         {Object.keys(notifications).length > 0 ? (
-                            <div className="flex flex-col gap-3">
+                            <div className="flex flex-col gap-3 xl:invisible">
                                 {Object.keys(notifications).map(key => (
                                     <NotificationCard updateNotifications={getNotifications} user={user} notification={notifications[key]} key={key} keyc={key} color={color} />
                                 ))}

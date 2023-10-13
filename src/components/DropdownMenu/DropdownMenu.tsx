@@ -12,7 +12,7 @@ export const Dropdownmenu: React.FC<{
     setArrowState: (value: boolean) => void 
 }> = ({ setArrowState }) => {
     const [themeShow, setThemeShow] = useState<boolean>();
-    const selectedTheme = localStorage.getItem("theme") || "blue";
+    const selectedTheme = localStorage.getItem("theme") || "purple";
     const [selected, setSelected] = useState<string>();
 
     return (
