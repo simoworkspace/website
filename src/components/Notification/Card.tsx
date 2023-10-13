@@ -11,7 +11,8 @@ export const NotificationCard: FC<{
     user: UserStructure | null;
     keyc: string;
     updateNotifications: () => Promise<void>;
-}> = ({ notification, color, user, keyc, updateNotifications }) => {
+    mobile?: boolean;
+}> = ({ notification, color, user, keyc, updateNotifications, mobile }) => {
     const [deleted, setDeleted] = useState<boolean>(false);
 
     const handleDeleteNotification = async (): Promise<void> => {
@@ -23,15 +24,10 @@ export const NotificationCard: FC<{
         setDeleted(false);
     };
 
-    const typeSchemas: {
-        [key: number]: {
-            colors: string,
-            icon: React.ReactNode
-        }
-    } = {
+    const typeSchemas: Record<number, { colors: string, icon: React.ReactNode }> = {
         0: {
             colors: "#808080",
-            icon: <icon.BsChat  size={30} fill="#808080"/>
+            icon: <icon.BsChat size={30} fill="#808080" />
         },
         1: {
             colors: "#03ff4a",
@@ -43,8 +39,18 @@ export const NotificationCard: FC<{
         }
     }
 
-    return (
-        <div className={`flex items-center gap-3 ${borderColor[color]} border-l-[${typeSchemas[notification.type].colors}] border-l-[5px] border-2 rounded-lg p-3 w-full break-words`}>
+    return mobile ? (
+        <div className={`flex items-center gap-3 ${borderColor[color]} border-l-[${typeSchemas[notification.type].colors}] border-l-[5px] border-2 rounded-lg p-3 w-full break-all bg-neutral-900`}>
+            <div className="">
+                {typeSchemas[notification.type].icon}
+            </div>
+            <span className="text-center w-full">{notification.content}</span>
+            <button disabled={deleted} onClick={handleDeleteNotification} className="disabled:cursor-default flex h-full justify-start items-center">
+                {deleted ? <iconAI.AiOutlineLoading3Quarters fill="#fff" size={25} className="animate-spin" /> : <icon.BsX size={25} className="hover:fill-red-500 transition-all duration-300" />}
+            </button>
+        </div>
+    ) : (
+        <div className={`flex items-center gap-3 ${borderColor[color]} border-l-[${typeSchemas[notification.type].colors}] border-l-[5px] border-2 rounded-lg p-3 w-full break-all`}>
             {typeSchemas[notification.type].icon}
             <span className="w-full">{notification.content}</span>
             <button disabled={deleted} onClick={handleDeleteNotification} className="disabled:cursor-default flex h-full justify-start items-center">
