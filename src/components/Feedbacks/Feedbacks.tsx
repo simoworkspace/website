@@ -14,7 +14,7 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
 
-    const [isDeleted, setisDeleted] = useState<boolean>(false);
+    const [isDeleted, setIsDeleted] = useState<boolean>(false);
     const [rating, setRating] = useState<number>(1);
     const [feedback, setFeedback] = useState<string>("");
     const [feedbackSent, setFeedbackSent] = useState<boolean>(false);
@@ -28,6 +28,8 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
     const [feedbacks, setFeedbacks] = useState<FeedbackStructure[]>();
     const params = useParams();
 
+    const [currentPage, setCurrentPage] = useState(1);
+
     const getBotFeedbacks = async (): Promise<void> => {
         setFeedbackLoading(true);
         const res = await api.getBotFeedbacks(params.botid as string);
@@ -35,7 +37,9 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
         setFeedbackLoading(false);
     };
 
-    useEffect(() => { getBotFeedbacks(); }, []);
+    useEffect(() => {
+        getBotFeedbacks();
+    }, []);
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
@@ -52,9 +56,12 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>): void => {
         event.preventDefault();
-
         setFeedback(event.target.value);
     };
+
+    const indexLastItem: number = currentPage * 5;
+    const indexFirstItem: number = indexLastItem - 5;
+    const currentFeedbacks: FeedbackStructure[] | undefined = feedbacks?.slice(indexFirstItem, indexLastItem);
 
     return (
         <div className="w-[100vw] max-w-[1500px] flex flex-col xl:ml-0 ml-[150px] mb-[30px] text-white gap-5 xl:items-center xl:justify-center">
@@ -86,17 +93,32 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
                         <div className="bg-neutral-900 animate-pulse w-[100%] h-[200px] rounded-lg border-2"></div>
                         <div className="bg-neutral-900 animate-pulse w-[100%] h-[200px] rounded-lg border-2"></div>
                     </div>
-                ) : feedbacks && feedbacks.length > 0 ? (
-                    feedbacks.map((feedback: FeedbackStructure, index: number) => (
+                ) : currentFeedbacks && currentFeedbacks.length > 0 ? (
+                    currentFeedbacks.map((feedback: FeedbackStructure, index: number) => (
                         <div key={index}>
-                            <FeedbackCard feedback={feedback} botid={botid} updateFeedbacks={getBotFeedbacks} isDeleted={isDeleted} setIsDeleted={setisDeleted} />
+                            <FeedbackCard feedback={feedback} botid={botid} updateFeedbacks={getBotFeedbacks} isDeleted={isDeleted} setIsDeleted={setIsDeleted} />
                         </div>
                     ))
                 ) : (
                     <div>Sem feedbacks.</div>
                 )}
             </div>
-
+            <div className="flex w-[800px] gap-[300px] items-center justify-center">
+                <button
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className={`${buttonColor[color]} flex-grow border-2 transition-colors duration-300 p-3 rounded-lg disabled:opacity-50`}
+                >
+                    Anterior
+                </button>
+                <button
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    disabled={!currentFeedbacks || currentFeedbacks.length < 5}
+                    className={`${buttonColor[color]} flex-grow border-2 transition-colors duration-300 p-3 rounded-lg disabled:opacity-50`}
+                >
+                    Próxima
+                </button>
+            </div>
         </div>
     )
 };
