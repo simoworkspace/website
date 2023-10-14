@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody } from "../../types";
+import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody, NotificationType } from "../../types";
 import Cookies from "js-cookie";
 
 const header = {
@@ -70,8 +70,8 @@ const api = {
     deleteAllNotifications: async (userId: Snowflake | undefined) => {
         return axios.delete(`/api/users/${userId}/notifications/bulk-delete`, header);
     },
-    createNotification: async (userId: Snowflake | undefined, body: NotificationBody) => {
-        return axios.post(`/api/users/${userId}/notifications`, body, header)
+    createNotification: async (userId: Snowflake | undefined, body: { content: string, type: NotificationType }): Promise<AxiosResponse> => {
+        return axios.post(`/api/users/${userId}/notifications`, body, header);
     }
 };
 
