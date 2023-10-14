@@ -4,6 +4,7 @@ import { borderColor } from "../../utils/theme/border";
 import * as icon from "react-icons/bs";
 import * as iconAI from "react-icons/ai";
 import api from "../../utils/api";
+import { Markdown } from "../Markdown/Markdown";
 
 export const NotificationCard: FC<{
     notification: NotificationBody;
@@ -24,7 +25,7 @@ export const NotificationCard: FC<{
         setDeleted(false);
     };
 
-    const typeSchemas: Record<number, { colors: string, icon: React.ReactNode }> = {
+    const typeSchemas: Record<number, { colors: string, icon: React.ReactNode, url?: string }> = {
         0: {
             colors: "#808080",
             icon: <icon.BsChat size={30} fill="#808080" />
@@ -36,6 +37,10 @@ export const NotificationCard: FC<{
         2: {
             colors: "#ff3636",
             icon: <icon.BsXCircle size={30} fill="#ff3636" />
+        },
+        3: {
+            colors: "#ff3636",
+            icon: <icon.BsXCircle size={30} fill="#ff3636" />
         }
     }
 
@@ -44,7 +49,7 @@ export const NotificationCard: FC<{
             <div className="">
                 {typeSchemas[notification.type].icon}
             </div>
-            <span className="text-center w-full">{notification.content}</span>
+            <span className="text-center w-full"><Markdown markdown={notification.content}/></span>
             <button disabled={deleted} onClick={handleDeleteNotification} className="disabled:cursor-default flex h-full justify-start items-center">
                 {deleted ? <iconAI.AiOutlineLoading3Quarters fill="#fff" size={25} className="animate-spin" /> : <icon.BsX size={25} className="hover:fill-red-500 transition-all duration-300" />}
             </button>
@@ -52,7 +57,7 @@ export const NotificationCard: FC<{
     ) : (
         <div className={`flex items-center gap-3 ${borderColor[color]} border-l-[${typeSchemas[notification.type].colors}] border-l-[5px] border-2 rounded-lg p-3 w-full break-all`}>
             {typeSchemas[notification.type].icon}
-            <span className="w-full">{notification.content}</span>
+            <span className="w-full"><Markdown markdown={notification.content}/></span>
             <button disabled={deleted} onClick={handleDeleteNotification} className="disabled:cursor-default flex h-full justify-start items-center">
                 {deleted ? <iconAI.AiOutlineLoading3Quarters fill="#fff" size={25} className="animate-spin" /> : <icon.BsX size={25} className="hover:fill-red-500 transition-all duration-300" />}
             </button>
