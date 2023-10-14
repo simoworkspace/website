@@ -99,6 +99,11 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             content: `\`\`\`json\n${JSON.stringify(formData, null, "\t")}\`\`\``
         }, header);
 
+        await api.createNotification(user?.id, {
+            content: `Seu bot **${formData.name}** foi enviado para a análise, aguarde os resultados!`,
+            type: 1
+        });
+
         setSteps(2);
     };
 
