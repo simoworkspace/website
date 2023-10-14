@@ -6,6 +6,8 @@ import { AxiosResponse } from "axios";
 import api from "../utils/api";
 import { borderColor } from "../utils/theme/border";
 import { NotificationCard } from "../components/Notification/Card";
+import { buttonColor } from "../utils/theme/button";
+import * as iconAI from "react-icons/ai";
 
 export const NotificationsPage: FC = () => {
     const { color } = useContext(ThemeContext);
@@ -13,6 +15,7 @@ export const NotificationsPage: FC = () => {
 
     const [notifications, setNotifications] = useState<NotificationStructure>({});
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [bulkLoading, setBulkLoading] = useState<boolean>(false);
 
     const getNotifications = async (): Promise<void> => {
         setIsLoading(true);
@@ -44,11 +47,24 @@ export const NotificationsPage: FC = () => {
                 ) : (
                     <div>
                         {Object.keys(notifications).length > 0 ? (
-                            <div className="flex flex-col gap-3">
-                                {Object.keys(notifications).map(key => (
-                                    <NotificationCard mobile updateNotifications={getNotifications} user={user} notification={notifications[key]} key={key} keyc={key} color={color} />
-                                ))}
-                            </div>
+                            <>
+                                <div className="flex flex-col gap-3">
+                                    {Object.keys(notifications).map(key => (
+                                        <NotificationCard mobile updateNotifications={getNotifications} user={user} notification={notifications[key]} key={key} keyc={key} color={color} />
+                                    ))}
+                                </div>
+                                <div className="flex flex-row gap-2 items-center justify-center mt-5">
+                                    <button onClick={async () => {
+                                        setBulkLoading(true);
+
+                                        await api.deleteAllNotifications(user?.id);
+                                        await getNotifications();
+
+                                        setBulkLoading(false);
+                                    }} className={`text-center ${buttonColor[color]} duration-300 transition-colors p-3 rounded-lg border-2 w-full`}>Limpar notificações</button>
+                                    {bulkLoading && <iconAI.AiOutlineLoading3Quarters fill="#fff" size={25} className="animate-spin" />}
+                                </div>
+                            </>
                         ) : (
                             <div className="w-[100%] text-center text-[20px] h-[270px] flex items-center justify-center">
                                 <span>Você não tem notificações.</span>
