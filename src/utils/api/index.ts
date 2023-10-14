@@ -9,21 +9,20 @@ const header = {
 };
 
 const api = {
-    getAllBots: async (): Promise<AxiosResponse> => {
-        return axios.get<AxiosResponse<BotStructure[]>>("/api/bots", header);
+    getAllBots: async (): Promise<AxiosResponse<BotStructure[]>> => {
+        return axios.get("/api/bots", header);
     },
-    getUserData: async (): Promise<AxiosResponse> => {
-        return axios.get<AxiosResponse<UserStructure>>("/api/auth/user", { ...header, withCredentials: true });
+    getUserData: async (): Promise<AxiosResponse<UserStructure>> => {
+        return axios.get("/api/auth/user", { ...header, withCredentials: true });
     },
     getToken: async (): Promise<string> => {
-        const res: AxiosResponse<{ token: string }> = await axios.get("/api/auth/token");
-        return res.data.token;
+        return (await axios.get("/api/auth/token")).data.token;
     },
-    getDiscordUser: async (userID: string | Snowflake): Promise<AxiosResponse> => {
-        return axios.get<AxiosResponse<DiscordUser>>("/api/users/" + userID, header);
+    getDiscordUser: async (userID: string | Snowflake): Promise<AxiosResponse<DiscordUser>> => {
+        return axios.get("/api/users/" + userID, header);
     },
-    getBotInfos: async (botID: string | Snowflake): Promise<AxiosResponse> => {
-        return axios.get<AxiosResponse<BotStructure>>("/api/bots/" + botID, header);
+    getBotInfos: async (botID: string | Snowflake): Promise<AxiosResponse<BotStructure>> => {
+        return axios.get("/api/bots/" + botID, header);
     },
     addBot: async (bodyData: BotStructure, botID: string | Snowflake): Promise<AxiosResponse> => {
         return axios.post<AxiosResponse<BotStructure>>("/api/bots/" + botID, bodyData, header);
@@ -70,7 +69,7 @@ const api = {
     deleteAllNotifications: async (userId: Snowflake | undefined) => {
         return axios.delete(`/api/users/${userId}/notifications/bulk-delete`, header);
     },
-    createNotification: async (userId: Snowflake | undefined, body: { content: string, type: NotificationType }): Promise<AxiosResponse> => {
+    createNotification: async (userId: Snowflake | undefined, body: { content: string, type: NotificationType, url?: string }): Promise<AxiosResponse> => {
         return axios.post(`/api/users/${userId}/notifications`, body, header);
     }
 };
