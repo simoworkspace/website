@@ -1,13 +1,12 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 
-export const Markdown: React.FC<{ markdown: string, className: string; }> = ({ markdown, className }) => {
+export const Markdown: React.FC<{ markdown: string }> = ({ markdown }) => {
 
     const renderMarkdown = () => {
-        const processedMarkdown = markdown.replace(/\n/g, '  \n');
+        const processedMarkdown = markdown.replace(/\n/g, "  \n");
         return (
             <ReactMarkdown className={`
-            ${className}
             prose
             prose-p:before:content-none
             prose-p:after:content-none
