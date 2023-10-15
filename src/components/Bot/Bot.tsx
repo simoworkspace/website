@@ -42,7 +42,7 @@ export const BotComponent: React.FC = () => {
     };
 
     const verifyBot = async (): Promise<void> => {
-        const res: BotStructure = (await api.getAllBots()).data.find((bot: BotStructure) => bot._id === botid);
+        const res: BotStructure | undefined = (await api.getAllBots()).data.find((bot: BotStructure) => bot._id === botid);
         if (!res) { navigate("/") };
     };
 
