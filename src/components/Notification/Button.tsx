@@ -10,6 +10,7 @@ import * as iconAI from "react-icons/ai";
 import { NotificationCard } from "./Card";
 import { scrollBar } from "../../utils/theme/scrollBar";
 import { buttonColor } from "../../utils/theme/button";
+import { Link } from "react-router-dom";
 
 export const NotificationButton: FC = () => {
     const { color } = useContext(ThemeContext);
@@ -67,12 +68,15 @@ export const NotificationButton: FC = () => {
                         <h1 className="text-[22px] text-center my-1"><strong>Suas notificações</strong></h1>
                         {Object.keys(notifications).length > 0 ? (
                             <>
-                                <div className="flex flex-col gap-3 xl:invisible">
+                                <div className="flex flex-col my-3 gap-3 xl:invisible">
                                     {Object.keys(notifications).map(key => (
                                         <NotificationCard updateNotifications={getNotifications} user={user} notification={notifications[key]} key={key} keyc={key} color={color} />
                                     ))}
                                 </div>
-                                <div className="flex flex-row gap-2 items-center justify-center mt-5">
+                                <Link className="text-blue-500 underline hover:text-blue-600 transition-colors flex items-center justify-center mb-3" to="/notifications">
+                                    <span>Página de notificações</span>
+                                </Link>
+                                <div className="flex flex-row gap-2 items-center justify-center">
                                     <button onClick={async () => {
                                         setBulkLoading(true);
 
