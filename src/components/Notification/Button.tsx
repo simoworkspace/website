@@ -47,7 +47,7 @@ export const NotificationButton: FC = () => {
         if (user) {
             getNotifications();
         }
-    }, [user]);
+    }, [user, isOpen]);
 
     return (
         <section ref={menuRef} className={`${!user && "invisible"}`}>

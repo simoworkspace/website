@@ -82,16 +82,31 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             }
         };
 
-        await axios.post("/api/webhook/addbot", bodyOwner, header);
-        await axios.post("/api/webhook/bot", bodyVerificar, header);
-
         for (let i in formData) {
             if (formData[i as keyof BotStructure] === "") {
                 delete formData[i as keyof BotStructure];
             }
         }
 
-        await api.addBot(formData, formData._id);
+        try {
+            await api.addBot(formData, formData._id);
+        } catch (error: any) {
+            const error_message = error.response.data.errors[0];
+
+            setSubmited(false);
+
+            switch (true) {
+                case error_message.includes("prefixes"):
+                    return alert("Limite máximo de caracteres no prefixo separado por vírgula é de 6.");
+                case error_message.includes("discord"):
+                    return alert("Servidor de discord inválido, tente isso por exemplo: https://discord.gg/BsAE9D68Ak" + error_message);
+                default:
+                    return alert("Ocorreu um erro desconhecido ao enviar seu bot, mensagem de erro: " + error_message);
+            }
+        }
+
+        await axios.post("/api/webhook/addbot", bodyOwner, header);
+        await axios.post("/api/webhook/bot", bodyVerificar, header);
 
         formData.long_description = formData.long_description.slice(0, 800);
 
@@ -119,13 +134,13 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                         </h1>
                     </h1>
                     <form onSubmit={handleSubmit(onSubmit)} className="gap-5 items-center justify-center pt-1 flex flex-col">
-                        <Input register={register} errors={errors} name="prefixes" text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash. separe por virgula (s!, S!)" required title="Prefixo" type="input" maxLength={16} />
-                        <Input register={register} name="long_description" text="Digite uma descrição longa que mostre todas as capacidades do seu bot (markdown habilitado!)" title="Descrição longa" errors={errors} type="textlong" setPreview={setPreview} preview={preview} required />
-                        <Input register={register} name="short_description" text="Digite uma descrição curta que irá aparecer na página inicial." title="Descrição curta" required errors={errors} type="input" minLength={50} maxLength={80} />
-                        <Input register={register} name="source_code" text="Digite o site onde tem o código fonte do bot" optional title="Source Code" errors={errors} type="input" inputType="url" />
-                        <Input register={register} name="website_url" text="Digite o website onde se encontra informações do seu bot" optional title="Website" errors={errors} type="input" inputType="url" />
-                        <Input register={register} name="support_server" text="Coloque o link do seu servidor de discord onde é o suporte do seu bot (https://discord.gg/)" optional title="Servidor do seu bot" errors={errors} type="input" inputType="url" />
-                        <TagInput register={register} errors={errors} name="tags" text="Digite as palavras chaves das características que seu bot possui, separe por virgula (moderação, administração)" required title="Tags" />
+                        <Input disabled={submited} register={register} errors={errors} name="prefixes" text="Me diga qual o prefixo do seu bot, caso não tenha, só escrever slash. separe por virgula (s!, S!)" required title="Prefixo" type="input" maxLength={16} />
+                        <Input disabled={submited} register={register} name="long_description" text="Digite uma descrição longa que mostre todas as capacidades do seu bot (markdown habilitado!)" title="Descrição longa" errors={errors} type="textlong" setPreview={setPreview} preview={preview} required />
+                        <Input disabled={submited} register={register} name="short_description" text="Digite uma descrição curta que irá aparecer na página inicial." title="Descrição curta" required errors={errors} type="input" minLength={50} maxLength={80} />
+                        <Input disabled={submited} register={register} name="source_code" text="Digite o site onde tem o código fonte do bot" optional title="Source Code" errors={errors} type="input" inputType="url" />
+                        <Input disabled={submited} register={register} name="website_url" text="Digite o website onde se encontra informações do seu bot" optional title="Website" errors={errors} type="input" inputType="url" />
+                        <Input disabled={submited} register={register} name="support_server" text="Coloque o link do seu servidor de discord onde é o suporte do seu bot (https://discord.gg/)" optional title="Servidor do seu bot" errors={errors} type="input" inputType="url" />
+                        <TagInput disabled={submited} register={register} errors={errors} name="tags" text="Digite as palavras chaves das características que seu bot possui, separe por virgula (moderação, administração)" required title="Tags" />
                         <div className="flex justify-center xl:w-[80vw] m-4 items-center gap-3">
                             <input
                                 type="submit"
