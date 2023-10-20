@@ -1,23 +1,22 @@
-import { Header } from "./components/Header/Header";
-import { Bots } from "./components/BotList/Bots";
-import { Addbot } from "./pages/Addbot";
+import { Header } from "../components/Header/Header";
+import { Bots } from "../components/BotList/Bots";
+import { Addbot } from "../pages/Addbot";
 import { Routes, Route } from "react-router-dom";
-import { NotFound } from "./pages/NotFound";
-import { Mobilemenu } from "./components/Mobile/Mobilemenu";
-import { Bot } from "./pages/Bot";
-import { RequireAuth } from "./components/Login/RequireAuth";
-import { Vote } from "./pages/Vote";
-import { Tests } from "./pages/Tests";
+import { NotFound } from "../pages/NotFound";
+import { Mobilemenu } from "../components/Mobile/Mobilemenu";
+import { Bot } from "../pages/Bot";
+import { RequireAuth } from "../components/Login/RequireAuth";
+import { Vote } from "../pages/Vote";
+import { Tests } from "../pages/Tests";
 import { useContext } from "react";
-import { ThemeContext } from "./contexts/ThemeContext";
-import { appColor } from "./utils/theme/app";
-import { Search } from "./pages/Search";
-import { Footer } from "./components/Footer/Footer";
-import { User } from "./components/User/User";
-import { NotificationsPage } from "./pages/Notifications";
-
+import { ThemeContext } from "../contexts/ThemeContext";
+import { appColor } from "../utils/theme/app";
+import { Search } from "../pages/Search";
+import { Footer } from "../components/Footer/Footer";
+import { User } from "../components/User/User";
+import { NotificationsPage } from "../pages/Notifications";
+import { ThemesPage } from "../pages/Theme";
 import "./index.css";
-import { ThemesPage } from "./pages/Theme";
 
 function App() {
     const { color } = useContext(ThemeContext);
