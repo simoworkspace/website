@@ -102,9 +102,21 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
                 <span className="text-[26px] mb-2"><strong>Feedbacks</strong></span>
                 {feedbackLoading ? (
                     <div className="flex flex-col gap-3">
-                        <div className="bg-neutral-900 animate-pulse w-full h-[200px] rounded-lg border-2"></div>
-                        <div className="bg-neutral-900 animate-pulse w-full h-[200px] rounded-lg border-2"></div>
-                        <div className="bg-neutral-900 animate-pulse w-full h-[200px] rounded-lg border-2"></div>
+                        {Array(3).fill(
+                            <div className="bg-neutral-900 w-full h-[150px] rounded-lg border-2">
+                                <div className="flex flex-col p-3 gap-2">
+                                    <div className="flex flex-row items-center justify w-full">
+                                        <div className="w-[40px] h-[40px] rounded-full animate-pulse bg-neutral-800"></div>
+                                        <div className="flex gap-2 items-center justify-center">
+                                            <div className="p-1 ml-1 w-[120px] h-[25px] animate-pulse bg-neutral-800 rounded-full"></div>
+                                            <div className="bg-neutral-800 rounded-full w-[100px] h-[20px] animate-pulse"></div>
+                                        </div>
+                                    </div>
+                                    <div className="bg-neutral-800 w-[70%] h-[40px] rounded-full animate-pulse"></div>
+                                    <div className="bg-neutral-800 animate-pulse w-[130px] h-[20px] rounded-lg"></div>
+                                </div>
+                            </div>
+                        )}
                     </div>
                 ) : currentFeedbacks && currentFeedbacks.length > 0 ? (
                     currentFeedbacks.map((feedback: FeedbackStructure, index: number) => (
@@ -116,7 +128,7 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
                     <div>Sem feedbacks.</div>
                 )}
             </div>
-            <div className="flex w-[800px] gap-[300px] items-center justify-center">
+            <div className="flex w-[800px] xl:w-[90vw] xl:gap-4 gap-[300px] items-center justify-center">
                 <button
                     onClick={() => setCurrentPage(currentPage - 1)}
                     disabled={currentPage === 1}
