@@ -22,7 +22,7 @@ function App() {
     const { color } = useContext(ThemeContext);
 
     return (
-        <main className={`xl:overflow-y-hidden xl:no-scrollbar flex flex-col items-center overflow-x-hidden min-h-[100vh] ${appColor[color]} bg-fixed h-1 xl:h-0 scrollbar-track-neutral-900 scrollbar-thin`}>
+        <main className={`xl:overflow-y-hidden xl:no-scrollbar flex flex-col items-center overflow-x-hidden min-h-screen ${appColor[color]} bg-fixed h-1 xl:h-0 scrollbar-track-neutral-900 scrollbar-thin`}>
             <Header />
             <section>
                 <Routes>

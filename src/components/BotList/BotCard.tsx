@@ -31,10 +31,10 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
                     : bot.short_description}
             </div>
             <div className="mt-2 ml-2 mb-2 gap-2 flex flex-row xl:ml-0">
-                <a href={`https://discord.com/api/oauth2/authorize?client_id=${bot._id}&permissions=70368744177655&scope=bot%20applications.commands`} target="_blank" className="border-2 border-neutral-700 text-white bg-neutral-900 hover:bg-neutral-700 transition-colors duration-300 flex justify-center items-center rounded-lg max-w-full max-h-full xl:w-[100%] w-[170px] h-[40px]">
+                <a href={`https://discord.com/api/oauth2/authorize?client_id=${bot._id}&permissions=70368744177655&scope=bot%20applications.commands`} target="_blank" className="border-2 border-neutral-700 text-white bg-neutral-900 hover:bg-neutral-700 transition-colors duration-300 flex justify-center items-center rounded-lg max-w-full max-h-full xl:w-full w-[170px] h-[40px]">
                     Adicionar
                 </a>
-                <Link className="border-2 text-white border-neutral-700 bg-neutral-900 hover:bg-neutral-700 transition-colors flex justify-center items-center duration-300 rounded-lg max-w-full max-h-full xl:w-[100%] w-[170px] h-[40px]" to={`/vote/${bot._id}`}>
+                <Link className="border-2 text-white border-neutral-700 bg-neutral-900 hover:bg-neutral-700 transition-colors flex justify-center items-center duration-300 rounded-lg max-w-full max-h-full xl:w-full w-[170px] h-[40px]" to={`/vote/${bot._id}`}>
                     Votar
                 </Link>
             </div>

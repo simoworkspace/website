@@ -77,12 +77,12 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
     const currentFeedbacks: FeedbackStructure[] | undefined = feedbacks?.slice(indexFirstItem, indexLastItem);
 
     return (
-        <div className="w-[100vw] max-w-[1500px] flex flex-col xl:ml-0 ml-[150px] mb-[30px] text-white gap-5 xl:items-center xl:justify-center">
+        <div className="w-screen max-w-[1500px] flex flex-col xl:ml-0 ml-[150px] mb-[30px] text-white gap-5 xl:items-center xl:justify-center">
             <div className="flex flex-col gap-2 w-[800px] xl:w-[90vw]">
                 <span className="text-[26px] mb-2"><strong>Envie seu feedback!</strong></span>
                 <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-                    <div className={`bg-neutral-800 rounded-lg ${borderColor[color]} border-2 text-white w-[100%]`}>
-                        <textarea rows={4} onChange={handleChange} className="bg-transparent w-[100%] focus:outline-none p-2" cols={22} required placeholder="Digite aqui" maxLength={500} />
+                    <div className={`bg-neutral-800 rounded-lg ${borderColor[color]} border-2 text-white w-full`}>
+                        <textarea rows={4} onChange={handleChange} className="bg-transparent w-full focus:outline-none p-2" cols={22} required placeholder="Digite aqui" maxLength={500} />
                     </div>
                     <div className="flex flex-row gap-1">
                         {[1, 2, 3, 4, 5].map((star) => (
@@ -92,7 +92,7 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
                         ))}
                     </div>
                     <div className="flex gap-3 items-center justify-center">
-                        <input disabled={submited} className={`disabled:cursor-default disabled:opacity-70 border-2 duration-300 transition-all cursor-pointer ${buttonColor[color]} p-3 rounded-lg w-[100%] text-white`} type="submit" value="Enviar" />
+                        <input disabled={submited} className={`disabled:cursor-default disabled:opacity-70 border-2 duration-300 transition-all cursor-pointer ${buttonColor[color]} p-3 rounded-lg w-full text-white`} type="submit" value="Enviar" />
                         {submited && <iconAI.AiOutlineLoading3Quarters fill="#fff" size={30} className="animate-spin" />}
                     </div>
                 </form>
@@ -102,9 +102,9 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
                 <span className="text-[26px] mb-2"><strong>Feedbacks</strong></span>
                 {feedbackLoading ? (
                     <div className="flex flex-col gap-3">
-                        <div className="bg-neutral-900 animate-pulse w-[100%] h-[200px] rounded-lg border-2"></div>
-                        <div className="bg-neutral-900 animate-pulse w-[100%] h-[200px] rounded-lg border-2"></div>
-                        <div className="bg-neutral-900 animate-pulse w-[100%] h-[200px] rounded-lg border-2"></div>
+                        <div className="bg-neutral-900 animate-pulse w-full h-[200px] rounded-lg border-2"></div>
+                        <div className="bg-neutral-900 animate-pulse w-full h-[200px] rounded-lg border-2"></div>
+                        <div className="bg-neutral-900 animate-pulse w-full h-[200px] rounded-lg border-2"></div>
                     </div>
                 ) : currentFeedbacks && currentFeedbacks.length > 0 ? (
                     currentFeedbacks.map((feedback: FeedbackStructure, index: number) => (

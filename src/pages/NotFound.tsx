@@ -18,7 +18,7 @@ export const NotFound: React.FC = () => {
     }, []);
 
     return (
-        <section className="w-[100vw] xl:w-[90vw] h-[600px] max-w-[1500px] flex items-center justify-center text-white flex-col">
+        <section className="w-screen xl:w-[90vw] h-[600px] max-w-[1500px] flex items-center justify-center text-white flex-col">
             <div className={`border-2 ${borderColor[color]} flex flex-col items-center justify-center text-center break-before-all p-[50px] xl:p-10 rounded-lg bg-neutral-900 gap-4`}>
                 <span className="text-[40px] xl:text-[22px]"><strong>Página não encontrada.</strong></span>
                 <span className="text-[22px] xl:text-[16px]">Nossos anões digitais procuraram por todos os cantos, mas não conseguiram encontrar a página que você está buscando.</span>

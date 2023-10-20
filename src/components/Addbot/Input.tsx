@@ -78,16 +78,16 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
 
     return type === "input" ? (
         <div className="text-white xl:w-[88vw] xl:flex-col flex-row flex">
-            <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
+            <div className="w-[800px] xl:w-full break-words flex-col flex mr-2">
                 <div className="items-center justify-center flex gap-3">
                     <strong>{title}</strong>
                     {!optional && <div className="text-red-500">*</div>}
                 </div>
                 <span className="text-center">{text}</span>
             </div>
-            <div className="flex flex-col items-center w-[100%]">
+            <div className="flex flex-col items-center w-full">
                 <div
-                    className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${errors && errors[name]?.message === ""
+                    className={`justify-center flex outline-none bg-[#2c2c2c] w-full h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${errors && errors[name]?.message === ""
                         ? "border-[#ff0000]"
                         : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                         } text-white`}
@@ -99,14 +99,14 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         minLength={minLength}
                         type={inputType}
                         disabled={disabled} 
-                        className="bg-transparent outline-none w-[100%] disabled:opacity-50"
+                        className="bg-transparent outline-none w-full disabled:opacity-50"
                     />
                 </div>
             </div>
         </div>
     ) : type === "textlong" ? (
-        <div className={`text-white xl:w-[88vw] w-[100%] xl:flex-col ${preview ? "flex-col" : "flex-row"} flex items-center justify-center`}>
-            <div className="w-[800px] xl:w-[100%] justify-center break-words flex-col flex mr-2">
+        <div className={`text-white xl:w-[88vw] w-full xl:flex-col ${preview ? "flex-col" : "flex-row"} flex items-center justify-center`}>
+            <div className="w-[800px] xl:w-full justify-center break-words flex-col flex mr-2">
                 <div className="items-center justify-center flex gap-3">
                     <strong>{title}</strong>
                     {!optional && <div className="text-red-500">*</div>}
@@ -119,9 +119,9 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                     <button type="button" className="bg-neutral-900 p-1 rounded-lg border-2 border-neutral-700 transition-colors duration-300 hover:bg-neutral-700" onClick={() => setPreview(!preview)}>{preview ? "Ocultar preview" : "Mostrar preview"}</button>
                 </div>
             </div>
-            <div className={`flex flex-col items-center w-[100%] ${preview ? "" : "max-w-[800px] xl:max-w-[9999px]"}`}>
+            <div className={`flex flex-col items-center w-full ${preview ? "" : "max-w-[800px] xl:max-w-[9999px]"}`}>
                 <div
-                    className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${errors.long_description?.message === ""
+                    className={`justify-center flex outline-none bg-[#2c2c2c] w-full rounded-xl p-3 border-[2px] transition-all duration-100 ${errors.long_description?.message === ""
                         ? "border-[#ff0000]"
                         : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                         } text-white`}
@@ -138,7 +138,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         minLength={200}
                         cols={22}
                         name={name}
-                        className="bg-transparent outline-none w-[100%] scrollbar-thin disabled:opacity-50"
+                        className="bg-transparent outline-none w-full scrollbar-thin disabled:opacity-50"
                     />
                 </div>
                 {preview &&
@@ -150,7 +150,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
         </div>
     ) : (
         <div className="text-white xl:w-[88vw] xl:flex-col flex-row flex">
-            <div className="w-[800px] xl:w-[100%] justify-center break-words flex-col flex mr-2">
+            <div className="w-[800px] xl:w-full justify-center break-words flex-col flex mr-2">
                 <div className="items-center justify-center flex gap-3">
                     <strong>{title}</strong>
                     {!optional && <div className="text-red-500">*</div>}
@@ -159,9 +159,9 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                     {text}
                 </span>
             </div>
-            <div className="flex flex-col items-center w-[100%]">
+            <div className="flex flex-col items-center w-full">
                 <div
-                    className={`justify-center flex outline-none bg-[#2c2c2c] w-[100%] rounded-xl p-3 border-[2px] transition-all duration-100 ${errors && errors[name]?.message === ""
+                    className={`justify-center flex outline-none bg-[#2c2c2c] w-full rounded-xl p-3 border-[2px] transition-all duration-100 ${errors && errors[name]?.message === ""
                         ? "border-[#ff0000]"
                         : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                         } text-white`}
@@ -174,7 +174,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         maxLength={200}
                         minLength={200}
                         cols={22}
-                        className="bg-transparent outline-none w-[100%] disabled:opacity-50"
+                        className="bg-transparent outline-none w-full disabled:opacity-50"
                     />
                 </div>
             </div>
@@ -210,16 +210,16 @@ export const TagInput: React.FC<{
 
     return (
         <div className="text-white xl:w-[88vw] xl:flex-col flex-row flex max-w-[1062px]">
-            <div className="w-[800px] xl:w-[100%] break-words flex-col flex mr-2">
+            <div className="w-[800px] xl:w-full break-words flex-col flex mr-2">
                 <div className="items-center justify-center flex gap-3">
                     <strong>{title}</strong>
                     <div className="text-red-500">*</div>
                 </div>
                 <span className="text-center">{text}</span>
             </div>
-            <div className="flex flex-col items-center w-[100%] gap-2">
+            <div className="flex flex-col items-center w-full gap-2">
                 <div
-                    className={`justify-center flex outline-none max-w-[600px] xl:max-w-none bg-[#2c2c2c] w-[100%] h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${errors && errors[name]?.message === ""
+                    className={`justify-center flex outline-none max-w-[600px] xl:max-w-none bg-[#2c2c2c] w-full h-[60px] rounded-xl p-3 border-[2px] transition-all duration-100 ${errors && errors[name]?.message === ""
                         ? "border-[#ff0000]"
                         : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                         } text-white`}
@@ -231,10 +231,10 @@ export const TagInput: React.FC<{
                         type="text"
                         value={inputValue}
                         onChange={handleInputChange}
-                        className="bg-transparent outline-none w-[100%] disabled:opacity-50"
+                        className="bg-transparent outline-none w-full disabled:opacity-50"
                     />
                 </div>
-                <div className="flex flex-row gap-3 flex-wrap w-[100%] break-all">
+                <div className="flex flex-row gap-3 flex-wrap w-full break-all">
                     {tags.map((tag, index) => (
                         <div key={index} className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
                     ))}

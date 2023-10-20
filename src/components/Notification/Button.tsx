@@ -59,9 +59,9 @@ export const NotificationButton: FC = () => {
                 {isLoading ? (
                     <div className="flex flex-col gap-3 xl:invisible">
                         <h1 className="text-[22px] text-center my-1"><strong>Suas notificações</strong></h1>
-                        <div className="w-[100%] bg-neutral-800 animate-pulse h-[70px] rounded-lg"></div>
-                        <div className="w-[100%] bg-neutral-800 animate-pulse h-[50px] rounded-lg"></div>
-                        <div className="w-[100%] bg-neutral-800 animate-pulse h-[66px] rounded-lg"></div>
+                        <div className="w-full bg-neutral-800 animate-pulse h-[70px] rounded-lg"></div>
+                        <div className="w-full bg-neutral-800 animate-pulse h-[50px] rounded-lg"></div>
+                        <div className="w-full bg-neutral-800 animate-pulse h-[66px] rounded-lg"></div>
                     </div>
                 ) : (
                     <div>
@@ -89,7 +89,7 @@ export const NotificationButton: FC = () => {
                                 </div>
                             </>
                         ) : (
-                            <div className="w-[100%] text-center text-[20px] flex items-center justify-center my-3">
+                            <div className="w-full text-center text-[20px] flex items-center justify-center my-3">
                                 <span>Você não tem notificações.</span>
                             </div>
                         )}

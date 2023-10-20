@@ -2,7 +2,7 @@ import React from "react";
 
 export const VoteLoading: React.FC = () => {
     return (
-        <section className="text-white p-3 w-[100vw] flex flex-col items-center justify-center">
+        <section className="text-white p-3 w-screen flex flex-col items-center justify-center">
             <div className="flex flex-row p-3 rounded-lg items-center gap-3">
                 <figure className="w-[100px] h-[100px] rounded-full bg-neutral-900 animate-pulse" />
                 <div>

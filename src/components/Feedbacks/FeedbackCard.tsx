@@ -47,7 +47,7 @@ export const FeedbackCard: React.FC<{
     return (
         <div className={`bg-neutral-900 rounded-lg p-1 text-white break-words border-2 ${borderColor[color]}`}>
             <div className="flex flex-col p-3 gap-2">
-                <div className="flex flex-row items-center justify w-[100%]">
+                <div className="flex flex-row items-center justify w-full">
                     <img
                         src={`https://cdn.discordapp.com/avatars/${feedback?.author.id}/${feedback?.author.avatar}.png?size=2048`}
                         alt={`${feedback?.author.username}'s avatar`}
@@ -58,7 +58,7 @@ export const FeedbackCard: React.FC<{
                         <span className="text-neutral-500">{new Date(feedback.posted_at).toLocaleString().split(", ")[0]}</span>
                     </div>
                     {user?.id === feedback?.author.id && (
-                        <div className="flex gap-3 justify-end w-[100%]">
+                        <div className="flex gap-3 justify-end w-full">
                             <button onClick={async () => {
                                 setIsDeleted(true);
                                 await api.deleteFeedback(botid, user?.id);
@@ -77,11 +77,11 @@ export const FeedbackCard: React.FC<{
                 </div>
                 {isEdit ? (
                     <form onSubmit={handleSubmitEdit} className="flex flex-col gap-3">
-                        <div className={`bg-neutral-800 rounded-lg ${borderColor[color]} border-2 text-white w-[100%]`}>
-                            <textarea defaultValue={feedback.content} rows={4} onChange={handleChangeEdit} className="bg-transparent w-[100%] focus:outline-none p-2" cols={22} required placeholder="Digite aqui" maxLength={500} />
+                        <div className={`bg-neutral-800 rounded-lg ${borderColor[color]} border-2 text-white w-full`}>
+                            <textarea defaultValue={feedback.content} rows={4} onChange={handleChangeEdit} className="bg-transparent w-full focus:outline-none p-2" cols={22} required placeholder="Digite aqui" maxLength={500} />
                         </div>
                         <div className="flex gap-3 items-center justify-center">
-                            <input disabled={submited} className={`disabled:cursor-default disabled:opacity-70 border-2 duration-300 transition-all cursor-pointer ${buttonColor[color]} p-3 rounded-lg w-[100%] text-white`} type="submit" value="Enviar" />
+                            <input disabled={submited} className={`disabled:cursor-default disabled:opacity-70 border-2 duration-300 transition-all cursor-pointer ${buttonColor[color]} p-3 rounded-lg w-full text-white`} type="submit" value="Enviar" />
                             {submited && <iconAI.AiOutlineLoading3Quarters fill="#fff" size={30} className="animate-spin" />}
                         </div>
                     </form>

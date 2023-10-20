@@ -60,7 +60,7 @@ export const LoggedMenu: React.FC = () => {
                 </button>
                 <div className={`${isOpen ? "opacity-100" : "opacity-0 invisible"} rounded-t-none border-t-0 text-white p-3 rounded-lg absolute right-[45px] origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
                     <Link to="/addbot" className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-[100px]">
-                        <div className="flex w-[100%] items-center justify-start gap-2">
+                        <div className="flex w-full items-center justify-start gap-2">
                             <iconBS.BiPlus fill="#fff" size={20} />
                             <span>Addbot</span>
                         </div>
@@ -69,13 +69,13 @@ export const LoggedMenu: React.FC = () => {
                         setThemeShow(!themeShow);
                         selected === "theme" ? setSelected("") : setSelected("theme");
                     }} className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-[100px]">
-                        <div className="flex w-[100%] items-center justify-start gap-2">
+                        <div className="flex w-full items-center justify-start gap-2">
                             <iconBS.BiPalette fill="#fff" size={20} />
                             <span>Temas</span>
                         </div>
                     </button>
                     <button onClick={async () => { await api.logoutUser(); return window.location.reload() }} className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-[100px]">
-                        <div className="flex w-[100%] items-center justify-start gap-2">
+                        <div className="flex w-full items-center justify-start gap-2">
                             <iconBS.BiExit fill="#fff" size={20} />
                             <span>Sair</span>
                         </div>

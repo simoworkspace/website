@@ -61,7 +61,7 @@ export const BotComponent: React.FC = () => {
     }, []);
 
     return botData && bot ? (
-        <section className="max-w-[1500px] w-[100vw]">
+        <section className="max-w-[1500px] w-screen">
             {!bot.approved && (
                 <div className="fixed flex items-center justify-center backdrop-blur-sm inset-0">
                     <div className="flex gap-3 items-center justify-center flex-col w-full h-[150px] border-2 rounded-lg bg-[#e8a60c] border-[#9e7514]">
@@ -71,14 +71,14 @@ export const BotComponent: React.FC = () => {
                 </div>
             )}
             <div className="flex flex-col items-center justify-center">
-                <section className="flex items-center xl:flex-col justify-center w-[100%] xl:mt-2 mt-[30px] text-white">
+                <section className="flex items-center xl:flex-col justify-center w-full xl:mt-2 mt-[30px] text-white">
                     <div className={`bg-neutral-900 rounded-xl flex xl:flex-col xl:h-[320px] h-[120px] w-[95%] border-2 ${borderColor[color]} items-center justify-center`}>
                         <img
                             className="w-[100px] h-[100px] xl:my-2 rounded-full xl:float-none ml-2"
                             src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png?size=2048`}
                             alt={botData.username + "'s Avatar"}
                         />
-                        <div className="flex flex-col w-[100%] justify-center gap-2">
+                        <div className="flex flex-col w-full justify-center gap-2">
                             <div className="ml-6 xl:m-0 xl:my-1 text-white flex xl:flex-col xl:items-center flex-row gap-3 text-[26px]">
                                 <strong>{botData.username}</strong>
                                 <span className="text-[#797979] items-center flex text-[13px]">
@@ -94,8 +94,8 @@ export const BotComponent: React.FC = () => {
                                 ))}
                             </div>
                         </div>
-                        <div className="flex w-[100%] justify-end ">
-                            <div className="flex gap-4 items-center justify-center xl:w-[100vw] flex-row m-4">
+                        <div className="flex w-full justify-end ">
+                            <div className="flex gap-4 items-center justify-center xl:w-screen flex-row m-4">
                                 <Link
                                     className="border-2 border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
                                     to={`/vote/${botData.id}`}
@@ -114,16 +114,16 @@ export const BotComponent: React.FC = () => {
                 </section>
                 <section className={`w-[90%] mb-5 bg-neutral-900 border-2 ${borderColor[color]} border-t-0 rounded-t-none rounded-lg p-10 xl:p-3`}>
                     <div className="flex flex-row xl:flex-col">
-                        <div className="w-[80%] xl:w-[100%] flex break-words xl:justify-center p-2">
+                        <div className="w-[80%] xl:w-full flex break-words xl:justify-center p-2">
                             <Markdown markdown={bot.long_description} />
                         </div>
                         <div className="w-[1px] bg-[#8b8b8b]" />
-                        <hr className="xl:my-4 xl:w-[100%]" />
-                        <div className="flex flex-col gap-5 text-white px-5 w-[50%] xl:w-[100%]">
-                            <div className="w-[100%]">
-                                <div className="w-[100%]">
+                        <hr className="xl:my-4 xl:w-full" />
+                        <div className="flex flex-col gap-5 text-white px-5 w-[50%] xl:w-full">
+                            <div className="w-full">
+                                <div className="w-full">
                                     <h1 className="text-2xl text-center">{bot.owners.length > 1 ? "Developers" : "Developer"}</h1>
-                                    <hr className="my-4 w-[100%]" />
+                                    <hr className="my-4 w-full" />
                                     <div className="grid grid-cols-2 gap-4">
                                         {devs.map((user: UserStructure) => (
                                             <Link to={`/users/${user.id}`} className="bg-neutral-900 border-2 border-neutral-700 p-2 rounded-lg flex flex-row flex-wrap justify-center xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
@@ -136,8 +136,8 @@ export const BotComponent: React.FC = () => {
                             </div>
                             <div>
                                 <h1 className="text-2xl text-center">Informações</h1>
-                                <hr className="my-4 w-[100%]" />
-                                <div className="flex flex-col w-[100%] gap-3">
+                                <hr className="my-4 w-full" />
+                                <div className="flex flex-col w-full gap-3">
                                     <div>
                                         <strong className="text-lg">Prefixo </strong><span>{bot.prefixes.join(", ")}</span>
                                     </div>
@@ -153,7 +153,7 @@ export const BotComponent: React.FC = () => {
                                         </div>
                                     </div>
                                     <h1 className="text-2xl text-center">Links</h1>
-                                    <hr className="my-1 w-[100%]" />
+                                    <hr className="my-1 w-full" />
                                     <div className="flex flex-col gap-3 flex-wrap">
                                         {bot?.support_server && (
                                             <Link to={bot?.support_server.includes("https://") ? bot?.support_server : "https://" + bot?.support_server} className="flex items-center gap-3 p-2">

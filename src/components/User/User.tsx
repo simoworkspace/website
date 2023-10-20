@@ -36,7 +36,7 @@ export const User: React.FC = () => {
             {!discordUser || !userBots ? (
                 <UserLoading />
             ) : (
-                <section className="w-[100vw] flex flex-row p-5 text-white items-center justify-center gap-10 xl:flex-col">
+                <section className="w-screen flex flex-row p-5 text-white items-center justify-center gap-10 xl:flex-col">
                     <div className={`${borderColor[color]} border-2 w-[300px] h-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col`}>
                         <div>
                             <img className="rounded-full" src={`https://cdn.discordapp.com/avatars/${discordUser.id}/${discordUser.avatar}.png`} alt={`${discordUser.username}'s Avatar`} />
@@ -49,7 +49,7 @@ export const User: React.FC = () => {
                             </span>
                         </div>
                     </div>
-                    <div className="flex items-center justify-center w-[100%] flex-col">
+                    <div className="flex items-center justify-center w-full flex-col">
                         <h1 className="text-[33px]">Perfil de <strong>{discordUser.username}</strong></h1>
                         <hr className="w-full my-3" />
                         <section className="w-full">

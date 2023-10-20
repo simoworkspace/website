@@ -4,9 +4,9 @@ import * as icon from 'react-icons/bs';
 export const Footer: React.FC = () => {
     return (
         <>
-            <hr className="w-[100vw]" />
-            <footer className="flex items-center justify-center w-[100vw] max-w-[1500px]">
-                <div className="w-[100%] h-[90px] xl:h-[120px] text-white flex items-center xl:mb-[70px] justify-center">
+            <hr className="w-screen" />
+            <footer className="flex items-center justify-center w-screen max-w-[1500px]">
+                <div className="w-full h-[90px] xl:h-[120px] text-white flex items-center xl:mb-[70px] justify-center">
                     <div className="text-white flex flex-row xl:flex-col items-center text-center justify-center text-[32px] mx-10 my-3 xl:mx-0">
                         <strong>Simo</strong>
                         <div className="bg-white w-[30px] h-[1px] mx-[20px] xl:invisible"></div>

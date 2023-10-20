@@ -38,11 +38,11 @@ export const NotificationsPage: FC = () => {
                 <h1 className="text-[22px] text-center my-4"><strong>Suas notificações</strong></h1>
                 {isLoading ? (
                     <div className="flex flex-col gap-3">
-                        <div className="w-[100%] bg-neutral-900 animate-pulse h-[50px] rounded-lg"></div>
-                        <div className="w-[100%] bg-neutral-900 animate-pulse h-[70px] rounded-lg"></div>
-                        <div className="w-[100%] bg-neutral-900 animate-pulse h-[80px] rounded-lg"></div>
-                        <div className="w-[100%] bg-neutral-900 animate-pulse h-[120px] rounded-lg"></div>
-                        <div className="w-[100%] bg-neutral-900 animate-pulse h-[60px] rounded-lg"></div>
+                        <div className="w-full bg-neutral-900 animate-pulse h-[50px] rounded-lg"></div>
+                        <div className="w-full bg-neutral-900 animate-pulse h-[70px] rounded-lg"></div>
+                        <div className="w-full bg-neutral-900 animate-pulse h-[80px] rounded-lg"></div>
+                        <div className="w-full bg-neutral-900 animate-pulse h-[120px] rounded-lg"></div>
+                        <div className="w-full bg-neutral-900 animate-pulse h-[60px] rounded-lg"></div>
                     </div>
                 ) : (
                     <div>
@@ -66,7 +66,7 @@ export const NotificationsPage: FC = () => {
                                 </div>
                             </>
                         ) : (
-                            <div className="w-[100%] text-center text-[20px] h-[270px] flex items-center justify-center">
+                            <div className="w-full text-center text-[20px] h-[270px] flex items-center justify-center">
                                 <span>Você não tem notificações.</span>
                             </div>
                         )}

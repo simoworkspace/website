@@ -3,7 +3,7 @@ import { Botloading } from "../BotList/Botloading";
 
 export const UserLoading: React.FC = () => {
     return (
-        <section className="w-[100vw] flex flex-row p-5 text-white items-center justify-center gap-10 xl:flex-col">
+        <section className="w-screen flex flex-row p-5 text-white items-center justify-center gap-10 xl:flex-col">
             <div className="border-2 w-[300px] h-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col">
                 <div>
                     <div className="rounded-full w-[100px] h-[100px] bg-neutral-800" />

@@ -123,7 +123,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
     };
 
     return (
-        <div className="mb-[70px] p-3 w-[100vw] flex items-center justify-center">
+        <div className="mb-[70px] p-3 w-screen flex items-center justify-center">
             <div className={`bg-black border-2 shadow-lg transition-all duration-300 ${borderColor[color]} ${shadowColor[color]} rounded-lg p-2`}>
                 <div className="xl:mb-[0px] flex gap-1 justify-start flex-col items-center">
                     <h1 className="text-white xl:text-[26px] text-[40px] m-5 xl:m-0 xl:mt-2">

@@ -22,7 +22,7 @@ export const Mobilemenu: React.FC = () => {
         <div className={`hidden xl:fixed xl:bottom-0 xl:left-0 xl:w-full border-t-2 transition-colors duration-300 ${mobileMenu[color]} xl:text-white xl:py-3 xl:flex xl:justify-around xl:items-center`}>
             {user ? (
                 <>
-                    <section className="flex flex-row w-[100%] items-center">
+                    <section className="flex flex-row w-full items-center">
                         <Link onClick={() => {
                             setClick(!click);
                         }} to="/notifications" className="flex flex-grow justify-center">
@@ -47,9 +47,9 @@ export const Mobilemenu: React.FC = () => {
                     </section>
                 </>
             ) : (
-                <div className="w-[100vw] flex items-center justify-center">
+                <div className="w-screen flex items-center justify-center">
                     <Link
-                        className="w-[100%] self-center text-center text-white"
+                        className="w-full self-center text-center text-white"
                         to={import.meta.env.VITE_AUTH_LINK}
                     >
                         login
