@@ -7,6 +7,8 @@ export const Markdown: React.FC<{ markdown: string }> = ({ markdown }) => {
         const processedMarkdown = markdown.replace(/\n/g, "  \n");
         return (
             <ReactMarkdown className={`
+            w-full
+            h-full
             prose
             prose-p:before:content-none
             prose-p:after:content-none
