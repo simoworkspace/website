@@ -24,7 +24,7 @@ export const BotLoading: React.FC = () => {
                         </div>
                     </div>
                 </section>
-                <section className="w-[90%] bg-neutral-900 border-2 border-t-0 rounded-t-none rounded-lg p-10 xl:p-3">
+                <section className="w-[90%] mb-5 bg-neutral-900 border-2 border-t-0 rounded-t-none rounded-lg p-10 xl:p-3">
                     <div className="flex flex-row xl:flex-col">
                         <div className="w-[80%] xl:w-[100%] flex break-words xl:justify-center">
                             <div className="w-[93%] bg-neutral-800 rounded-lg animate-pulse"></div>
@@ -66,6 +66,32 @@ export const BotLoading: React.FC = () => {
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </section>
+                <section className="w-[100vw] max-w-[1500px] flex flex-col xl:ml-0 ml-[150px] mb-[30px] gap-5 xl:items-center xl:justify-center">
+                    <div className="flex flex-col gap-2 w-[800px] xl:w-[90vw]">
+                        <div className="bg-neutral-800 animate-pulse w-full h-[39px] rounded-full"></div>
+                        <div className="bg-neutral-800 rounded-lg h-[112px] animate-pulse w-full mt-2"></div>
+                        <div className="bg-neutral-800 animate-pulse w-[250px] h-[40px] rounded-full my-2"></div>
+                        <div className="bg-neutral-800 animate-pulse w-full h-[52px] rounded-lg"></div>
+                        <div className="bg-neutral-800 animate-pulse w-[300px] h-[39px] rounded-full my-2"></div>
+                        <div className="flex flex-col gap-3">
+                            {Array(3).fill(
+                                <div className="bg-neutral-900 w-[100%] h-[150px] rounded-lg border-2">
+                                    <div className="flex flex-col p-3 gap-2">
+                                        <div className="flex flex-row items-center justify w-[100%]">
+                                            <div className="w-[40px] h-[40px] rounded-full animate-pulse bg-neutral-800"></div>
+                                            <div className="flex gap-2 items-center justify-center">
+                                                <div className="p-1 ml-1 w-[120px] h-[25px] animate-pulse bg-neutral-800 rounded-full"></div>
+                                                <div className="bg-neutral-800 rounded-full w-[100px] h-[20px] animate-pulse"></div>
+                                            </div>
+                                        </div>
+                                        <div className="bg-neutral-800 w-[70%] h-[40px] rounded-full animate-pulse"></div>
+                                        <div className="bg-neutral-800 animate-pulse w-[130px] h-[20px] rounded-lg"></div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </section>
