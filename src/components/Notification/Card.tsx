@@ -45,7 +45,7 @@ export const NotificationCard: FC<{
     }
 
     return mobile ? (
-        <div className={`flex items-center gap-3 ${borderColor[color]} ${typeSchemas[notification.type].colors} border-l-[5px] border-2 rounded-lg p-3 w-full break-all bg-neutral-900`}>
+        <div className={`flex items-center gap-3 ${borderColor[color]} ${typeSchemas[notification.type].colors} border-l-[5px] border-2 rounded-lg p-3 w-full break-before-all bg-neutral-900`}>
             {notification.type !== 3 ? typeSchemas[notification.type].icon : <img className="w-[40px] rounded-full" src={notification.url}/>}
             <span className="w-full"><Markdown markdown={notification.content} /></span>
             <button disabled={deleted} onClick={handleDeleteNotification} className="disabled:cursor-default flex h-full justify-start items-center">
@@ -53,7 +53,7 @@ export const NotificationCard: FC<{
             </button>
         </div>
     ) : (
-        <div className={`flex items-center gap-3 ${borderColor[color]} ${typeSchemas[notification.type].colors} border-l-[5px] border-2 rounded-lg p-3 w-full break-all`}>
+        <div className={`flex items-center gap-3 ${borderColor[color]} ${typeSchemas[notification.type].colors} border-l-[5px] border-2 rounded-lg p-3 w-full break-before-all`}>
             {notification.type !== 3 ? typeSchemas[notification.type].icon : <img className="w-[40px] rounded-full" src={notification.url}/>}
             <span className="w-full"><Markdown markdown={notification.content} /></span>
             <button disabled={deleted} onClick={handleDeleteNotification} className="disabled:cursor-default flex justify-start items-start">
