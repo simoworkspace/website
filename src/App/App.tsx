@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router-dom";
 import { NotFound } from "../pages/NotFound";
 import { Mobilemenu } from "../components/Mobile/Mobilemenu";
 import { Bot } from "../pages/Bot";
-import { RequireAuth } from "../components/Login/RequireAuth";
 import { Vote } from "../pages/Vote";
 import { Tests } from "../pages/Tests";
 import { useContext } from "react";
@@ -33,7 +32,7 @@ function App() {
                     <Route path="/search" element={<Search />} />
                     <Route path="/notifications" element={<NotificationsPage />} />
                     <Route path="/themes" element={<ThemesPage />} />
-                    <Route path="addbot" element={<RequireAuth><Addbot /></RequireAuth>}/>
+                    <Route path="addbot" element={<Addbot />}/>
                     <Route path="/users/:userid" element={<User/>}/>
                     <Route path="*" element={<NotFound />} />
                 </Routes>
