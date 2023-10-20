@@ -12,6 +12,7 @@ interface InputProps {
     inputType?: React.HTMLInputTypeAttribute;
     title: string;
     errors: any;
+    disabled?: boolean;
     type: "textarea" | "input" | "textlong";
     rows?: number;
     maxLength?: number;
@@ -22,7 +23,7 @@ interface InputProps {
     setPreview?: any | ((value: boolean) => void);
 }
 
-export const Input: React.FC<InputProps> = ({ register, name, required, text, title, errors, type, preview, setPreview, maxLength, minLength, inputType, optional }) => {
+export const Input: React.FC<InputProps> = ({ register, name, required, text, title, errors, type, preview, setPreview, maxLength, minLength, inputType, optional, disabled }) => {
     const [markdown, setMarkdown] = useState<string>('');
 
     const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -30,7 +31,6 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
     };
 
     const renderMarkdown = () => {
-        const processedMarkdown = markdown.replace(/\n/g, '  \n');
         return (
             <ReactMarkdown className="
             prose
@@ -71,7 +71,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
             prose-td:text-white
             prose-img:text-white
             prose-video:text-white
-            ">{processedMarkdown}</ReactMarkdown>
+            ">{markdown.replace(/\n/g, '  \n')}</ReactMarkdown>
         );
     };
 
@@ -98,7 +98,8 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         maxLength={maxLength}
                         minLength={minLength}
                         type={inputType}
-                        className="bg-transparent outline-none w-[100%]"
+                        disabled={disabled} 
+                        className="bg-transparent outline-none w-[100%] disabled:opacity-50"
                     />
                 </div>
             </div>
@@ -126,6 +127,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         } text-white`}
                 >
                     <textarea
+                        disabled={disabled}
                         value={markdown}
                         {...register(name, {
                             required: true,
@@ -136,7 +138,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         minLength={200}
                         cols={22}
                         name={name}
-                        className="bg-transparent outline-none w-[100%] scrollbar-thin"
+                        className="bg-transparent outline-none w-[100%] scrollbar-thin disabled:opacity-50"
                     />
                 </div>
                 {preview &&
@@ -165,13 +167,14 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         } text-white`}
                 >
                     <textarea
+                        disabled={disabled}
                         {...register(name, { required } || { required: true })}
                         name={name}
                         rows={5}
                         maxLength={200}
                         minLength={200}
                         cols={22}
-                        className="bg-transparent outline-none w-[100%]"
+                        className="bg-transparent outline-none w-[100%] disabled:opacity-50"
                     />
                 </div>
             </div>
@@ -186,7 +189,8 @@ export const TagInput: React.FC<{
     required: boolean;
     name: string;
     errors: any;
-}> = ({ register, title, text, required, name, errors }) => {
+    disabled?: boolean;
+}> = ({ register, title, text, required, name, errors, disabled }) => {
     const { color } = useContext(ThemeContext);
     const [inputValue, setInputValue] = useState<string>("");
     const [tags, setTags] = useState<string[]>([]);
@@ -221,12 +225,13 @@ export const TagInput: React.FC<{
                         } text-white`}
                 >
                     <input
+                        disabled={disabled}
                         {...register(name, { required } || { required: true })}
                         name={name}
                         type="text"
                         value={inputValue}
                         onChange={handleInputChange}
-                        className="bg-transparent outline-none w-[100%]"
+                        className="bg-transparent outline-none w-[100%] disabled:opacity-50"
                     />
                 </div>
                 <div className="flex flex-row gap-3 flex-wrap w-[100%] break-all">
