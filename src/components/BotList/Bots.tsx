@@ -30,10 +30,25 @@ export const Bots: React.FC = () => {
         setBotsToShow(newBotsToShow);
     };
 
+    const sortedBots = data?.sort((a, b) => {
+        let totalVotesA: number = 0;
+        let totalVotesB: number = 0;
+
+        a.votes.forEach((vote) => {
+            totalVotesA += vote.votes;
+        });
+
+        b.votes.forEach((vote) => {
+            totalVotesB += vote.votes;
+        });
+
+        return totalVotesB - totalVotesA;
+    });
+
     return data ? (
         <>
             <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left max-w-[1500px]">
-                {data.slice(0, botsToShow).map((bot: BotStructure) => (
+                {sortedBots?.slice(0, botsToShow).map((bot: BotStructure) => (
                     <BotCard bot={bot} key={bot._id} />
                 ))}
             </div>
