@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { AxiosResponse } from "axios";
 import { BotStructure, DiscordUser } from "../../types";
 import { UserContext } from "../../contexts/UserContext";
@@ -7,8 +7,8 @@ import api from '../../utils/api';
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { VoteLoading } from "./Loading";
 import { buttonColor } from "../../utils/theme/button";
-import { BotCard } from "../BotList/BotCard";
 import { borderColor } from "../../utils/theme/border";
+import * as icon from "react-icons/ai";
 
 export const VoteComponent: React.FC = () => {
     const { user } = useContext(UserContext);
@@ -19,6 +19,7 @@ export const VoteComponent: React.FC = () => {
     const [discordBotData, setDiscordBotData] = useState<DiscordUser>();
     const [votes, setVotes] = useState<number>(0);
     const [voted, setVoted] = useState<boolean>();
+    const [clicked, setClicked] = useState<boolean>(false);
 
     const getVoteStatus = async () => {
         const res: AxiosResponse<{ can_vote: boolean; restTime: string; }> = await api.voteStatus(botid as string, user?.id as string);
@@ -38,11 +39,12 @@ export const VoteComponent: React.FC = () => {
     };
 
     const handleVote = async () => {
+        setClicked(true);
         await api.voteBot(user?.id as string, botid as string);
         getVoteData();
-        setVoted(true);
         getVoteStatus();
-        return;
+        setClicked(false);
+        setVoted(true);
     };
 
     useEffect(() => {
@@ -59,7 +61,7 @@ export const VoteComponent: React.FC = () => {
     return user ? (
         discordBotData ? (
             <section className="text-white p-3 w-screen flex flex-col items-center justify-center">
-                <div className={`flex flex-row rounded-lg items-center gap-3 bg-neutral-900 w-[70%] max-w-[900px] xl:text-center xl:flex-col xl:w-[80vw] p-4 justify-center border-2 ${borderColor[color]} border-b-0 rounded-b-none`}>
+                <div className="flex flex-row rounded-lg items-center gap-3 w-[70%] max-w-[900px] xl:text-center xl:flex-col xl:w-[80vw] p-4 justify-center">
                     <img
                         className="w-[100px] rounded-full"
                         src={`https://cdn.discordapp.com/avatars/${discordBotData?.id}/${discordBotData?.avatar}.png?size=2048`}
@@ -84,12 +86,12 @@ export const VoteComponent: React.FC = () => {
                                     : <span className="text-center p-2">Calma lá amigão, você ja votou hoje, volte amanhã.</span>
                             )
                     }</span>
-                    <div className="flex justify-end xl:mb-3">
+                    <div className="flex justify-end xl:mb-3 flex-grow mr-6">
                         <button
-                            className={`transition-all duration-300 border-2 rounded-xl ${buttonColor[color]} w-[100px] h-[50px] disabled:opacity-40`}
-                            disabled={!voteStatus?.can_vote}
+                            className={`transition-all duration-300 border-2 rounded-xl ${buttonColor[color]} w-[100px] h-[50px] disabled:opacity-40 flex items-center justify-center`}
+                            disabled={!voteStatus?.can_vote || clicked}
                             onClick={handleVote}
-                        >Votar</button>
+                        > {clicked ? <icon.AiOutlineLoading3Quarters fill="#fff" size={30} className="animate-spin"/>  : "Votar"}</button>
                     </div>
                 </div>
             </section>
@@ -112,7 +114,7 @@ export const VoteComponent: React.FC = () => {
             <div className="flex border-2 w-[60vw] h-[80px] flex-row rounded-lg items-center bg-neutral-900 xl:flex-col xl:h-[160px] xl:justify-center xl:w-full">
                 <span className="text-[20px] w-[82%] ml-3 xl:flex xl:text-center xl:ml-0 xl:mb-3">Você precisar estar logado para poder votar.</span>
                 <div className="flex justify-end">
-                    <button 
+                    <button
                         className={`transition-all duration-300 border-2 rounded-xl ${buttonColor[color]} w-[100px] h-[50px] disabled:opacity-40`}
                         disabled
                         onClick={handleVote}
