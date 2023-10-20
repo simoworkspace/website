@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import arrowIcon from '../../assets/svgs/arrow.svg'
+import * as iconMD from "react-icons/md";
 interface Props {
     title: string;
     to?: string | "/";
@@ -18,13 +18,13 @@ export const MenuOption: React.FC<Props> = ({ icon, title, to, alt, action, type
         <button onClick={action} className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg bg-black">
             <img src={icon} alt={alt} />
             <span>{title}</span>
-            <img className="w-[20px] -rotate-90" src={arrowIcon} alt="Arrow Icon" />
+            <iconMD.MdOutlineKeyboardArrowDown className={`transition-all duration-300`} size={25} />
         </button>
     ) : (
         <Link to={to || "/"} className="hover:bg-neutral-700 flex flex-row items-center justify-center gap-2 rounded-lg bg-black w-full h-[30px]">
             <img src={icon} alt={alt} />
             <span>{title}</span>
-            <img className="w-[20px] -rotate-90" src={arrowIcon} alt="Arrow Icon" />
+            <iconMD.MdOutlineKeyboardArrowDown className={`transition-all duration-300 rotate-0`} size={25} />
         </Link>
     )
     ) :

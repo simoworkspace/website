@@ -9,12 +9,6 @@ import { Markdown } from "../../components/Markdown/Markdown";
 import { borderAndBg } from "../../utils/theme/border&bg";
 import { borderColor } from "../../utils/theme/border";
 import * as icon from "react-icons/bs";
-
-import starIconFill from "../../assets/svgs/starfill.svg";
-import starIcon from "../../assets/svgs/star.svg";
-import discordIcon from "../../assets/svgs/discord.svg";
-import githubIcon from "../../assets/svgs/github.svg";
-import globIcon from "../../assets/svgs/globo.svg";
 import { BotLoading } from "./BotLoading";
 
 export const BotComponent: React.FC = () => {
@@ -93,10 +87,10 @@ export const BotComponent: React.FC = () => {
                             </div>
                             <div className="flex mx-6 xl:justify-center xl:m-1 flex-row gap-1">
                                 {Array(stars).fill(0).map(() => (
-                                    <img src={starIconFill} alt="Star" />
+                                    <icon.BsStarFill />
                                 ))}
-                                {Array(5 - stars).fill(0).map((_, index) => (
-                                    <img key={index + stars} src={starIcon} alt="Empty Star" />
+                                {Array(5 - stars).fill(0).map(() => (
+                                    <icon.BsStar />
                                 ))}
                             </div>
                         </div>
@@ -163,19 +157,19 @@ export const BotComponent: React.FC = () => {
                                     <div className="flex flex-col gap-3 flex-wrap">
                                         {bot?.support_server && (
                                             <Link to={bot?.support_server.includes("https://") ? bot?.support_server : "https://" + bot?.support_server} className="flex items-center gap-3 p-2">
-                                                <img className="w-[30px]" src={discordIcon} alt="Discord Icon" />
+                                                <icon.BsDiscord size={30} fill="#5662F6" />
                                                 <span>Servidor de suporte</span>
                                             </Link>
                                         )}
                                         {bot?.source_code && (
                                             <Link to={bot?.source_code.includes("https://") ? bot?.source_code : "https://" + bot?.source_code} className="flex items-center gap-3 p-2">
-                                                <img className="w-[30px]" src={githubIcon} alt="Github Icon" />
+                                                <icon.BsGithub size={30} />
                                                 <span>Repositório</span>
                                             </Link>
                                         )}
                                         {bot?.website_url && (
                                             <Link to={bot?.website_url.includes("https://") ? bot?.website_url : "https://" + bot?.website_url} className="flex items-center gap-3 p-2">
-                                                <img className="w-[30px]" src={globIcon} alt="Globe Icon" />
+                                                <icon.BsGlobe size={30} />
                                                 <span>Website (<span className="text-blue-600">{bot?.website_url}</span>)</span>
                                             </Link>
                                         )}

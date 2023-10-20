@@ -1,4 +1,4 @@
-import searchIcon from "../../assets/svgs/search.svg";
+import * as icon from "react-icons/bs";
 import React from "react";
 
 export const InputSearch: React.FC = () => {
@@ -11,7 +11,7 @@ export const InputSearch: React.FC = () => {
                     placeholder="Pesquise por um bot."
                 />
                 <button type="submit" >
-                    <img src={searchIcon} alt="Search Icon" />
+                    <icon.BsSearch fill="#fff"/>
                 </button>
             </form>
         </div>
