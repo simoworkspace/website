@@ -64,7 +64,7 @@ export const FeedbackCard: React.FC<{
                                 await api.deleteFeedback(botid, user?.id);
                                 await updateFeedbacks();
                                 setIsDeleted(false);
-                            }} className="flex flex-grow justify-end">
+                            }} className="flex justify-end">
                                 {!isDeleted ? <icon.BsTrash size={20} className="hover:fill-red-500 transition-colors duration-300" /> : <iconAI.AiOutlineLoading3Quarters fill="#fff" size={20} className="animate-spin" />}
                             </button>
                             <button onClick={() => {

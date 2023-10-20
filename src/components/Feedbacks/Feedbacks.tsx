@@ -92,7 +92,7 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
                         ))}
                     </div>
                     <div className="flex gap-3 items-center justify-center">
-                        <input disabled={submited} className={`disabled:cursor-default disabled:opacity-70 border-2 duration-300 transition-all cursor-pointer ${buttonColor[color]} p-3 rounded-lg w-full text-white`} type="submit" value="Enviar" />
+                        {user ? <input disabled={submited} className={`disabled:cursor-default disabled:opacity-70 border-2 duration-300 transition-all cursor-pointer ${buttonColor[color]} p-3 rounded-lg w-full text-white`} type="submit" value="Enviar" /> : <a href={import.meta.env.VITE_AUTH_LINK} className={`${buttonColor[color]} border-2 w-full p-3 duration-300 transition-all flex items-center justify-center rounded-lg`}>Fazer Login</a>}
                         {submited && <iconAI.AiOutlineLoading3Quarters fill="#fff" size={30} className="animate-spin" />}
                     </div>
                 </form>
