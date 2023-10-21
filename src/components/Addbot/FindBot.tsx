@@ -62,7 +62,7 @@ export const FindBot: React.FC<{
 
     return (
         <section className="flex items-center justify-center w-screen h-[600px] p-3">
-            <div className={`bg-black ${borderColor[color]} border-2 ${shadowColor[color]} h-[400px] max-w-[1200px] w-[900px] rounded-lg shadow-md flex items-center justify-center flex-col p-4`}>
+            <div className={`bg-neutral-900 ${borderColor[color]} border-2 ${shadowColor[color]} h-[400px] max-w-[1200px] w-[900px] rounded-lg shadow-md flex items-center justify-center flex-col p-4`}>
                 <div className="text-white xl:text-[26px] text-[40px] mb-8 xl:m-0 xl:mb-8">
                     <h1 className="text-white flex flex-row mx-10">
                         <strong className="text-[#ffffff] text-[32px] xl:text-[28px] xl:mr-0">Adicione seu Bot</strong>

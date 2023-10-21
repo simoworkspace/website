@@ -10,7 +10,7 @@ export const FinishAddbot: React.FC<{ botData: FindBotStructure | undefined }> =
 
     return (
         <section className="flex items-center justify-center h-[600px] w-screen text-white">
-            <div className={`bg-black rounded-lg ${borderColor[color]} border-2 w-[900px] h-[400px]`}>
+            <div className={`bg-neutral-900 rounded-lg ${borderColor[color]} border-2 w-[900px] h-[400px]`}>
                 <div className="flex flex-col items-center justify-center h-full w-full gap-3">
                     <div className="flex items-start justify-center w-full">
                         <BsCheckCircleFill fill="#2cd459" size={180} />

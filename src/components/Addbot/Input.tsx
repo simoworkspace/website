@@ -113,15 +113,15 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                 </div>
                 <span className="text-center">
                     Digite todos os detalhes do seu bot, não exite em
-                    colocar informações!
+                    colocar informações! ( Markdown incluso! )
                 </span>
                 <div className="flex items-center justify-center my-2">
-                    <button type="button" className="bg-neutral-900 p-1 rounded-lg border-2 border-neutral-700 transition-colors duration-300 hover:bg-neutral-700" onClick={() => setPreview(!preview)}>{preview ? "Ocultar preview" : "Mostrar preview"}</button>
+                    <button type="button" className="bg-neutral-900 p-2 rounded-lg border-2 border-neutral-700 transition-colors duration-300 hover:bg-neutral-700" onClick={() => setPreview(!preview)}>{preview ? "Ocultar preview" : "Mostrar preview"}</button>
                 </div>
             </div>
-            <div className={`flex flex-col items-center w-full ${preview ? "" : "max-w-[800px] xl:max-w-[9999px]"}`}>
+            <div className={`flex flex-col justify-center items-center w-full ${preview ? "" : "max-w-[800px] xl:max-w-screen"}`}>
                 <div
-                    className={`justify-center flex outline-none bg-[#2c2c2c] w-full rounded-xl p-3 border-[2px] transition-all duration-100 ${errors.long_description?.message === ""
+                    className={`justify-center items-center flex outline-none bg-[#2c2c2c] w-full rounded-xl p-3 border-[2px] transition-all duration-100 ${errors.long_description?.message === ""
                         ? "border-[#ff0000]"
                         : " border-[#8b8b8b] hover:border-neutral-200 focus-within:border-white"
                         } text-white`}
