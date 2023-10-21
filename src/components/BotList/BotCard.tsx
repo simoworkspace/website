@@ -12,7 +12,7 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
         <Link
             to={`/bot/${bot._id}`}
             key={bot._id}
-            className={`bg-neutral-950 duration-300 xl:h-full transition-colors text-white hover:bg-neutral-900 shadow-md shadow-black p-3 ${borderColor[color]} border-2 bg-neutral-940 rounded-lg`}
+            className={`bg-neutral-900 duration-300 xl:h-full transition-colors text-white hover:bg-neutral-800 shadow-md shadow-black p-3 ${borderColor[color]} border-2 bg-neutral-940 rounded-lg`}
         >
             {!bot.approved && (
                 <figure className="flex w-full h-0 items-center justify-end relative top-20 right-1">
