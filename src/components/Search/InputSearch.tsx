@@ -1,12 +1,16 @@
 import * as icon from "react-icons/bs";
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import { borderColor } from "../../utils/theme/border";
 
 export const InputSearch: React.FC = () => {
+    const { color } = useContext(ThemeContext);
+
     return (
         <div className="flex w-[1300px] xl:invisible items-center justify-center">
-            <form action="/search" className={`flex items-center bg-black border-[#8b8b8b] border-[2px] p-2 mt-2 mb-[10px] rounded-[10px] h-[55px] w-full max-w-[600px] focus-within:border-white transition-all duration-500ms`}>
+            <form action="/search" className={`flex items-center bg-neutral-900 ${borderColor[color]} border-2 p-2 mt-2 mb-[10px] rounded-lg h-[55px] w-full max-w-[600px] focus-within:bg-neutral-800 transition-all`}>
                 <input
-                    className="outline-none bg-black w-full h-full text-white border-[#8b8b8b]"
+                    className={`outline-none bg-transparent w-full h-full text-white ${borderColor[color]} transition-all`}
                     name="bot"
                     placeholder="Pesquise por um bot."
                 />
