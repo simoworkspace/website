@@ -9,28 +9,33 @@ import { buttonColor } from "../../utils/theme/button";
 
 export const Bots: React.FC = () => {
     const { color } = useContext(ThemeContext);
-    const [data, setData] = useState<BotStructure[]>();
+    const [data, setData] = useState<BotStructure[]>([]);
     const [botsToShow, setBotsToShow] = useState<number>(6);
     const [showLoadMore, setShowLoadMore] = useState<boolean>(true);
 
-    const fetchData = async () => {
-        const res: AxiosResponse<BotStructure[]> = await api.getAllBots();
-        setData(res.data);
+    const fetchData = async (startAt: number, endAt: number) => {
+        const res: AxiosResponse<BotStructure[]> = await api.getAllBots(startAt, endAt);
+        setData((prevData) => [...prevData, ...res.data]);
+
+        if (res.data.length === 0) {
+            setShowLoadMore(false);
+        }
     };
 
     useEffect(() => {
-        fetchData();
+        fetchData(0, botsToShow);
     }, []);
 
-    const loadMoreBots = () => {
-        const newBotsToShow = botsToShow + 6;
-        if (newBotsToShow >= (data?.length || 0)) {
-            setShowLoadMore(false);
-        }
+    const loadMoreBots = (): void => {
+        const newBotsToShow: number = botsToShow + 6;
         setBotsToShow(newBotsToShow);
+
+        const startAt: number = botsToShow;
+        const endAt: number = botsToShow + 6;
+        fetchData(startAt, endAt);
     };
 
-    const sortedBots = data?.sort((a, b) => {
+    const sortedBots = data.sort((a, b): number => {
         let totalVotesA: number = 0;
         let totalVotesB: number = 0;
 
@@ -48,7 +53,7 @@ export const Bots: React.FC = () => {
     return data ? (
         <>
             <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left max-w-[1500px]">
-                {sortedBots?.slice(0, botsToShow).map((bot: BotStructure) => (
+                {sortedBots.slice(0, botsToShow).map((bot: BotStructure) => (
                     <BotCard bot={bot} key={bot._id} />
                 ))}
             </div>
