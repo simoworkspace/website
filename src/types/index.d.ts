@@ -207,3 +207,12 @@ export enum NotificationType {
     RefusedBot,
     Mixed
 }
+
+export interface StatusStrucuture {
+    total_mem:	number;
+    free_mem:	number
+    users: number;
+    bots: number;
+    uptime: number;
+    request_count:	number;
+}
