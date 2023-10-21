@@ -12,14 +12,19 @@ export const Bots: React.FC = () => {
     const [data, setData] = useState<BotStructure[]>([]);
     const [botsToShow, setBotsToShow] = useState<number>(6);
     const [showLoadMore, setShowLoadMore] = useState<boolean>(true);
+    const [botLoading, setBotLoading] = useState<boolean>(false);
 
     const fetchData = async (startAt: number, endAt: number) => {
+        setBotLoading(true);
+
         const res: AxiosResponse<BotStructure[]> = await api.getAllBots(startAt, endAt);
         setData((prevData) => [...prevData, ...res.data]);
 
         if (res.data.length === 0) {
             setShowLoadMore(false);
         }
+
+        setBotLoading(false);
     };
 
     useEffect(() => {
@@ -50,7 +55,7 @@ export const Bots: React.FC = () => {
         return totalVotesB - totalVotesA;
     });
 
-    return data ? (
+    return !botLoading ? (
         <>
             <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left max-w-[1500px]">
                 {sortedBots.slice(0, botsToShow).map((bot: BotStructure) => (
