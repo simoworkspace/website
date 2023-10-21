@@ -63,7 +63,7 @@ export const Bots: React.FC = () => {
                 ))}
             </div>
             {showLoadMore && (
-                <div className="w-[100w] px-2 max-w-[1500px]">
+                <div className="px-2 max-w-[1500px]">
                     <button onClick={loadMoreBots} className={`${buttonColor[color]} border-2 transition-all duration-300 w-full text-white p-3 rounded-lg my-3`}>Carregar Mais</button>
                 </div>
             )}
