@@ -23,8 +23,6 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
     const onSubmit: SubmitHandler<BotStructure> = async (data: BotStructure): Promise<void> => {
         setSubmited(true);
 
-        const token = await api.getToken();
-
         const formData: BotStructure = {
             _id: botData?.id as string,
             name: botData?.username as string,
@@ -42,44 +40,6 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             tags: (data.tags as any).split(","),
             approved: false,
             votes: []
-        };
-
-        const bodyVerificar: DiscordWebhookStructure = {
-            embeds: [{
-                title: "📎 | Novo bot para ser verificado",
-                color: 0x054F77,
-                thumbnail: {
-                    url: `https://cdn.discordapp.com/avatars/${botData?.id}/${botData?.avatar}.png`
-                },
-                fields: [
-                    {
-                        name: "**Informações**",
-                        value: `**Nome:** ${botData?.username} (\`${botData?.id}\`)\n**Prefixo:** ${formData.prefixes}\n**Descrição:** ${formData.short_description}\n**Criado em:** <t:${botData?.discord_date}:F> (<t:${botData?.discord_date}:R>)`,
-                    },
-                    {
-                        name: "Clique abaixo para adiciona-lo no servidor",
-                        value: `https://discord.com/api/oauth2/authorize?client_id=${botData?.id}&scope=bot%20applications.commands`
-                    }
-                ]
-            }]
-        };
-
-        const bodyOwner = {
-            content: `<@${formData.owners[0]}>`,
-            embeds: [{
-                thumbnail: {
-                    url: `https://cdn.discordapp.com/avatars/${formData._id}/${formData.avatar}.png`
-                },
-                title: "✅ | Análise",
-                color: 0x054F77,
-                description: `O seu bot: **${botData?.username}** (\`${botData?.id}\`) foi enviado pra análise.`
-            }]
-        };
-
-        const header = {
-            headers: {
-                Authorization: token
-            }
         };
 
         for (let i in formData) {
@@ -104,15 +64,6 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                     return alert("Ocorreu um erro desconhecido ao enviar seu bot, mensagem de erro: " + error_message);
             }
         }
-
-        await axios.post("/api/webhook/addbot", bodyOwner, header);
-        await axios.post("/api/webhook/bot", bodyVerificar, header);
-
-        formData.long_description = formData.long_description.slice(0, 800);
-
-        await axios.post("/api/webhook/raw", {
-            content: `\`\`\`json\n${JSON.stringify(formData, null, "\t")}\`\`\``
-        }, header);
 
         await api.createNotification(user?.id, {
             content: `Seu bot **${formData.name}** foi enviado para a análise, aguarde os resultados!`,
