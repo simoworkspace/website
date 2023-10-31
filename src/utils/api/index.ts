@@ -11,8 +11,21 @@ const header = {
 const api = {
     getAllBots: async (startAt?: number, endAt?: number): Promise<AxiosResponse<BotStructure[]>> => {
         
-        let res:Array[] = (await axios.get(`/api/bots?startAt=`, header);
-        res.sort
+        return (await axios.get(`/api/bots?startAt=`, header).sort((a, b): number => {
+        let totalVotesA: number = 0;
+        let totalVotesB: number = 0;
+
+        a.votes.forEach((vote) => {
+            totalVotesA += vote.votes;
+        });
+
+        b.votes.forEach((vote) => {
+            totalVotesB += vote.votes;
+        });
+
+        return totalVotesB - totalVotesA;
+    }).split(startAt,endAt)
+        
     },
     getUserData: async (): Promise<AxiosResponse<UserStructure>> => {
         return axios.get("/api/auth/user", { ...header, withCredentials: true });
