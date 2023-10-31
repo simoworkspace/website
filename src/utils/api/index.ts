@@ -10,7 +10,9 @@ const header = {
 
 const api = {
     getAllBots: async (startAt?: number, endAt?: number): Promise<AxiosResponse<BotStructure[]>> => {
-        return axios.get(`/api/bots?startAt=${startAt}&endAt=${endAt}`, header);
+        
+        let res:Array[] = (await axios.get(`/api/bots?startAt=`, header);
+        res.sort
     },
     getUserData: async (): Promise<AxiosResponse<UserStructure>> => {
         return axios.get("/api/auth/user", { ...header, withCredentials: true });
