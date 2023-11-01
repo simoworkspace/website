@@ -16,6 +16,7 @@ import { User } from "../components/User/User";
 import { NotificationsPage } from "../pages/Notifications";
 import { ThemesPage } from "../pages/Theme";
 import "./index.css";
+import { Dashboard } from "../pages/Dashboard";
 
 function App() {
     const { color } = useContext(ThemeContext);
@@ -34,6 +35,7 @@ function App() {
                     <Route path="/themes" element={<ThemesPage />} />
                     <Route path="addbot" element={<Addbot />}/>
                     <Route path="/users/:userid" element={<User/>}/>
+                    <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Mobilemenu />

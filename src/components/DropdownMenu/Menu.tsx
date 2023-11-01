@@ -43,10 +43,10 @@ export const LoggedMenu: React.FC = () => {
             <section className="xl:invisible" ref={menuRef}>
                 <button
                     onClick={() => {
-                        setIsOpen(!isOpen); 
-                        setThemeShow(false); 
+                        setIsOpen(!isOpen);
+                        setThemeShow(false);
                     }}
-                    className={`${borderColor[color]} mr-10 xl:invisible bg-neutral-900 flex text-white border-2 p-2 gap-3 rounded-lg max-w-[600px] min-w-[150px] items-center justify-center`}
+                    className={`${borderColor[color]} mr-10 xl:invisible bg-neutral-900 flex text-white border-2 p-2 gap-3 rounded-lg max-w-[600px] min-w-[165px] items-center justify-center`}
                 >
                     <div className="h-[30px] w-[30px]">
                         <img src={`https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`} className="w-full h-full rounded-full" alt="Avatar" />
@@ -58,23 +58,29 @@ export const LoggedMenu: React.FC = () => {
                         <iconMD.MdOutlineKeyboardArrowDown className={`transition-all duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`} size={25} />
                     </div>
                 </button>
-                <div className={`${isOpen ? "opacity-100" : "opacity-0 invisible"} rounded-t-none border-t-0 text-white p-3 rounded-lg absolute right-[45px] origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
-                    <Link to="/addbot" className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-[100px]">
+                <div className={`${isOpen ? "opacity-100" : "opacity-0 invisible"} w-[155px] rounded-t-none border-t-0 text-white p-3 rounded-lg absolute right-[45px] origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
+                    <Link to="/addbot" className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-full">
                         <div className="flex w-full items-center justify-start gap-2">
                             <iconBS.BiPlus fill="#fff" size={20} />
                             <span>Addbot</span>
                         </div>
                     </Link>
+                    <Link to="/dashboard" className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-full">
+                        <div className="flex w-full items-center justify-start gap-2">
+                            <iconBS.BiSolidDashboard fill="#fff" size={20} />
+                            <span>Dashboard</span>
+                        </div>
+                    </Link>
                     <button onClick={() => {
                         setThemeShow(!themeShow);
                         selected === "theme" ? setSelected("") : setSelected("theme");
-                    }} className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-[100px]">
+                    }} className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-full">
                         <div className="flex w-full items-center justify-start gap-2">
                             <iconBS.BiPalette fill="#fff" size={20} />
                             <span>Temas</span>
                         </div>
                     </button>
-                    <button onClick={async () => { await api.logoutUser(); return window.location.reload() }} className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-[100px]">
+                    <button onClick={async () => { await api.logoutUser(); return window.location.reload() }} className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-full">
                         <div className="flex w-full items-center justify-start gap-2">
                             <iconBS.BiExit fill="#fff" size={20} />
                             <span>Sair</span>
