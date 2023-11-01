@@ -55,7 +55,7 @@ export const NotificationButton: FC = () => {
             <button onClick={() => setIsOpen(!isOpen)} className={`xl:invisible ${borderColor[color]} mr-1 flex border-2 p-3 items-center justify-center rounded-lg bg-neutral-900 h-[50px]`}>
                 <icon.BsBell fill="#fff" />
             </button>
-            <div className={`${isOpen ? "opacity-100" : "opacity-0 invisible"} ${scrollBar[color]} p-3 xl:invisible overflow-auto flex-col flex text-white rounded-lg absolute right-[195px] max-h-[300px] w-[500px] top-16 origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
+            <div className={`${isOpen ? "opacity-100" : "opacity-0 invisible"} ${scrollBar[color]} p-3 xl:invisible overflow-auto flex-col flex text-white rounded-lg absolute right-[209px] max-h-[300px] w-[500px] top-16 origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
                 {isLoading ? (
                     <div className="flex flex-col gap-3 xl:invisible">
                         <h1 className="text-[22px] text-center my-1"><strong>Suas notificações</strong></h1>
