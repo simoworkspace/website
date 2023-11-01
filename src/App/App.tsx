@@ -23,7 +23,7 @@ function App() {
     return (
         <main className={`xl:no-scrollbar xlr:h-1 flex flex-col items-center overflow-x-hidden min-h-screen ${appColor[color]} bg-fixed scrollbar-track-neutral-900 scrollbar-thin`}>
             <Header />
-            <section>
+            <section className="flex flex-1 flex-col">
                 <Routes>
                     <Route path="/testes" element={<Tests />} />
                     <Route path="/bot/:botid" element={<Bot />} />
