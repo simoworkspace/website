@@ -15,11 +15,8 @@ export const AddbotComponent: any = () => {
     }
 
     switch (steps) {
-        case 0:
-            return <FindBot setSteps={setSteps} setBotData={setBotData} botData={botData} />;
-        case 1:
-            return <FormAddbot botData={botData} setSteps={setSteps} />;
-        case 2:
-            return <FinishAddbot botData={botData} />;
+        case 0: return <FindBot setSteps={setSteps} setBotData={setBotData} botData={botData} />;
+        case 1: return <FormAddbot botData={botData} setSteps={setSteps} />;
+        case 2: return <FinishAddbot botData={botData} />;
     };
 };
