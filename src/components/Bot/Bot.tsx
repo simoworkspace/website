@@ -142,7 +142,7 @@ export const BotComponent: React.FC = () => {
                                         <strong className="text-lg">Prefixo </strong><span>{bot.prefixes.join(", ")}</span>
                                     </div>
                                     <div>
-                                        <strong className="text-lg">Votos </strong><span>{bot.votes.length}</span>
+                                        <strong className="text-lg">Votos </strong><span>{bot.total_votes}</span>
                                     </div>
                                     <div>
                                         <div className="flex flex-row gap-3 flex-wrap">

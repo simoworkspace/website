@@ -32,9 +32,7 @@ export const VoteComponent: React.FC = () => {
 
     const getVoteData = async (): Promise<void> => {
         const res: AxiosResponse<BotStructure> = await api.getBotInfos(botid as string);
-        let totalVotes = 0;
-        res.data.votes.forEach(vote => totalVotes += vote.votes);
-        setVotes(totalVotes);
+        setVotes(res.data.total_votes);
     };
 
     const getDiscordBotData = async (): Promise<void> => {
