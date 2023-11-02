@@ -52,6 +52,7 @@ export interface FeedbackStructure {
     stars: number;
     posted_at: string;
     content: string;
+    edited: boolean;
 }
 
 export interface ThemeStructure {
