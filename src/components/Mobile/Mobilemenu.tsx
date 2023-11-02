@@ -6,6 +6,7 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import api from "../../utils/api";
 import { mobileMenu } from "../../utils/theme/mobileMenu";
 import * as icon from "react-icons/bi";
+import * as iconRI from "react-icons/ri";
 
 export const Mobilemenu: React.FC = () => {
     const { user } = useContext<UserStructure | any>(UserContext);
@@ -37,6 +38,11 @@ export const Mobilemenu: React.FC = () => {
                             setClick(!click);
                         }} to="/themes" className="flex flex-grow justify-center">
                             {selPage === "themes" ? <icon.BiSolidPalette size={25} /> : <icon.BiPalette size={25} />}
+                        </Link>
+                        <Link onClick={() => {
+                            setClick(!click);
+                        }} to="/dashboard" className="flex flex-grow justify-center">
+                            {selPage === "dashboard" ? <iconRI.RiDashboardFill size={25} /> : <iconRI.RiDashboardLine size={25} />}
                         </Link>
                         <button onClick={async () => {
                             await api.logoutUser();
