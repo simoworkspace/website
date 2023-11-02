@@ -9,8 +9,8 @@ import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
 
 export const FeedbackCard: React.FC<{
-    feedback: FeedbackStructure, 
-    botid: string, 
+    feedback: FeedbackStructure,
+    botid: string,
     isDeleted: boolean,
     setIsDeleted: (value: boolean) => void;
     updateFeedbacks: () => Promise<void>
@@ -19,7 +19,8 @@ export const FeedbackCard: React.FC<{
     const { user } = useContext(UserContext);
 
     const [isEdit, setIsEdit] = useState<boolean>(false);
-    const [editedContent, setEditedContent] = useState<string>("");
+    const [editedContent, setEditedContent] = useState<string>(feedback.content);
+    const [rating, setRating] = useState<number>(feedback.stars);
     const [submited, setSubmited] = useState<boolean>(false);
 
     const handleChangeEdit = (event: ChangeEvent<HTMLTextAreaElement>): void => {
@@ -29,7 +30,7 @@ export const FeedbackCard: React.FC<{
     const handleSubmitEdit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
         setSubmited(true);
 
-        if (editedContent === "") {
+        if (editedContent  === feedback.content && rating === feedback.stars) {
             setSubmited(false);
             setIsEdit(false);
             return;
@@ -37,7 +38,7 @@ export const FeedbackCard: React.FC<{
 
         event.preventDefault();
 
-        await api.editFeedback(user?.id, botid, editedContent, feedback.stars);
+        await api.editFeedback(user?.id, botid, editedContent, rating);
         await updateFeedbacks();
 
         setSubmited(false);
@@ -80,12 +81,22 @@ export const FeedbackCard: React.FC<{
                         <div className={`bg-neutral-800 rounded-lg ${borderColor[color]} border-2 text-white w-full`}>
                             <textarea defaultValue={feedback.content} rows={4} onChange={handleChangeEdit} className="bg-transparent w-full focus:outline-none p-2" cols={22} required placeholder="Digite aqui" maxLength={500} />
                         </div>
+                        <div className="flex flex-row gap-1">
+                            {[1, 2, 3, 4, 5].map((star) => (
+                                <span onClick={() => setRating(star)} className="cursor-pointer">
+                                    {star <= rating ? <icon.BsFillStarFill size={30} fill="#fff" /> : <icon.BsStar size={30} fill="#fff" />}
+                                </span>
+                            ))}
+                        </div>
                         <div className="flex gap-3 items-center justify-center">
                             <input disabled={submited} className={`disabled:cursor-default disabled:opacity-70 border-2 duration-300 transition-all cursor-pointer ${buttonColor[color]} p-3 rounded-lg w-full text-white`} type="submit" value="Enviar" />
                             {submited && <iconAI.AiOutlineLoading3Quarters fill="#fff" size={30} className="animate-spin" />}
                         </div>
                     </form>
-                ) : <div className="py-2">{feedback.content}</div>}
+                ) :
+                    <div className="flex flex-col w-full justify-start">
+                        <div className="py-2">{feedback.content}{feedback?.edited && <span className="text-neutral-500"> (editado)</span>}</div>
+                    </div>}
                 <div className="flex flex-row gap-1">
                     {Array(feedback.stars).fill(0).map(() => (
                         <icon.BsStarFill />
