@@ -62,6 +62,9 @@ const api = {
     },
     getApiStatus: async (): Promise<AxiosResponse<StatusStrucuture>> => {
         return axios.get("/api/status");
+    },
+    createApiKey: async (botId: Snowflake): Promise<AxiosResponse<{ api_key: string }>> => {
+        return axios.post(`/api/auth/api-key/${botId}`, null, header);
     }
 };
 
