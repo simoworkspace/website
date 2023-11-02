@@ -30,7 +30,7 @@ export const FeedbackCard: React.FC<{
     const handleSubmitEdit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
         setSubmited(true);
 
-        if (editedContent  === feedback.content && rating === feedback.stars) {
+        if (editedContent === feedback.content && rating === feedback.stars) {
             setSubmited(false);
             setIsEdit(false);
             return;
@@ -69,7 +69,7 @@ export const FeedbackCard: React.FC<{
                                 {!isDeleted ? <icon.BsTrash size={20} className="hover:fill-red-500 transition-colors duration-300" /> : <iconAI.AiOutlineLoading3Quarters fill="#fff" size={20} className="animate-spin" />}
                             </button>
                             <button onClick={() => {
-                                setIsEdit(true);
+                                setIsEdit(!isEdit);
                             }} className="flex justify-end">
                                 <icon.BsPencilSquare size={20} className="hover:fill-amber-500 transition-colors duration-300" />
                             </button>
@@ -97,14 +97,16 @@ export const FeedbackCard: React.FC<{
                     <div className="flex flex-col w-full justify-start">
                         <div className="py-2">{feedback.content}{feedback?.edited && <span className="text-neutral-500"> (editado)</span>}</div>
                     </div>}
-                <div className="flex flex-row gap-1">
-                    {Array(feedback.stars).fill(0).map(() => (
-                        <icon.BsStarFill />
-                    ))}
-                    {Array(5 - feedback.stars).fill(0).map(() => (
-                        <icon.BsStar />
-                    ))}
-                </div>
+                {!isEdit && (
+                    <div className="flex flex-row gap-1">
+                        {Array(feedback.stars).fill(0).map(() => (
+                            <icon.BsStarFill />
+                        ))}
+                        {Array(5 - feedback.stars).fill(0).map(() => (
+                            <icon.BsStar />
+                        ))}
+                    </div>
+                )}
             </div>
         </div>
     )
