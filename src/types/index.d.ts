@@ -95,6 +95,7 @@ export interface BotStructure {
     tags: string[];
     approved: boolean;
     votes: VoteStructure[];
+    total_votes: number;
 }
 
 export interface VoteStructure {
