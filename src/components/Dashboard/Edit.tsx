@@ -18,16 +18,21 @@ export const DashboardEdit: React.FC = () => {
     const { color } = useContext(ThemeContext);
 
     const [devs, setDevs] = useState<UserStructure[]>([]);
-    const [preview, setPreview] = useState<boolean>(false);
     const [bot, setBot] = useState<BotStructure>();
+
+    const [tags, setTags] = useState<string[]>([]);
+    const [tag, setTag] = useState<string>("");
+
+    const [markdown, setMarkdown] = useState<string>("");
+
     const [editedBot, setEditedBot] = useState<{
-        long_description: string | undefined;
-        short_description: string | undefined;
-        tags: string[] | undefined;
-        support_server: string | undefined;
-        source_code: string | undefined;
-        website_url: string | undefined;
-        prefixes: string[] | undefined;
+        long_description?: string | undefined;
+        short_description?: string | undefined;
+        tags?: string[] | undefined;
+        support_server?: string | undefined;
+        source_code?: string | undefined;
+        website_url?: string | undefined;
+        prefixes?: string[] | undefined;
     }>({
         long_description: bot?.long_description,
         short_description: bot?.short_description,
@@ -37,6 +42,18 @@ export const DashboardEdit: React.FC = () => {
         website_url: bot?.website_url,
         prefixes: bot?.prefixes
     });
+
+    const handleTagSubmit = (event: React.FormEvent<HTMLFormElement>): void => {
+        event.preventDefault();
+        setTag("");
+        setEditedBot({ tags });
+        setTags([...tags, tag]);
+    };
+
+    const handleTagInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+        const tag = event.target.value;
+        setTag(tag);
+    };
 
     const getBotInDB = async (): Promise<void> => {
         const res: AxiosResponse<BotStructure> = await api.getBotInfos(botid);
@@ -51,6 +68,20 @@ export const DashboardEdit: React.FC = () => {
         return setBot(res.data);
     };
 
+
+    useEffect(() => {
+        const textarea = document.getElementById("textoi");
+        if (textarea) {
+            textarea.style.height = "auto";
+            textarea.style.height = `${textarea.scrollHeight}px`;
+        }
+    }, [markdown]);
+    
+    useEffect(() => {
+        if (bot?.tags) {
+            setTags(bot?.tags);
+        }
+    }, [bot?.tags]);
     useEffect(() => {
         getBotInDB();
     }, []);
@@ -104,22 +135,21 @@ export const DashboardEdit: React.FC = () => {
                         </div>
                     </div>
                 </section>
-                <section className={`w-[90%] mb-5 bg-neutral-900 border-2 ${borderColor[color]} border-t-0 rounded-t-none rounded-lg p-10 xl:p-3`}>
-                    <div className="flex flex-row xl:flex-col">
+                <section className={`w-[90%] min-w-[680px] mb-5 bg-neutral-900 border-2 ${borderColor[color]} border-t-0 rounded-t-none rounded-lg p-10 xl:p-3`}>
+                    <div className="flex flex-row xl:flex-col h-full">
                         <div className="w-[80%] h-full xl:w-full break-words xl:justify-center mr-4">
-                            <Button action={() => setPreview(!preview)} name={preview ? "Ocultar preview" : "Ver preview"} clas="mb-2" />
-                            {preview ? (
-                                <Markdown markdown={bot.long_description} />
-                            ) : (
-                                <div className={`justify-center items-center flex outline-none bg-[#2c2c2c] w-full h-full rounded-xl p-3 border-[2px] transition-all duration-100 ${borderColor[color]} text-white`}>
-                                    <textarea
-                                        defaultValue={bot.long_description}
-                                        maxLength={2048}
-                                        rows={30}
-                                        className="bg-transparent outline-none w-full scrollbar-thin disabled:opacity-50"
-                                    />
-                                </div>
-                            )}
+                            <div className={`justify-center mb-5 items-center flex outline-none bg-[#2c2c2c] w-full h-full rounded-xl p-3 border-[2px] transition-all duration-100 ${borderColor[color]} text-white`}>
+                                <textarea
+                                    id="textoi"
+                                    onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
+                                        setMarkdown(event.target.value);
+                                    }}
+                                    defaultValue={bot.long_description}
+                                    maxLength={2048}
+                                    className="bg-transparent outline-none w-full scrollbar-thin disabled:opacity-50"
+                                />
+                            </div>
+                            <Markdown markdown={markdown} />
                         </div>
                         <div className="w-[1px] bg-[#8b8b8b]" />
                         <hr className="xl:my-4 xl:w-full" />
@@ -143,7 +173,8 @@ export const DashboardEdit: React.FC = () => {
                                 <hr className="my-4 w-full" />
                                 <div className="flex flex-col w-full gap-3">
                                     <div>
-                                        <strong className="text-lg">Prefixo </strong><span>{bot.prefixes.join(", ")}</span>
+                                        <strong className="text-lg">Prefixo </strong>
+                                        <input maxLength={6} required placeholder="Digite um prefixo" defaultValue={bot.prefixes.join(", ")} className={`bg-transparent p-2 rounded-lg focus:outline-none w-1/3 border-2 ${borderAndBg[color]}`} type="text" />
                                     </div>
                                     <div>
                                         <strong className="text-lg">Votos </strong><span>{bot.total_votes}</span>
@@ -151,32 +182,34 @@ export const DashboardEdit: React.FC = () => {
                                     <div>
                                         <div className="flex flex-row gap-3 flex-wrap">
                                             <strong className="text-lg">Tags</strong>
-                                            {bot.tags.map(tag => (
+                                            {tags.map(tag => (
                                                 <div className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
                                             ))}
+                                            {tags.length < 5 && (
+                                                <form onSubmit={handleTagSubmit} className="flex flex-row">
+                                                    <input value={tag} required maxLength={30} onChange={handleTagInputChange} placeholder="Digite uma tag" className={`bg-transparent p-2 rounded-lg rounded-r-none focus:outline-none border-2 ${borderAndBg[color]}`} type="text" />
+                                                    <Button type="submit" clas="rounded-l-none">
+                                                        <icon.BsCheck />
+                                                    </Button>
+                                                </form>
+                                            )}
                                         </div>
                                     </div>
                                     <h1 className="text-2xl text-center">Links</h1>
                                     <hr className="my-1 w-full" />
                                     <div className="flex flex-col gap-3 flex-wrap">
-                                        {bot?.support_server && (
-                                            <Link to={bot?.support_server.includes("https://") ? bot?.support_server : "https://" + bot?.support_server} className="flex items-center gap-3 p-2">
-                                                <icon.BsDiscord size={30} fill="#5662F6" />
-                                                <span>Servidor de suporte</span>
-                                            </Link>
-                                        )}
-                                        {bot?.source_code && (
-                                            <Link to={bot?.source_code.includes("https://") ? bot?.source_code : "https://" + bot?.source_code} className="flex items-center gap-3 p-2">
-                                                <icon.BsGithub size={30} />
-                                                <span>Repositório</span>
-                                            </Link>
-                                        )}
-                                        {bot?.website_url && (
-                                            <Link to={bot?.website_url.includes("https://") ? bot?.website_url : "https://" + bot?.website_url} className="flex items-center gap-3 p-2">
-                                                <icon.BsGlobe size={30} />
-                                                <span>Website (<span className="text-blue-600">{bot?.website_url}</span>)</span>
-                                            </Link>
-                                        )}
+                                        <div className="flex items-center gap-3 p-2">
+                                            <icon.BsDiscord size={30} fill="#5662F6" />
+                                            <input defaultValue={bot.support_server} className={`bg-transparent p-2 rounded-lg focus:outline-none w-full border-2 ${borderAndBg[color]}`} placeholder="Servidor de suporte" type="url" />
+                                        </div>
+                                        <div className="flex items-center gap-3 p-2">
+                                            <icon.BsGithub size={30} />
+                                            <input defaultValue={bot.source_code} className={`bg-transparent p-2 rounded-lg focus:outline-none w-full border-2 ${borderAndBg[color]}`} placeholder="Repositório" type="url" />
+                                        </div>
+                                        <div className="flex items-center gap-3 p-2">
+                                            <icon.BsGlobe size={30} />
+                                            <input defaultValue={bot.website_url} className={`bg-transparent p-2 rounded-lg focus:outline-none w-full border-2 ${borderAndBg[color]}`} placeholder="Website" type="url" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
