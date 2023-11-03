@@ -17,6 +17,7 @@ import { NotificationsPage } from "../pages/Mixed/Notifications";
 import { ThemesPage } from "../pages/Mixed/Theme";
 import "./index.css";
 import { Dashboard } from "../pages/Dashboard/Dashboard";
+import { DashboardEditPage } from "../pages/Dashboard/Edit";
 
 function App() {
     const { color } = useContext(ThemeContext);
@@ -36,6 +37,7 @@ function App() {
                     <Route path="addbot" element={<Addbot />}/>
                     <Route path="/users/:userid" element={<User/>}/>
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/dashboard/edit/:botId" element={<DashboardEditPage />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Mobilemenu />
