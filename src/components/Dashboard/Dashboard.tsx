@@ -45,8 +45,6 @@ export const DashboardComponent: React.FC = () => {
         return setSelectedBot(selbot as BotStructure);
     };
 
-    if (!user) window.location.href = "/";
-
     useEffect(() => {
         if (user) {
             getUserBots();
