@@ -10,6 +10,7 @@ import { AxiosResponse } from "axios";
 import api from "../../utils/api";
 import { BotCard } from "../BotList/BotCard";
 import { buttonColor } from "../../utils/theme/button";
+import { Link } from "react-router-dom";
 
 export const DashboardComponent: React.FC = () => {
     const { color } = useContext(ThemeContext);
@@ -110,10 +111,10 @@ export const DashboardComponent: React.FC = () => {
                                         <iconBS.BsTrashFill />
                                         <span>Deletar bot</span>
                                     </button>
-                                    <button className={`flex flex-row items-center justify-center gap-3 p-3 w-full rounded-lg ${buttonColor[color]} h-12 transition-colors duration-300 border-2`}>
+                                    <Link to={`/dashboard/edit/${selectedBot._id}`} className={`flex flex-row items-center justify-center gap-3 p-3 w-full rounded-lg ${buttonColor[color]} h-12 transition-colors duration-300 border-2`}>
                                         <iconMD.MdEditSquare />
                                         <span>Editar bot</span>
-                                    </button>
+                                    </Link>
                                     <div className="flex flex-row xl:flex-col bg-neutral-800 w-full h-full rounded-lg items-center">
                                         <input onAuxClick={async () => {
                                             await navigator.clipboard.writeText(apiKey);
