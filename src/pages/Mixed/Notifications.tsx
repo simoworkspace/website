@@ -1,12 +1,12 @@
 import { FC, useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../contexts/ThemeContext";
-import { UserContext } from "../contexts/UserContext";
-import { NotificationStructure } from "../types";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import { UserContext } from "../../contexts/UserContext";
+import { NotificationStructure } from "../../types";
 import { AxiosResponse } from "axios";
-import api from "../utils/api";
-import { borderColor } from "../utils/theme/border";
-import { NotificationCard } from "../components/Notification/Card";
-import { buttonColor } from "../utils/theme/button";
+import api from "../../utils/api";
+import { borderColor } from "../../utils/theme/border";
+import { NotificationCard } from "../../components/Notification/Card";
+import { buttonColor } from "../../utils/theme/button";
 import * as iconAI from "react-icons/ai";
 
 export const NotificationsPage: FC = () => {

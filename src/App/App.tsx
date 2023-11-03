@@ -1,22 +1,22 @@
 import { Header } from "../components/Header/Header";
 import { Bots } from "../components/BotList/Bots";
-import { Addbot } from "../pages/Addbot";
+import { Addbot } from "../pages/Bot/Addbot";
 import { Routes, Route } from "react-router-dom";
-import { NotFound } from "../pages/NotFound";
+import { NotFound } from "../pages/Mixed/NotFound";
 import { Mobilemenu } from "../components/Mobile/Mobilemenu";
-import { Bot } from "../pages/Bot";
-import { Vote } from "../pages/Vote";
-import { Tests } from "../pages/Tests";
+import { Bot } from "../pages/Bot/Bot";
+import { Vote } from "../pages/Bot/Vote";
+import { Tests } from "../pages/Mixed/Tests";
 import { useContext } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { appColor } from "../utils/theme/app";
-import { Search } from "../pages/Search";
+import { Search } from "../pages/Bot/Search";
 import { Footer } from "../components/Footer/Footer";
 import { User } from "../components/User/User";
-import { NotificationsPage } from "../pages/Notifications";
-import { ThemesPage } from "../pages/Theme";
+import { NotificationsPage } from "../pages/Mixed/Notifications";
+import { ThemesPage } from "../pages/Mixed/Theme";
 import "./index.css";
-import { Dashboard } from "../pages/Dashboard";
+import { Dashboard } from "../pages/Dashboard/Dashboard";
 
 function App() {
     const { color } = useContext(ThemeContext);

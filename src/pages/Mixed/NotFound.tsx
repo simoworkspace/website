@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import { buttonColor } from '../utils/theme/button';
-import { ThemeContext } from "../contexts/ThemeContext";
-import { borderColor } from "../utils/theme/border";
+import { buttonColor } from '../../utils/theme/button';
+import { ThemeContext } from "../../contexts/ThemeContext";
+import { borderColor } from "../../utils/theme/border";
 import  axios, { AxiosResponse } from "axios";
 
 export const NotFound: React.FC = () => {

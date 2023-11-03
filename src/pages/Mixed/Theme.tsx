@@ -1,7 +1,7 @@
 import { FC, useContext } from "react";
-import { ChoiceColor } from "../components/Colors/Choice";
-import { borderColor } from "../utils/theme/border";
-import { ThemeContext } from "../contexts/ThemeContext";
+import { ChoiceColor } from "../../components/Colors/Choice";
+import { borderColor } from "../../utils/theme/border";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 export const ThemesPage: FC = () => {
     const selectedTheme = localStorage.getItem("theme") || "purple";
