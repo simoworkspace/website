@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { Axios, AxiosResponse } from "axios";
 import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody, NotificationType, StatusStrucuture } from "../../types";
 import Cookies from "js-cookie";
 
@@ -29,6 +29,9 @@ const api = {
     },
     patchBot: (botID: Snowflake, bodyData: BotStructure): Promise<AxiosResponse<BotStructure>> => {
         return axios.patch("/api/bots/" + botID, bodyData, header);
+    },
+    deleteBot: (botID: Snowflake): Promise<AxiosResponse> => {
+        return axios.delete("/api/bots/" + botID, header);
     },
     logoutUser: (): Promise<AxiosResponse> => {
         return axios.get<AxiosResponse>("/api/auth/logout", header);
