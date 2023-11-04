@@ -7,6 +7,7 @@ import * as iconAI from "react-icons/ai";
 import { UserContext } from "../../contexts/UserContext";
 import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
+import simo from "../../assets/images/simo.png";
 
 export const FeedbackCard: React.FC<{
     feedback: FeedbackStructure,
@@ -51,8 +52,11 @@ export const FeedbackCard: React.FC<{
                 <div className="flex flex-row items-center justify w-full">
                     <img
                         src={`https://cdn.discordapp.com/avatars/${feedback?.author.id}/${feedback?.author.avatar}.png?size=2048`}
-                        alt={`${feedback?.author.username}'s avatar`}
                         className="w-[30px] h-[30px] rounded-full"
+                        onError={({ currentTarget }) => {
+                            currentTarget.onerror = null; 
+                            currentTarget.src = simo;
+                        }}
                     />
                     <div className="flex gap-2 items-center justify-center">
                         <span className="p-1 ml-1">{feedback?.author.username}</span>
