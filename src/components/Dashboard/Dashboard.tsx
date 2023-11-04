@@ -38,6 +38,11 @@ export const DashboardComponent: React.FC = () => {
     const getUserBots = async (): Promise<void> => {
         const req: AxiosResponse<BotStructure[]> = await api.getAllBots();
         const bots = req.data.filter(bot => bot.owners.includes(user?.id as string));
+
+        if (bots.length === 1) {
+            return setSelectedBot(bots[0]);
+        }
+
         return setBots(bots);
     };
 
@@ -53,7 +58,7 @@ export const DashboardComponent: React.FC = () => {
         }
     }, [user]);
 
-    return (
+    return !user || !bots ? (
         <main className="max-w-[1500px] flex justify-start">
             <section className="w-screen flex flex-row p-5 text-white items-start justify-center gap-10 xl:flex-col">
                 <div className={`${borderColor[color]} border-2 w-[300px] xl:h-[400px] h-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col`}>
@@ -133,5 +138,28 @@ export const DashboardComponent: React.FC = () => {
                 {selectedBot && <DeleteBot setDeleteBot={setDeleteBot} deletebot={deleteBot} bot={selectedBot} />}
             </section>
         </main>
+    ) : (
+        <section className="w-screen flex flex-row p-5 text-white items-center justify-center gap-10 xl:flex-col max-w-[1500px]">
+            <div className="border-2 w-[300px] h-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col">
+                <div>
+                    <div className="rounded-full w-[100px] h-[100px] bg-neutral-800 animate-pulse" />
+                </div>
+                <hr className="w-[80%] my-5" />
+                <div className="flex flex-col text-center justify-center">
+                    <div className="bg-neutral-800 rounded-lg w-[120px] h-[20px] animate-pulse"></div>
+                    <div className="text-[#797979] items-center flex text-[13px] justify-center"></div>
+                </div>
+            </div>
+            <div className="flex items-center justify-center w-full flex-col max-w-[1500px]">
+                <div className="bg-neutral-800 rounded-lg w-[600px] xl:w-[90vw] h-[20px] animate-pulse"></div>
+                <hr className="w-full my-3" />
+                <div className="w-full">
+                    <button className="bg-neutral-900 animate-pulse p-3 items-center justify-center flex flex-row rounded-lg border-2 w-full">
+                        <span className="flex flex-grow"></span>
+                        <iconMD.MdOutlineKeyboardArrowDown className={`transition-all duration-300 ${selectBotMenu ? "rotate-180" : "rotate-0"}`} size={25} />
+                    </button>
+                </div>
+            </div>
+        </section>
     )
 };
