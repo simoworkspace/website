@@ -19,7 +19,7 @@ const api = {
         return axios.get("/api/auth/token");
     },
     getDiscordUser: (userID: string | Snowflake): Promise<AxiosResponse<DiscordUser>> => {
-        return axios.get("/api/users/" + userID, header);
+        return axios.get("/api/users/" + userID + "/discord", header);
     },
     getBotInfos: (botID: string | Snowflake): Promise<AxiosResponse<BotStructure>> => {
         return axios.get("/api/bots/" + botID, header);
