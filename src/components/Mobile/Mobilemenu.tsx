@@ -12,11 +12,13 @@ export const Mobilemenu: React.FC = () => {
     const { user } = useContext<UserStructure | any>(UserContext);
     const { color } = useContext(ThemeContext);
 
+    const page = location.href.split("/")[3];
+
     const [click, setClick] = useState<boolean>(false);
-    const [selPage, setSelPage] = useState<string>(location.href.split("/")[3]);
+    const [selPage, setSelPage] = useState<string>(page);
 
     useEffect(() => {
-        setSelPage(location.href.split("/")[3]);
+        setSelPage(page);
     }, [click]);
 
     return (
@@ -58,7 +60,7 @@ export const Mobilemenu: React.FC = () => {
                         className="w-full self-center text-center text-white"
                         to={import.meta.env.VITE_AUTH_LINK}
                     >
-                        login
+                        Login
                     </Link>
                 </div>
             )}
