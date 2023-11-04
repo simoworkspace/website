@@ -11,6 +11,7 @@ import api from "../../utils/api";
 import { BotCard } from "../BotList/BotCard";
 import { buttonColor } from "../../utils/theme/button";
 import { Link } from "react-router-dom";
+import { DeleteBot } from "./Delete";
 
 export const DashboardComponent: React.FC = () => {
     const { color } = useContext(ThemeContext);
@@ -20,6 +21,7 @@ export const DashboardComponent: React.FC = () => {
     const [selectedBot, setSelectedBot] = useState<BotStructure | null>(null);
     const [apiKey, setApiKey] = useState<string>("");
     const [apiKeyLoading, setApiKeyLoading] = useState<boolean>(false);
+    const [deleteBot, setDeleteBot] = useState<boolean>(false);
 
     const handleCreateApiKey = async (botId: string): Promise<void> => {
         if (apiKey) {
@@ -105,7 +107,7 @@ export const DashboardComponent: React.FC = () => {
                             <div className="grid grid-cols-2 xl:grid-cols-1 gap-8 text-white m-2">
                                 <BotCard bot={selectedBot} />
                                 <div className="w-full flex flex-col gap-3">
-                                    <button className={`flex flex-row items-center justify-center gap-3 p-3 w-full rounded-lg ${buttonColor["red"]} h-12 transition-colors duration-300 border-2`}>
+                                    <button onClick={() => setDeleteBot(true)} className={`flex flex-row items-center justify-center gap-3 p-3 w-full rounded-lg ${buttonColor["red"]} h-12 transition-colors duration-300 border-2`}>
                                         <iconBS.BsTrashFill />
                                         <span>Deletar bot</span>
                                     </button>
@@ -126,6 +128,9 @@ export const DashboardComponent: React.FC = () => {
                         </section>
                     )}
                 </div>
+            </section>
+            <section className={`transiton-opacity duration-300 ${deleteBot ? "visible opacity-100" : "invisible opacity-0"}`}>
+                {selectedBot && <DeleteBot setDeleteBot={setDeleteBot} deletebot={deleteBot} bot={selectedBot} />}
             </section>
         </main>
     )
