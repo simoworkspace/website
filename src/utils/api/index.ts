@@ -71,6 +71,9 @@ const api = {
     },
     createApiKey: (botId: Snowflake): Promise<AxiosResponse<{ api_key: string }>> => {
         return axios.post(`/api/auth/api-key/${botId}`, null, header);
+    },
+    getUserFromDB: (userId: Snowflake): Promise<AxiosResponse<UserStructure>> => {
+        return axios.get("/api/users/" + userId, header);
     }
 };
 
