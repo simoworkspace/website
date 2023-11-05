@@ -33,7 +33,7 @@ export const Settings: FC = () => {
                     <h1 className="text-[33px] text-center">Bem vindo a dashboard, <strong>{user?.username}</strong></h1>
                     <hr className="w-full my-3" />
                     <div className={`w-full p-3 h-full flex flex-col gap-3 bg-neutral-900 ${borderColor[color]} border-2 rounded-lg`}>
-                        <div className="flex gap-3 w-full p-3">
+                        <div className="flex xl:flex-col gap-3 w-full p-3">
                             <div className="flex flex-col items-center justify-center flex-grow">
                                 <h1 className="font-bold text-lg">Biografia</h1>
                                 <span>Fale mais sobre você, digite ao lado uma breve descrição sobre você</span>
