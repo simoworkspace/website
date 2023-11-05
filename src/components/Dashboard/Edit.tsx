@@ -188,7 +188,7 @@ export const DashboardEdit: React.FC = () => {
                                             {tags.length < 5 && (
                                                 <form onSubmit={handleTagSubmit} className="flex flex-row">
                                                     <input value={tag} required maxLength={30} onChange={handleTagInputChange} placeholder="Digite uma tag" className={`bg-transparent p-2 rounded-lg rounded-r-none focus:outline-none border-2 ${borderAndBg[color]}`} type="text" />
-                                                    <Button type="submit" clas="rounded-l-none">
+                                                    <Button type="submit" clas="rounded-l-none w-full">
                                                         <icon.BsCheck />
                                                     </Button>
                                                 </form>

@@ -27,7 +27,7 @@ export const DashboardUser: FC<{
                 </span>
             </div>
             <div className="mt-8">
-                {!page ? <Button clas="text-center flex items-center gap-1" link to={`/dashboard/settings`}><icon.BsGear/>Configurações</Button> : <Button clas="text-center flex items-center gap-1" link to={`/dashboard`}><icon.BsArrowLeft/>Voltar</Button>}
+                {!page ? <Button clas="text-center flex items-center gap-1 w-full" link to={`/dashboard/settings`}><icon.BsGear/>Configurações</Button> : <Button clas="text-center flex items-center gap-1 w-full" link to={`/dashboard`}><icon.BsArrowLeft/>Voltar</Button>}
             </div>
         </div>
     )

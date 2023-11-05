@@ -17,6 +17,6 @@ export const Button: React.FC<{
     return link ? (
         <Link to={to || "/"} className={`${buttonColor[color]} border-2 transition-all duration-300 w-full text-white p-3 rounded-lg ${clas}`}>{children}</Link>
     ) : (
-        <button disabled={disabled} type={type} onClick={action} className={`${buttonColor[color]} border-2 transition-all duration-300 w-full text-white p-3 rounded-lg ${clas}`}>{children}</button>
+        <button disabled={disabled} type={type} onClick={action} className={`${buttonColor[color]} border-2 transition-all duration-300 text-white p-3 rounded-lg ${clas}`}>{children}</button>
     )
 };
