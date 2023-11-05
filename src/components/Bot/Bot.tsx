@@ -20,7 +20,7 @@ export const BotComponent: React.FC = () => {
     const [botData, setBotData] = useState<DiscordUser>();
     const [bot, setBot] = useState<BotStructure>();
     const [stars, setStars] = useState<number>(0);
-    const [devs, setDevs] = useState<Array<UserStructure>>([]);
+    const [devs, setDevs] = useState<{ id: string, avatar: string, username: string }[]>([]);
 
     const getBotStars = async (): Promise<void> => {
         const res = await api.getBotFeedbacks(params.botid as string);
@@ -47,7 +47,7 @@ export const BotComponent: React.FC = () => {
         for (let i = 0; i < owners.length; i++) {
             const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(owners[i]);
             const { username, avatar, id } = res.data;
-            setDevs(devs => [...devs, { username: username, avatar: avatar, id: id, signed: true }]);
+            setDevs(devs => [...devs, { username: username, avatar: avatar, id: id }]);
         }
 
         return setBot(res.data);
@@ -125,7 +125,7 @@ export const BotComponent: React.FC = () => {
                                     <h1 className="text-2xl text-center">{bot.owners.length > 1 ? "Developers" : "Developer"}</h1>
                                     <hr className="my-4 w-full" />
                                     <div className="grid grid-cols-2 gap-4">
-                                        {devs.map((user: UserStructure) => (
+                                        {devs.map((user: { id: string, avatar: string, username: string }) => (
                                             <Link to={`/users/${user.id}`} className="bg-neutral-900 border-2 border-neutral-700 p-2 rounded-lg flex flex-row flex-wrap justify-center xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
                                                 <img className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=2048`} alt={`${user.username}'s Avatar`} />
                                                 <span className="text-center">{user.username}</span>
