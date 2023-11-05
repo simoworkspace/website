@@ -5,14 +5,14 @@ import { UserContext } from "../../contexts/UserContext";
 import * as iconMD from "react-icons/md";
 import * as iconBS from "react-icons/bs";
 import * as iconAI from "react-icons/ai";
-import { BotStructure } from "../../types";
+import { BotStructure, UserStructure } from "../../types";
 import { AxiosResponse } from "axios";
 import api from "../../utils/api";
 import { BotCard } from "../BotList/BotCard";
 import { buttonColor } from "../../utils/theme/button";
 import { Link } from "react-router-dom";
 import { DeleteBot } from "./Delete";
-import { Button } from "../Mixed/Button";
+import { DashboardUser } from "./User";
 
 export const DashboardComponent: React.FC = () => {
     const { color } = useContext(ThemeContext);
@@ -59,24 +59,10 @@ export const DashboardComponent: React.FC = () => {
         }
     }, [user]);
 
-    return true ? (
+    return (
         <main className="max-w-[1500px] flex justify-start">
             <section className="w-screen flex flex-row p-5 text-white items-start justify-center gap-10 xl:flex-col h-full">
-                <div className={`${borderColor[color]} border-2 w-[300px] py-8 xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col`}>
-                    <div>
-                        <img className="rounded-full" src={`https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`} alt={`${user?.username}'s Avatar`} />
-                    </div>
-                    <hr className="w-[80%] my-5" />
-                    <div className="flex flex-col text-center justify-center">
-                        <strong>{user?.username}</strong>
-                        <span className="text-[#797979] items-center flex text-[13px] justify-center">
-                            ( {user?.id} )
-                        </span>
-                    </div>
-                    <div className="mt-8">
-                        <Button clas="text-center" link to={`/dashboard/settings`}>Configurações</Button>
-                    </div>
-                </div>
+                <DashboardUser color={color} user={user as UserStructure} />
                 <div className="flex items-center justify-start h-full w-full flex-col">
                     <h1 className="text-[33px] text-center">Bem vindo a dashboard, <strong>{user?.username}</strong></h1>
                     <hr className="w-full my-3" />
@@ -142,28 +128,5 @@ export const DashboardComponent: React.FC = () => {
                 {selectedBot && <DeleteBot setDeleteBot={setDeleteBot} deletebot={deleteBot} bot={selectedBot} />}
             </section>
         </main>
-    ) : (
-        <section className="w-screen flex flex-row p-5 text-white items-center justify-center gap-10 xl:flex-col max-w-[1500px]">
-            <div className="border-2 w-[300px] h-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col">
-                <div>
-                    <div className="rounded-full w-[100px] h-[100px] bg-neutral-800 animate-pulse" />
-                </div>
-                <hr className="w-[80%] my-5" />
-                <div className="flex flex-col text-center justify-center">
-                    <div className="bg-neutral-800 rounded-lg w-[120px] h-[20px] animate-pulse"></div>
-                    <div className="text-[#797979] items-center flex text-[13px] justify-center"></div>
-                </div>
-            </div>
-            <div className="flex items-center justify-center w-full flex-col max-w-[1500px]">
-                <div className="bg-neutral-800 rounded-lg w-[600px] xl:w-[90vw] h-[20px] animate-pulse"></div>
-                <hr className="w-full my-3" />
-                <div className="w-full">
-                    <button className="bg-neutral-900 animate-pulse p-3 items-center justify-center flex flex-row rounded-lg border-2 w-full">
-                        <span className="flex flex-grow"></span>
-                        <iconMD.MdOutlineKeyboardArrowDown className={`transition-all duration-300 ${selectBotMenu ? "rotate-180" : "rotate-0"}`} size={25} />
-                    </button>
-                </div>
-            </div>
-        </section>
     )
 };
