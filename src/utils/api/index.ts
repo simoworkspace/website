@@ -75,8 +75,8 @@ const api = {
     getUserFromDB: (userId: Snowflake): Promise<AxiosResponse<UserStructure>> => {
         return axios.get("/api/users/" + userId, header);
     },
-    patchUser: (userId: Snowflake, body: DBUser): Promise<AxiosResponse<DBUser>> => {
-        return axios.patch("/api/users" + userId, body, header);
+    patchUser: (userId: Snowflake, body: { bio: string }): Promise<AxiosResponse<{ bio: string }>> => {
+        return axios.patch("/api/users/" + userId, body, header);
     }
 };
 
