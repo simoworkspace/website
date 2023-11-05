@@ -105,11 +105,15 @@ export interface VoteStructure {
     last_vote: string;
 }
 
-export interface UserStructure {
-    username: string;
-    id: Snowflake | string;
-    avatar: string;
+export interface UserStructure extends DBUser {
     signed: boolean;
+    id: Snowflake
+}
+export interface DBUser {
+    username: string;
+    _id: Snowflake | string;
+    avatar: string;
+    bio: string;
 };
 
 interface Locales {
