@@ -1,5 +1,5 @@
-import axios, { Axios, AxiosResponse } from "axios";
-import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody, NotificationType, StatusStrucuture } from "../../types";
+import axios, { AxiosResponse } from "axios";
+import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody, NotificationType, StatusStrucuture, DBUser } from "../../types";
 import Cookies from "js-cookie";
 
 const header = {
@@ -74,6 +74,9 @@ const api = {
     },
     getUserFromDB: (userId: Snowflake): Promise<AxiosResponse<UserStructure>> => {
         return axios.get("/api/users/" + userId, header);
+    },
+    patchUser: (userId: Snowflake, body: DBUser): Promise<AxiosResponse<DBUser>> => {
+        return axios.patch("/api/users" + userId, body, header);
     }
 };
 
