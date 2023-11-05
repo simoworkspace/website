@@ -12,6 +12,7 @@ import { BotCard } from "../BotList/BotCard";
 import { buttonColor } from "../../utils/theme/button";
 import { Link } from "react-router-dom";
 import { DeleteBot } from "./Delete";
+import { Button } from "../Mixed/Button";
 
 export const DashboardComponent: React.FC = () => {
     const { color } = useContext(ThemeContext);
@@ -58,10 +59,10 @@ export const DashboardComponent: React.FC = () => {
         }
     }, [user]);
 
-    return !user || !bots ? (
+    return true ? (
         <main className="max-w-[1500px] flex justify-start">
-            <section className="w-screen flex flex-row p-5 text-white items-start justify-center gap-10 xl:flex-col">
-                <div className={`${borderColor[color]} border-2 w-[300px] xl:h-[400px] h-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col`}>
+            <section className="w-screen flex flex-row p-5 text-white items-start justify-center gap-10 xl:flex-col h-full">
+                <div className={`${borderColor[color]} border-2 w-[300px] py-8 xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col`}>
                     <div>
                         <img className="rounded-full" src={`https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`} alt={`${user?.username}'s Avatar`} />
                     </div>
@@ -71,6 +72,9 @@ export const DashboardComponent: React.FC = () => {
                         <span className="text-[#797979] items-center flex text-[13px] justify-center">
                             ( {user?.id} )
                         </span>
+                    </div>
+                    <div className="mt-8">
+                        <Button clas="text-center" link to={`/dashboard/settings`}>Configurações</Button>
                     </div>
                 </div>
                 <div className="flex items-center justify-start h-full w-full flex-col">
