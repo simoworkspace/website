@@ -41,14 +41,15 @@ export const BotComponent: React.FC = () => {
     };
 
     const getBotInDB = async (): Promise<void> => {
-        const res: AxiosResponse<BotStructure> = await api.getBotInfos(botid);
-        const { owner_id } = res.data;
-        
+        const res1: AxiosResponse<BotStructure> = await api.getBotInfos(botid);
+        const { owner_id } = res1.data;
+
         const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(owner_id);
         const { username, avatar, id } = res.data;
-        setDev({ username: username, avatar: avatar, id: id });
 
-        return setBot(res.data);
+        setDev({ username, avatar, id, });
+
+        return setBot(res1.data);
     };
 
     useEffect(() => {
@@ -124,9 +125,9 @@ export const BotComponent: React.FC = () => {
                                     <hr className="my-4 w-full" />
                                     <div className="grid grid-cols-2 gap-4">
                                         <Link to={`/users/${dev?.id}`} className="bg-neutral-900 border-2 border-neutral-700 p-2 rounded-lg flex flex-row flex-wrap justify-center xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
-                                                <img className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${dev?.id}/${dev?.avatar}.png?size=2048`} alt={`${dev?.username}'s Avatar`} />
-                                                <span className="text-center">{dev?.username}</span>
-                                            </Link>
+                                            <img className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${dev?.id}/${dev?.avatar}.png?size=2048`} alt={`${dev?.username}'s Avatar`} />
+                                            <span className="text-center">{dev?.username}</span>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
