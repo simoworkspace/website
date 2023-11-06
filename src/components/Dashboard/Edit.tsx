@@ -62,7 +62,7 @@ export const DashboardEdit: React.FC = () => {
         const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(owner_id);
         const { username, avatar, id } = res.data;
         
-        setDev({ username: username, avatar: avatar, id: id, }]);
+        setDev({ username: username, avatar: avatar, id: id, });
 
         return setBot(res.data);
     };
