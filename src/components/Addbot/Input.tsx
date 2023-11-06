@@ -20,10 +20,11 @@ interface InputProps {
     cols?: number;
     preview?: boolean;
     optional?: boolean;
+    placeholder?: string
     setPreview?: any | ((value: boolean) => void);
 }
 
-export const Input: React.FC<InputProps> = ({ register, name, required, text, title, errors, type, preview, setPreview, maxLength, minLength, inputType, optional, disabled }) => {
+export const Input: React.FC<InputProps> = ({ register, name, required, text, title, errors, type, preview, setPreview, maxLength, minLength, inputType, optional, disabled, placeholder }) => {
     const [markdown, setMarkdown] = useState<string>('');
 
     const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -93,6 +94,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         } text-white`}
                 >
                     <input
+                        placeholder={placeholder}
                         {...register(name, { required } || { required: true })}
                         name={name}
                         maxLength={maxLength}
@@ -127,6 +129,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         } text-white`}
                 >
                     <textarea
+                        placeholder={placeholder}
                         disabled={disabled}
                         value={markdown}
                         {...register(name, {
@@ -167,6 +170,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         } text-white`}
                 >
                     <textarea
+                        placeholder={placeholder}
                         disabled={disabled}
                         {...register(name, { required } || { required: true })}
                         name={name}
