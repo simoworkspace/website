@@ -38,7 +38,7 @@ export const Settings: FC = () => {
                                 <h1 className="font-bold text-lg">Biografia</h1>
                                 <span>Fale mais sobre você, digite ao lado uma breve descrição sobre você</span>
                             </div>
-                            <form onSubmit={patchBio} className="w-[50%] flex flex-row">
+                            <form onSubmit={patchBio} className="w-[50%] xl:w-full xl:h-14 flex flex-row">
                                 <input maxLength={200} value={bio} required disabled={bioPatched} onChange={handleBioChange} className={`bg-transparent disabled:opacity-50 rounded-r-none focus:outline-none border-2 rounded-lg p-2 w-full h-full ${borderColor[color]}`} type="text" />
                                 <Button type="submit" disabled={bioPatched} clas="w-14 flex items-center justify-center rounded-l-none diabled:opacity-50">{bioPatched ? <iconAI.AiOutlineLoading3Quarters size={22} className="animate-spin"/> : <icon.BsCheck size={22} />}</Button>
                             </form>
