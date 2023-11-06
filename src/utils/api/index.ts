@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody, NotificationType, StatusStrucuture, DBUser } from "../../types";
+import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody, NotificationType, StatusStrucuture, DBUser, Team } from "../../types";
 import Cookies from "js-cookie";
 
 const header = {
@@ -46,7 +46,7 @@ const api = {
         return axios.delete(`/api/bots/${botID}/feedbacks/${userID}`, header);
     },
     editFeedback: (userID: Snowflake | undefined, botID: Snowflake, content: string, stars: number): Promise<AxiosResponse<FeedbackStructure>> => {
-        return axios.patch(`/api/bots/${botID}/feedbacks/${userID}`,  { content: content, stars: stars } ,header);
+        return axios.patch(`/api/bots/${botID}/feedbacks/${userID}`, { content: content, stars: stars }, header);
     },
     voteStatus: (botID: string | Snowflake, userID: string | Snowflake): Promise<AxiosResponse<{ can_vote: boolean; rest_time: number; }>> => {
         return axios.get(`/api/bots/${botID}/vote-status/${userID}`, header);
@@ -77,7 +77,22 @@ const api = {
     },
     patchUser: (userId: Snowflake, body: { bio: string }): Promise<AxiosResponse<{ bio: string }>> => {
         return axios.patch("/api/users/" + userId, body, header);
-    }
+    },
+    getTeam: (teamID: Snowflake): Promise<AxiosResponse<Team>> => {
+        return axios.get("/api/teams" + teamID, header);
+    },
+    getUserTeams: (): Promise<AxiosResponse<UserStructure[]>> => {
+        return axios.get("/api/teams/@all", header);
+    },
+    deleteTeam: (): Promise<AxiosResponse> => {
+        return axios.delete("/api/teams", header);
+    },
+    createTeam: (body: Team): Promise<AxiosResponse<Team>> => {
+        return axios.post("/api/teams", body, header);
+    },
+    patchTeam: (body: Team): Promise<AxiosResponse<Team>> => {
+        return axios.patch("/api/teams", body, header);
+    },
 };
 
 export default api;
