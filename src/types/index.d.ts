@@ -108,6 +108,7 @@ export interface VoteStructure {
 export interface UserStructure extends DBUser {
     signed: boolean;
     id: Snowflake
+    team: Team;
 }
 export interface DBUser {
     username: string;
@@ -221,4 +222,24 @@ export interface StatusStrucuture {
     bots: number;
     uptime: number;
     request_count:	number;
+}
+
+export interface Team {
+    members?: TeamMember[];
+    id?: string;
+    name: string;
+    avatar_url: string;
+    description: string;
+    bot_id?: Snowflake;
+}
+
+export interface TeamMember {
+    id: Snowflake;
+    permission: TeamPermissions;
+    owner?: boolean;
+}
+
+export enum TeamPermissions {
+    Administrator,
+    ReadOnly,
 }
