@@ -90,7 +90,7 @@ export interface BotStructure {
     short_description: string;
     long_description: string;
     prefixes: string[];
-    owners: Snowflake[];
+    owner_id: string;
     created_at: string;
     verified: boolean;
     tags: string[];

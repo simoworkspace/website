@@ -38,7 +38,7 @@ export const DashboardComponent: React.FC = () => {
 
     const getUserBots = async (): Promise<void> => {
         const req: AxiosResponse<BotStructure[]> = await api.getAllBots();
-        const bots = req.data.filter(bot => bot.owners.includes(user?.id as string));
+        const bots = req.data.filter(bot => bot.owner_id == user?.id as string);
 
         if (bots.length === 1) {
             return setSelectedBot(bots[0]);
