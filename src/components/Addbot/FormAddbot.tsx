@@ -34,7 +34,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             short_description: data.short_description,
             long_description: data.long_description,
             prefixes: (data.prefixes as any).split(",").map((a: string) => a.trim()),
-            owners: [user?.id as string],
+            owner_id: user?.id as string,
             created_at: botData?.created_at as string,
             verified: botData?.verified as boolean,
             tags: (data.tags as any).split(","),

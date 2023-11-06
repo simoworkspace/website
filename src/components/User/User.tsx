@@ -23,7 +23,7 @@ export const User: React.FC = () => {
 
     const getUserBots: () => Promise<void> = async (): Promise<void> => {
         const req: AxiosResponse<BotStructure[]> = await api.getAllBots();
-        const userBots = req.data.filter((bot: BotStructure) => bot.owners.includes(userid));
+        const userBots = req.data.filter((bot: BotStructure) => bot.owner_id === userid);
         return setUserBots(userBots);
     };
 
