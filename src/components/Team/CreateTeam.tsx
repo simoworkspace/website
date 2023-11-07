@@ -31,13 +31,6 @@ export const CreateTeam: React.FC = () => {
             avatar_url,
             description,
             name,
-            members: [
-                {
-                    id: user?.id as string,
-                    permission: 1,
-                    owner: true
-                }
-            ]
         };
 
         try {
@@ -46,7 +39,7 @@ export const CreateTeam: React.FC = () => {
             window.location.href = "/dashboard/settings";
         } catch(error: any) {
             setSubmited(false);
-            alert("Erro ao tentar criar um time: " + error.response.data.message);
+            alert("Erro ao tentar criar um time: " + JSON.stringify(error.response.data.errors));
         }
     };
 
