@@ -19,6 +19,8 @@ import "./index.css";
 import { Dashboard } from "../pages/Dashboard/Dashboard";
 import { DashboardEditPage } from "../pages/Dashboard/Edit";
 import { SettingsPage } from "../pages/Dashboard/Settings";
+import { CreateTeamPage } from "../pages/Team/CreateTeam";
+import { TeamPage } from "../pages/Team/Team";
 
 function App() {
     const { color } = useContext(ThemeContext);
@@ -35,11 +37,13 @@ function App() {
                     <Route path="/search" element={<Search />} />
                     <Route path="/notifications" element={<NotificationsPage />} />
                     <Route path="/themes" element={<ThemesPage />} />
-                    <Route path="addbot" element={<Addbot />}/>
-                    <Route path="/users/:userid" element={<User/>}/>
+                    <Route path="/addbot" element={<Addbot />} />
+                    <Route path="/users/:userid" element={<User />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/dashboard/edit/:botId" element={<DashboardEditPage />} />
                     <Route path="/dashboard/settings" element={<SettingsPage />} />
+                    <Route path="/teams/create" element={<CreateTeamPage />} />
+                    <Route path="/team/:teamId" element={<TeamPage />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Mobilemenu />
