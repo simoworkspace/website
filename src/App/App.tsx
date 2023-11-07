@@ -38,7 +38,7 @@ function App() {
                     <Route path="/notifications" element={<NotificationsPage />} />
                     <Route path="/themes" element={<ThemesPage />} />
                     <Route path="/addbot" element={<Addbot />} />
-                    <Route path="/users/:userid" element={<User />} />
+                    <Route path="/user/:userid" element={<User />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/dashboard/edit/:botId" element={<DashboardEditPage />} />
                     <Route path="/dashboard/settings" element={<SettingsPage />} />
