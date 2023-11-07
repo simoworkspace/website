@@ -74,7 +74,7 @@ export const BotComponent: React.FC = () => {
                     <div className={`bg-neutral-900 rounded-xl flex xl:flex-col xl:h-[320px] h-[120px] w-[95%] border-2 ${borderColor[color]} items-center justify-center`}>
                         <img
                             className="w-[100px] h-[100px] xl:my-2 rounded-full xl:float-none ml-2"
-                            src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png?size=2048`}
+                            src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png`}
                             alt={botData.username + "'s Avatar"}
                         />
                         <div className="flex flex-col w-full justify-center gap-2">
@@ -124,7 +124,7 @@ export const BotComponent: React.FC = () => {
                                     <h1 className="text-2xl text-center">Developer</h1>
                                     <hr className="my-4 w-full" />
                                     <div className="grid grid-cols-2 gap-4">
-                                        <Link to={`/users/${dev?.id}`} className="bg-neutral-900 border-2 border-neutral-700 p-2 rounded-lg flex flex-row flex-wrap justify-center xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
+                                        <Link to={`/user/${dev?.id}`} className="bg-neutral-900 border-2 border-neutral-700 p-2 rounded-lg flex flex-row flex-wrap justify-center xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
                                             <img className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${dev?.id}/${dev?.avatar}.png?size=2048`} alt={`${dev?.username}'s Avatar`} />
                                             <span className="text-center">{dev?.username}</span>
                                         </Link>
