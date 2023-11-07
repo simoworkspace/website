@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Team } from "../../components/Team/Team";
+import { TeamComponent } from "../../components/Team/Team";
 
 export const TeamPage: FC = () => {
-    return <Team/>
+    return <TeamComponent/>
 };
