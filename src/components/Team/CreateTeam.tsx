@@ -31,13 +31,20 @@ export const CreateTeam: React.FC = () => {
             avatar_url,
             description,
             name,
+            members: [
+                {
+                    id: user?.id as string,
+                    permission: 1,
+                    owner: true
+                }
+            ]
         };
 
         try {
             await api.createTeam(formData);
 
             window.location.href = "/dashboard/settings";
-        } catch(error: any) {
+        } catch (error: any) {
             setSubmited(false);
             alert("Erro ao tentar criar um time: " + JSON.stringify(error.response.data.errors));
         }
@@ -57,7 +64,7 @@ export const CreateTeam: React.FC = () => {
                     <div className="flex flex-col gap-3">
                         <Input errors={errors} required name="name" register={register} text="Digite o nome que o seu time irá receber" title="Nome" type="input" maxLength={15} minLength={3} placeholder="Mango Team" />
                         <Input errors={errors} required name="avatar_url" register={register} text="Coloque o link de imagem do avatar do seu time" title="Avatar em URL" inputType="url" type="input" placeholder="https://i.imgur.com/1DBO2wh.jpeg" />
-                        <Input errors={errors} name="description" register={register} text="Digite uma breve descrição sobre seu time" title="Descrição" optional type="input" placeholder="Meu time é um time legal e bonito..." maxLength={50} minLength={5}/>
+                        <Input errors={errors} name="description" register={register} text="Digite uma breve descrição sobre seu time" title="Descrição" optional type="input" placeholder="Meu time é um time legal e bonito..." maxLength={50} minLength={5} />
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)} className="gap-5 items-center justify-center pt-1 flex flex-col">
                         <div className="flex justify-center xl:w-[80vw] m-4 items-center gap-3">
