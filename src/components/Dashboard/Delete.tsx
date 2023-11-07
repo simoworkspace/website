@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useContext, useState } from "react";
+import { FC, useEffect, useContext, useState } from "react";
 import * as icon from "react-icons/bs";
 import * as iconAI from "react-icons/ai";
 import { BotStructure } from "../../types";
@@ -6,7 +6,7 @@ import { borderAndBg } from "../../utils/theme/border&bg";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { buttonColor } from "../../utils/theme/button";
 import api from "../../utils/api";
-import { PopUp } from "../Mobile/PopUp";
+import { PopUp } from "../Mixed/PopUp";
 
 export const DeleteBot: FC<{
     setDeleteBot: (value: boolean) => void;
