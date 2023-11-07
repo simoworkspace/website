@@ -81,7 +81,7 @@ const api = {
     getTeam: (teamID: Snowflake): Promise<AxiosResponse<Team>> => {
         return axios.get("/api/teams" + teamID, header);
     },
-    getUserTeams: (): Promise<AxiosResponse<UserStructure[]>> => {
+    getUserTeams: (): Promise<AxiosResponse<Team[]>> => {
         return axios.get("/api/teams/@all", header);
     },
     deleteTeam: (): Promise<AxiosResponse> => {
