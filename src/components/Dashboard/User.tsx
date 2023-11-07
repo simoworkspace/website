@@ -26,8 +26,8 @@ export const DashboardUser: FC<{
                     ( {user?.id} )
                 </span>
             </div>
-            <div className="mt-8">
-                {!page ? <Button clas="text-center flex items-center gap-1 w-full" link to={`/dashboard/settings`}><icon.BsGear/>Configurações</Button> : <Button clas="text-center flex items-center gap-1 w-full" link to={`/dashboard`}><icon.BsArrowLeft/>Voltar</Button>}
+            <div className="mt-8 w-10/12">
+                {!page ? <Button clas="text-center flex items-center gap-2 w-full flex items-center justify-center" link to={`/dashboard/settings`}><icon.BsGear/>Configurações</Button> : <Button clas="text-center flex items-center gap-2 w-full flex items-center justify-center" link to={`/dashboard`}><icon.BsArrowLeft />Voltar</Button>}
             </div>
         </div>
     )
