@@ -18,20 +18,36 @@ export const CreateTeam: React.FC = () => {
 
     const [submited, setSubmited] = useState<boolean>(false);
 
+    if (!user) {
+        window.location.href = "/";
+    }
+
     const onSubmit: SubmitHandler<Team> = async (data: Team): Promise<void> => {
         setSubmited(true);
 
         const { avatar_url, description, name } = data;
 
-        const formData = {
+        const formData: Team = {
             avatar_url,
             description,
-            name
+            name,
+            members: [
+                {
+                    id: user?.id as string,
+                    permission: 1,
+                    owner: true
+                }
+            ]
         };
 
-        await api.createTeam(formData);
+        try {
+            await api.createTeam(formData);
 
-        window.location.href = "/dashboard/settings";
+            window.location.href = "/dashboard/settings";
+        } catch(error: any) {
+            setSubmited(false);
+            alert("Erro ao tentar criar um time: " + error.response.data.message);
+        }
     };
 
     return (
