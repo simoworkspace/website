@@ -12,8 +12,8 @@ export const Teams: FC<{
             <Button disabled={teams?.length === 0} link to="/teams/create" clas="disabled:opacity-50 flex items-center justify-center gap-2 mt-2 w-[190px]"><icon.BsPlusLg size={22} />Criar time</Button>
             <div className="flex flex-wrap gap-3">
                 {teams ? teams.map((team) => (
-                    <Link to={`/team/${team.id}`} className="bg-neutral-800 p-3 rounded-lg duration-300 transition-colors hover:bg-neutral-700">
-                        <div className="flex flex-row gap-2 px-2 items-center justify-center">
+                    <Link to={`/team/${team.id}`} className="bg-neutral-800 p-3 xl:w-full rounded-lg duration-300 transition-colors hover:bg-neutral-700">
+                        <div className="flex flex-row gap-2 xl:w-full xl:justify-start px-2 items-center justify-center">
                             <img className="w-24 rounded-full" src={team.avatar_url} />
                             <div className="flex flex-col justify-start items-start">
                                 <span className="text-lg font-bold">{team.name}</span>
