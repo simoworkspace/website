@@ -1,9 +1,8 @@
 import { ThemeStructure } from '../../types';
 
-export const borderAndBg: ThemeStructure = {
-    blue: "border-blue-400 bg-blue-600",
-    green: "border-green-400 bg-green-600",
-    red: "border-red-400 bg-red-600",
-    purple: "border-purple-400 bg-purple-600",
-    black: "border-neutral-500 bg-neutral-900"
+export const borderAndBg: ThemeStructure = {blue: "bg-slate-900 border-slate-700",
+    green: "bg-green-900 border-[#1d733f]",
+    red: "bg-[#4a1110] border-red-900",
+    purple: "bg-[#301542] border-purple-900",
+    black: "bg-neutral-900 border-neutral-500"
 };
