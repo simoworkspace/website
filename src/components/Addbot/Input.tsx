@@ -21,10 +21,11 @@ interface InputProps {
     preview?: boolean;
     optional?: boolean;
     placeholder?: string
+    defaultValue?: string;
     setPreview?: any | ((value: boolean) => void);
 }
 
-export const Input: React.FC<InputProps> = ({ register, name, required, text, title, errors, type, preview, setPreview, maxLength, minLength, inputType, optional, disabled, placeholder }) => {
+export const Input: React.FC<InputProps> = ({ defaultValue, register, name, required, text, title, errors, type, preview, setPreview, maxLength, minLength, inputType, optional, disabled, placeholder }) => {
     const [markdown, setMarkdown] = useState<string>('');
 
     const handleInputChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -94,13 +95,14 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         } text-white`}
                 >
                     <input
+                        defaultValue={defaultValue}
                         placeholder={placeholder}
                         {...register(name, { required } || { required: true })}
                         name={name}
                         maxLength={maxLength}
                         minLength={minLength}
                         type={inputType}
-                        disabled={disabled} 
+                        disabled={disabled}
                         className="bg-transparent outline-none w-full disabled:opacity-50"
                     />
                 </div>
@@ -129,6 +131,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         } text-white`}
                 >
                     <textarea
+                        defaultValue={defaultValue}
                         placeholder={placeholder}
                         disabled={disabled}
                         value={markdown}
@@ -170,6 +173,7 @@ export const Input: React.FC<InputProps> = ({ register, name, required, text, ti
                         } text-white`}
                 >
                     <textarea
+                        defaultValue={defaultValue}
                         placeholder={placeholder}
                         disabled={disabled}
                         {...register(name, { required } || { required: true })}
