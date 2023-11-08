@@ -1,9 +1,9 @@
 import { ThemeStructure } from '../../types';
 
 export const borderColor: ThemeStructure = {
-    blue: "border-blue-300",
-    green: "border-green-300",
-    red: "border-red-300",
-    purple: "border-purple-300",
-    black: "border-white-300"
+    blue: "border-slate-700",
+    green: "border-[#1d733f]",
+    red: "border-red-900",
+    purple: "border-purple-900",
+    black: "border-neutral-500"
 };
