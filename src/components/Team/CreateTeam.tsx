@@ -34,7 +34,7 @@ export const CreateTeam: React.FC = () => {
             members: [
                 {
                     id: user?.id as string,
-                    permission: 1,
+                    permission: 0,
                     owner: true
                 }
             ]
@@ -61,18 +61,18 @@ export const CreateTeam: React.FC = () => {
                             </strong>
                         </h1>
                     </h1>
-                    <div className="flex flex-col gap-3">
-                        <Input errors={errors} required name="name" register={register} text="Digite o nome que o seu time irá receber" title="Nome" type="input" maxLength={15} minLength={3} placeholder="Mango Team" />
-                        <Input errors={errors} required name="avatar_url" register={register} text="Coloque o link de imagem do avatar do seu time" title="Avatar em URL" inputType="url" type="input" placeholder="https://i.imgur.com/1DBO2wh.jpeg" />
-                        <Input errors={errors} name="description" register={register} text="Digite uma breve descrição sobre seu time" title="Descrição" optional type="input" placeholder="Meu time é um time legal e bonito..." maxLength={50} minLength={5} />
-                    </div>
                     <form onSubmit={handleSubmit(onSubmit)} className="gap-5 items-center justify-center pt-1 flex flex-col">
-                        <div className="flex justify-center xl:w-[80vw] m-4 items-center gap-3">
+                        <div className="flex flex-col gap-3">
+                            <Input errors={errors} required name="name" register={register} text="Digite o nome que o seu time irá receber" title="Nome" type="input" maxLength={15} minLength={3} placeholder="Mango Team" />
+                            <Input errors={errors} required name="avatar_url" register={register} text="Coloque o link de imagem do avatar do seu time" title="Avatar em URL" inputType="url" type="input" placeholder="https://i.imgur.com/1DBO2wh.jpeg" />
+                            <Input errors={errors} name="description" register={register} text="Digite uma breve descrição sobre seu time" title="Descrição" optional type="input" placeholder="Meu time é um time legal e bonito..." maxLength={50} minLength={5} />
+                        </div>
+                        <div className="flex justify-center m-4 xl:m-0 xl:w-full xl:mb- items-center gap-3">
                             <input
                                 type="submit"
                                 value="Criar time"
                                 disabled={submited}
-                                className={`disabled:cursor-default disabled:opacity-70 cursor-pointer transition-all duration-300 items-center border-2 w-[300px] rounded-xl h-[60px] text-white ${buttonColor[color]}`}
+                                className={`disabled:cursor-default disabled:opacity-70 cursor-pointer transition-all duration-300 items-center border-2 w-[300px] rounded-xl h-[60px] text-white xl:w-full ${buttonColor[color]}`}
                             />
                             {submited && <icon.AiOutlineLoading3Quarters fill="#fff" size={30} className="animate-spin" />}
                         </div>
