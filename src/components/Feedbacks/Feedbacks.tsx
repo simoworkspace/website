@@ -84,9 +84,9 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
                     </div>
                     <div className="flex flex-row gap-1">
                         {[1, 2, 3, 4, 5].map((star) => (
-                            <button onClick={() => handleStarClick(star)} className="cursor-pointer">
+                          <div type="text" onClick={() => handleStarClick(star)} className="cursor-pointer">
                                 {star <= rating ? <icon.BsFillStarFill size={30} fill="#fff" /> : <icon.BsStar size={30} fill="#fff" />}
-                            </button>
+                            </div>
                         ))}
                     </div>
                     <div className="flex gap-3 items-center justify-center">
