@@ -21,7 +21,7 @@ export const SearchComponent: React.FC = () => {
 
     return (
         <section>
-            <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left xl:mb-[80px]">
+            <div className="grid-cols-2 grid gap-4 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left max-w-[1500px]">
                 {botsFilter?.map(bot => (<BotCard bot={bot} />))}
             </div>
         </section>
