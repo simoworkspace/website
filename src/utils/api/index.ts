@@ -90,8 +90,8 @@ const api = {
     createTeam: (body: Team): Promise<AxiosResponse<Team>> => {
         return axios.post("/api/teams", body, header);
     },
-    patchTeam: (body: Team): Promise<AxiosResponse<Team>> => {
-        return axios.patch("/api/teams", body, header);
+    patchTeam: (teamID: string, body: Team): Promise<AxiosResponse<Team>> => {
+        return axios.patch("/api/teams/" + teamID, body, header);
     },
 };
 
