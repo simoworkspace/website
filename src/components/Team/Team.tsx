@@ -8,11 +8,17 @@ import simo from "../../assets/images/simo.png";
 import api from "../../utils/api";
 import * as icon from "react-icons/bi";
 import { UserLoading } from "../User/UserLoading";
+import { Button } from "../Mixed/Button";
+import { UserContext } from "../../contexts/UserContext";
+import { buttonColor } from "../../utils/theme/button";
+import { DeleteTeam } from "./DeleteTeam";
 
 export const TeamComponent: React.FC = () => {
     const params: Params = useParams<string>();
+    const { user } = useContext(UserContext);
     const teamID: string = params.teamId as string;
     const [team, setTeam] = useState<Team>();
+    const [deleteTeam, setDeleteTeam] = useState<boolean>(false);
     const [teamBot, setTeamBot] = useState<BotStructure | null>(null);
     const [teamMembers, setTeamMembers] = useState<{ avatar: string; id: string; username: string, owner: boolean }[]>([]);
 
@@ -62,11 +68,20 @@ export const TeamComponent: React.FC = () => {
                         </span>
                     </div>
                     <div className="flex w-full flex-col gap-3 py-3 px-5">
+                        {teamMembers.find((member) => member.owner && member.id === user?.id) && (
+                            <div className="flex flex-col gap-2">
+                                <Button link to={"/team/manage/" + team.id} clas="w-full flex gap-3 items-center"><icon.BiWrench />Gerenciar</Button>
+                                <button onClick={() => setDeleteTeam(true)} className={`flex items-center flex-row gap-3 p-3 w-full rounded-lg ${buttonColor["red"]} h-12 transition-colors duration-300 border-2`}>
+                                    <icon.BiTrash />
+                                    <span>Deletar</span>
+                                </button>
+                            </div>
+                        )}
                         <span className="text-lg font-bold text-left">Membros</span>
                         <div className="flex flex-wrap w-full gap-2">
                             {teamMembers.map((member) => (
                                 <Link to={`/user/${member.id}`}>
-                                    {member.owner && <icon.BiSolidCrown fill="#FFD700" className="absolute ml-7 rotate-45"/>}
+                                    {member.owner && <icon.BiSolidCrown fill="#FFD700" className="absolute ml-7 rotate-45" />}
                                     <img
                                         className="rounded-full w-10"
                                         src={`https://cdn.discordapp.com/avatars/${member.id}/${member.avatar}.png?size=2048`}
@@ -90,6 +105,9 @@ export const TeamComponent: React.FC = () => {
                         )}
                     </section>
                 </div>
+            </section>
+            <section className={`transiton-opacity duration-300 ${deleteTeam ? "visible opacity-100" : "invisible opacity-0"}`}>
+                {deleteTeam && <DeleteTeam deletedTeam={deleteTeam} setDeletedTeam={setDeleteTeam} team={team} />}
             </section>
         </main>
     ) : (
