@@ -44,9 +44,9 @@ export const DeleteBot: FC<{
     const getBotStars = async (): Promise<void> => {
         const res = await api.getBotFeedbacks(bot._id);
         const stars = res.data.map(a => a.stars);
-        const count = stars.reduce((a, b) => a += b);
+        const count = stars.reduce((a, b) => (a as number) += (b as number));
 
-        return setStars(Math.round(count / stars.length));
+        return setStars(Math.round((count as number) / stars.length));
     };
 
     useEffect(() => {

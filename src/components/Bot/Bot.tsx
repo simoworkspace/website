@@ -26,7 +26,7 @@ export const BotComponent: React.FC = () => {
         const res = await api.getBotFeedbacks(params.botid as string);
         const stars = res.data.map(a => a.stars);
         let count = 0;
-        stars.forEach(value => count += value);
+        stars?.forEach(value => count += value as number);
         return setStars(Math.round(count / stars.length));
     };
 
@@ -176,7 +176,7 @@ export const BotComponent: React.FC = () => {
                         </div>
                     </div>
                 </section>
-                <Feedbacks botid={botid} />
+                <Feedbacks botid={botid} bot={bot} />
             </div>
         </section>
     ) : (

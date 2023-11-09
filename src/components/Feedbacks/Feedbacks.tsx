@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { FeedbackStructure } from "../../types";
+import { BotStructure, FeedbackStructure } from "../../types";
 import api from "../../utils/api";
 import { useParams } from "react-router-dom";
 import { FeedbackCard } from "./FeedbackCard";
@@ -10,7 +10,7 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { UserContext } from "../../contexts/UserContext";
 import { buttonColor } from "../../utils/theme/button";
 
-export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
+export const Feedbacks: React.FC<{ botid: string, bot: BotStructure }> = ({ botid, bot }) => {
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
 
@@ -119,7 +119,7 @@ export const Feedbacks: React.FC<{ botid: string }> = ({ botid }) => {
                 ) : currentFeedbacks && currentFeedbacks.length > 0 ? (
                     currentFeedbacks.map((feedback: FeedbackStructure, index: number) => (
                         <div key={index}>
-                            <FeedbackCard feedback={feedback} botid={botid} updateFeedbacks={getBotFeedbacks} isDeleted={isDeleted} setIsDeleted={setIsDeleted} />
+                            <FeedbackCard bot={bot} feedback={feedback} botid={botid} updateFeedbacks={getBotFeedbacks} isDeleted={isDeleted} setIsDeleted={setIsDeleted} />
                         </div>
                     ))
                 ) : (
