@@ -8,10 +8,13 @@ export const DashboardUser: FC<{
     color: Theme;
     user: UserStructure;
 }> = ({ color, user }) => {
-    const [page, setPage] = useState<boolean>();
+    const currentPage: string = location.href.split("/")[4]; 
+    const [page, setPage] = useState<string>("");
+
+    console.log(currentPage);
 
     useEffect(() => {
-        setPage(location.href.split("/")[4] === "settings");
+        setPage(currentPage);
     }, []);
 
     return (
@@ -27,7 +30,7 @@ export const DashboardUser: FC<{
                 </span>
             </div>
             <div className="mt-8 w-10/12">
-                {!page ? <Button clas="text-center flex items-center gap-2 w-full flex items-center justify-center" link to={`/dashboard/settings`}><icon.BsGear/>Configurações</Button> : <Button clas="text-center flex items-center gap-2 w-full flex items-center justify-center" link to={`/dashboard`}><icon.BsArrowLeft />Voltar</Button>}
+                {!page ? <Button clas="text-center flex items-center gap-2 w-full flex items-center justify-center" link to={"/dashboard/settings"}><icon.BsGear/>Configurações</Button> : <Button clas="text-center flex items-center gap-2 w-full flex items-center justify-center" link to={page === "settings" ? "/dashboard" : "/dashboard/settings"}><icon.BsArrowLeft />Voltar</Button>}
             </div>
         </div>
     )
