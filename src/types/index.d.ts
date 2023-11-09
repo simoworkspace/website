@@ -44,15 +44,20 @@ export interface FindBotStructure {
 }
 
 export interface FeedbackStructure {
-    author: {
-        id: string;
-        avatar: string;
-        username: string;
+    author?: {
+        id?: string;
+        avatar?: string;
+        username?: string;
     }
-    stars: number;
-    posted_at: string;
-    content: string;
-    edited: boolean;
+    reply_message?: {
+        content?: string;
+        posted_at?: string;
+        edited?: boolean;
+    };
+    stars?: number;
+    posted_at?: string;
+    content?: string;
+    edited?: boolean;
 }
 
 export interface ThemeStructure {
@@ -235,6 +240,8 @@ export interface Team {
 
 export interface TeamMember {
     id: Snowflake;
+    avatar: string;
+    username: string;
     permission: TeamPermissions;
     owner?: boolean;
 }
