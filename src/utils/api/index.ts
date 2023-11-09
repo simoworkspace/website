@@ -45,8 +45,8 @@ const api = {
     deleteFeedback: (botID: string, userID: string): Promise<AxiosResponse> => {
         return axios.delete(`/api/bots/${botID}/feedbacks/${userID}`, header);
     },
-    editFeedback: (userID: Snowflake | undefined, botID: Snowflake, content: string, stars: number): Promise<AxiosResponse<FeedbackStructure>> => {
-        return axios.patch(`/api/bots/${botID}/feedbacks/${userID}`, { content: content, stars: stars }, header);
+    editFeedback: (botId: Snowflake, userId: Snowflake, props: FeedbackStructure): Promise<AxiosResponse<FeedbackStructure>> => {
+        return axios.patch(`/api/bots/${botId}/feedbacks/${userId}`, props, header);
     },
     voteStatus: (botID: string | Snowflake, userID: string | Snowflake): Promise<AxiosResponse<{ can_vote: boolean; rest_time: number; }>> => {
         return axios.get(`/api/bots/${botID}/vote-status/${userID}`, header);
