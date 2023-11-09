@@ -8,6 +8,7 @@ import { UserContext } from "../../contexts/UserContext";
 import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
 import simo from "../../assets/images/simo.png";
+import { Link } from "react-router-dom";
 
 export const FeedbackCard: React.FC<{
     feedback: FeedbackStructure,
@@ -16,7 +17,8 @@ export const FeedbackCard: React.FC<{
     isDeleted: boolean,
     setIsDeleted: (value: boolean) => void;
     updateFeedbacks: () => Promise<void>
-}> = ({ feedback, botid, updateFeedbacks, setIsDeleted, isDeleted, bot }) => {
+    developer: { id: string, avatar: string, username: string } | undefined;
+}> = ({ feedback, botid, updateFeedbacks, setIsDeleted, isDeleted, bot, developer }) => {
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
 
@@ -73,7 +75,7 @@ export const FeedbackCard: React.FC<{
         });
 
         if (bot.owner_id !== user?.id) {
-            await api.createNotification(bot.owner_id, {
+            await api.createNotification(feedback.author?.id, {
                 content: `**${user?.username}** Replicou seu comentário no bot **${bot.name}**\n${replyContent}`,
                 type: 3,
                 url: `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`
@@ -110,18 +112,20 @@ export const FeedbackCard: React.FC<{
         <div className={`bg-neutral-900 rounded-lg p-1 text-white break-words border-2 ${borderColor[color]} h-full`}>
             <div className="flex flex-col p-3 gap-2 h-full">
                 <div className="flex flex-row items-center justify w-full h-full">
-                    <img
-                        src={`https://cdn.discordapp.com/avatars/${feedback?.author?.id}/${feedback?.author?.avatar}.png?size=2048`}
-                        className="w-[30px] h-[30px] rounded-full"
-                        onError={({ currentTarget }) => {
-                            currentTarget.onerror = null;
-                            currentTarget.src = simo;
-                        }}
-                    />
-                    <div className="flex gap-2 items-center justify-center">
-                        <span className="p-1 ml-1">{feedback?.author?.username as string}</span>
-                        <span className="text-neutral-500">{new Date(feedback?.posted_at as string).toLocaleString().split(", ")[0]}</span>
-                    </div>
+                    <Link className="flex flex-row items-center" to={`/user/${feedback.author?.id}`}>
+                        <img
+                            src={`https://cdn.discordapp.com/avatars/${feedback?.author?.id}/${feedback?.author?.avatar}.png?size=2048`}
+                            className="w-[30px] h-[30px] rounded-full"
+                            onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src = simo;
+                            }}
+                        />
+                        <div className="flex gap-2 items-center justify-center">
+                            <span className="p-1 ml-1">{feedback?.author?.username as string}</span>
+                            <span className="text-neutral-500">{new Date(feedback?.posted_at as string).toLocaleString().split(", ")[0]}</span>
+                        </div>
+                    </Link>
                     {user?.id === feedback?.author?.id as string && (
                         <div className="flex gap-3 justify-end w-full">
                             <button disabled={isDeleted} onClick={async () => {
@@ -195,9 +199,9 @@ export const FeedbackCard: React.FC<{
                     ) : (
                         <div className="flex flex-row gap-2 items-start justify-center h-full my-1 border-l-neutral-800 border-l-[3px]">
                             <div className="flex items-start w-full flex-col mx-2 my-1">
-                                <div className="flex items-center">
+                                <Link to={`/user/${developer?.id}`} className="flex items-center">
                                     <img
-                                        src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+                                        src={`https://cdn.discordapp.com/avatars/${developer?.id}/${developer?.avatar}.png`}
                                         className="w-[30px] h-[30px] rounded-full"
                                         onError={({ currentTarget }) => {
                                             currentTarget.onerror = null;
@@ -205,10 +209,10 @@ export const FeedbackCard: React.FC<{
                                         }}
                                     />
                                     <div className="flex gap-2 items-center">
-                                        <span className="p-1 ml-1">{user.username}</span>
+                                        <span className="p-1 ml-1">{developer?.username}</span>
                                         <span className="text-neutral-500">{new Date(feedback.reply_message.posted_at as string).toLocaleString().split(", ")[0]}</span>
                                     </div>
-                                </div>
+                                </Link>
                                 <div className="py-2">{feedback.reply_message.content}{feedback?.reply_message.edited && <span className="text-neutral-500"> (editado)</span>}</div>
                             </div>
                             {user?.id === bot.owner_id && (
