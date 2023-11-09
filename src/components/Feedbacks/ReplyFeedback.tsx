@@ -10,11 +10,11 @@ import simo from "../../assets/images/simo.png";
 export const ReplyFeedbackCard: FC<{
     feedback: FeedbackStructure;
     updateFeedbacks: () => Promise<void>;
-    bot: BotStructure
-    user: UserStructure | null
-    color: Theme,
+    bot: BotStructure;
+    user: UserStructure | null;
+    color: Theme;
     reply: boolean;
-}> = ({ feedback, updateFeedbacks, bot, user, color, reply }) => {
+  }> = ({ feedback, updateFeedbacks, bot, user, color, reply }): any => {
     const [isEditReply, setIsEditReply] = useState<boolean>();
     const [replyContent, setReplyContent] = useState<string>();
     const [editedReplyContent, setEditedReplyContent] = useState<string>();

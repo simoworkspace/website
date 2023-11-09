@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useContext, useState } from "react";
+import React, { ChangeEvent, FC, FormEvent, useContext, useState } from "react";
 import { BotStructure, FeedbackStructure } from "../../types";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { borderColor } from "../../utils/theme/border";
@@ -11,14 +11,14 @@ import simo from "../../assets/images/simo.png";
 import { Link } from "react-router-dom";
 
 export const FeedbackCard: React.FC<{
-    feedback: FeedbackStructure,
-    bot: BotStructure
-    botid: string,
-    isDeleted: boolean,
+    feedback: FeedbackStructure;
+    bot: BotStructure;
+    botid: string;
+    isDeleted: boolean;
     setIsDeleted: (value: boolean) => void;
-    updateFeedbacks: () => Promise<void>
+    updateFeedbacks: () => Promise<void>;
     developer: { id: string, avatar: string, username: string } | undefined;
-}> = ({ feedback, botid, updateFeedbacks, setIsDeleted, isDeleted, bot, developer }) => {
+}> = ({ feedback, botid, updateFeedbacks, setIsDeleted, isDeleted, bot, developer }): any => {
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
 
@@ -74,13 +74,11 @@ export const FeedbackCard: React.FC<{
             }
         });
 
-        if (bot.owner_id !== user?.id) {
-            await api.createNotification(feedback.author?.id, {
-                content: `**${user?.username}** Replicou seu comentário no bot **${bot.name}**\n${replyContent}`,
-                type: 3,
-                url: `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`
-            });
-        }
+        await api.createNotification(feedback.author?.id, {
+            content: `**${user?.username}** Replicou seu comentário no bot **${bot.name}**\n${replyContent}`,
+            type: 3,
+            url: `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`
+        });
 
         await updateFeedbacks();
         setReplySubmit(false);
