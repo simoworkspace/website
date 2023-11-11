@@ -2,20 +2,26 @@ import { FC, useContext, useEffect, useState } from "react";
 import { DashboardUser } from "../Dashboard/User";
 import { UserContext } from "../../contexts/UserContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
-import { Team, UserStructure } from "../../types";
+import { ErrorStructure, Team, UserStructure } from "../../types";
 import { borderColor } from "../../utils/theme/border";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as icon from "react-icons/ai";
 import { Input } from "../Addbot/Input";
 import { buttonColor } from "../../utils/theme/button";
 import api from "../../utils/api";
+import { Params, useParams } from "react-router-dom";
+import { PopUpError } from "../Mixed/Error";
+import { ApiErrors } from "../../utils/api/errors";
 
 export const ManageTeamComponent: FC = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<Team>();
     const { color } = useContext(ThemeContext);
+    const params: Params = useParams<string>();
+    const teamID: string = params.teamId as string;
     const { user } = useContext(UserContext);
     const [team, setTeam] = useState<Team | undefined>();
     const [submitedEdit, setSubmitedEdit] = useState<boolean>(false);
+    const [error, setError] = useState<ErrorStructure>();
 
     const onSubmitEdit: SubmitHandler<Team> = async (data: Team): Promise<void> => {
         setSubmitedEdit(true);
@@ -30,19 +36,28 @@ export const ManageTeamComponent: FC = () => {
 
         try {
             await api.patchTeam(team?.id as string, formData);
-            
+
             window.location.href = `/team/${team?.id}`;
+            
+            setError({
+                show: false
+            });
         } catch (error: any) {
             setSubmitedEdit(false);
-            alert("Erro ao tentar dar patch em um time: " + JSON.stringify(error.response.data));
+            setError({
+                show: true,
+                title: "Erro ao tentar criar um time",
+                //@ts-ignore
+                message: ApiErrors[error.response.data.code]
+            });
         }
 
         setSubmitedEdit(false);
     };
 
     const getUserTeams = async (): Promise<void> => {
-        const req = (await api.getUserTeams()).data.find((team) => team.members?.map((member) => member.owner && member.id === user?.id));
-        setTeam(req);
+        const { data } = await api.getTeam(teamID);
+        setTeam(data);
     };
 
     useEffect(() => {
@@ -87,6 +102,7 @@ export const ManageTeamComponent: FC = () => {
                     </section>
                 </div>
             </section>
+            {error?.show && <PopUpError setShow={setError} show={error} />}
         </main>
     )
 };
