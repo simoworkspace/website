@@ -10,6 +10,7 @@ import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
 import * as icon from "react-icons/ai";
 import { PopUpError } from "../Mixed/Error";
+import { ApiErrors } from "../../utils/api/errors";
 
 export const CreateTeam: React.FC = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<Team>();
@@ -32,7 +33,8 @@ export const CreateTeam: React.FC = () => {
         const formData: Team = {
             avatar_url,
             description,
-            name
+            name,
+            members: []
         };
 
         try {
@@ -44,7 +46,8 @@ export const CreateTeam: React.FC = () => {
             setError({
                 show: true,
                 title: "Erro ao tentar criar um time",
-                message: JSON.stringify(error.response.data.message || error.response.data)
+                //@ts-ignore
+                message: ApiErrors[error.response.data.code]
             });
         }
     };
