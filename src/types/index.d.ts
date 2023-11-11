@@ -114,6 +114,7 @@ export interface UserStructure extends DBUser {
     signed: boolean;
     id: Snowflake
     team: Team;
+    notifications_viewed: boolean;
 }
 export interface DBUser {
     username: string;

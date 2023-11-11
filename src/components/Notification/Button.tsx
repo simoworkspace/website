@@ -51,7 +51,7 @@ export const NotificationButton: FC = () => {
 
     return (
         <section ref={menuRef} className={`${!user && "invisible"}`}>
-            {Object.keys(notifications).length > 0 && <div className="h-3 w-3 bg-red-500 absolute rounded-lg xl:hidden" />}
+            {!user?.notifications_viewed && <div className="h-3 w-3 bg-red-500 absolute rounded-lg xl:hidden" />}
             <button onClick={() => setIsOpen(!isOpen)} className={`xl:invisible ${borderColor[color]} mr-1 flex border-2 p-3 items-center justify-center rounded-lg bg-neutral-900 h-[50px]`}>
                 <icon.BsBell fill="#fff" />
             </button>
