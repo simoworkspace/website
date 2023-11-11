@@ -1,14 +1,11 @@
 import { FC, useEffect, useRef } from "react";
 import * as icon from "react-icons/bs";
 import { Button } from "./Button";
+import { ErrorStructure } from "../../types";
 
 export const PopUpError: FC<{
-    show: {
-        show: boolean,
-        message?: string
-        title?: string;
-    };
-    setShow: (value: { show: boolean, message?: string }) => void;
+    show: ErrorStructure
+    setShow: (value: ErrorStructure) => void;
 }> = ({ show, setShow }) => {
     const menuRef = useRef<HTMLDivElement | null>(null);
 

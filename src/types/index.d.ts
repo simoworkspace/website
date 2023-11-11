@@ -251,3 +251,9 @@ export enum TeamPermissions {
     Administrator,
     ReadOnly,
 }
+
+export interface ErrorStructure {
+    message?: string;
+    show: boolean;
+    title?: string; 
+}

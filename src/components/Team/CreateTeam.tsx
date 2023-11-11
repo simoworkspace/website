@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Team } from "../../types";
+import { ErrorStructure, Team } from "../../types";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { Input } from "../Addbot/Input";
 import { borderColor } from "../../utils/theme/border";
@@ -18,7 +18,7 @@ export const CreateTeam: React.FC = () => {
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
 
-    const [error, setError] = useState<{ message?: string; show: boolean, title?: string }>();
+    const [error, setError] = useState<ErrorStructure>();
     const [submited, setSubmited] = useState<boolean>(false);
 
     if (!user) {
