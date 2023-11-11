@@ -9,6 +9,7 @@ import { UserContext } from "../../contexts/UserContext";
 import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
 import * as icon from "react-icons/ai";
+import { PopUpError } from "../Mixed/Error";
 
 export const CreateTeam: React.FC = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<Team>();
@@ -16,6 +17,7 @@ export const CreateTeam: React.FC = () => {
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
 
+    const [error, setError] = useState<{ message?: string; show: boolean, title?: string }>();
     const [submited, setSubmited] = useState<boolean>(false);
 
     if (!user) {
@@ -30,14 +32,7 @@ export const CreateTeam: React.FC = () => {
         const formData: Team = {
             avatar_url,
             description,
-            name,
-            members: [
-                {
-                    id: user?.id as string,
-                    permission: 0,
-                    owner: true
-                }
-            ]
+            name
         };
 
         try {
@@ -46,7 +41,11 @@ export const CreateTeam: React.FC = () => {
             window.location.href = "/dashboard/settings";
         } catch (error: any) {
             setSubmited(false);
-            alert("Erro ao tentar criar um time: " + JSON.stringify(error.response.data.errors));
+            setError({
+                show: true,
+                title: "Erro ao tentar criar um time",
+                message: JSON.stringify(error.response.data.message || error.response.data)
+            });
         }
     };
 
@@ -79,6 +78,7 @@ export const CreateTeam: React.FC = () => {
                     </form>
                 </div>
             </div>
+            {error?.show && <PopUpError setShow={setError} show={error} />}
         </div>
     );
 };
