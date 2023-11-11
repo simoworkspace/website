@@ -241,7 +241,9 @@ export interface Team {
 
 export interface TeamMember {
     id: Snowflake;
-    permission: TeamPermissions;
+    avatar: string;
+    username: string;
+    permission?: TeamPermissions;
     owner?: boolean;
 }
 
