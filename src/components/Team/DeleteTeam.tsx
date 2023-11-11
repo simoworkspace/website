@@ -52,11 +52,11 @@ export const DeleteTeam: FC<{
             <div className="flex h-full flex-col items-center w-full justify-center p-3 gap-4">
                 <div className="flex flex-row justify-center gap-2 mt-2">
                     <img className="w-16 h-16 rounded-full" src={team.avatar_url} />
-                    <div className="flex flex-col justify-start items-start">
+                    <div className="flex flex-col justify-center items-center">
                         <span className="font-bold text-lg">{team.name}</span>
                     </div>
                 </div>
-                <span className="my-2">Se deseja mesmo deletar seu bot <strong>{team.name}</strong>, digite o nome dele abaixo.</span>
+                <span className="my-2">Se deseja mesmo deletar seu time <strong>{team.name}</strong>, digite o nome dele abaixo.</span>
                 <div className="flex flex-col gap-1 items-center justify-center w-full">
                     <input placeholder="Digite aqui" required value={teamName} onChange={handleInputChange} className={`bg-transparent p-2 rounded-lg focus:outline-none border-2 w-full ${borderAndBg[color]}`} type="text" />
                     <button onClick={deleteTeam} disabled={!submit || loading} className={`${buttonColor["red"]} border-2 p-2 duration-300 trasition-all w-full flex items-center justify-center rounded-lg disabled:opacity-50 gap-1`}>
