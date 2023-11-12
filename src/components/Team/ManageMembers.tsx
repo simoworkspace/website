@@ -40,6 +40,7 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
             avatar_url: team.avatar_url,
             description: team.description,
             name: team.name,
+            invite_url: team.invite_url,
             members
         });
 
@@ -59,6 +60,7 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
             avatar_url: team.avatar_url,
             description: team.description,
             name: team.name,
+            invite_url: team.invite_url,
             members: [
                 ...members,
                 {
@@ -85,6 +87,7 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
             avatar_url: team.avatar_url,
             description: team.description,
             name: team.name,
+            invite_url: team.invite_url,
             members: [
                 ...members,
                 {
@@ -114,6 +117,7 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
             avatar_url: team.avatar_url,
             description: team.description,
             name: team.name,
+            invite_url: team.invite_url,
             members: [
                 ...members,
                 {

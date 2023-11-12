@@ -27,12 +27,13 @@ export const ManageTeamComponent: FC = () => {
     const onSubmitEdit: SubmitHandler<Team> = async (data: Team): Promise<void> => {
         setSubmitedEdit(true);
 
-        const { avatar_url, description, name } = data;
+        const { avatar_url, description, name, invite_url } = data;
 
         const formData: Team = {
             avatar_url,
             description,
             name,
+            invite_url
         };
 
         try {
