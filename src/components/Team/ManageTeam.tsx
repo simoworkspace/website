@@ -6,6 +6,7 @@ import { ErrorStructure, Team, UserStructure } from "../../types";
 import { borderColor } from "../../utils/theme/border";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as icon from "react-icons/ai";
+import * as iconMD from "react-icons/md";
 import { Input } from "../Addbot/Input";
 import { buttonColor } from "../../utils/theme/button";
 import api from "../../utils/api";
@@ -13,6 +14,7 @@ import { Params, useParams } from "react-router-dom";
 import { PopUpError } from "../Mixed/Error";
 import { ApiErrors } from "../../utils/api/errors";
 import { ManageMembers } from "./ManageMembers";
+import { Button } from "../Mixed/Button";
 
 export const ManageTeamComponent: FC = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<Team>();
@@ -23,17 +25,19 @@ export const ManageTeamComponent: FC = () => {
     const [team, setTeam] = useState<Team | undefined>();
     const [submitedEdit, setSubmitedEdit] = useState<boolean>(false);
     const [error, setError] = useState<ErrorStructure>();
+    const [loading, setLoading] = useState<boolean>(false);
+    const [inviteHash, setInviteHash] = useState<string>("");
 
     const onSubmitEdit: SubmitHandler<Team> = async (data: Team): Promise<void> => {
         setSubmitedEdit(true);
 
-        const { avatar_url, description, name, invite_url } = data;
+        const { avatar_url, description, name, invite_hash } = data;
 
         const formData: Team = {
             avatar_url,
             description,
             name,
-            invite_url
+            invite_hash
         };
 
         try {
@@ -58,8 +62,27 @@ export const ManageTeamComponent: FC = () => {
     };
 
     const getUserTeams = async (): Promise<void> => {
-        const { data } = await api.getTeam(teamID);
+        const { data: { invite_hash }, data } = await api.getTeam(teamID);
+
+        setInviteHash(invite_hash);
         setTeam(data);
+    };
+
+    const updateInviteHash = async (): Promise<void> => {
+        if (team) {
+            setLoading(true);
+
+            const req = await api.patchTeam(teamID, {
+                avatar_url: team.avatar_url,
+                description: team.description,
+                name: team.name,
+                invite_hash: Math.random().toString(22).slice(2, 8)
+            });
+
+            setInviteHash(req.data.invite_hash);
+
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
@@ -77,7 +100,23 @@ export const ManageTeamComponent: FC = () => {
                     </div>
                     <section className={`w-full bg-neutral-900 mt-2 border-2 flex-row ${borderColor[color]} rounded-lg p-4 items-center justify-center`}>
                         <ManageMembers color={color} />
-                        <div>
+                        <>
+                            <div className="flex flex-col w-full py-3">
+                                <div className="text-white xl:text-[26px] text-[40px] m-2 xl:m-0 xl:mt-2 w-full flex items-center justify-center">
+                                    <span className="text-white flex flex-row text-[26px] mx-10 my-3">
+                                        <h1 className="text-[#ffffff] xl:text-[28px] xl:mr-0 mr-2 font-bold xl:text-center">Link de convite</h1>
+                                    </span>
+                                </div>
+                                <div className="flex flex-row xl:flex-col bg-neutral-800 w-full h-full rounded-lg items-center">
+                                    <input disabled value={`${new URL(location.href).origin}/team/invite/${inviteHash}`} placeholder="Atualizar link de invite" className="flex-grow p-2 w-full bg-transparent xl:break-words" />
+                                    <div className="flex flex-row xl:w-full">
+                                        <Button disabled={loading} clas="rounded-r-none" action={async () => await navigator.clipboard.writeText(`${new URL(location.href).origin}/team/invite/${inviteHash}`)}>
+                                            <iconMD.MdOutlineContentCopy fill="#fff" size={26} />
+                                        </Button>
+                                        <Button action={updateInviteHash} clas="rounded-l-none xl:flex xl:flex-grow">{loading ? <icon.AiOutlineLoading3Quarters fill="#fff" size={26} className="animate-spin" /> : "Atualizar"}</Button>
+                                    </div>
+                                </div>
+                            </div>
                             <div className="text-white xl:text-[26px] text-[40px] m-2 xl:m-0 xl:mt-2 w-full flex items-center justify-center">
                                 <span className="text-white flex flex-row text-[26px] mx-10 my-3">
                                     <h1 className="text-[#ffffff] xl:text-[28px] xl:mr-0 mr-2 font-bold xl:text-center">Editar time <strong>{team?.name}</strong></h1>
@@ -103,7 +142,7 @@ export const ManageTeamComponent: FC = () => {
                             ) : (
                                 <div>carregando...</div>
                             )}
-                        </div>
+                        </>
                     </section>
                 </div>
             </section>

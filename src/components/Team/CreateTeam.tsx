@@ -28,13 +28,13 @@ export const CreateTeam: React.FC = () => {
     const onSubmit: SubmitHandler<Team> = async (data: Team): Promise<void> => {
         setSubmited(true);
 
-        const { avatar_url, description, name, invite_url } = data;
+        const { avatar_url, description, name, invite_hash } = data;
 
         const formData: Team = {
             avatar_url,
             description,
             name,
-            invite_url,
+            invite_hash,
             members: []
         };
 
