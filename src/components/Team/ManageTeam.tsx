@@ -108,9 +108,9 @@ export const ManageTeamComponent: FC = () => {
                                     </span>
                                 </div>
                                 <div className="flex flex-row xl:flex-col bg-neutral-800 w-full h-full rounded-lg items-center">
-                                    <input disabled value={`${new URL(location.href).origin}/team/invite/${inviteHash}`} placeholder="Atualizar link de invite" className="flex-grow p-2 w-full bg-transparent xl:break-words" />
+                                    <input disabled value={`${new URL(location.href).origin}/team/${teamID}/invite/${inviteHash}`} placeholder="Atualizar link de invite" className="flex-grow p-2 w-full bg-transparent xl:break-words" />
                                     <div className="flex flex-row xl:w-full">
-                                        <Button disabled={loading} clas="rounded-r-none" action={async () => await navigator.clipboard.writeText(`${new URL(location.href).origin}/team/invite/${inviteHash}`)}>
+                                        <Button disabled={loading} clas="rounded-r-none" action={async () => await navigator.clipboard.writeText(`${new URL(location.href).origin}/team/${teamID}/invite/${inviteHash}`)}>
                                             <iconMD.MdOutlineContentCopy fill="#fff" size={26} />
                                         </Button>
                                         <Button action={updateInviteHash} clas="rounded-l-none xl:flex xl:flex-grow">{loading ? <icon.AiOutlineLoading3Quarters fill="#fff" size={26} className="animate-spin" /> : "Atualizar"}</Button>
