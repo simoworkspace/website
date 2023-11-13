@@ -23,6 +23,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
     const onSubmit: SubmitHandler<BotStructure> = async (data: BotStructure): Promise<void> => {
         setSubmited(true);
 
+        //@ts-ignore
         const formData: BotStructure = {
             name: botData?.username as string,
             avatar: botData?.avatar as string,
