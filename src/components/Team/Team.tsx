@@ -36,7 +36,7 @@ export const TeamComponent: React.FC = () => {
 
     useEffect(() => {
         getTeam();
-    }, [])
+    }, []);
 
     return team ? (
         <main className="max-w-[1500px] flex justify-start">

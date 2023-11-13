@@ -1,11 +1,10 @@
 import React, { useContext, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { BotStructure, DiscordWebhookStructure, FindBotStructure } from "../../types";
+import { BotStructure, FindBotStructure } from "../../types";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { Input, TagInput } from "./Input";
 import { borderColor } from "../../utils/theme/border";
 import { shadowColor } from "../../utils/theme/shadow";
-import axios from "axios";
 import { UserContext } from "../../contexts/UserContext";
 import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
