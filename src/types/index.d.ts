@@ -49,6 +49,7 @@ export interface FeedbackStructure {
         avatar?: string;
         username?: string;
     }
+    author_id?: string;
     reply_message?: {
         content?: string;
         posted_at?: string;

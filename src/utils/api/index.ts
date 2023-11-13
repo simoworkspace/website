@@ -40,7 +40,7 @@ const api = {
         return axios.post<AxiosResponse<VoteStructure>>(`/api/bots/${botID}/votes`, { user: userID }, header);
     },
     postFeedback: (stars: number, posted_at: string, content: string, botID: string | Snowflake, userID: string | Snowflake): Promise<AxiosResponse<FeedbackStructure>> => {
-        return axios.post(`/api/bots/${botID}/feedbacks/${userID}`, { stars: stars, posted_at: posted_at, content: content, target_bot: botID }, header);
+        return axios.post(`/api/bots/${botID}/feedbacks/${userID}`, { stars: stars, posted_at: posted_at, content: content, target_bot: botID, author_id: userID }, header);
     },
     deleteFeedback: (botID: string, userID: string): Promise<AxiosResponse> => {
         return axios.delete(`/api/bots/${botID}/feedbacks/${userID}`, header);
