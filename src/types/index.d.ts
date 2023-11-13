@@ -50,7 +50,7 @@ export interface FeedbackStructure {
         username?: string;
     }
     author_id?: string;
-    reply_message?: {
+    reply_message: {
         content?: string;
         posted_at?: string;
         edited?: boolean;

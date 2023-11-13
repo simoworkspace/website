@@ -98,7 +98,8 @@ export const FeedbackCard: React.FC<{
         await api.editFeedback(botid, user?.id as string, {
             content: editedContent,
             stars: rating,
-            edited: true
+            edited: true,
+            reply_message: {}
         });
         await updateFeedbacks();
 
@@ -163,7 +164,7 @@ export const FeedbackCard: React.FC<{
                     <div className="flex flex-col w-full justify-center items-start">
                         <div className="py-2">{feedback.content}{feedback?.edited && <span className="text-neutral-500"> (editado)</span>}</div>
                         {bot && (
-                            bot.owner_id === user?.id && !reply && !feedback.reply_message && <button onClick={() => setReply(true)} className="text-neutral-500">Replicar</button>
+                            bot.owner_id === user?.id && !reply && !("content" in feedback.reply_message) && <button onClick={() => setReply(true)} className="text-neutral-500">Replicar</button>
                         )}
                     </div>
                 }
@@ -177,7 +178,7 @@ export const FeedbackCard: React.FC<{
                         ))}
                     </div>
                 )}
-                {feedback?.reply_message && user && (
+                {"content" in feedback.reply_message && user && (
                     isEditReply ? (
                         <form onSubmit={handleEditReplyFeedback} className="flex flex-row gap-3 w-full">
                             <div className="flex flex-col gap-3 h-42 items-center justify-center">
