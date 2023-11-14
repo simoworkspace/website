@@ -38,5 +38,15 @@ export const ApiErrors = {
     6005: "O usuário não pertence a uma equipe",
     6006: "Você não pertence a esta equipe",
     6007: "Seu papel é somente leitura",
-    6008: "Apenas o proprietário da equipe pode excluir a equipe"
+    6008: "Apenas o proprietário da equipe pode excluir a equipe",
+    6009: "Convite inválido",
+    6010: "O usuário já é um membro",
+    6011: "O método GET não suporta o parâmetro de convite",
+    6012: "Apenas o proprietário da equipe pode transferir a propriedade",
+    6013: "O usuário não é um membro",
+    6014: "Você não pode transferir a propriedade para si mesmo",
+    6015: "Não é possível remover o proprietário da equipe",
+    6016: "Você não pode se remover",
+    6017: "Você não pode remover um administrador",
+    6018: "Faltando 'member_id' no corpo para remover um membro"
 };
