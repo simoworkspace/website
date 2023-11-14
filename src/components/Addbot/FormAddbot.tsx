@@ -48,7 +48,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
         }
 
         try {
-            await api.addBot(formData, formData._id);
+            await api.addBot(formData, botData?.id as string);
         } catch (error: any) {
             const error_message = error.response.data.errors[0];
 
@@ -63,11 +63,6 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                     return alert("Ocorreu um erro desconhecido ao enviar seu bot, mensagem de erro: " + error_message);
             }
         }
-
-        await api.createNotification(user?.id, {
-            content: `Seu bot **${formData.name}** foi enviado para a análise, aguarde os resultados!`,
-            type: 1
-        });
 
         setSteps(2);
     };

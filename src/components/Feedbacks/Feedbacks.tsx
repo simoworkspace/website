@@ -52,16 +52,6 @@ export const Feedbacks: React.FC<{ botid: string, bot: BotStructure, dev: { id: 
 
         await getBotFeedbacks();
 
-        const bot = (await api.getBotInfos(botid)).data;
-        
-            if (bot.owner_id !== user?.id) {
-                await api.createNotification(bot.owner_id, {
-                    content: `**${user?.username}** Comentou no seu bot **${bot.name}**\n${feedback}`,
-                    type: 3,
-                    url: `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`
-                });
-            }
-
         setSubmited(false);
     };
 

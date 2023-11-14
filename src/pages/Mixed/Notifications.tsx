@@ -20,7 +20,7 @@ export const NotificationsPage: FC = () => {
     const getNotifications = async (): Promise<void> => {
         setIsLoading(true);
 
-        const req: AxiosResponse<NotificationStructure> = await api.getNotifications(user?.id);
+        const req: AxiosResponse<NotificationStructure> = await api.getNotifications();
         setNotifications(req.data);
 
         setIsLoading(false);

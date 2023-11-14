@@ -19,7 +19,7 @@ const api = {
         return axios.get("/api/auth/token");
     },
     getDiscordUser: (userID: string | Snowflake): Promise<AxiosResponse<DiscordUser>> => {
-        return axios.get("/api/users/" + userID + "/discord", header);
+        return axios.get(`/api/discord-user/${userID}`, header);
     },
     getBotInfos: (botID: string | Snowflake): Promise<AxiosResponse<BotStructure>> => {
         return axios.get("/api/bots/" + botID, header);
@@ -39,32 +39,32 @@ const api = {
     voteBot: (userID: string | Snowflake, botID: string | Snowflake): Promise<AxiosResponse> => {
         return axios.post<AxiosResponse<VoteStructure>>(`/api/bots/${botID}/votes`, { user: userID }, header);
     },
-    postFeedback: (stars: number, posted_at: string, content: string, botID: string | Snowflake, userID: string | Snowflake): Promise<AxiosResponse<FeedbackStructure>> => {
-        return axios.post(`/api/bots/${botID}/feedbacks/${userID}`, { stars: stars, posted_at: posted_at, content: content, target_bot: botID, author_id: userID }, header);
+    postFeedback: (stars: number, posted_at: string, content: string, botID: Snowflake, userID: Snowflake): Promise<AxiosResponse<FeedbackStructure>> => {
+        return axios.post(`/api/bots/${botID}/feedbacks`, { stars: stars, posted_at: posted_at, content: content, target_bot: botID, author_id: userID }, header);
     },
-    deleteFeedback: (botID: string, userID: string): Promise<AxiosResponse> => {
-        return axios.delete(`/api/bots/${botID}/feedbacks/${userID}`, header);
+    deleteFeedback: (botID: Snowflake): Promise<AxiosResponse> => {
+        return axios.delete(`/api/bots/${botID}/feedbacks`, header);
     },
-    editFeedback: (botId: Snowflake, userId: Snowflake, props: FeedbackStructure): Promise<AxiosResponse<FeedbackStructure>> => {
-        return axios.patch(`/api/bots/${botId}/feedbacks/${userId}`, props, header);
+    editFeedback: (botId: Snowflake, props: FeedbackStructure): Promise<AxiosResponse<FeedbackStructure>> => {
+        return axios.patch(`/api/bots/${botId}/feedbacks`, props, header);
     },
-    voteStatus: (botID: string | Snowflake, userID: string | Snowflake): Promise<AxiosResponse<{ can_vote: boolean; rest_time: number; }>> => {
-        return axios.get(`/api/bots/${botID}/vote-status/${userID}`, header);
+    voteStatus: (botID: Snowflake): Promise<AxiosResponse<{ can_vote: boolean; rest_time: number; }>> => {
+        return axios.get(`/api/vote-status/${botID}`, header);
     },
     getBotFeedbacks: (botID: Snowflake): Promise<AxiosResponse<FeedbackStructure[]>> => {
         return axios.get(`/api/bots/${botID}/feedbacks`, header);
     },
-    getNotifications: (userId: Snowflake | undefined): Promise<AxiosResponse<NotificationStructure>> => {
-        return axios.get(`/api/users/${userId}/notifications`, header);
+    getNotifications: (): Promise<AxiosResponse<NotificationStructure>> => {
+        return axios.get(`/api/users/notifications`, header);
     },
     deleteNotification: (userId: Snowflake | undefined, notificationId: string): Promise<AxiosResponse> => {
-        return axios.delete(`/api/users/${userId}/notifications/${notificationId}`, header);
+        return axios.delete(`/api/users/notifications/${notificationId}`, header);
     },
     deleteAllNotifications: (userId: Snowflake | undefined): Promise<AxiosResponse> => {
-        return axios.delete(`/api/users/${userId}/notifications/bulk-delete`, header);
+        return axios.delete(`/api/users/notifications/bulk-delete`, header);
     },
     createNotification: (userId: Snowflake | undefined, body: { content: string, type: NotificationType, url?: string }): Promise<AxiosResponse> => {
-        return axios.post(`/api/users/${userId}/notifications`, body, header);
+        return axios.post(`/api/users/notifications`, body, header);
     },
     getApiStatus: (): Promise<AxiosResponse<StatusStrucuture>> => {
         return axios.get("/api/status");

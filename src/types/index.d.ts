@@ -246,12 +246,12 @@ export interface TeamMember {
     avatar: string;
     username: string;
     permission?: TeamPermissions;
-    owner?: boolean;
 }
 
 export enum TeamPermissions {
     Administrator,
     ReadOnly,
+    Owner
 }
 
 export interface ErrorStructure {

@@ -27,7 +27,7 @@ export const VoteComponent: React.FC = () => {
     const [restTime, setRestTime] = useState<number>();
 
     const getVoteStatus = async (): Promise<void> => {
-        const res: AxiosResponse<{ can_vote: boolean; rest_time: number; }> = await api.voteStatus(botid as string, user?.id as string);
+        const res: AxiosResponse<{ can_vote: boolean; rest_time: number; }> = await api.voteStatus(botid as string);
         const data = new Date((Date.now() + res.data.rest_time) / 1000);
         if (data.getHours() > 0) {
             setRestTime(data.getHours());

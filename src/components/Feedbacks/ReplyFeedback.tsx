@@ -41,7 +41,7 @@ export const ReplyFeedbackCard: FC<{
 
         event.preventDefault();
 
-        await api.editFeedback(bot._id, feedback.author?.id as string, {
+        await api.editFeedback(bot._id, {
             reply_message: {
                 content: editedReplyContent,
                 edited: true
@@ -57,20 +57,12 @@ export const ReplyFeedbackCard: FC<{
         event.preventDefault();
         setReplySubmit(true);
 
-        await api.editFeedback(bot._id, feedback.author?.id as string, {
+        await api.editFeedback(bot._id, {
             reply_message: {
                 content: replyContent,
                 posted_at: new Date().toISOString()
             }
         });
-
-        if (bot.owner_id !== user?.id) {
-            await api.createNotification(bot.owner_id, {
-                content: `**${user?.username}** Replicou seu comentário no bot **${bot.name}**\n${replyContent}`,
-                type: 3,
-                url: `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`
-            });
-        }
 
         await updateFeedbacks();
         setReplySubmit(false);
@@ -115,9 +107,7 @@ export const ReplyFeedbackCard: FC<{
                         <div className="flex gap-3 justify-end w-full">
                             <button onClick={async () => {
                                 setIsDeleted(true);
-                                await api.editFeedback(bot._id, feedback.author?.id as string, {
-                                    reply_message: {}
-                                });
+                                await api.editFeedback(bot._id, { reply_message: {} });
                                 await updateFeedbacks();
                                 setIsDeleted(false);
                             }} className="flex justify-end">

@@ -50,7 +50,7 @@ export const FeedbackCard: React.FC<{
 
         event.preventDefault();
 
-        await api.editFeedback(botid, feedback.author?.id as string, {
+        await api.editFeedback(bot._id, {
             reply_message: {
                 content: editedContent,
                 posted_at: new Date(Date.now()).toISOString(),
@@ -67,17 +67,11 @@ export const FeedbackCard: React.FC<{
         event.preventDefault();
         setReplySubmit(true);
 
-        await api.editFeedback(botid, feedback.author?.id as string, {
+        await api.editFeedback(botid, {
             reply_message: {
                 content: replyContent,
                 posted_at: new Date(Date.now()).toISOString()
             }
-        });
-
-        await api.createNotification(feedback.author?.id, {
-            content: `**${user?.username}** Replicou seu comentário no bot **${bot.name}**\n${replyContent}`,
-            type: 3,
-            url: `https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`
         });
 
         await updateFeedbacks();
@@ -95,7 +89,7 @@ export const FeedbackCard: React.FC<{
 
         event.preventDefault();
 
-        await api.editFeedback(botid, user?.id as string, {
+        await api.editFeedback(botid, {
             content: editedContent,
             stars: rating,
             edited: true,
@@ -129,7 +123,7 @@ export const FeedbackCard: React.FC<{
                         <div className="flex gap-3 justify-end w-full">
                             <button disabled={isDeleted} onClick={async () => {
                                 setIsDeleted(true);
-                                await api.deleteFeedback(botid, user?.id as string);
+                                await api.deleteFeedback(botid);
                                 await updateFeedbacks();
                                 setIsDeleted(false);
                             }} className="flex justify-end">
@@ -218,7 +212,7 @@ export const FeedbackCard: React.FC<{
                                 <div className="flex gap-3 justify-end w-full">
                                     <button disabled={isDeleted} onClick={async () => {
                                         setIsDeleted(true);
-                                        await api.editFeedback(botid, feedback.author?.id as string, {
+                                        await api.editFeedback(bot._id, {
                                             reply_message: {}
                                         });
                                         await updateFeedbacks();
