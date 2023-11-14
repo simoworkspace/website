@@ -3,6 +3,7 @@ import { Team } from "../../types";
 import { Button } from "../Mixed/Button";
 import { Link } from "react-router-dom";
 import * as icon from "react-icons/bs";
+import simo from "../../assets/images/simo.png";
 
 export const Teams: FC<{
     teams: Team[] | undefined
@@ -14,7 +15,10 @@ export const Teams: FC<{
                 {teams ? teams.map((team) => (
                     <Link to={`/team/${team.id}`} className="bg-neutral-800 p-3 xl:w-full rounded-lg duration-300 transition-colors hover:bg-neutral-700">
                         <div className="flex flex-row gap-2 xl:w-full xl:justify-start px-2 items-center justify-center">
-                            <img className="w-24 rounded-full" src={team.avatar_url} />
+                            <img className="w-24 rounded-full h-24 object-center" src={team.avatar_url} onError={({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src = simo;
+                            }} />
                             <div className="flex flex-col justify-start items-start">
                                 <span className="text-lg font-bold">{team.name}</span>
                                 <span>{team.members?.length === 1 ? `${team.members.length} Membro` : `${team.members?.length} Membros`}</span>
@@ -24,7 +28,6 @@ export const Teams: FC<{
                 )
                 ) : Array(2).fill(
                     <div className="bg-neutral-800 flex gap-3 flex-wrap p-3 rounded-lg duration-300 h-32 w-[282px]">
-
                         <div className="flex flex-row gap-2 items-center justify-center">
                             <div className="w-24 rounded-full h-24 bg-neutral-900 animate-pulse" ></div>
                             <div className="flex flex-col justify-start items-start gap-3">
@@ -32,7 +35,6 @@ export const Teams: FC<{
                                 <div className="w-24 bg-neutral-900 animate-pulse h-4 rounded-full"></div>
                             </div>
                         </div>
-
                     </div>
                 )}
             </div>
