@@ -93,6 +93,9 @@ const api = {
     patchTeam: (teamID: string, body: Team): Promise<AxiosResponse<Team>> => {
         return axios.patch("/api/teams/" + teamID, body, header);
     },
+    joinTeam: (teamID: string, inviteHash: string): Promise<AxiosResponse<Team>> => {
+        return axios.put(`/api/teams/${teamID}/${inviteHash}`, null, header);
+    }
 };
 
 export default api;
