@@ -183,9 +183,9 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
                         </div>
                         <div className="flex flex-row xl:flex-col xl:justify-center xl:w-full gap-2 w-full p-2 justify-end">
                             {youinTeam?.id !== member.id && (
-                                (youinTeam?.permission === TeamPermissions.Administrator || youinTeam?.permission === TeamPermissions.Owner || member.permission === TeamPermissions.Owner) && (
+                                ((youinTeam?.permission === TeamPermissions.Administrator || youinTeam?.permission === TeamPermissions.Owner) && member.permission !== TeamPermissions.Owner && (member.permission && youinTeam.permission === TeamPermissions.Administrator || TeamPermissions.Owner)) && (
                                     <>
-                                        <Button action={kickMember} clas="flex items-center flex-row gap-3 xl:w-full xl:flex-row xl:justify-end"><span className="xl:flex xl:flex-grow xl:justify-center">Expulsar</span><iconBS.BsHammer /></Button>
+                                        <Button action={kickMember} disabled={loading} clas="flex items-center flex-row gap-3 xl:w-full xl:flex-row xl:justify-end"><span className="xl:flex xl:flex-grow xl:justify-center">Expulsar</span><iconBS.BsHammer /></Button>
                                         {member?.permission === TeamPermissions.ReadOnly ? (
                                             <Button action={promoveMember} disabled={loading} clas="flex items-center flex-row gap-3 xl:w-full xl:flex-row xl:justify-end"><span className="xl:flex xl:flex-grow xl:justify-center">Promover</span><iconBS.BsArrowUp /></Button>
                                         ) : (
