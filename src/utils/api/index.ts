@@ -95,6 +95,12 @@ const api = {
     },
     joinTeam: (teamID: string, inviteHash: string): Promise<AxiosResponse<Team>> => {
         return axios.put(`/api/teams/${teamID}/${inviteHash}`, null, header);
+    },
+    transferOnwer: (userID: Snowflake): Promise<Team> => {
+        return axios.put(`/api/teams/change-owner/${userID}`, null, header);
+    },
+    removeMember: (teamID: string, userID: Snowflake): Promise<Team> => {
+        return axios.put(`/api/teams/${teamID}/remove-member`, { member_id: userID }, header);
     }
 };
 
