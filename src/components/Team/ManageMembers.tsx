@@ -1,5 +1,5 @@
 import { FC, useState, useEffect, useContext } from "react";
-import { Team, TeamMember, Theme } from "../../types";
+import { ErrorStructure, Team, TeamMember, Theme } from "../../types";
 import { borderColor } from "../../utils/theme/border";
 import * as iconMD from "react-icons/md";
 import * as iconBI from "react-icons/bi";
@@ -8,6 +8,8 @@ import { Button } from "../Mixed/Button";
 import api from "../../utils/api";
 import { Params, useParams } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
+import { ApiErrors } from "../../utils/api/errors";
+import { PopUpError } from "../Mixed/Error";
 
 const TeamPermissions = {
     Administrator: 0,
@@ -23,6 +25,7 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
     const params: Params = useParams<string>();
     const teamID: string = params.teamId as string;
 
+    const [error, setError] = useState<ErrorStructure>();
     const [team, setTeam] = useState<Team | null>(null);
     const [member, setMember] = useState<TeamMember | null>(null);
     const { menu, loading } = actions;
@@ -30,7 +33,7 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
 
     const getTeam = async (): Promise<void> => {
         const { data } = await api.getTeam(teamID);
-        
+
         setMember(data.members?.find((teamMember) => teamMember.id === member?.id) as TeamMember);
         setTeam(data);
     }
@@ -40,15 +43,17 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
 
         setActions({ loading: true });
 
-        const members = team?.members?.filter((teamMember) => teamMember.id !== member?.id);
-
-        await api.patchTeam(team?.id as string, {
-            avatar_url: team.avatar_url,
-            description: team.description,
-            name: team.name,
-            invite_hash: team.invite_hash,
-            members
-        });
+        try {
+            await api.removeMember(team?.id as string, member?.id as string);
+        } catch (error: any) {
+            setActions({ loading: false });
+            setError({
+                show: true,
+                title: "Erro ao tentar remover membro",
+                //@ts-ignore
+                message: ApiErrors[error.response.data.code]
+            });
+        }
 
         await getTeam();
 
@@ -62,20 +67,30 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
 
         const members = team.members.filter((teamMember) => teamMember.id !== member.id);
 
-        await api.patchTeam(team?.id as string, {
-            avatar_url: team.avatar_url,
-            description: team.description,
-            name: team.name,
-            invite_hash: team.invite_hash,
-            members: [
-                ...members,
-                {
-                    id: member.id,
-                    username: member.username,
-                    avatar: member.avatar,
-                    permission: TeamPermissions.ReadOnly
-                }]
-        });
+        try {
+            await api.patchTeam(team?.id as string, {
+                avatar_url: team.avatar_url,
+                description: team.description,
+                name: team.name,
+                invite_hash: team.invite_hash,
+                members: [
+                    ...members,
+                    {
+                        id: member.id,
+                        username: member.username,
+                        avatar: member.avatar,
+                        permission: TeamPermissions.ReadOnly
+                    }]
+            });
+        } catch (error: any) {
+            setActions({ loading: false });
+            setError({
+                show: true,
+                title: "Erro ao tentar demotar membro",
+                //@ts-ignore
+                message: ApiErrors[error.response.data.code]
+            });
+        }
 
         await getTeam();
 
@@ -89,20 +104,30 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
 
         const members = team.members.filter((teamMember) => teamMember.id !== member.id);
 
-        await api.patchTeam(team?.id as string, {
-            avatar_url: team.avatar_url,
-            description: team.description,
-            name: team.name,
-            invite_hash: team.invite_hash,
-            members: [
-                ...members,
-                {
-                    id: member.id,
-                    username: member.username,
-                    avatar: member.avatar,
-                    permission: TeamPermissions.Administrator
-                }]
-        });
+        try {
+            await api.patchTeam(team?.id as string, {
+                avatar_url: team.avatar_url,
+                description: team.description,
+                name: team.name,
+                invite_hash: team.invite_hash,
+                members: [
+                    ...members,
+                    {
+                        id: member.id,
+                        username: member.username,
+                        avatar: member.avatar,
+                        permission: TeamPermissions.Administrator
+                    }]
+            });
+        } catch (error: any) {
+            setActions({ loading: false });
+            setError({
+                show: true,
+                title: "Erro ao tentar promover membro",
+                //@ts-ignore
+                message: ApiErrors[error.response.data.code]
+            });
+        }
 
         await getTeam();
 
@@ -113,6 +138,18 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
         if (!team || !member || !team.members) return;
 
         setActions({ loading: true });
+
+        try {
+            await api.transferOnwer(member.id);
+        } catch (error: any) {
+            setActions({ loading: false });
+            setError({
+                show: true,
+                title: "Erro ao tentar transferir posse",
+                //@ts-ignore
+                message: ApiErrors[error.response.data.code]
+            });
+        }
 
         await getTeam();
 
@@ -189,7 +226,7 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
                                         {member?.permission === TeamPermissions.ReadOnly ? (
                                             <Button action={promoveMember} disabled={loading} clas="flex items-center flex-row gap-3 xl:w-full xl:flex-row xl:justify-end"><span className="xl:flex xl:flex-grow xl:justify-center">Promover</span><iconBS.BsArrowUp /></Button>
                                         ) : (
-                                            <Button action={demoteMember} disabled={loading} clas="flex items-center flex-row gap-3 xl:w-full xl:flex-row xl:justify-end"><span  className="xl:flex xl:flex-grow xl:justify-center">Rebaixar</span><iconBS.BsArrowDown /></Button>
+                                            <Button action={demoteMember} disabled={loading} clas="flex items-center flex-row gap-3 xl:w-full xl:flex-row xl:justify-end"><span className="xl:flex xl:flex-grow xl:justify-center">Rebaixar</span><iconBS.BsArrowDown /></Button>
                                         )}
                                         {youinTeam?.id !== member.id && youinTeam?.permission === TeamPermissions.Owner && <Button action={transferPosse} disabled={loading} clas="flex items-center flex-row gap-3 xl:w-full xl:flex-row xl:justify-end"><span className="xl:flex xl:flex-grow xl:justify-center">Transferir posse</span><iconBI.BiSolidCrown /></Button>}
                                     </>
@@ -197,6 +234,7 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
                             )}
                         </div>
                     </div>
+                    {error?.show && <PopUpError setShow={setError} show={error} />}
                 </div>
             )}
         </section>
