@@ -1,43 +1,54 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { BotStructure } from "../../types";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import simo from "../../assets/images/simo.png";
+import { TiArrowSortedUp } from "react-icons/ti";
 import { borderColor } from "../../utils/theme/border";
 import * as icon from "react-icons/bs";
+import { Button } from "../Mixed/Button";
+import { borderAndBg } from "../../utils/theme/border&bg";
 
 export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
     const { color } = useContext(ThemeContext);
 
     return (
-        <Link
-            to={`/bot/${bot._id}`}
-            key={bot._id}
-            className={`bg-neutral-950 duration-300 xl:h-full transition-colors text-white hover:bg-neutral-900 shadow-md shadow-black p-3 border-2 ${borderColor[color]} bg-neutral-940 rounded-lg`}
-        >
-            {!bot.approved && (
-                <figure className="flex w-full h-0 items-center justify-end relative top-20 right-1">
-                    <icon.BsClockFill className="fill-[#e8a60c]" size={23} />
-                </figure>
-            )}
-            <img
-                className="w-[100px] h-[100px] rounded-full mt-2 mr-2 float-right"
-                src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png?size=2048`}
-                alt={bot.name}
-            />
-            <h1 className="text-center text-[24px]">{bot.name}</h1>
-            <div className="xlr:h-[50px] xl:min-h-[70px] break-before-all w-[70%]">
-                {bot.short_description.length > 80
-                    ? bot.short_description.slice(0, 80) + "..."
-                    : bot.short_description}
+        <div className="bg-neutral-900 w-full border-2 border-neutral-800 rounded-lg p-3 transition-colors hover:bg-[#1d1d1d] flex flex-col gap-3 xl:w-[95vw]" key={bot._id}>
+            <Link to={`/bot/${bot._id}`} className="flex flex-col gap-3">
+                <div className="flex gap-2 items-center">
+                    {!bot.approved && (
+                        <figure className="flex w-full h-0 items-center justify-end relative top-20 right-1">
+                            <icon.BsClockFill className="fill-[#e8a60c]" size={23} />
+                        </figure>
+                    )}
+                    <img className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} onError={({ currentTarget }) => { currentTarget.onerror = null; currentTarget.src = simo }} />
+                    <div className="flex gap-2 flex-col">
+                        <span className="font-bold text-lg">{bot.name}</span>
+                        <div className="flex gap-1">
+                            <TiArrowSortedUp size={22} />
+                            <span className="text-sm">{bot.total_votes}</span>                            
+                        </div>
+                    </div>
+                </div>
+                <div className="flex gap-3 flex-col">
+                    <span className="min-h-[48px]">{bot.short_description}</span>
+                    <div className="flex flex-row gap-3 flex-wrap">
+                        {bot.tags.map(tag => (
+                            <div className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
+                        ))}
+                    </div>
+                </div>
+            </Link>
+            <div className="flex gap-3 p-y2">
+                <Button clas="w-full p-1">Adicionar</Button>
+                <Button link to={`/vote/${bot._id}`} clas="px-5 flex gap-2 items-center justify-center w-[30%] xl:w-full">
+                    <span>Votar</span>
+                    <TiArrowSortedUp size={22} />
+                </Button>
             </div>
-            <div className="mt-2 ml-2 mb-2 gap-2 flex flex-row xl:ml-0">
-                <a href={`https://discord.com/api/oauth2/authorize?client_id=${bot._id}&permissions=70368744177655&scope=bot%20applications.commands`} target="_blank" className="border-2 border-neutral-800 text-white hover:bg-neutral-800 transition-colors duration-300 flex justify-center items-center rounded-lg max-w-full max-h-full xl:w-full w-[170px] h-[40px]">
-                    Adicionar
-                </a>
-                <Link className="border-2 text-white border-neutral-800 hover:bg-neutral-800 transition-colors flex justify-center items-center duration-300 rounded-lg max-w-full max-h-full xl:w-full w-[170px] h-[40px]" to={`/vote/${bot._id}`}>
-                    Votar
-                </Link>
-            </div>
-        </Link>
+        </div>
     );
 }
+/*
+src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`}
+*/
