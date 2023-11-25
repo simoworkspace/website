@@ -38,7 +38,7 @@ export const Bots: React.FC = () => {
 
     return !botLoading ? (
         <>
-            <div className="grid-cols-2 grid gap-3 grid-flow-row text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left max-w-[1500px] w-full">
+            <div className="grid-cols-2 grid gap-3 text-white p-3 xl:w-full xl:grid-cols-1 max-w-[1500px] w-screen">
                 {data.slice(0, botsToShow).map((bot: BotStructure) => (
                     <BotCard bot={bot} key={bot._id} />
                 ))}

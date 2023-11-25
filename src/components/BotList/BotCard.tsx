@@ -41,7 +41,7 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
             </Link>
             <div className="flex gap-3 p-y2">
                 <Button clas="w-full p-1">Adicionar</Button>
-                <Button link to={`/vote/${bot._id}`} clas="px-5 flex gap-2 items-center justify-center w-[30%] xl:w-full">
+                <Button link to={`/vote/${bot._id}`} clas="px-5 flex gap-2 items-center justify-center w-[25%] xl:w-full">
                     <span>Votar</span>
                     <TiArrowSortedUp size={22} />
                 </Button>
