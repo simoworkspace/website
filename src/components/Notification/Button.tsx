@@ -51,7 +51,7 @@ export const NotificationButton: FC = () => {
 
     return (
         <section ref={menuRef} className={`${!user && "invisible"}`}>
-            {!user?.notifications_viewed && <div className="h-3 w-3 bg-red-500 absolute rounded-lg xl:hidden" />}
+            {user?.notifications_viewed && <div className="h-3 w-3 bg-red-500 absolute rounded-lg xl:hidden" />}
             <button onClick={() => setIsOpen(!isOpen)} className={`xl:invisible ${borderColor[color]} mr-1 flex border-2 p-3 items-center justify-center rounded-lg bg-neutral-900 h-[50px]`}>
                 <icon.BsBell fill="#fff" />
             </button>
@@ -66,7 +66,7 @@ export const NotificationButton: FC = () => {
                 ) : (
                     <div>
                         <h1 className="text-[22px] text-center my-1"><strong>Suas notificações</strong></h1>
-                        {Object.keys(notifications).length > 0 ? (
+                        {user?.notifications_viewed ? (
                             <>
                                 <div className="flex flex-col my-3 gap-3 xl:invisible">
                                     {Object.keys(notifications).map(key => (
