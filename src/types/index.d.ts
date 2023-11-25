@@ -100,6 +100,8 @@ export interface BotStructure {
     created_at: string;
     verified: boolean;
     tags: string[];
+    banner_url: string;
+    team_id?: string;
     approved: boolean;
     votes: VoteStructure[];
     total_votes?: number;
@@ -223,12 +225,12 @@ export enum NotificationType {
 }
 
 export interface StatusStrucuture {
-    total_mem:	number;
-    free_mem:	number
+    total_mem: number;
+    free_mem: number
     users: number;
     bots: number;
     uptime: number;
-    request_count:	number;
+    request_count: number;
 }
 
 export interface Team {
