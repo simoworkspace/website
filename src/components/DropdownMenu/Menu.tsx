@@ -89,7 +89,7 @@ export const LoggedMenu: React.FC = () => {
                 </div>
             </section>
             <section className="xl:invisible" ref={themeRef}>
-                <div className={`${themeShow ? "opacity-100" : "opacity-0 invisible"} flex-col flex text-white p-1 rounded-lg absolute right-[175px] top-[120px] origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
+                <div className={`${themeShow ? "opacity-100" : "opacity-0 invisible"} flex-col flex text-white p-1 rounded-lg absolute right-[203px] top-[120px] origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
                     <ChoiceColor name="Vermelho" theme="red" margin="6px" selected={selectedTheme === "red"} />
                     <ChoiceColor name="Azul" theme="blue" margin="6px" selected={selectedTheme === "blue"} />
                     <ChoiceColor name="Roxo" theme="purple" margin="6px" selected={selectedTheme === "purple"} />
