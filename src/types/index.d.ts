@@ -121,6 +121,7 @@ export interface UserStructure extends DBUser {
 }
 export interface DBUser {
     username: string;
+    team: Team;
     _id: Snowflake | string;
     avatar: string;
     bio: string;
