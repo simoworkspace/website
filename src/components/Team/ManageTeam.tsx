@@ -15,6 +15,7 @@ import { PopUpError } from "../Mixed/Error";
 import { ApiErrors } from "../../utils/api/errors";
 import { ManageMembers } from "./ManageMembers";
 import { Button } from "../Mixed/Button";
+import { TeamAddbot } from "./Addbot";
 
 export const ManageTeamComponent: FC = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<Team>();
@@ -100,6 +101,10 @@ export const ManageTeamComponent: FC = () => {
                     </div>
                     <section className={`w-full bg-neutral-900 mt-2 border-2 flex-row ${borderColor[color]} rounded-lg p-4 items-center justify-center`}>
                         <ManageMembers color={color} />
+                        <div className="w-full flex flex-col gap-3 mt-4 items-center justify-center">
+                            <span className="text-white xl:text-[28px] text-2xl xl:mr-0 mr-2 font-bold xl:text-center">Adicionar bot no time</span>
+                            <Button link to={`/team/${team?.id}/addbot`} clas="flex justify-center items-center">Adicionar</Button>
+                        </div>
                         <>
                             <div className="flex flex-col w-full py-3">
                                 <div className="text-white xl:text-[26px] text-[40px] m-2 xl:m-0 xl:mt-2 w-full flex items-center justify-center">

@@ -24,6 +24,7 @@ import { TeamPage } from "../pages/Team/Team";
 import { ManageTeamPage } from "../pages/Team/ManageTeam";
 import { InvitePage } from "../pages/Team/Invite";
 import { Auth } from "../components/Mixed/Auth";
+import { TeamAddbotPage } from "../pages/Team/Addbot";
 
 function App() {
     const { color } = useContext(ThemeContext);
@@ -47,6 +48,7 @@ function App() {
                     <Route path="/dashboard/settings" element={<Auth><SettingsPage /></Auth>} />
                     <Route path="/team/create" element={<Auth><CreateTeamPage /></Auth>} />
                     <Route path="/team/:teamId" element={<TeamPage />} />
+                    <Route path="/team/:teamId/addbot" element={<Auth><TeamAddbotPage/></Auth>}/>
                     <Route path="/team/:teamId/invite/:hash" element={<Auth><InvitePage /></Auth>} />
                     <Route path="/team/manage/:teamId" element={<Auth><ManageTeamPage /></Auth>} />
                     <Route path="*" element={<NotFound />} />
