@@ -76,7 +76,7 @@ const api = {
         return axios.get("/api/users/" + userId, header);
     },
     patchUser: (userId: Snowflake, body: { bio: string }): Promise<AxiosResponse<{ bio: string }>> => {
-        return axios.patch("/api/users/" + userId, body, header);
+        return axios.patch("/api/users", body, header);
     },
     getTeam: (teamID: Snowflake): Promise<AxiosResponse<Team>> => {
         return axios.get("/api/teams/" + teamID, header);
