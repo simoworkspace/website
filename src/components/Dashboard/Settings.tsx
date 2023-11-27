@@ -10,6 +10,7 @@ import api from "../../utils/api";
 import { Link } from "react-router-dom";
 import { Teams } from "../Team/Teams";
 import { UserContext } from "../../contexts/UserContext";
+import { UserLoading } from "../User/UserLoading";
 
 export const Settings: FC = () => {
     const { color } = useContext(ThemeContext);
@@ -24,7 +25,7 @@ export const Settings: FC = () => {
 
     const getUserTeams = async (): Promise<void> => {
         const req = await api.getUserTeams();
-        const req2 = await api.getUserFromDB(websiteUser.user?.id as string);
+        const req2 = await api.getUserFromDB(websiteUser.user?.id || websiteUser.user?._id as string);
 
         setUser(req2.data);
         setTeams(req.data);
@@ -73,6 +74,6 @@ export const Settings: FC = () => {
             </section>
         </main>
     ) : (
-        <div>Carregando...</div>
+        <UserLoading/>
     )
 };
