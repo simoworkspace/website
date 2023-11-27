@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import api from "../../utils/api";
-import { Params, useParams } from "react-router-dom";
-import { BotStructure, DBUser } from "../../types";
+import { Link, Params, useParams } from "react-router-dom";
+import { BotStructure, DBUser, Team } from "../../types";
 import { AxiosResponse } from "axios";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { borderColor } from "../../utils/theme/border";
@@ -13,7 +13,8 @@ export const User: React.FC = () => {
     const params: Params = useParams<string>();
     const userid: string = params.userid as string;
     const [user, setUser] = useState<DBUser>();
-    const [userBots, setUserBots] = useState<BotStructure[]>();
+    const [userBots, setUserBots] = useState<BotStructure[]>([]);
+    const [teams, setTeams] = useState<Team[]>([]);
     const { color } = useContext(ThemeContext);
 
     const getUserData: () => Promise<void> = async (): Promise<void> => {
@@ -38,27 +39,34 @@ export const User: React.FC = () => {
                 <UserLoading />
             ) : (
                 <section className="w-screen flex flex-row p-5 text-white items-start xl:items-center justify-center gap-10 xl:flex-col">
-                    <div className={`${borderColor[color]} border-2 h-[300px] w-[300px] p-3 xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col`}>
-                        <div>
+                    <div className={`${borderColor[color]} border-2 p-5 min-h-[300px] w-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex justify-center flex-col gap-4`}>
+                        <div className="w-full items-center flex justify-center">
                             <img onError={({ currentTarget }) => {
                                 currentTarget.onerror = null;
                                 currentTarget.src = simo;
                             }}
                                 className="rounded-full w-32" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} alt={`${user.username}'s Avatar`} />
                         </div>
-                        <hr className="w-[80%] my-6" />
-                        <div className="flex flex-col text-center justify-center">
+                        <div className="flex flex-col justify-center gap-1 px-2">
                             <strong>{user.username}</strong>
-                            <span className="text-[#797979] items-center flex text-[13px] justify-center">
+                            <span className="text-[#797979] items-center flex text-[13px]">
                                 ( {user._id} )
                             </span>
                         </div>
+                        {user.team.id && (
+                            <div className="flex flex-col justify-center gap-1 p-2">
+                                <strong>Time</strong>
+                                <Link to={`/team/${user.team.id}`}>
+                                    <img className="rounded-full w-8" src={user.team.avatar_url} />
+                                </Link>
+                            </div>
+                        )}
                     </div>
                     <div className="flex items-start w-full flex-col gap-2">
                         <h1 className="text-[33px]">Perfil de <strong>{user.username}</strong></h1>
                         {user?.bio && <span>{user.bio}</span>}
                         <hr className="w-full my-3" />
-                        <section className="w-full flex items-center justify-center">
+                        <section className="w-full flex xl:items-center xl:justify-center">
                             {userBots.length === 0 ? (
                                 <div className="text-center text-[22px]">{user.username} não tem bots para serem listados.</div>
                             ) : (
