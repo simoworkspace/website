@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 import { BotStructure } from "../../types";
 import { Botloading } from "./Botloading";
 import api from "../../utils/api";
@@ -14,6 +14,8 @@ export const Bots: React.FC = () => {
     const [showLoadMore, setShowLoadMore] = useState<boolean>(true);
     const [botLoading, setBotLoading] = useState<boolean>(false);
 
+    const bottomOfPageRef = useRef<HTMLDivElement>(null);
+
     const fetchData = async (startAt: number, endAt: number) => {
         setBotLoading(true);
 
@@ -27,29 +29,40 @@ export const Bots: React.FC = () => {
         setBotLoading(false);
     };
 
+    const handleScroll = () => {
+        if (bottomOfPageRef.current && window.innerHeight + document.documentElement.scrollTop >= bottomOfPageRef.current.offsetTop) {
+            loadMoreBots();
+        }
+    };
+
     useEffect(() => {
         fetchData(0, botsToShow);
-    }, []);
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [botsToShow]);
 
     const loadMoreBots = (): void => {
         setBotsToShow(botsToShow + 6);
         fetchData(botsToShow, botsToShow + 6);
     };
 
-    return !botLoading ? (
-        <>
-            <div className="grid-cols-2 grid gap-3 text-white p-3 xl:w-full xl:grid-cols-1 max-w-[1500px] w-screen">
-                {data.slice(0, botsToShow).map((bot: BotStructure) => (
+    return (
+        <div className="max-w-[1500px] w-screen flex-col gap-2 justify-center items-center">
+            <div className="grid-cols-2 grid gap-3 text-white p-3 xl:w-full xl:grid-cols-1 w-full">
+                {data.map((bot: BotStructure) => (
                     <BotCard bot={bot} key={bot._id} />
                 ))}
             </div>
+            <div ref={bottomOfPageRef} />
             {showLoadMore && (
-                <div className="px-2 max-w-[1500px]">
-                    <button onClick={loadMoreBots} className={`${buttonColor[color]} border-2 transition-all duration-300 w-full text-white p-3 rounded-lg my-3`}>Carregar Mais</button>
+                <div className="max-w-[1500px] flex justify-center items-center w-screen">
+                    <button onClick={loadMoreBots} disabled={!showLoadMore} className={`${buttonColor[color]} border-2 transition-all duration-300 w-[98%] text-white p-3 rounded-lg mb-2`}>Carregar Mais</button>
                 </div>
             )}
-        </>
-    ) : (
-        <Botloading fills={6} />
+            {botLoading && <Botloading fills={6} />}
+        </div>
     );
 };
