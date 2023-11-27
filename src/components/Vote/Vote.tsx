@@ -27,16 +27,16 @@ export const VoteComponent: React.FC = () => {
     const [restTime, setRestTime] = useState<number>();
 
     const getVoteStatus = async (): Promise<void> => {
-        const res: AxiosResponse<{ can_vote: boolean; rest_time: number; }> = await api.voteStatus(botid as string);
-        const data = new Date((Date.now() + res.data.rest_time) / 1000);
-        if (data.getHours() > 0) {
-            setRestTime(data.getHours());
-        } else {
-            setRestTime(data.getMinutes());
-        }
-        return setVoteStatus(res.data);
-    };
+        const { data: { rest_time }, data } = await api.voteStatus(botid as string);
 
+        const timestamp = Math.floor((rest_time / 1000) / 3600);
+
+        console.log(timestamp);
+
+        setRestTime(timestamp);
+
+        return setVoteStatus(data);
+    };
     const getVoteData = async (): Promise<void> => {
         const res: AxiosResponse<BotStructure> = await api.getBotInfos(botid as string);
         setVotes(res.data.total_votes as number);
@@ -116,7 +116,7 @@ export const VoteComponent: React.FC = () => {
                                     : (
                                         voteStatus?.can_vote
                                             ? <span className="text-center p-2">{user ? "Você pode votar agora!" : "Você precisa estar logado para poder votar"}</span>
-                                            : <span className="text-center p-2">{user ? `Calma lá amigão, você ja votou hoje, volte em ${restTime} ${restTime === 1 ? "Hora" : restTime as number < 0 ? "Minutos" : (restTime as number > 0 && restTime === 1) ? "Minuto" : "Horas"}` : "Você precisa estar logado para poder votar"}</span>
+                                            : <span className="text-center p-2">{user ? `Calma lá amigão, você ja votou hoje, volte em ${restTime} ${restTime === 1 ? "hora" : restTime as number < 0 ? "minutos" : (restTime as number > 0 && restTime === 1) ? "minuto" : "horas"}` : "Você precisa estar logado para poder votar"}</span>
                                     )
                             }</span>
                             <div className="flex justify-end xl:mb-3 flex-grow mr-6">
@@ -140,7 +140,7 @@ export const VoteComponent: React.FC = () => {
             <section className="text-white p-3 w-screen flex flex-col items-center justify-center gap-4">
                 <div className="w-screen max-w-[1500px] flex items-center justify-center flex-col">
                     <h1 className="font-extrabold text-white text-2xl">Bots sugeridos</h1>
-                    <div className="grid grid-cols-2 xl:grid-cols-1 place-content-center gap-8 w-full p-3">
+                    <div className="grid grid-cols-2 xl:grid-cols-1 place-content-center gap-2 w-full p-3">
                         {botLoading ? (
                             <Botloading fills={2} grid />
                         ) : (
