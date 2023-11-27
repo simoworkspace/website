@@ -11,8 +11,6 @@ export const DashboardUser: FC<{
     const currentPage: string = location.href.split("/")[4]; 
     const [page, setPage] = useState<string>("");
 
-    console.log(currentPage);
-
     useEffect(() => {
         setPage(currentPage);
     }, []);

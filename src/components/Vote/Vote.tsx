@@ -31,8 +31,6 @@ export const VoteComponent: React.FC = () => {
 
         const timestamp = Math.floor((rest_time / 1000) / 3600);
 
-        console.log(timestamp);
-
         setRestTime(timestamp);
 
         return setVoteStatus(data);
