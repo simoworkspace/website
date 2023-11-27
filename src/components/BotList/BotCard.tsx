@@ -14,7 +14,7 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
     const { color } = useContext(ThemeContext);
 
     return (
-        <div className={`bg-neutral-900 w-full rounded-lg p-3 transition-colors hover:bg-[#1d1d1d] flex flex-col gap-3 xl:w-[95vw] `} key={bot._id}>
+        <div className={`bg-neutral-900 w-full rounded-lg p-3 transition-colors hover:bg-[#1d1d1d] flex flex-col gap-3 xl:w-[95vw]`} key={bot._id}>
             <Link to={`/bot/${bot._id}`} className="flex flex-col gap-3">
                 <div className="flex gap-2 items-center">
                     {!bot.approved && (

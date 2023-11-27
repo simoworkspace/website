@@ -37,7 +37,7 @@ export const User: React.FC = () => {
             {!user || !userBots ? (
                 <UserLoading />
             ) : (
-                <section className="w-screen flex flex-row p-5 text-white items-center justify-center gap-10 xl:flex-col">
+                <section className="w-screen flex flex-row p-5 text-white items-start xl:items-center justify-center gap-10 xl:flex-col">
                     <div className={`${borderColor[color]} border-2 h-[300px] w-[300px] p-3 xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col`}>
                         <div>
                             <img onError={({ currentTarget }) => {
@@ -58,11 +58,11 @@ export const User: React.FC = () => {
                         <h1 className="text-[33px]">Perfil de <strong>{user.username}</strong></h1>
                         {user?.bio && <span>{user.bio}</span>}
                         <hr className="w-full my-3" />
-                        <section className="w-full">
+                        <section className="w-full flex items-center justify-center">
                             {userBots.length === 0 ? (
                                 <div className="text-center text-[22px]">{user.username} não tem bots para serem listados.</div>
                             ) : (
-                                <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left">
+                                <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:place-items-center xl:w-[95vw]">
                                     {userBots.map((bot: BotStructure) => (<BotCard bot={bot} />))}
                                 </div>
                             )}
