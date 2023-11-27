@@ -105,29 +105,29 @@ export const ManageTeamComponent: FC = () => {
                             <span className="text-white xl:text-[28px] text-2xl xl:mr-0 mr-2 font-bold xl:text-center">Adicionar bot no time</span>
                             <Button link to={`/team/${team?.id}/addbot`} clas="flex justify-center items-center">Adicionar</Button>
                         </div>
-                        <>
-                            <div className="flex flex-col w-full py-3">
-                                <div className="text-white xl:text-[26px] text-[40px] m-2 xl:m-0 xl:mt-2 w-full flex items-center justify-center">
-                                    <span className="text-white flex flex-row text-[26px] mx-10 my-3">
-                                        <h1 className="text-[#ffffff] xl:text-[28px] xl:mr-0 mr-2 font-bold xl:text-center">Link de convite</h1>
-                                    </span>
-                                </div>
-                                <div className="flex flex-row xl:flex-col bg-neutral-800 w-full h-full rounded-lg items-center">
-                                    <input disabled value={`${new URL(location.href).origin}/team/${teamID}/invite/${inviteHash}`} placeholder="Atualizar link de invite" className="flex-grow p-2 w-full bg-transparent xl:break-words" />
-                                    <div className="flex flex-row xl:w-full">
-                                        <Button disabled={loading} clas="rounded-r-none" action={async () => await navigator.clipboard.writeText(`${new URL(location.href).origin}/team/${teamID}/invite/${inviteHash}`)}>
-                                            <iconMD.MdOutlineContentCopy fill="#fff" size={26} />
-                                        </Button>
-                                        <Button action={updateInviteHash} clas="rounded-l-none xl:flex xl:flex-grow">{loading ? <icon.AiOutlineLoading3Quarters fill="#fff" size={26} className="animate-spin" /> : "Atualizar"}</Button>
+                        {team ? (
+                            <>
+                                <div className="flex flex-col w-full py-3">
+                                    <div className="text-white xl:text-[26px] text-[40px] m-2 xl:m-0 xl:mt-2 w-full flex items-center justify-center">
+                                        <span className="text-white flex flex-row text-[26px] mx-10 my-3">
+                                            <h1 className="text-[#ffffff] xl:text-[28px] xl:mr-0 mr-2 font-bold xl:text-center">Link de convite</h1>
+                                        </span>
+                                    </div>
+                                    <div className="flex flex-row xl:flex-col bg-neutral-800 w-full h-full rounded-lg items-center">
+                                        <input disabled value={`${new URL(location.href).origin}/team/${teamID}/invite/${inviteHash}`} placeholder="Atualizar link de invite" className="flex-grow p-2 w-full bg-transparent xl:break-words" />
+                                        <div className="flex flex-row xl:w-full">
+                                            <Button disabled={loading} clas="rounded-r-none" action={async () => await navigator.clipboard.writeText(`${new URL(location.href).origin}/team/${teamID}/invite/${inviteHash}`)}>
+                                                <iconMD.MdOutlineContentCopy fill="#fff" size={26} />
+                                            </Button>
+                                            <Button action={updateInviteHash} clas="rounded-l-none xl:flex xl:flex-grow">{loading ? <icon.AiOutlineLoading3Quarters fill="#fff" size={26} className="animate-spin" /> : "Atualizar"}</Button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div className="text-white xl:text-[26px] text-[40px] m-2 xl:m-0 xl:mt-2 w-full flex items-center justify-center">
-                                <span className="text-white flex flex-row text-[26px] mx-10 my-3">
-                                    <h1 className="text-[#ffffff] xl:text-[28px] xl:mr-0 mr-2 font-bold xl:text-center">Editar time <strong>{team?.name}</strong></h1>
-                                </span>
-                            </div>
-                            {team ? (
+                                <div className="text-white xl:text-[26px] text-[40px] m-2 xl:m-0 xl:mt-2 w-full flex items-center justify-center">
+                                    <span className="text-white flex flex-row text-[26px] mx-10 my-3">
+                                        <h1 className="text-[#ffffff] xl:text-[28px] xl:mr-0 mr-2 font-bold xl:text-center">Editar time <strong>{team?.name}</strong></h1>
+                                    </span>
+                                </div>
                                 <form onSubmit={handleSubmit(onSubmitEdit)} className="gap-5 items-center justify-center pt-1 flex flex-col">
                                     <div className="flex flex-col gap-3">
                                         <Input errors={errors} optional name="name" defaultValue={team?.name} register={register} text="Digite o nome que o seu time irá receber" title="Nome" type="input" maxLength={15} minLength={3} placeholder="Mango Team" />
@@ -144,10 +144,10 @@ export const ManageTeamComponent: FC = () => {
                                         {submitedEdit && <icon.AiOutlineLoading3Quarters fill="#fff" size={30} className="animate-spin" />}
                                     </div>
                                 </form>
-                            ) : (
-                                <div>carregando...</div>
-                            )}
-                        </>
+                            </>
+                        ) : (
+                            <div>Carregando...</div>
+                        )}
                     </section>
                 </div>
             </section>
