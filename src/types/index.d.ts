@@ -240,7 +240,7 @@ export interface Team {
     invite_hash: string;
     avatar_url: string;
     description: string;
-    bot_id?: Snowflake;
+    bots_id?: Snowflake[];
 }
 
 export interface TeamMember {
