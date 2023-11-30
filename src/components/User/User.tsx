@@ -14,7 +14,6 @@ export const User: React.FC = () => {
     const userid: string = params.userid as string;
     const [user, setUser] = useState<DBUser>();
     const [userBots, setUserBots] = useState<BotStructure[]>([]);
-    const [teams, setTeams] = useState<Team[]>([]);
     const { color } = useContext(ThemeContext);
 
     const getUserData: () => Promise<void> = async (): Promise<void> => {
@@ -53,14 +52,6 @@ export const User: React.FC = () => {
                                 ( {user._id} )
                             </span>
                         </div>
-                        {user.team.id && (
-                            <div className="flex flex-col justify-center gap-1 p-2">
-                                <strong>Time</strong>
-                                <Link to={`/team/${user.team.id}`}>
-                                    <img className="rounded-full w-8" src={user.team.avatar_url} />
-                                </Link>
-                            </div>
-                        )}
                     </div>
                     <div className="flex items-start w-full flex-col gap-2">
                         <h1 className="text-[33px]">Perfil de <strong>{user.username}</strong></h1>
