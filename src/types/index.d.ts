@@ -100,7 +100,6 @@ export interface BotStructure {
     created_at: string;
     verified: boolean;
     tags: string[];
-    banner_url: string;
     team_id?: string;
     approved: boolean;
     votes: VoteStructure[];
@@ -121,6 +120,7 @@ export interface UserStructure extends DBUser {
 }
 export interface DBUser {
     username: string;
+    banner_url: string;
     _id: Snowflake | string;
     avatar: string;
     bio: string;
