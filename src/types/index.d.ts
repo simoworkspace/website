@@ -105,6 +105,7 @@ export interface BotStructure {
     approved: boolean;
     votes: VoteStructure[];
     total_votes?: number;
+    vote_message?: string;
 }
 
 export interface VoteStructure {
@@ -116,12 +117,10 @@ export interface VoteStructure {
 export interface UserStructure extends DBUser {
     signed: boolean;
     id: Snowflake
-    team: Team;
     notifications_viewed: boolean;
 }
 export interface DBUser {
     username: string;
-    team: Team;
     _id: Snowflake | string;
     avatar: string;
     bio: string;
@@ -260,5 +259,95 @@ export enum TeamPermissions {
 export interface ErrorStructure {
     message?: string;
     show: boolean;
-    title?: string; 
+    title?: string;
 }
+
+export interface AuditLogStructure {
+    team_id: string;
+    executor_id: string;
+    created_at: string;
+    id: string;
+    action_type: AuditLogActionType;
+    changes: AnyAuditLogChange[];
+    target_id: Snowflake | null;
+}
+
+export enum AuditLogActionType {
+    /**
+     * Member was added in a team
+     */
+    MemberAdd,
+    /**
+     * Member was removed in a team
+     */
+    MemberRemove,
+    /**
+     * Member was updated in a team
+     */
+    MemberUpdate,
+
+    /**
+     * Ownership of a team has been transferred
+     */
+    TeamOwnershipTransfer,
+    /**
+     * Team settings were updated
+     */
+    TeamUpdate,
+
+    /**
+     * Bot was added to a team
+     */
+    BotAdd,
+    /**
+     * Bot was removed in a team
+     */
+    BotRemove,
+
+    /**
+     * Invite was updated
+     */
+    InviteUpdate,
+}
+
+export type AnyAuditLogChange =
+    | AuditLogInviteUpdateChange
+    | AuditLogBotAddChange
+    | AuditLogBotRemoveChange
+    | AuditLogTeamUpdateChange
+    | AuditLogMemberAddChange
+    | AuditLogMemberRemoveChange
+    | AuditLogMemberUpdateChange
+    | AuditLogTeamOwnershipTransferChange;
+
+export type AuditLogMemberAddChange = BaseAuditLogChange<never, never>;
+export type AuditLogMemberRemoveChange = AuditLogMemberAddChange;
+
+export type AuditLogMemberUpdateChange = BaseAuditLogChange<
+    "permission",
+    TeamPermissions
+>;
+
+export type AuditLogTeamOwnershipTransferChange = BaseAuditLogChange<
+    "id",
+    Snowflake
+>;
+
+export type AuditLogTeamUpdateChange = BaseAuditLogChange<
+    "name" | "description" | "avatar_url",
+    string
+>;
+
+export type AuditLogBotAddChange = BaseAuditLogChange<"bot_id", Snowflake>;
+export type AuditLogBotRemoveChange = AuditLogBotAddChange;
+
+export type AuditLogInviteUpdateChange = BaseAuditLogChange<
+    "invite_code",
+    string
+>;
+
+export type BaseAuditLogChange<Key, Data> = {
+    changed_key: Key;
+    old_data: Data;
+    new_data?: Data;
+};
