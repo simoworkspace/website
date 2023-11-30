@@ -21,10 +21,6 @@ export const CreateTeam: React.FC = () => {
     const [error, setError] = useState<ErrorStructure>();
     const [submited, setSubmited] = useState<boolean>(false);
 
-    if (!user) {
-        window.location.href = "/";
-    }
-
     const onSubmit: SubmitHandler<Team> = async (data: Team): Promise<void> => {
         setSubmited(true);
 
