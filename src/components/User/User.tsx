@@ -38,21 +38,28 @@ export const User: React.FC = () => {
                 <UserLoading />
             ) : (
                 <section className="w-screen flex flex-row p-5 text-white items-start xl:items-center justify-center gap-10 xl:flex-col">
-                    <div className={`${borderColor[color]} border-2 p-5 min-h-[300px] w-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex justify-center flex-col gap-4`}>
-                        <div className="w-full items-center flex justify-center">
-                            <img onError={({ currentTarget }) => {
-                                currentTarget.onerror = null;
-                                currentTarget.src = simo;
-                            }}
-                                className="rounded-full w-32" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} alt={`${user.username}'s Avatar`} />
+                    <div className={`${borderColor[color]} border-2 min-h-[300px] w-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex justify-start flex-col gap-4 relative`}>
+                        {user.banner_url && (
+                            <img className="w-full h-36 object-cover rounded-md z-0 mb-14" src={user.banner_url} alt="Possible banner" />
+                        )}
+                        <div className="w-full items-center flex justify-center z-1 absolute top-[50%] left-0 transform -translate-y-1/2">
+                            <img
+                                onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null;
+                                    currentTarget.src = simo;
+                                }}
+                                className="rounded-full w-32" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`}
+                                alt={`${user.username}'s Avatar`}
+                            />
                         </div>
-                        <div className="flex flex-col justify-center gap-1 px-2">
+                        <div className="flex flex-col justify-center gap-1 z-2 relative px-3 pb-4">
                             <strong>{user.username}</strong>
                             <span className="text-[#797979] items-center flex text-[13px]">
                                 ( {user._id} )
                             </span>
                         </div>
                     </div>
+
                     <div className="flex items-start w-full flex-col gap-2">
                         <h1 className="text-[33px]">Perfil de <strong>{user.username}</strong></h1>
                         {user?.bio && <span>{user.bio}</span>}
