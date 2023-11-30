@@ -1,20 +1,21 @@
 import React, { useContext, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { BotStructure, FindBotStructure } from "../../types";
+import { BotStructure, ErrorStructure, FindBotStructure } from "../../types";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { Input, TagInput } from "./Input";
 import { borderColor } from "../../utils/theme/border";
 import { shadowColor } from "../../utils/theme/shadow";
-import { UserContext } from "../../contexts/UserContext";
 import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
 import * as icon from "react-icons/ai";
+import { PopUpError } from "../Mixed/Error";
+import { ApiErrors } from "../../utils/api/errors";
 
 export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSteps: (value: number) => void }> = ({ botData, setSteps }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<BotStructure>();
 
     const { color } = useContext(ThemeContext);
-    const { user } = useContext(UserContext);
+    const [error, setError] = useState<ErrorStructure>();
 
     const [submited, setSubmited] = useState<boolean>(false);
     const [preview, setPreview] = useState<boolean>(false);
@@ -24,8 +25,6 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
 
         //@ts-ignore
         const formData: BotStructure = {
-            name: botData?.username as string,
-            avatar: botData?.avatar as string,
             invite_url: `https://discord.com/api/oauth2/authorize?client_id=${botData?.id}&permissions=70368744177655&scope=bot%20applications.commands`,
             website_url: data.website_url,
             support_server: data.support_server,
@@ -33,12 +32,9 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             short_description: data.short_description,
             long_description: data.long_description,
             prefixes: (data.prefixes as any).split(",").map((a: string) => a.trim()),
-            owner_id: user?.id as string,
             created_at: botData?.created_at as string,
             verified: botData?.verified as boolean,
             tags: (data.tags as any).split(","),
-            approved: false,
-            votes: []
         };
 
         for (let i in formData) {
@@ -49,22 +45,18 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
 
         try {
             await api.addBot(formData, botData?.id as string);
-        } catch (error: any) {
-            const error_message = error.response.data.errors[0];
 
+            setSteps(2);
+        } catch (error: any) {
             setSubmited(false);
 
-            switch (true) {
-                case error_message.includes("prefixes"):
-                    return alert("Limite máximo de caracteres no prefixo separado por vírgula é de 6.");
-                case error_message.includes("discord"):
-                    return alert("Servidor de discord inválido, tente isso por exemplo: https://discord.gg/BsAE9D68Ak" + error_message);
-                default:
-                    return alert("Ocorreu um erro desconhecido ao enviar seu bot, mensagem de erro: " + error_message);
-            }
+            setError({
+                show: true,
+                title: "Erro ao tentar adicionar um bot",
+                //@ts-ignore
+                message: ApiErrors[error.response.data.errors] || JSON.stringify(error.response.data.errors[0])
+            });
         }
-
-        setSteps(2);
     };
 
     return (
@@ -98,6 +90,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
                     </form>
                 </div>
             </div>
+            {error?.show && <PopUpError setShow={setError} show={error} />}
         </div>
     );
 };
