@@ -32,13 +32,13 @@ export const ManageTeamComponent: FC = () => {
     const onSubmitEdit: SubmitHandler<Team> = async (data: Team): Promise<void> => {
         setSubmitedEdit(true);
 
-        const { avatar_url, description, name, invite_hash } = data;
+        const { avatar_url, description, name, invite_code } = data;
 
         const formData: Team = {
             avatar_url,
             description,
             name,
-            invite_hash
+            invite_code
         };
 
         try {
@@ -63,9 +63,9 @@ export const ManageTeamComponent: FC = () => {
     };
 
     const getUserTeams = async (): Promise<void> => {
-        const { data: { invite_hash }, data } = await api.getTeam(teamID);
+        const { data: { invite_code }, data } = await api.getTeam(teamID);
 
-        setInviteHash(invite_hash);
+        setInviteHash(invite_code);
         setTeam(data);
     };
 
@@ -77,10 +77,10 @@ export const ManageTeamComponent: FC = () => {
                 avatar_url: team.avatar_url,
                 description: team.description,
                 name: team.name,
-                invite_hash: Math.random().toString(22).slice(2, 8)
+                invite_code: Math.random().toString(22).slice(2, 8)
             });
 
-            setInviteHash(req.data.invite_hash);
+            setInviteHash(req.data.invite_code);
 
             setLoading(false);
         }

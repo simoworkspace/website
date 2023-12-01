@@ -63,7 +63,7 @@ export const InviteComponent: FC = () => {
         team ? (
             <main className="max-w-[1500px] flex justify-start xl:justify-center xl:items-center">
                 <section className="w-screen flex flex-row p-5 text-white items-start justify-start xl:items-center xl:justify-center gap-10 xl:flex-col">
-                    {team.invite_hash === hash ? (
+                    {team.invite_code === hash ? (
                         <>
                             <div className={`${borderColor[color]} border-2 w-[300px] p-5 xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col`}>
                                 <div>
