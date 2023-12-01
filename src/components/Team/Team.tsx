@@ -25,18 +25,16 @@ export const TeamComponent: React.FC = () => {
     const teamID: string = params.teamId as string;
     const [team, setTeam] = useState<Team>();
     const [deleteTeam, setDeleteTeam] = useState<boolean>(false);
-    const [teamBot, setTeamBot] = useState<BotStructure | null>(null);
+    const [teamBots, setTeamBots] = useState<BotStructure[] | null>(null);
 
     const { color } = useContext(ThemeContext);
 
     const getTeam = async (): Promise<void> => {
-        const { data: { bot_id }, data } = await api.getTeam(teamID);
+        const { data: { bots_id }, data } = await api.getTeam(teamID);
 
-        if (bot_id) {
-            const { data } = await api.getBotInfos(bot_id);
-            setTeamBot(data);
-        }
-
+        bots_id?.forEach(id => {
+            
+        });
         setTeam(data);
     };
 
@@ -93,13 +91,7 @@ export const TeamComponent: React.FC = () => {
                     {team?.description && <span>{team.description}</span>}
                     <hr className="w-full my-3" />
                     <section className="w-full">
-                        {!teamBot ? (
-                            <div className="text-center text-[22px]">Time {team.name} não tem bots para serem listados.</div>
-                        ) : (
-                            <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:items-left xl:justify-left">
-                                {<BotCard bot={teamBot} />}
-                            </div>
-                        )}
+                    
                     </section>
                 </div>
             </section>
