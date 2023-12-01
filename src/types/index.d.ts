@@ -237,7 +237,7 @@ export interface Team {
     members?: TeamMember[];
     id?: string;
     name: string;
-    invite_hash: string;
+    invite_code: string;
     avatar_url: string;
     description: string;
     bots_id?: Snowflake[];
