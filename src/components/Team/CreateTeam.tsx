@@ -24,14 +24,14 @@ export const CreateTeam: React.FC = () => {
     const onSubmit: SubmitHandler<Team> = async (data: Team): Promise<void> => {
         setSubmited(true);
 
-        const { avatar_url, description, name, invite_hash } = data;
+        const { avatar_url, description, name } = data;
 
+        //@ts-ignore
         const formData: Team = {
             avatar_url,
             description,
             name,
-            invite_hash,
-            members: []
+            bots_id: []
         };
 
         try {
@@ -44,7 +44,7 @@ export const CreateTeam: React.FC = () => {
                 show: true,
                 title: "Erro ao tentar criar um time",
                 //@ts-ignore
-                message: ApiErrors[error.response.data.code]
+                message: JSON.stringify(error.response.data)
             });
         }
     };
