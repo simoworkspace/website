@@ -84,7 +84,7 @@ const api = {
     getUserTeams: (): Promise<AxiosResponse<Team[]>> => {
         return axios.get("/api/teams/@all", header);
     },
-    deleteTeam: (): Promise<AxiosResponse> => {
+    deleteTeam: (): Promise<AxiosResponse<Team>> => {
         return axios.delete("/api/teams", header);
     },
     createTeam: (body: Team): Promise<AxiosResponse<Team>> => {
@@ -96,11 +96,14 @@ const api = {
     joinTeam: (teamID: string, inviteHash: string): Promise<AxiosResponse<Team>> => {
         return axios.put(`/api/teams/${teamID}/${inviteHash}`, null, header);
     },
-    transferOnwer: (userID: Snowflake): Promise<Team> => {
+    transferOnwer: (userID: Snowflake): Promise<AxiosResponse<Team>> => {
         return axios.put(`/api/teams/change-owner/${userID}`, null, header);
     },
-    removeMember: (teamID: string, userID: Snowflake): Promise<Team> => {
+    removeMember: (teamID: string, userID: Snowflake): Promise<AxiosResponse<Team>> => {
         return axios.put(`/api/teams/${teamID}/remove-member`, { member_id: userID }, header);
+    },
+    getTeamBots: (teamID: string): Promise<AxiosResponse<BotStructure[]>> => {
+        return axios.get(`/api/teams/${teamID}/bots`, header);
     }
 };
 
