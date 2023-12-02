@@ -17,11 +17,6 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
         <div className={`bg-neutral-900 w-full rounded-lg p-3 transition-colors hover:bg-[#1d1d1d] flex flex-col gap-3 xl:w-[95vw]`} key={bot._id}>
             <Link to={`/bot/${bot._id}`} className="flex flex-col gap-3">
                 <div className="flex gap-2 items-center">
-                    {!bot.approved && (
-                        <figure className="flex w-full h-0 items-center justify-end relative top-20 right-1">
-                            <icon.BsClockFill className="fill-[#e8a60c]" size={23} />
-                        </figure>
-                    )}
                     <img className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} onError={({ currentTarget }) => { currentTarget.onerror = null; currentTarget.src = simo }} />
                     <div className="flex gap-2 flex-col">
                         <span className="font-bold text-lg">{bot.name}</span>
