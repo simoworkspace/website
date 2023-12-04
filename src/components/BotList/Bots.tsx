@@ -57,7 +57,7 @@ export const Bots: React.FC = () => {
                 ))}
             </div>
             <div ref={bottomOfPageRef} />
-            {showLoadMore && (
+            {showLoadMore && !botLoading && (
                 <div className="max-w-[1500px] flex justify-center items-center w-screen">
                     <button onClick={loadMoreBots} disabled={!showLoadMore} className={`${buttonColor[color]} border-2 transition-all duration-300 w-[98%] text-white p-3 rounded-lg mb-2`}>Carregar Mais</button>
                 </div>
