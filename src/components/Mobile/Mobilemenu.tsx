@@ -6,12 +6,14 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import api from "../../utils/api";
 import { mobileMenu } from "../../utils/theme/mobileMenu";
 import * as icon from "react-icons/bi";
+import { FaRegSnowflake } from "react-icons/fa";
 import * as iconRI from "react-icons/ri";
 
 export const Mobilemenu: React.FC = () => {
     const { user } = useContext<UserStructure | any>(UserContext);
     const { color } = useContext(ThemeContext);
 
+    const [snowflakes, setSnowflakes] = useState<boolean>(true);
     const page = location.href.split("/")[3];
 
     const [click, setClick] = useState<boolean>(false);
@@ -23,9 +25,21 @@ export const Mobilemenu: React.FC = () => {
 
     return (
         <div className={`hidden xl:fixed xl:bottom-0 xl:left-0 xl:w-full border-t-2 transition-colors duration-300 ${mobileMenu[color]} xl:text-white xl:py-3 xl:flex xl:justify-around xl:items-center`}>
+            {snowflakes && (
+                <div className="snowflakes xlr:invisible">
+                    {Array(14).fill(
+                        <div className="snowflake">
+                            ❅
+                        </div>
+                    )}
+                </div>
+            )}
             {user ? (
                 <>
                     <section className="flex flex-row w-full items-center">
+                        <button className="flex flex-grow justify-center" onClick={() => setSnowflakes(!snowflakes)}>
+                            <FaRegSnowflake size={24}/>
+                        </button>
                         <Link onClick={() => {
                             setClick(!click);
                         }} to="/notifications" className="flex flex-grow justify-center">

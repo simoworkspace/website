@@ -7,7 +7,7 @@ import { Mobilemenu } from "../components/Mobile/Mobilemenu";
 import { Bot } from "../pages/Bot/Bot";
 import { Vote } from "../pages/Bot/Vote";
 import { Tests } from "../pages/Mixed/Tests";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "../contexts/ThemeContext";
 import { appColor } from "../utils/theme/app";
 import { Search } from "../pages/Bot/Search";
@@ -25,13 +25,25 @@ import { ManageTeamPage } from "../pages/Team/ManageTeam";
 import { InvitePage } from "../pages/Team/Invite";
 import { Auth } from "../components/Mixed/Auth";
 import { TeamAddbotPage } from "../pages/Team/Addbot";
+import { Button } from "../components/Mixed/Button";
 
 function App() {
     const { color } = useContext(ThemeContext);
+    const [snowflakes, setSnowflakes] = useState<boolean>(true);
 
     return (
         <main className={`xl:no-scrollbar xlr:h-1 flex flex-col items-center overflow-x-hidden min-h-screen ${appColor[color]} bg-fixed scrollbar-track-neutral-900 scrollbar-thin`}>
             <Header />
+            {snowflakes && (
+                <div className="snowflakes xl:invisible">
+                    {Array(14).fill(
+                        <div className="snowflake">
+                            ❅
+                        </div>
+                    )}
+                </div>
+            )}
+            <Button clas="absolute bottom-1 right-1 xl:invisible" action={() => setSnowflakes(!snowflakes)}>{snowflakes ? "Desativar" : "Ativar"} Flocos de neve</Button>
             <section className="flex flex-1 flex-col">
                 <Routes>
                     <Route path="/testes" element={<Tests />} />
@@ -43,12 +55,12 @@ function App() {
                     <Route path="/themes" element={<ThemesPage />} />
                     <Route path="/addbot" element={<Auth><Addbot /></Auth>} />
                     <Route path="/user/:userid" element={<User />} />
-                    <Route path="/dashboard" element={<Auth><Dashboard/></Auth>} />
+                    <Route path="/dashboard" element={<Auth><Dashboard /></Auth>} />
                     <Route path="/dashboard/edit/:botId" element={<Auth><DashboardEditPage /></Auth>} />
                     <Route path="/dashboard/settings" element={<Auth><SettingsPage /></Auth>} />
                     <Route path="/team/create" element={<Auth><CreateTeamPage /></Auth>} />
                     <Route path="/team/:teamId" element={<TeamPage />} />
-                    <Route path="/team/:teamId/addbot" element={<Auth><TeamAddbotPage/></Auth>}/>
+                    <Route path="/team/:teamId/addbot" element={<Auth><TeamAddbotPage /></Auth>} />
                     <Route path="/team/:teamId/invite/:hash" element={<Auth><InvitePage /></Auth>} />
                     <Route path="/team/manage/:teamId" element={<Auth><ManageTeamPage /></Auth>} />
                     <Route path="*" element={<NotFound />} />
