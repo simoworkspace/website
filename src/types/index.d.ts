@@ -123,7 +123,7 @@ export interface DBUser {
     banner_url: string;
     _id: Snowflake | string;
     avatar: string;
-    bio: string;
+    bio: string | null;
 };
 
 interface Locales {

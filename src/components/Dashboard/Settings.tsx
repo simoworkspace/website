@@ -19,7 +19,7 @@ export const Settings: FC = () => {
 
     const [editActions, setEditActions] = useState<{ submitedBio?: boolean; submitedBanner?: boolean; bio?: string; banner_url?: string; patchedbio?: boolean; patchedbanner?: boolean }>({
         banner_url: user?.banner_url,
-        bio: user?.bio,
+        bio: user?.bio || "",
         submitedBio: false,
         submitedBanner: false,
         patchedbio: false,
@@ -66,7 +66,7 @@ export const Settings: FC = () => {
         getUserTeams();
     }, [websiteUser.user]);
 
-    return user && user.bio ? (
+    return user ? (
         <main className="max-w-[1500px] flex justify-center items-center">
             <section className="w-screen flex flex-row p-5 text-white items-start xl:items-center justify-center gap-10 xl:flex-col">
                 <DashboardUser color={color} user={user as UserStructure} />
@@ -81,7 +81,7 @@ export const Settings: FC = () => {
                             </div>
                             <form onSubmit={patchBio} className="w-[50%] xl:w-full xl:h-14 flex flex-row">
                                 <div className="w-full">
-                                    <input defaultValue={user.bio} placeholder="Digite sua biografia aqui." maxLength={200} value={editActions.bio} required disabled={editActions.patchedbio} onChange={handleBioChange} className={`bg-transparent disabled:opacity-50 rounded-r-none focus:outline-none border-2 rounded-lg p-2 w-full h-14 ${borderColor[color]}`} type="text" />
+                                    <input defaultValue={user.bio || ""} placeholder="Digite sua biografia aqui." maxLength={200} value={editActions.bio} required disabled={editActions.patchedbio} onChange={handleBioChange} className={`bg-transparent disabled:opacity-50 rounded-r-none focus:outline-none border-2 rounded-lg p-2 w-full h-14 ${borderColor[color]}`} type="text" />
                                     {editActions.submitedBio && <span>Bio atualizada com sucesso! <Link className="text-blue-500 hover:underline" to={`/user/${user?._id}`}>Ver perfil</Link></span>}
                                 </div>
                                 <Button type="submit" disabled={editActions.patchedbio} clas="w-14 h-14 flex items-center justify-center rounded-l-none diabled:opacity-50">{editActions.patchedbio ? <iconAI.AiOutlineLoading3Quarters size={22} className="animate-spin" /> : <icon.BsCheck size={22} />}</Button>
