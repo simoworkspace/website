@@ -1,132 +1,133 @@
-import React, { useContext, useEffect, useState } from "react";
-import { borderColor } from "../../utils/theme/border";
-import { ThemeContext } from "../../contexts/ThemeContext";
-import { UserContext } from "../../contexts/UserContext";
-import * as iconMD from "react-icons/md";
-import * as iconBS from "react-icons/bs";
-import * as iconAI from "react-icons/ai";
-import { BotStructure, UserStructure } from "../../types";
-import { AxiosResponse } from "axios";
-import api from "../../utils/api";
-import { BotCard } from "../BotList/BotCard";
-import { buttonColor } from "../../utils/theme/button";
-import { Link } from "react-router-dom";
-import { DeleteBot } from "./Delete";
+import { FC, useContext, useState, useEffect } from "react";
 import { DashboardUser } from "./User";
+import { Tabs, TabList, TabPanels, Tab, TabPanel, TabIndicator } from "@chakra-ui/react";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import { DBUser, Team, UserStructure } from "../../types";
+import { borderColor } from "../../utils/theme/border";
+import { Button } from "../Mixed/Button";
+import * as icon from "react-icons/bs";
+import * as iconAI from "react-icons/ai";
+import api from "../../utils/api";
+import { Link } from "react-router-dom";
+import { Teams } from "../Team/Teams";
+import { UserContext } from "../../contexts/UserContext";
+import { UserLoading } from "../User/UserLoading";
+import { borderAndBg } from "../../utils/theme/border&bg";
+import { DashboardBot } from "./Bot";
 
-export const DashboardComponent: React.FC = () => {
+export const DashboardComponent: FC = () => {
     const { color } = useContext(ThemeContext);
-    const { user } = useContext(UserContext);
-    const [selectBotMenu, setSelectBotMenu] = useState<boolean>(false);
-    const [bots, setBots] = useState<BotStructure[]>();
-    const [selectedBot, setSelectedBot] = useState<BotStructure | null>(null);
-    const [apiKey, setApiKey] = useState<string>("");
-    const [apiKeyLoading, setApiKeyLoading] = useState<boolean>(false);
-    const [deleteBot, setDeleteBot] = useState<boolean>(false);
+    const [user, setUser] = useState<DBUser>();
+    const websiteUser = useContext(UserContext);
 
-    const handleCreateApiKey = async (botId: string): Promise<void> => {
-        if (apiKey) {
-            await navigator.clipboard.writeText(apiKey);
-            return alert("Copiado apikey para área de transferência.")
-        };
+    const [editActions, setEditActions] = useState<{ submitedBio?: boolean; submitedBanner?: boolean; bio?: string; banner_url?: string; patchedbio?: boolean; patchedbanner?: boolean }>({
+        banner_url: user?.banner_url,
+        bio: user?.bio || "",
+        submitedBio: false,
+        submitedBanner: false,
+        patchedbio: false,
+        patchedbanner: false
+    });
 
-        setApiKeyLoading(true);
-        const req = await api.createApiKey(botId);
-        setApiKey(req.data.api_key);
-        return setApiKeyLoading(false);
+    const [teams, setTeams] = useState<Team[]>();
+
+    const handleBioChange = (event: React.ChangeEvent<HTMLInputElement>) => setEditActions({ bio: event?.target.value });
+
+    const handleBannerChange = (event: React.ChangeEvent<HTMLInputElement>) => setEditActions({ banner_url: event?.target.value });
+
+    const getUserTeams = async () => {
+        const req = await api.getUserTeams();
+        const req2 = await api.getUserFromDB(websiteUser.user?.id || websiteUser.user?._id as string);
+
+        setUser(req2.data);
+        setTeams(req.data);
     };
 
-    const getUserBots = async (): Promise<void> => {
-        const req: AxiosResponse<BotStructure[]> = await api.getAllBots();
-        const bots = req.data.filter(bot => bot.owner_id == user?.id as string);
-
-        if (bots.length === 1) {
-            return setSelectedBot(bots[0]);
+    const patchBio = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (!editActions.bio) {
+            setEditActions({ patchedbio: false });
+        } else {
+            setEditActions({ patchedbio: true });
+            await api.patchUser({ bio: editActions.bio as string });
+            setEditActions({ bio: editActions.bio, patchedbio: false, submitedBio: true });
         }
-
-        return setBots(bots);
     };
 
-    const getSelectedBot = (botId: string): void => {
-        const selbot = bots?.find(bot => bot._id == botId);
-        setSelectBotMenu(false);
-        return setSelectedBot(selbot as BotStructure);
+    const patchBanner = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        if (!editActions.banner_url) {
+            setEditActions({ patchedbanner: false });
+        } else {
+            setEditActions({ patchedbanner: true });
+            await api.patchUser({ banner_url: editActions.banner_url as string });
+            setEditActions({ banner_url: editActions.banner_url, patchedbanner: false, submitedBanner: true });
+        }
     };
 
     useEffect(() => {
-        if (user) {
-            getUserBots();
-        }
-    }, [user]);
+        getUserTeams();
+    }, [websiteUser.user]);
 
-    return (
-        <main className="max-w-[1500px] flex justify-start">
-            <section className="w-screen flex flex-row p-5 text-white items-start justify-center gap-10 xl:flex-col h-full">
+    return user ? (
+        <main className="max-w-[1500px] flex justify-center items-center">
+            <section className="w-screen flex flex-row p-5 text-white items-start xl:items-center justify-center gap-10 xl:flex-col">
                 <DashboardUser color={color} user={user as UserStructure} />
-                <div className="flex items-center justify-start h-full w-full flex-col">
-                    <h1 className="text-[33px] text-center">Bem vindo a dashboard, <strong>{user?.username}</strong></h1>
-                    <hr className="w-full my-3" />
-                    <div className="w-full">
-                        <button onClick={() => setSelectBotMenu(!selectBotMenu)} className={`bg-neutral-900 p-3 items-center justify-center flex flex-row ${borderColor[color]} rounded-lg border-2 w-full ${selectedBot ? "h-16" : "h-14"}`}>
-                            {selectedBot ? (
-                                <div className="flex items-center justify-start w-full gap-3 p-3">
-                                    <img className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${selectedBot._id}/${selectedBot.avatar}.png`} />
-                                    <span className="text-xl">{selectedBot.name}</span>
-                                    <span className="text-[#797979] items-center flex text-[13px] xl:invisible justify-center">
-                                        ( {user?.id} )
-                                    </span>
-                                </div>
-                            ) : <span className="flex flex-grow">Clique aqui para selecionar um bot para gerenciar.</span>}
-                            <iconMD.MdOutlineKeyboardArrowDown className={`transition-all duration-300 ${selectBotMenu ? "rotate-180" : "rotate-0"}`} size={25} />
-                        </button>
-                    </div>
-                    <div className="relative w-full">
-                        <div className={`${selectBotMenu ? "opacity-100 visible" : "opacity-0 invisible"} transition-all duration-300 w-full flex items-center justify-center`}>
-                            {selectBotMenu && (
-                                <div className={`bg-neutral-900 rounded-b-lg overflow-auto max-h-[300px] w-[95%] ${borderColor[color]} border-2 border-t-0 flex items-center flex-col gap-2 p-3`}>
-                                    {bots?.map(bot => (
-                                        <button onClick={() => getSelectedBot(bot._id)} className="flex xl:flex-col items-center justify-start w-full gap-3 p-3 transition-colors duration-300 hover:bg-neutral-800 rounded-lg">
-                                            <img className="rounded-full w-20" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
-                                            <span className="text-xl">{bot.name}</span>
-                                            <span className="text-[#797979] items-center flex text-[13px] justify-center">
-                                                ( {user?.id} )
-                                            </span>
-                                        </button>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-                    {selectedBot && (
-                        <section className={`w-full bg-neutral-900 mt-2 border-2 flex-row ${borderColor[color]} rounded-lg p-4`}>
-                            <div className="grid grid-cols-2 xl:grid-cols-1 gap-8 text-white m-2">
-                                <BotCard bot={selectedBot} />
-                                <div className="w-full flex flex-col gap-3">
-                                    <button onClick={() => setDeleteBot(true)} className={`flex flex-row items-center justify-center gap-3 p-3 w-full rounded-lg ${buttonColor["red"]} h-12 transition-colors duration-300 border-2`}>
-                                        <iconBS.BsTrashFill />
-                                        <span>Deletar bot</span>
-                                    </button>
-                                    <Link to={`/dashboard/edit/${selectedBot._id}`} className={`flex flex-row items-center justify-center gap-3 p-3 w-full rounded-lg ${buttonColor[color]} h-12 transition-colors duration-300 border-2`}>
-                                        <iconMD.MdEditSquare />
-                                        <span>Editar bot</span>
-                                    </Link>
-                                    <div className="flex flex-row xl:flex-col bg-neutral-800 w-full h-full rounded-lg items-center">
-                                        <input onAuxClick={async () => {
-                                            await navigator.clipboard.writeText(apiKey);
-                                        }} disabled value={apiKey} placeholder="Clique no botão para solicitar uma api key" className="flex-grow p-2 bg-transparent xl:break-words" />
-                                        <button onClick={() => handleCreateApiKey(selectedBot._id)} className={`${buttonColor[color]} h-full border-2 transition-colors duration-300 rounded-r-lg p-2 xl:w-full xl:rounded-lg flex items-center justify-center`}>
-                                            {apiKeyLoading ? <iconAI.AiOutlineLoading3Quarters fill="#fff" size={30} className="animate-spin" /> : apiKey ? <iconMD.MdOutlineContentCopy fill="#fff" size={22} /> : "Gerar"}
-                                        </button>
+                <div className="flex h-full w-full flex-col">
+                    <h1 className="text-[33px] text-center mb-5 mt-1">Bem vindo a dashboard, <strong>{user?.username}</strong></h1>
+                    <div className={`w-full p-3 h-full flex flex-col gap-3 bg-neutral-900 ${borderColor[color]} border-2 rounded-lg`}>
+                        <Tabs position="relative" variant="unstyled">
+                            <TabList>
+                                <Tab>Usuário</Tab>
+                                <Tab>Time</Tab>
+                                <Tab>Bot</Tab>
+                            </TabList>
+                            <TabIndicator className={`mt[-1.5px] h-[2px] ${borderColor[color]} border-2 rounded-lg`} />
+                            <TabPanels>
+                                <TabPanel>
+                                    <div className="flex xl:flex-col gap-3 w-full py-3">
+                                        <div className="flex flex-col items-start justify-center flex-grow h-14">
+                                            <h1 className="font-bold text-lg">Biografia</h1>
+                                            <span>Fale mais sobre você, digite uma breve descrição.</span>
+                                        </div>
+                                        <form onSubmit={patchBio} className="w-[50%] xl:w-full xl:h-14 flex flex-row">
+                                            <div className="w-full">
+                                                <input defaultValue={user.bio || ""} placeholder="Digite sua biografia aqui." maxLength={200} value={editActions.bio} required disabled={editActions.patchedbio} onChange={handleBioChange} className={`bg-transparent disabled:opacity-50 rounded-r-none focus:outline-none border-2 rounded-lg p-2 w-full h-14 ${borderColor[color]}`} type="text" />
+                                                {editActions.submitedBio && <span>Bio atualizada com sucesso! <Link className="text-blue-500 hover:underline" to={`/user/${user?._id}`}>Ver perfil</Link></span>}
+                                            </div>
+                                            <Button type="submit" disabled={editActions.patchedbio} clas="w-14 h-14 flex items-center justify-center rounded-l-none diabled:opacity-50">{editActions.patchedbio ? <iconAI.AiOutlineLoading3Quarters size={22} className="animate-spin" /> : <icon.BsCheck size={22} />}</Button>
+                                        </form>
                                     </div>
-                                </div>
-                            </div>
-                        </section>
-                    )}
+                                    <div className="flex xl:flex-col gap-3 w-full py-3">
+                                        <div className="flex flex-col items-start justify-center flex-grow h-14">
+                                            <h1 className="font-bold text-lg">Banner</h1>
+                                            <span>Coloque o link de uma imagem para ser seu banner.</span>
+                                        </div>
+                                        <form onSubmit={patchBanner} className="w-[50%] xl:w-full xl:h-14 flex flex-row">
+                                            <div className="w-full">
+                                                <input defaultValue={user?.banner_url} placeholder="Coloque uma URL de uma imagem aqui." maxLength={200} value={editActions.banner_url} required disabled={editActions.patchedbanner} onChange={handleBannerChange} className={`bg-transparent disabled:opacity-50 rounded-r-none focus:outline-none border-2 rounded-lg p-2 w-full h-14 ${borderColor[color]}`} type="text" />
+                                                {editActions.submitedBanner && <span>Banner atualizado com sucesso! <Link className="text-blue-500 hover:underline" to={`/user/${user?._id}`}>Ver perfil</Link></span>}
+                                            </div>
+                                            <Button type="submit" disabled={editActions.patchedbanner} clas="w-14 h-14 flex items-center justify-center rounded-l-none diabled:opacity-50">{editActions.patchedbanner ? <iconAI.AiOutlineLoading3Quarters size={22} className="animate-spin" /> : <icon.BsCheck size={22} />}</Button>
+                                        </form>
+                                    </div>
+                                </TabPanel>
+                                <TabPanel>
+                                    <div className="py-3">
+                                        <span className="text-lg font-bold">Seus times</span>
+                                        <Teams teams={teams} />
+                                    </div>
+                                </TabPanel>
+                                <TabPanel>
+                                    <DashboardBot />
+                                </TabPanel>
+                            </TabPanels>
+                        </Tabs>
+                    </div>
                 </div>
             </section>
-            <section className={`transiton-opacity duration-300 ${deleteBot ? "visible opacity-100" : "invisible opacity-0"}`}>
-                {selectedBot && <DeleteBot setDeleteBot={setDeleteBot} deletebot={deleteBot} bot={selectedBot} />}
-            </section>
         </main>
+    ) : (
+        <UserLoading />
     )
 };
