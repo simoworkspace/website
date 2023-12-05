@@ -1,12 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { BotStructure } from "../../types";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import simo from "../../assets/images/simo.png";
 import { TiArrowSortedUp } from "react-icons/ti";
-import { borderColor } from "../../utils/theme/border";
-import * as icon from "react-icons/bs";
-import { Button } from "../Mixed/Button";
 import { borderAndBg } from "../../utils/theme/border&bg";
 import { buttonColor } from "../../utils/theme/button";
 
@@ -14,7 +11,7 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
     const { color } = useContext(ThemeContext);
 
     return (
-        <div className={`bg-neutral-900 w-full rounded-lg p-3 transition-colors hover:bg-[#1d1d1d] flex flex-col gap-3 xl:w-[95vw]`} key={bot._id}>
+        <div className={`bg-neutral-900 w-full rounded-lg p-3 transition-colors ${color === "black" && "border-[#1d1d1d] border-2"} hover:bg-[#1d1d1d] flex flex-col gap-3 xl:w-[95vw]`} key={bot._id}>
             <Link to={`/bot/${bot._id}`} className="flex flex-col gap-3">
                 <div className="flex gap-2 items-center">
                     <img className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} onError={({ currentTarget }) => { currentTarget.onerror = null; currentTarget.src = simo }} />
