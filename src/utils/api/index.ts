@@ -108,7 +108,7 @@ const api = {
     getUserBots: (): Promise<AxiosResponse<BotStructure[]>> => {
         return axios.get("/api/bots", header);
     },
-    getAuditLogs: (teamID: string): Promise<AxiosResponse<AuditLogStructure[]>> => {
+    getAuditLogs: (teamID: string): Promise<AxiosResponse<AuditLogStructure>> => {
         return axios.get(`/api/teams/${teamID}/audit-logs`, header);
     }
 };
