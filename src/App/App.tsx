@@ -15,10 +15,8 @@ import { Footer } from "../components/Footer/Footer";
 import { User } from "../components/User/User";
 import { NotificationsPage } from "../pages/Mixed/Notifications";
 import { ThemesPage } from "../pages/Mixed/Theme";
-import "./index.css";
 import { Dashboard } from "../pages/Dashboard/Dashboard";
 import { DashboardEditPage } from "../pages/Dashboard/Edit";
-import { SettingsPage } from "../pages/Dashboard/Settings";
 import { CreateTeamPage } from "../pages/Team/CreateTeam";
 import { TeamPage } from "../pages/Team/Team";
 import { ManageTeamPage } from "../pages/Team/ManageTeam";
@@ -57,7 +55,6 @@ function App() {
                     <Route path="/user/:userid" element={<User />} />
                     <Route path="/dashboard" element={<Auth><Dashboard /></Auth>} />
                     <Route path="/dashboard/edit/:botId" element={<Auth><DashboardEditPage /></Auth>} />
-                    <Route path="/dashboard/settings" element={<Auth><SettingsPage /></Auth>} />
                     <Route path="/team/create" element={<Auth><CreateTeamPage /></Auth>} />
                     <Route path="/team/:teamId" element={<TeamPage />} />
                     <Route path="/team/:teamId/addbot" element={<Auth><TeamAddbotPage /></Auth>} />
