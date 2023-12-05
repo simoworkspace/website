@@ -4,7 +4,7 @@ import * as icon from 'react-icons/bs';
 export const Footer: React.FC = () => {
     return (
         <>
-            <hr className="w-screen" />
+            <hr className="w-screen border-neutral-500" />
             <footer className="flex items-center justify-center w-screen max-w-[1500px]">
                 <div className="w-full h-[90px] xl:h-[150px] text-white flex xl:flex-col items-center xl:mb-[70px] justify-center">
                     <div className="text-white flex flex-row xl:flex-col items-center text-center justify-center text-[32px] mx-10 my-3 xl:mx-0">
