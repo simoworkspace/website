@@ -104,6 +104,9 @@ const api = {
     },
     getTeamBots: (teamID: string): Promise<AxiosResponse<BotStructure[]>> => {
         return axios.get(`/api/teams/${teamID}/bots`, header);
+    },
+    getUserBots: (): Promise<AxiosResponse<BotStructure[]>> => {
+        return axios.get("/api/bots", header);
     }
 };
 
