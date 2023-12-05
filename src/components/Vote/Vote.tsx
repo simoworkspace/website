@@ -18,7 +18,7 @@ export const VoteComponent: React.FC = () => {
     const { color } = useContext(ThemeContext);
 
     const [voteStatus, setVoteStatus] = useState<{ can_vote: boolean; rest_time: number; }>();
-    const [discordBotData, setDiscordBotData] = useState<DiscordUser>();
+    const [botData, setBotData] = useState<BotStructure>();
     const [votes, setVotes] = useState<number>(0);
     const [voted, setVoted] = useState<boolean>();
     const [clicked, setClicked] = useState<boolean>(false);
@@ -36,14 +36,10 @@ export const VoteComponent: React.FC = () => {
         return setVoteStatus(data);
     };
     const getVoteData = async () => {
-        const { data: { votes } } = await api.getBotInfos(botid as string);
+        const { data: { votes }, data } = await api.getBotInfos(botid as string);
 
+        setBotData(data);
         setVotes(votes.reduce((votesCount, vote) => votesCount + vote.votes, 0) as number);
-    };
-
-    const getDiscordBotData = async () => {
-        const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(botid as string);
-        return setDiscordBotData(res.data);
     };
 
     const getRandomMinMax = (length: number): number[] => {
@@ -77,7 +73,6 @@ export const VoteComponent: React.FC = () => {
     };
 
     useEffect(() => {
-        getDiscordBotData();
         getVoteData();
         getSuggestedBots();
     }, []);
@@ -91,16 +86,16 @@ export const VoteComponent: React.FC = () => {
     return (
         <>
             {
-                discordBotData || voteStatus || user ? (
+                botData && voteStatus ? (
                     <section className="text-white p-3 w-screen flex flex-col items-center justify-center">
                         <div className="flex flex-row rounded-lg items-center gap-3 max-w-[900px] xl:text-center xl:flex-col xl:w-[80vw] p-4 justify-center">
                             <img
                                 className="w-[100px] rounded-full"
-                                src={`https://cdn.discordapp.com/avatars/${discordBotData?.id}/${discordBotData?.avatar}.png?size=2048`}
-                                alt={`${discordBotData?.username}'s Avatar`}
+                                src={`https://cdn.discordapp.com/avatars/${botData._id}/${botData.avatar}.png?size=2048`}
+                                alt={`${botData.name}'s Avatar`}
                             />
                             <div>
-                                <h1 className="flex text-2xl">Votar em {discordBotData?.username}</h1>
+                                <h1 className="flex text-2xl">Votar em {botData.name}</h1>
                                 <span>Votos: {votes}</span>
                             </div>
                         </div>
@@ -110,7 +105,7 @@ export const VoteComponent: React.FC = () => {
                                     ?
                                     <div className="xl:p-2 xl:text-center">
                                         <div>Voto confirmado com sucesso!</div>
-                                        <span className="text-[14px]">Obrigado por votar em {discordBotData?.username}.</span>
+                                        <span className="text-[14px]">{botData.vote_message ? botData.vote_message : `Obrigado por votar em ${botData.name}`}</span>
                                     </div>
                                     : (
                                         voteStatus?.can_vote
