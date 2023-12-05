@@ -35,6 +35,7 @@ export const DashboardEdit: React.FC = () => {
         long_description?: string | undefined;
         short_description?: string | undefined;
         tags?: string[] | undefined;
+        vote_message?: string | undefined | null;
         support_server?: string | undefined;
         source_code?: string | undefined;
         website_url?: string | undefined;
@@ -42,12 +43,27 @@ export const DashboardEdit: React.FC = () => {
     }>({
         long_description: bot?.long_description,
         short_description: bot?.short_description,
+        vote_message: bot?.vote_message,
         tags: bot?.tags,
         support_server: bot?.support_server,
         source_code: bot?.source_code,
         website_url: bot?.website_url,
         prefixes: bot?.prefixes
     });
+
+    const handleVoteMessage = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+
+        setEditedBot({ vote_message: value });
+        setChangesMade({ changes: true });
+    };
+
+    const handleShortDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+
+        setEditedBot({ short_description: value });
+        setChangesMade({ changes: true });
+    };
 
     const handleSupportServerChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const { value } = event.target;
@@ -211,20 +227,48 @@ export const DashboardEdit: React.FC = () => {
                 </section>
                 <section className={`w-[90%] min-w-[680px] xl:min-w-0 mb-5 bg-neutral-900 border-2 ${borderColor[color]} border-t-0 rounded-t-none rounded-lg p-10 xl:p-3`}>
                     <div className="flex flex-row xl:flex-col h-full">
-                        <div className="w-[80%] h-full xl:w-full break-words xl:justify-center mr-4">
-                            <div className={`justify-center mb-5 items-center flex outline-none bg-[#2c2c2c] w-full xl:w-[80vw] h-full rounded-xl p-3 border-[2px] transition-all duration-100 ${borderColor[color]} text-white`}>
-                                <textarea
-                                    id="textoi"
-                                    onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
-                                        setMarkdown(event.target.value);
-                                        setChangesMade({ changes: true });
-                                    }}
-                                    defaultValue={bot.long_description}
-                                    maxLength={2048}
-                                    className="bg-transparent outline-none w-full scrollbar-thin disabled:opacity-50"
-                                />
+                        <div className="flex flex-col w-full h-full">
+                            <div className="w-[95%] h-full xl:w-full break-words xl:justify-center mr-4">
+                                <h1 className="text-xl font-bold text-white my-2">Mensagem de voto</h1>
+                                <div className={`justify-center mb-5 items-center flex outline-none bg-[#2c2c2c] w-full xl:w-[80vw] h-full rounded-xl p-3 border-[2px] transition-all duration-100 ${borderColor[color]} text-white`}>
+                                    <input
+                                        onChange={handleShortDescription}
+                                        defaultValue={bot.vote_message}
+                                        placeholder="Digite uma mensagem que irá aparecer após o usuário votar"
+                                        minLength={50}
+                                        className="bg-transparent outline-none w-full scrollbar-thin disabled:opacity-50"
+                                    />
+                                </div>
                             </div>
-                            <Markdown markdown={markdown} />
+                            <div className="w-[95%] h-full xl:w-full break-words xl:justify-center mr-4">
+                                <h1 className="text-xl font-bold text-white my-2">Descrição Curta</h1>
+                                <div className={`justify-center mb-5 items-center flex outline-none bg-[#2c2c2c] w-full xl:w-[80vw] h-full rounded-xl p-3 border-[2px] transition-all duration-100 ${borderColor[color]} text-white`}>
+                                    <input
+                                        onChange={handleShortDescription}
+                                        defaultValue={bot.short_description}
+                                        placeholder="Digite uma descrição curta que fala sobre seu bot"
+                                        maxLength={80}
+                                        className="bg-transparent outline-none w-full scrollbar-thin disabled:opacity-50"
+                                    />
+                                </div>
+                            </div>
+                            <div className="w-[95%] h-full xl:w-full break-words xl:justify-center xl:items-center">
+                                <h1 className="text-xl font-bold text-white my-2">Descrição longa</h1>
+                                <div className={`justify-center mb-5 items-center flex outline-none bg-[#2c2c2c] w-full xl:w-[80vw] h-full rounded-xl p-3 border-[2px] transition-all duration-100 ${borderColor[color]} text-white`}>
+                                    <textarea
+                                        id="textoi"
+                                        onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
+                                            setMarkdown(event.target.value);
+                                            setChangesMade({ changes: true });
+                                        }}
+                                        placeholder="Digite uma descrição longa para seu bot, não se exite ao colocar informações (Markdown habilitado)"
+                                        defaultValue={bot.long_description}
+                                        maxLength={2048}
+                                        className="bg-transparent outline-none w-full scrollbar-thin disabled:opacity-50"
+                                    />
+                                </div>
+                                <Markdown markdown={markdown} />
+                            </div>
                         </div>
                         <div className="w-[1px] bg-[#8b8b8b]" />
                         <hr className="xl:my-4 xl:w-full" />
@@ -296,25 +340,23 @@ export const DashboardEdit: React.FC = () => {
                         </div>
                     </div>
                 </section>
-                <div className={`transition-opacity duration-300 ${changesMade ? "visible opacity-100" : "opacity-0 invisible"} max-w-[1500px] flex justify-center`}>
-                    {changesMade.changes && (
-                        <div className={`w-[90vw] absolute xl:z-10 xl:fixed xl:bottom-10 xl:w-[95vw] bottom-2 bg-neutral-800 ${borderColor[color]} border-2 rounded-lg`}>
-                            <div className="flex p-2 text-white w-full items-center">
-                                <span className="flex flex-grow">Você tem alterações para serem salvas</span>
-                                <div className="flex gap-2 items-center">
-                                    <button onClick={() => {
-                                        window.location.reload();
+                {changesMade.changes && (
+                    <div className={`${changesMade ? "fade-in" : "fade-out"} w-[90vw] absolute xl:z-10 xl:fixed xl:bottom-10 xl:w-[95vw] bottom-2 bg-neutral-800 ${borderColor[color]} border-2 rounded-lg duration-200`}>
+                        <div className="flex p-2 text-white w-full items-center">
+                            <span className="flex flex-grow">Você tem alterações para serem salvas</span>
+                            <div className="flex gap-2 items-center">
+                                <button onClick={() => {
+                                    window.location.reload();
 
-                                        setChangesMade({ changes: false });
-                                    }} className="text-neutral-400">Desfazer</button>
-                                    <Button disabled={changesMade.loading} clas="disabled:opacity-50" action={updateBot}>
-                                        {!changesMade.loading ? <span>Salvar alterações</span> : <iconAI.AiOutlineLoading3Quarters fill="#fff" className="animate-spin" />}
-                                    </Button>
-                                </div>
+                                    setChangesMade({ changes: false });
+                                }} className="text-neutral-400">Desfazer</button>
+                                <Button disabled={changesMade.loading} clas="disabled:opacity-50" action={updateBot}>
+                                    {!changesMade.loading ? <span>Salvar alterações</span> : <iconAI.AiOutlineLoading3Quarters fill="#fff" size={22} className="animate-spin" />}
+                                </Button>
                             </div>
                         </div>
-                    )}
-                </div>
+                    </div>
+                )}
             </div>
             {error?.show && <PopUpError setShow={setError} show={error} />}
         </section>
