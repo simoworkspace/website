@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody, NotificationType, StatusStrucuture, DBUser, Team } from "../../types";
+import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody, NotificationType, StatusStrucuture, DBUser, Team, AuditLogStructure } from "../../types";
 import Cookies from "js-cookie";
 
 const header = {
@@ -107,6 +107,9 @@ const api = {
     },
     getUserBots: (): Promise<AxiosResponse<BotStructure[]>> => {
         return axios.get("/api/bots", header);
+    },
+    getAuditLogs: (teamID: string): Promise<AxiosResponse<AuditLogStructure[]>> => {
+        return axios.get(`/api/teams/${teamID}/audit-logs`, header);
     }
 };
 
