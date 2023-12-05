@@ -103,7 +103,6 @@ export interface BotStructure {
     team_id?: string;
     approved: boolean;
     votes: VoteStructure[];
-    total_votes?: number;
     vote_message?: string;
 }
 
@@ -264,7 +263,11 @@ export interface ErrorStructure {
 
 export interface AuditLogStructure {
     team_id: string;
-    executor_id: string;
+    entries: AuditLogEntryStructure[];
+}
+
+export interface AuditLogEntryStructure {
+    executor_id: Snowflake;
     created_at: string;
     id: string;
     action_type: AuditLogActionType;
@@ -348,6 +351,6 @@ export type AuditLogInviteUpdateChange = BaseAuditLogChange<
 
 export type BaseAuditLogChange<Key, Data> = {
     changed_key: Key;
-    old_data: Data;
-    new_data?: Data;
+    old_value: Data;
+    new_value?: Data;
 };

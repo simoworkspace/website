@@ -250,7 +250,7 @@ export const DashboardEdit: React.FC = () => {
                                         <input onChange={handlePrefixChange} maxLength={6} required placeholder="Digite um prefixo" defaultValue={bot.prefixes.join(", ")} className={`bg-transparent p-2 rounded-lg focus:outline-none w-1/3 border-2 ${borderAndBg[color]}`} type="text" />
                                     </div>
                                     <div>
-                                        <strong className="text-lg">Votos </strong><span>{bot.total_votes}</span>
+                                        <strong className="text-lg">Votos </strong><span>{bot.votes.reduce((votesCount, vote) => votesCount + vote.votes, 0)}</span>
                                     </div>
                                     <div>
                                         <div className="flex flex-row gap-3 flex-wrap">

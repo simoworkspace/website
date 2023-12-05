@@ -19,7 +19,7 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
                         <span className="font-bold text-lg">{bot.name}</span>
                         <div className="flex">
                             <TiArrowSortedUp size={20} />
-                            <span className="text-sm">{bot.total_votes}</span>
+                            <span className="text-sm">{bot.votes.reduce((votesCount, vote) => votesCount + vote.votes, 0)}</span>
                         </div>
                     </div>
                 </div>

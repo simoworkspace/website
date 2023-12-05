@@ -35,12 +35,13 @@ export const VoteComponent: React.FC = () => {
 
         return setVoteStatus(data);
     };
-    const getVoteData = async (): Promise<void> => {
-        const res: AxiosResponse<BotStructure> = await api.getBotInfos(botid as string);
-        setVotes(res.data.total_votes as number);
+    const getVoteData = async () => {
+        const { data: { votes } } = await api.getBotInfos(botid as string);
+
+        setVotes(votes.reduce((votesCount, vote) => votesCount + vote.votes, 0) as number);
     };
 
-    const getDiscordBotData = async (): Promise<void> => {
+    const getDiscordBotData = async () => {
         const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(botid as string);
         return setDiscordBotData(res.data);
     };
@@ -52,7 +53,7 @@ export const VoteComponent: React.FC = () => {
         return [min, max];
     };
 
-    const getSuggestedBots = async (): Promise<void> => {
+    const getSuggestedBots = async () => {
         setBotLoading(true);
 
         const botCount = await api.getApiStatus();
@@ -66,7 +67,7 @@ export const VoteComponent: React.FC = () => {
         setBotLoading(false);
     };
 
-    const handleVote = async (): Promise<void> => {
+    const handleVote = async () => {
         setClicked(true);
         await api.voteBot(user?.id as string, botid as string);
         getVoteData();
