@@ -1,45 +1,68 @@
-import { FC, useState, useEffect } from "react";
+import { FC } from "react";
 import { AuditLogStructure } from "../../types";
-import api from "../../utils/api";
+import moment from "moment";
+import "moment/dist/locale/pt-br";
 
 const actionType = {
-    "MemberAdd": 0,
-    "MemberRemove": 1,
-    "MemberUpdate": 2,
-    "TeamOwnershipTransfer": 3,
-    "TeamUpdate": 4,
-    "BotAdd": 5,
-    "BotRemove": 6,
-    "InviteUpdate": 7,
+    MemberAdd: 0,
+    MemberRemove: 1,
+    MemberUpdate: 2,
+    TeamOwnershipTransfer: 3,
+    TeamUpdate: 4,
+    BotAdd: 5,
+    BotRemove: 6,
+    InviteUpdate: 7
 };
 
-export const AuditLogs: FC<{ teamID: string }> = ({ teamID }) => {
-    const [logs, setLogs] = useState<AuditLogStructure>();
+const changedKeysNames: Record<string | number, string> = {
+    name: "o nome",
+    avatar_url: "o avatar",
+    permission: "a permissão",
+    description: "a descrição",
+    bot_id: "id do bot",
+    invite_code: "código de convite",
+    0: "Administrador",
+    1: "Membro",
+    3: "Dono"
+};
 
-    const getAuditLogs = async () => {
-        const { data } = await api.getAuditLogs(teamID);
-
-        return setLogs(data);
-    };
-
-    useEffect(() => {
-        getAuditLogs();
-    }, []);
-
+export const AuditLogs: FC<{ logs: AuditLogStructure | undefined }> = ({ logs }) => {
     return (
         <section>
             <span className="text-white xl:text-[26px] text-[26px] font-bold m-2 xl:m-0 xl:mt-2 w-full flex items-center justify-center">Registro de auditoria</span>
             {logs ? (
                 <div className="flex gap-3 flex-col w-full">
-                    {logs.entries.map((log, index) => (
-                        <div key={index} className="bg-neutral-800 w-full p-3 rounded-lg">
-                            <span>oi</span>
-                            <div>
-                                {log.changes.map((change, index) => (
-                                    log.action_type === actionType.MemberUpdate && (
-                                        <div>{JSON.stringify(change.new_value)}</div>
-                                    )
-                                ))}
+                    {logs.entries.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).map((log, index) => (
+                        <div key={index} className="bg-neutral-800 w-full p-3 rounded-lg flex gap-2 break-before-auto">
+                            <img className="rounded-full w-12 h-12" src="https://cdn.discordapp.com/avatars/955095844275781693/2b4f37479871fb29c42fcb2b2feed9b1.png" />
+                            <div className="flex flex-col gap-1">
+                                <div>
+                                    {log.changes.map((change, index) => (
+                                        <div className="flex flex-col" key={index}>
+                                            {(() => {
+                                                switch (log.action_type) {
+                                                    case actionType.MemberUpdate:
+                                                        return <span><strong>{"spyei"}</strong> Atualizou as permissões para <strong>{"unreal"}</strong> de <strong>{changedKeysNames[change.old_value]}</strong> para <strong>{changedKeysNames[change.new_value as string]}</strong></span>;
+                                                    case actionType.MemberRemove:
+                                                        return <span><strong>{"spyei"}</strong> removeu o membro <strong>{"unreal"}</strong></span>
+                                                    case actionType.MemberAdd:
+                                                        return <span>usuário <strong>{"unreal"}</strong> entrou no grupo</span>
+                                                    case actionType.BotAdd:
+                                                        return <span><strong>{"spyei"}</strong> adicionou o bot com o ID {log.target_id}</span>;
+                                                    case actionType.TeamUpdate:
+                                                            return <span>Atualizou <strong>{changedKeysNames[change.changed_key]}</strong> de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>
+                                                    case actionType.BotRemove:
+                                                        return <span><strong>{"spyei"}</strong> removeu o bot com o ID {log.target_id}</span>;
+                                                    case actionType.InviteUpdate:
+                                                        return <span><strong>{"spyei"}</strong> Atualizou o código de invite, de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>;
+                                                }
+                                            })()}
+                                        </div>
+                                    ))}
+                                </div>
+                                <div>
+                                    <span className="text-neutral-400">{moment(log.created_at).locale("pt-br").fromNow()}</span>
+                                </div>
                             </div>
                         </div>
                     ))}

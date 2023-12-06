@@ -185,7 +185,7 @@ export const ManageTeamComponent: FC = () => {
                                     </div>
                                 </TabPanel>
                                 <TabPanel>
-                                    <AuditLogs logs={logs} teamID={teamID} />
+                                    <AuditLogs logs={logs} />
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>
