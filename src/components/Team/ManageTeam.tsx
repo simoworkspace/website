@@ -66,6 +66,7 @@ export const ManageTeamComponent: FC = () => {
             await api.patchTeam(team?.id as string, formData);
 
             await getUserTeams();
+            await getAuditLogs();
 
             setError({
                 show: false
@@ -85,7 +86,8 @@ export const ManageTeamComponent: FC = () => {
 
     const getUserTeams = async (): Promise<void> => {
         const { data: { invite_code }, data } = await api.getTeam(teamID);
-
+        await getAuditLogs();
+            
         setInviteHash(invite_code);
         setTeam(data);
     };
@@ -93,11 +95,10 @@ export const ManageTeamComponent: FC = () => {
     const updateInviteHash = async (): Promise<void> => {
         if (team) {
             setLoading(true);
+            await getAuditLogs();
 
+            //@ts-ignore
             const req = await api.patchTeam(teamID, {
-                avatar_url: team.avatar_url,
-                description: team.description,
-                name: team.name,
                 invite_code: Math.random().toString(22).slice(2, 8)
             });
 
