@@ -202,8 +202,8 @@ export const DashboardEdit: React.FC = () => {
                                 </span>
                             </div>
                             <div className="flex mx-6 xl:justify-center xl:m-1 flex-row gap-1">
-                                {Array(5).fill(0).map(() => (
-                                    <icon.BsStar />
+                                {Array(5).fill(0).map((_, index) => (
+                                    <icon.BsStar key={index} />
                                 ))}
                             </div>
                         </div>
@@ -299,8 +299,8 @@ export const DashboardEdit: React.FC = () => {
                                     <div>
                                         <div className="flex flex-row gap-3 flex-wrap">
                                             <strong className="text-lg">Tags</strong>
-                                            {tags.map(tag => (
-                                                <div className={`${borderAndBg[color]} p-[6px] rounded-lg border-2 flex flex-row gap-2`}>
+                                            {tags.map((tag, index) => (
+                                                <div key={index} className={`${borderAndBg[color]} p-[6px] rounded-lg border-2 flex flex-row gap-2`}>
                                                     <span>{tag}</span>
                                                     {tags.length > 1 && (
                                                         <button onClick={() => deleteTag(tag)}>

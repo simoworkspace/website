@@ -73,8 +73,8 @@ export const Feedbacks: React.FC<{ botid: string, bot: BotStructure, dev: { id: 
                         <textarea rows={4} onChange={handleChange} className="bg-transparent w-full focus:outline-none p-2" cols={22} required placeholder="Digite aqui" maxLength={500} />
                     </div>
                     <div className="flex flex-row gap-1">
-                        {[1, 2, 3, 4, 5].map((star) => (
-                          <button type="button" onClick={() => handleStarClick(star)} className="cursor-pointer">
+                        {[1, 2, 3, 4, 5].map((star, index) => (
+                          <button key={index} type="button" onClick={() => handleStarClick(star)} className="cursor-pointer">
                               {star <= rating ? <icon.BsFillStarFill size={30} fill="#fff" /> : <icon.BsStar size={30} fill="#fff" />}
                           </button>
                         ))}

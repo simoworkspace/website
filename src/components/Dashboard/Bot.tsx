@@ -79,8 +79,8 @@ export const DashboardBot: React.FC = () => {
                 <div className={`${selectBotMenu ? "opacity-100 visible" : "opacity-0 invisible"} relative transition-all duration-300 w-full flex items-center justify-center`}>
                     {selectBotMenu && (
                         <div className={`bg-neutral-900 absolute top-0 rounded-b-lg overflow-auto max-h-[300px] w-[95%] ${borderColor[color]} border-2 border-t-0 flex items-center flex-col gap-2 p-3`}>
-                            {bots?.map(bot => (
-                                <button onClick={() => getSelectedBot(bot._id)} className="flex xl:flex-col items-center justify-start w-full gap-3 p-3 transition-colors duration-300 hover:bg-neutral-800 rounded-lg">
+                            {bots?.map((bot, index) => (
+                                <button key={index} onClick={() => getSelectedBot(bot._id)} className="flex xl:flex-col items-center justify-start w-full gap-3 p-3 transition-colors duration-300 hover:bg-neutral-800 rounded-lg">
                                     <img className="rounded-full w-20" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
                                     <span className="text-xl">{bot.name}</span>
                                     <span className="text-[#797979] items-center flex text-[13px] justify-center">
@@ -106,8 +106,8 @@ export const DashboardBot: React.FC = () => {
                                 <div className="flex gap-3 flex-col">
                                     <span className="min-h-[48px] break-before-auto">{selectedBot.short_description}</span>
                                     <div className="flex flex-row gap-1 flex-wrap">
-                                        {selectedBot.tags.map(tag => (
-                                            <div className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
+                                        {selectedBot.tags.map((tag, index) => (
+                                            <div key={index} className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
                                         ))}
                                     </div>
                                 </div>

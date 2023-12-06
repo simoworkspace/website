@@ -138,7 +138,7 @@ export const VoteComponent: React.FC = () => {
                         {botLoading ? (
                             <Botloading fills={2} grid />
                         ) : (
-                            bots.map(bot => (<BotCard bot={bot} />))
+                            bots.map((bot, index) => (<BotCard key={index} bot={bot} />))
                         )}
                     </div>
                 </div>

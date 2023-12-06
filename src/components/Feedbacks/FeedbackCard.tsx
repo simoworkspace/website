@@ -143,8 +143,8 @@ export const FeedbackCard: React.FC<{
                             <textarea defaultValue={feedback.content} rows={4} onChange={handleChangeEdit} className="bg-transparent w-full focus:outline-none p-2" cols={22} required placeholder="Digite aqui" maxLength={500} />
                         </div>
                         <div className="flex flex-row gap-1">
-                            {[1, 2, 3, 4, 5].map((star) => (
-                                <span onClick={() => setRating(star)} className="cursor-pointer">
+                            {[1, 2, 3, 4, 5].map((star, index) => (
+                                <span key={index} onClick={() => setRating(star)} className="cursor-pointer">
                                     {star <= rating ? <icon.BsFillStarFill size={30} fill="#fff" /> : <icon.BsStar size={30} fill="#fff" />}
                                 </span>
                             ))}
@@ -164,11 +164,11 @@ export const FeedbackCard: React.FC<{
                 }
                 {!isEdit && (
                     <div className="flex flex-row gap-1">
-                        {Array(feedback.stars).fill(0).map(() => (
-                            <icon.BsStarFill />
+                        {Array(feedback.stars).fill(0).map((_, index) => (
+                            <icon.BsStarFill key={index} />
                         ))}
-                        {Array(5 - (feedback?.stars as number)).fill(0).map(() => (
-                            <icon.BsStar />
+                        {Array(5 - (feedback?.stars as number)).fill(0).map((_, index) => (
+                            <icon.BsStar key={index} />
                         ))}
                     </div>
                 )}

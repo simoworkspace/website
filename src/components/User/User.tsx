@@ -70,7 +70,7 @@ export const User: React.FC = () => {
                                 <div className="text-center text-[22px]">{user.username} não tem bots para serem listados.</div>
                             ) : (
                                 <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:place-items-center xl:w-[95vw]">
-                                    {userBots.map((bot: BotStructure) => (<BotCard bot={bot} />))}
+                                    {userBots.map((bot: BotStructure, index: number) => (<BotCard key={index} bot={bot} />))}
                                 </div>
                             )}
                         </section>

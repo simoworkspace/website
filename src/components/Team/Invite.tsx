@@ -83,8 +83,8 @@ export const InviteComponent: FC = () => {
                                 <div className="flex w-full flex-col gap-3 py-3 px-5">
                                     <span className="text-lg font-bold text-left">Membros</span>
                                     <div className="flex flex-wrap w-full gap-2">
-                                        {team.members?.map((member) => (
-                                            <Link to={`/user/${member.id}`}>
+                                        {team.members?.map((member, index) => (
+                                            <Link key={index} to={`/user/${member.id}`}>
                                                 {member.permission === TeamPermissions.Owner && <icon.BiSolidCrown fill="#FFD700" className="absolute ml-7 rotate-45" />}
                                                 <img
                                                     className="rounded-full w-10"

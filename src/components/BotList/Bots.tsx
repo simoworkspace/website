@@ -52,8 +52,8 @@ export const Bots: React.FC = () => {
     return (
         <div className="max-w-[1500px] w-screen flex-col gap-2 justify-center items-center">
             <div className="grid-cols-2 grid gap-3 text-white p-3 xl:w-full xl:grid-cols-1 w-full">
-                {data.map((bot: BotStructure) => (
-                    <BotCard bot={bot} key={bot._id} />
+                {data.map((bot: BotStructure, index: number) => (
+                    <BotCard bot={bot} key={index} />
                 ))}
             </div>
             <div ref={bottomOfPageRef} />

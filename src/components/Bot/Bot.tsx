@@ -68,11 +68,11 @@ export const BotComponent: FC = () => {
                                 </span>
                             </div>
                             <div className="flex mx-6 xl:justify-center xl:m-1 flex-row gap-1">
-                                {Array(stars).fill(0).map(() => (
-                                    <icon.BsStarFill />
+                                {Array(stars).fill(0).map((_, index) => (
+                                    <icon.BsStarFill key={index} />
                                 ))}
-                                {Array(5 - stars).fill(0).map(() => (
-                                    <icon.BsStar />
+                                {Array(5 - stars).fill(0).map((_, index) => (
+                                    <icon.BsStar key={index} />
                                 ))}
                             </div>
                         </div>
@@ -127,8 +127,8 @@ export const BotComponent: FC = () => {
                                     <div>
                                         <div className="flex flex-row gap-3 flex-wrap">
                                             <strong className="text-lg">Tags</strong>
-                                            {botData.tags.map(tag => (
-                                                <div className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
+                                            {botData.tags.map((tag, index) => (
+                                                <div key={index} className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
                                             ))}
                                         </div>
                                     </div>

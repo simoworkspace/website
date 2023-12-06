@@ -67,11 +67,11 @@ export const DeleteBot: FC<{
                     <div className="flex flex-col justify-start items-start">
                         <span className="font-bold text-lg">{bot.name}</span>
                         <div className="flex flex-row gap-1">
-                            {Array(stars).fill(0).map(() => (
-                                <icon.BsStarFill />
+                            {Array(stars).fill(0).map((_, index) => (
+                                <icon.BsStarFill key={index} />
                             ))}
-                            {Array(5 - stars).fill(0).map(() => (
-                                <icon.BsStar />
+                            {Array(5 - stars).fill(0).map((_, index) => (
+                                <icon.BsStar key={index} />
                             ))}
                         </div>
                     </div>

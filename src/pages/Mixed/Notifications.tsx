@@ -49,8 +49,8 @@ export const NotificationsPage: FC = () => {
                         {Object.keys(notifications).length > 0 ? (
                             <>
                                 <div className="flex flex-col gap-3">
-                                    {Object.keys(notifications).map(key => (
-                                        <NotificationCard mobile updateNotifications={getNotifications} user={user} notification={notifications[key]} key={key} keyc={key} color={color} />
+                                    {Object.keys(notifications).map((key, index) => (
+                                        <NotificationCard mobile updateNotifications={getNotifications} user={user} notification={notifications[key]} key={index} keyc={key} color={color} />
                                     ))}
                                 </div>
                                 <div className="flex flex-row gap-2 items-center justify-center mt-5">

@@ -26,8 +26,8 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
                 <div className="flex gap-3 flex-col">
                     <span className="min-h-[48px]">{bot.short_description}</span>
                     <div className="flex flex-row gap-1 flex-wrap">
-                        {bot.tags.map(tag => (
-                            <div className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
+                        {bot.tags.map((tag, index) => (
+                            <div key={index} className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
                         ))}
                     </div>
                 </div>

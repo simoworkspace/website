@@ -73,8 +73,8 @@ export const NotificationButton: FC = () => {
                         {user?.notifications_viewed ? (
                             <>
                                 <div className="flex flex-col my-3 gap-3 xl:invisible">
-                                    {Object.keys(notifications).map(key => (
-                                        <NotificationCard updateNotifications={getNotifications} user={user} notification={notifications[key]} key={key} keyc={key} color={color} />
+                                    {Object.keys(notifications).map((key, index) => (
+                                        <NotificationCard updateNotifications={getNotifications} user={user} notification={notifications[key]} key={index} keyc={key} color={color} />
                                     ))}
                                 </div>
                                 <Link className="text-blue-500 underline hover:text-blue-600 transition-colors flex items-center justify-center mb-3" to="/notifications">
