@@ -267,7 +267,11 @@ export interface AuditLogStructure {
 }
 
 export interface AuditLogEntryStructure {
-    executor_id: Snowflake;
+    executor: {
+        id: Snowflake;
+        username: string;
+        avatar: string;
+    }
     created_at: string;
     id: string;
     action_type: AuditLogActionType;
