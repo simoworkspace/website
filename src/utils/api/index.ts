@@ -110,6 +110,9 @@ const api = {
     },
     getAuditLogs: (teamID: string): Promise<AxiosResponse<AuditLogStructure>> => {
         return axios.get(`/api/teams/${teamID}/audit-logs`, header);
+    },
+    patchMember: (teamID: string, memberID: Snowflake, data: { permission?: 0 | 1 }): Promise<AxiosResponse> => {
+        return axios.patch(`/api/teams/${teamID}/members/${memberID}`, data, header);
     }
 };
 
