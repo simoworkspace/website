@@ -24,8 +24,12 @@ export const NotificationButton: FC = () => {
 
     const getNotifications = async (): Promise<void> => {
         setIsLoading(true);
-        const req: AxiosResponse<NotificationStructure> = await api.getNotifications();
-        setNotifications(req.data);
+
+        const { data } = await api.getNotifications();
+        
+        if (data.notifications_viewed) await api.patchUser({ notifications_viewed: true });
+        setNotifications(data);
+
         setIsLoading(false);
     };
 
