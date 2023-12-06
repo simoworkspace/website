@@ -17,7 +17,7 @@ const TeamPermissions = {
     Owner: 2
 }
 
-export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
+export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<void> }> = ({ color, updateAuditLogs }) => {
     const [actions, setActions] = useState<{
         menu?: boolean;
         loading?: boolean;
@@ -56,31 +56,17 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
         }
 
         await getTeam();
+        await updateAuditLogs();
 
         setActions({ loading: false });
     };
 
     const demoteMember = async (): Promise<void> => {
-        if (!team || !member || !team.members) return;
-
         setActions({ loading: true });
 
-        const members = team.members.filter((teamMember) => teamMember.id !== member.id);
-
         try {
-            await api.patchTeam(team?.id as string, {
-                avatar_url: team.avatar_url,
-                description: team.description,
-                name: team.name,
-                invite_code: team.invite_code,
-                members: [
-                    ...members,
-                    {
-                        id: member.id,
-                        username: member.username,
-                        avatar: member.avatar,
-                        permission: TeamPermissions.ReadOnly
-                    }]
+            await api.patchMember(team?.id as string, member?.id as string, {
+                permission: 1
             });
         } catch (error: any) {
             setActions({ loading: false });
@@ -93,31 +79,17 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
         }
 
         await getTeam();
+        await updateAuditLogs();
 
         setActions({ loading: false });
     };
 
     const promoveMember = async (): Promise<void> => {
-        if (!team || !member || !team.members) return;
-
         setActions({ loading: true });
 
-        const members = team.members.filter((teamMember) => teamMember.id !== member.id);
-
         try {
-            await api.patchTeam(team?.id as string, {
-                avatar_url: team.avatar_url,
-                description: team.description,
-                name: team.name,
-                invite_code: team.invite_code,
-                members: [
-                    ...members,
-                    {
-                        id: member.id,
-                        username: member.username,
-                        avatar: member.avatar,
-                        permission: TeamPermissions.Administrator
-                    }]
+            await api.patchMember(team?.id as string, member?.id as string, {
+                permission: 0
             });
         } catch (error: any) {
             setActions({ loading: false });
@@ -130,6 +102,7 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
         }
 
         await getTeam();
+        await updateAuditLogs();
 
         setActions({ loading: false });
     };
@@ -152,6 +125,7 @@ export const ManageMembers: FC<{ color: Theme }> = ({ color }) => {
         }
 
         await getTeam();
+        await updateAuditLogs();
 
         setActions({ loading: false });
     };
