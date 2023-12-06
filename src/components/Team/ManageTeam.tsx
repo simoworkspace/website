@@ -43,6 +43,18 @@ export const ManageTeamComponent: FC = () => {
             invite_code
         };
 
+        console.log(formData);
+
+        for (let i in formData) {
+            if (!team) return;
+
+            if (formData[i as keyof Team] === team[i as keyof Team]) {
+                delete formData[i as keyof Team];
+            }
+        }
+
+        console.log(formData);
+
         try {
             await api.patchTeam(team?.id as string, formData);
 
@@ -164,7 +176,7 @@ export const ManageTeamComponent: FC = () => {
                                     </div>
                                 </TabPanel>
                                 <TabPanel>
-                                    <AuditLogs teamID={teamID}/>
+                                    <AuditLogs teamID={teamID} />
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>
