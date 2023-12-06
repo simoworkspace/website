@@ -2,7 +2,7 @@ import { FC, useContext, useEffect, useState } from "react";
 import { DashboardUser } from "../Dashboard/User";
 import { UserContext } from "../../contexts/UserContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
-import { ErrorStructure, Team, UserStructure } from "../../types";
+import { AuditLogStructure, ErrorStructure, Team, UserStructure } from "../../types";
 import { Tabs, TabList, TabPanels, Tab, TabPanel, TabIndicator } from "@chakra-ui/react";
 import { borderColor } from "../../utils/theme/border";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -30,6 +30,13 @@ export const ManageTeamComponent: FC = () => {
     const [error, setError] = useState<ErrorStructure>();
     const [loading, setLoading] = useState<boolean>(false);
     const [inviteHash, setInviteHash] = useState<string>("");
+    const [logs, setLogs] = useState<AuditLogStructure>();
+
+    const getAuditLogs = async () => {
+        const { data } = await api.getAuditLogs(teamID);
+
+        return setLogs(data);
+    };
 
     const onSubmitEdit: SubmitHandler<Team> = async (data: Team): Promise<void> => {
         setSubmitedEdit(true);
@@ -58,7 +65,7 @@ export const ManageTeamComponent: FC = () => {
         try {
             await api.patchTeam(team?.id as string, formData);
 
-            window.location.href = `/team/${team?.id}`;
+            await getUserTeams();
 
             setError({
                 show: false
@@ -102,6 +109,7 @@ export const ManageTeamComponent: FC = () => {
 
     useEffect(() => {
         getUserTeams();
+        getAuditLogs();
     }, []);
 
     return (
@@ -167,7 +175,7 @@ export const ManageTeamComponent: FC = () => {
                                     )}
                                 </TabPanel>
                                 <TabPanel>
-                                    <ManageMembers color={color} />
+                                    <ManageMembers updateAuditLogs={getAuditLogs} color={color} />
                                 </TabPanel>
                                 <TabPanel>
                                     <div className="w-full flex flex-col gap-3 mt-4 items-center justify-center">
@@ -176,7 +184,7 @@ export const ManageTeamComponent: FC = () => {
                                     </div>
                                 </TabPanel>
                                 <TabPanel>
-                                    <AuditLogs teamID={teamID} />
+                                    <AuditLogs logs={logs} teamID={teamID} />
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>
