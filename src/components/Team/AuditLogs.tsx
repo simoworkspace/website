@@ -34,27 +34,29 @@ export const AuditLogs: FC<{ logs: AuditLogStructure | undefined }> = ({ logs })
                 <div className="flex gap-3 flex-col w-full">
                     {logs.entries.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).map((log, index) => (
                         <div key={index} className="bg-neutral-800 w-full p-3 rounded-lg flex gap-2 break-before-auto">
-                            <img className="rounded-full w-12 h-12" src="https://cdn.discordapp.com/avatars/955095844275781693/2b4f37479871fb29c42fcb2b2feed9b1.png" />
+                            <img className="rounded-full w-12 h-12" src={`https://cdn.discordapp.com/avatars/${log.executor._id}/${log.executor.avatar}.png`} />
                             <div className="flex flex-col gap-1">
                                 <div>
                                     {log.changes.map((change, index) => (
                                         <div className="flex flex-col" key={index}>
                                             {(() => {
                                                 switch (log.action_type) {
-                                                    case actionType.MemberUpdate:
-                                                        return <span><strong>{"spyei"}</strong> Atualizou as permissões para <strong>{"unreal"}</strong> de <strong>{changedKeysNames[change.old_value]}</strong> para <strong>{changedKeysNames[change.new_value as string]}</strong></span>;
-                                                    case actionType.MemberRemove:
-                                                        return <span><strong>{"spyei"}</strong> removeu o membro <strong>{"unreal"}</strong></span>
                                                     case actionType.MemberAdd:
-                                                        return <span>usuário <strong>{"unreal"}</strong> entrou no grupo</span>
+                                                        return <span>usuário <strong>{log.target?.username}</strong> entrou no grupo</span>;
+                                                    case actionType.MemberUpdate:
+                                                        return <span><strong>{log.executor.username}</strong> Atualizou as permissões para <strong>{log.target?.username}</strong> de <strong>{changedKeysNames[change.old_value]}</strong> para <strong>{changedKeysNames[change.new_value as string]}</strong></span>;
+                                                    case actionType.MemberRemove:
+                                                        return <span><strong>{log.executor.username}</strong> removeu o membro <strong>{log.target?.username}</strong></span>
                                                     case actionType.BotAdd:
-                                                        return <span><strong>{"spyei"}</strong> adicionou o bot com o ID {log.target_id}</span>;
+                                                        return <span><strong>{log.executor.username}</strong> adicionou o bot com o ID {log.target?.username}</span>;
                                                     case actionType.TeamUpdate:
-                                                            return <span>Atualizou <strong>{changedKeysNames[change.changed_key]}</strong> de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>
+                                                        return <span><strong>{log.executor.username}</strong> Atualizou <strong>{changedKeysNames[change.changed_key]}</strong> de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>
                                                     case actionType.BotRemove:
-                                                        return <span><strong>{"spyei"}</strong> removeu o bot com o ID {log.target_id}</span>;
+                                                        return <span><strong>{log.executor.username}</strong> removeu o bot com o ID {log.target?.username}</span>;
                                                     case actionType.InviteUpdate:
-                                                        return <span><strong>{"spyei"}</strong> Atualizou o código de invite, de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>;
+                                                        return <span><strong>{log.executor.username}</strong> Atualizou o código de invite, de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>;
+                                                    default:
+                                                        return <span>Ação não tratada para action_type {log.action_type}</span>;
                                                 }
                                             })()}
                                         </div>
