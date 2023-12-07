@@ -112,18 +112,14 @@ export interface VoteStructure {
     last_vote: string;
 }
 
-export interface UserStructure extends DBUser {
-    signed: boolean;
-    id: Snowflake
-    notifications_viewed: boolean;
-}
-export interface DBUser {
+export interface UserStructure {
+    notifications_viewed: boolean
     username: string;
     banner_url: string;
     _id: Snowflake | string;
     avatar: string;
     bio: string | null;
-};
+}
 
 interface Locales {
     id?: string;
