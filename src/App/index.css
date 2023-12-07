@@ -53,7 +53,7 @@
 
 .snowflake {
     color: #fff;
-    font-size: 1em;
+    font-size: 10px;
     font-family: Serif;
     text-shadow: 0 0 1px #000;
 }
@@ -132,81 +132,77 @@
 
 .snowflake:nth-of-type(0) {
     left: 1%;
+    font-size: 14px;
     -webkit-animation-delay: 0s, 0s;
     animation-delay: 0s, 0s;
 }
 
 .snowflake:nth-of-type(1) {
     left: 10%;
+    font-size: 24px;
     -webkit-animation-delay: 1s, 1s;
     animation-delay: 1s, 1s;
 }
 
 .snowflake:nth-of-type(2) {
     left: 20%;
+    font-size: 12px;
     -webkit-animation-delay: 6s, .5s;
     animation-delay: 6s, .5s;
 }
 
 .snowflake:nth-of-type(3) {
     left: 30%;
+    font-size: 10px;
     -webkit-animation-delay: 4s, 2s;
     animation-delay: 4s, 2s;
 }
 
 .snowflake:nth-of-type(4) {
     left: 40%;
+    font-size: 15px;
     -webkit-animation-delay: 2s, 2s;
     animation-delay: 2s, 2s;
 }
 
 .snowflake:nth-of-type(5) {
     left: 50%;
+    font-size: 17px;
     -webkit-animation-delay: 8s, 3s;
     animation-delay: 8s, 3s;
 }
 
 .snowflake:nth-of-type(6) {
     left: 60%;
+    font-size: 14px;
     -webkit-animation-delay: 6s, 2s;
     animation-delay: 6s, 2s;
 }
 
 .snowflake:nth-of-type(7) {
     left: 70%;
+    font-size: 26px;
     -webkit-animation-delay: 2.5s, 1s;
     animation-delay: 2.5s, 1s;
 }
 
 .snowflake:nth-of-type(8) {
     left: 80%;
+    font-size: 15px;
     -webkit-animation-delay: 1s, 0s;
     animation-delay: 1s, 0s;
 }
 
 .snowflake:nth-of-type(9) {
     left: 90%;
+    font-size: 12px;
     -webkit-animation-delay: 3s, 1.5s;
-    animation-delay: 3s, 1.5s;
+    animation-delay: 3s, 1.8s;
 }
 
 .snowflake:nth-of-type(10) {
-    left: 90%;
-    -webkit-animation-delay: 3s, 1.5s;
-    animation-delay: 3s, 1.5s;
-}
-
-/* Apenas para demonstração */
-.demo {
-    font-family: 'Raleway', sans-serif;
-    color: #fff;
-    display: block;
-    margin: 0 auto;
-    padding: 15px 0;
-    text-align: center;
-}
-
-.demo a {
-    font-family: 'Raleway', sans-serif;
-    color: #000;
+    left: 93%;
+    font-size: 20px;
+    -webkit-animation-delay: 1s, 2s;
+    animation-delay: 2s, 1.5s;
 }
