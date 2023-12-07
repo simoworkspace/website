@@ -205,7 +205,7 @@ export const FeedbackCard: React.FC<{
                                     />
                                     <div className="flex gap-2 items-center">
                                         <span className="p-1 ml-1">{developer?.username}</span>
-                                        <span className="text-neutral-500">{new Date(feedback.reply_message.posted_at as string).toLocaleString().split(", ")[0]}</span>
+                                        <span className="text-neutral-500">{moment(feedback.reply_message.posted_at).fromNow()}</span>
                                     </div>
                                 </Link>
                                 <div className="py-2">{feedback.reply_message.content}{feedback?.reply_message.edited && <span className="text-neutral-500"> (editado)</span>}</div>

@@ -6,6 +6,8 @@ import * as iconAI from "react-icons/ai";
 import * as icon from "react-icons/bs";
 import { buttonColor } from "../../utils/theme/button";
 import simo from "../../assets/images/simo.png";
+import moment from "moment";
+import "moment/dist/locale/pt-br";
 
 export const ReplyFeedbackCard: FC<{
     feedback: FeedbackStructure;
@@ -99,7 +101,7 @@ export const ReplyFeedbackCard: FC<{
                                 }}
                             />
                             <span className="p-1 ml-1">{user.username}</span>
-                            <span className="text-neutral-500">{new Date(feedback.reply_message.posted_at as string).toLocaleString().split(", ")[0]}</span>
+                            <span className="text-neutral-500">{moment(feedback.reply_message.posted_at).fromNow()}</span>
                         </div>
                         <div className="py-2">{feedback.reply_message.content}{feedback?.reply_message.edited && <span className="text-neutral-500"> (editado)</span>}</div>
                     </div>
