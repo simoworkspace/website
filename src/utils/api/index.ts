@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody, NotificationType, StatusStrucuture, DBUser, Team, AuditLogStructure } from "../../types";
+import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody, NotificationType, StatusStrucuture, Team, AuditLogStructure } from "../../types";
 import Cookies from "js-cookie";
 
 const header = {
@@ -13,7 +13,7 @@ const api = {
         return axios.get(`/api/bots?startAt=${startAt}&endAt=${endAt}`, header);
     },
     getUserData: (): Promise<AxiosResponse<UserStructure>> => {
-        return axios.get("/api/auth/user", { ...header, withCredentials: true });
+        return axios.get("/api/users/@me", header);
     },
     getToken: (): Promise<string> => {
         return axios.get("/api/auth/token");
