@@ -179,7 +179,7 @@ export const ManageTeamComponent: FC = () => {
                                     <ManageMembers updateAuditLogs={getAuditLogs} color={color} />
                                 </TabPanel>
                                 <TabPanel>
-                                    <TeamAddbot team={team} user={user} />
+                                    <TeamAddbot team={team} />
                                 </TabPanel>
                                 <TabPanel>
                                     <AuditLogs logs={logs} />

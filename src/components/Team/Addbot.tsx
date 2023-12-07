@@ -7,12 +7,14 @@ import { borderColor } from "../../utils/theme/border";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import * as iconMD from "react-icons/md";
 import { borderAndBg } from "../../utils/theme/border&bg";
+import { UserContext } from "../../contexts/UserContext";
 
-export const TeamAddbot: FC<{ team: Team | undefined; user: UserStructure | null }> = ({ team, user }) => {
+export const TeamAddbot: FC<{ team: Team | undefined }> = ({ team }) => {
     const [selectBotMenu, setSelectBotMenu] = useState<boolean>(false);
     const [bots, setBots] = useState<BotStructure[] | null>(null);
     const [selectedBot, setSelectedBot] = useState<BotStructure | null>(null);
     const { color } = useContext(ThemeContext);
+    const { user } = useContext(UserContext);
 
     const getUserBots = async () => {
         const { data } = await api.getUserBots();
@@ -42,7 +44,7 @@ export const TeamAddbot: FC<{ team: Team | undefined; user: UserStructure | null
                             <img className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${selectedBot._id}/${selectedBot.avatar}.png`} />
                             <span className="text-xl">{selectedBot.name}</span>
                             <span className="text-[#797979] items-center flex text-[13px] xl:invisible justify-center">
-                                ( {user?._id} )
+                                ( {selectedBot?._id} )
                             </span>
                         </div>
                     ) : <span className="flex flex-grow">Clique aqui para selecionar um bot para gerenciar.</span>}
@@ -58,7 +60,7 @@ export const TeamAddbot: FC<{ team: Team | undefined; user: UserStructure | null
                                     <img className="rounded-full w-20" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
                                     <span className="text-xl">{bot.name}</span>
                                     <span className="text-[#797979] items-center flex text-[13px] justify-center">
-                                        ( {user?._id} )
+                                        ( {selectedBot?._id} )
                                     </span>
                                 </button>
                             ))}
