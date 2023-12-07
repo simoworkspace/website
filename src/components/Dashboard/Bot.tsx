@@ -5,14 +5,11 @@ import { UserContext } from "../../contexts/UserContext";
 import * as iconMD from "react-icons/md";
 import * as iconBS from "react-icons/bs";
 import * as iconAI from "react-icons/ai";
-import { BotStructure, UserStructure } from "../../types";
-import { AxiosResponse } from "axios";
+import { BotStructure } from "../../types";
 import api from "../../utils/api";
-import { BotCard } from "../BotList/BotCard";
 import { buttonColor } from "../../utils/theme/button";
 import { Link } from "react-router-dom";
 import { DeleteBot } from "./Delete";
-import { DashboardUser } from "./User";
 import { borderAndBg } from "../../utils/theme/border&bg";
 
 export const DashboardBot: React.FC = () => {
@@ -37,7 +34,7 @@ export const DashboardBot: React.FC = () => {
         return setApiKeyLoading(false);
     };
 
-    const getUserBots = async (): Promise<void> => {
+    const getUserBots = async () => {
         const { data } = await api.getUserBots();
 
         if (data.length === 1) {
@@ -47,7 +44,7 @@ export const DashboardBot: React.FC = () => {
         return setBots(data ? data : null);
     };
 
-    const getSelectedBot = (botId: string): void => {
+    const getSelectedBot = (botId: string) => {
         const selbot = bots?.find(bot => bot._id == botId);
         setSelectBotMenu(false);
         return setSelectedBot(selbot as BotStructure);
@@ -68,7 +65,7 @@ export const DashboardBot: React.FC = () => {
                             <img className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${selectedBot._id}/${selectedBot.avatar}.png`} />
                             <span className="text-xl">{selectedBot.name}</span>
                             <span className="text-[#797979] items-center flex text-[13px] xl:invisible justify-center">
-                                ( {user?.id} )
+                                ( {user?._id} )
                             </span>
                         </div>
                     ) : <span className="flex flex-grow">Clique aqui para selecionar um bot para gerenciar.</span>}
@@ -84,7 +81,7 @@ export const DashboardBot: React.FC = () => {
                                     <img className="rounded-full w-20" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
                                     <span className="text-xl">{bot.name}</span>
                                     <span className="text-[#797979] items-center flex text-[13px] justify-center">
-                                        ( {user?.id} )
+                                        ( {user?._id} )
                                     </span>
                                 </button>
                             ))}

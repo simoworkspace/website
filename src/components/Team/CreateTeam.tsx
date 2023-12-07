@@ -5,18 +5,15 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { Input } from "../Addbot/Input";
 import { borderColor } from "../../utils/theme/border";
 import { shadowColor } from "../../utils/theme/shadow";
-import { UserContext } from "../../contexts/UserContext";
 import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
 import * as icon from "react-icons/ai";
 import { PopUpError } from "../Mixed/Error";
-import { ApiErrors } from "../../utils/api/errors";
 
 export const CreateTeam: React.FC = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<Team>();
 
     const { color } = useContext(ThemeContext);
-    const { user } = useContext(UserContext);
 
     const [error, setError] = useState<ErrorStructure>();
     const [submited, setSubmited] = useState<boolean>(false);

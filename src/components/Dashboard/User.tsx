@@ -18,14 +18,14 @@ export const DashboardUser: FC<{
                         currentTarget.onerror = null;
                         currentTarget.src = simo;
                     }}
-                    className="rounded-full w-32" src={`https://cdn.discordapp.com/avatars/${user._id || user.id}/${user.avatar}.png`}
+                    className="rounded-full w-32" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`}
                     alt={`${user.username}'s Avatar`}
                 />
             </div>
             <div className="flex flex-col justify-center gap-1 z-2 relative px-3 pb-4">
                 <strong>{user.username}</strong>
                 <span className="text-[#797979] items-center flex text-[13px]">
-                    ( {user._id || user.id} )
+                    ( {user._id} )
                 </span>
                 {user?.bio && <span className="mt-5">{user.bio}</span>}
             </div>

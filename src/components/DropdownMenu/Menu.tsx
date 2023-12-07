@@ -49,7 +49,7 @@ export const LoggedMenu: React.FC = () => {
                     className={`${borderColor[color]} mr-10 xl:invisible bg-neutral-900 flex text-white border-2 p-2 gap-3 rounded-lg max-w-[600px] min-w-[165px] items-center justify-center`}
                 >
                     <div className="h-[30px] w-[30px]">
-                        <img src={`https://cdn.discordapp.com/avatars/${user?.id}/${user?.avatar}.png`} className="w-full h-full rounded-full" alt="Avatar" />
+                        <img src={`https://cdn.discordapp.com/avatars/${user?._id}/${user?.avatar}.png`} className="w-full h-full rounded-full" alt="Avatar" />
                     </div>
                     <div className="flex flex-reverse-row break-before-all items-center justify-center">
                         <span>{user.username}</span>

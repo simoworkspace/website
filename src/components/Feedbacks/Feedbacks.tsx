@@ -45,7 +45,7 @@ export const Feedbacks: React.FC<{ botid: string, bot: BotStructure, dev: { id: 
         event.preventDefault();
         setSubmited(true);
 
-        await api.postFeedback(rating, new Date().toISOString(), feedback, botid, user?.id as string).catch(() => {
+        await api.postFeedback(rating, new Date().toISOString(), feedback, botid, user?._id as string).catch(() => {
             setFeedbackSent(true)
             setSubmited(false);
         });

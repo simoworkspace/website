@@ -2,7 +2,7 @@ import { FC, useContext, useState, useEffect } from "react";
 import { DashboardUser } from "./User";
 import { Tabs, TabList, TabPanels, Tab, TabPanel, TabIndicator } from "@chakra-ui/react";
 import { ThemeContext } from "../../contexts/ThemeContext";
-import { DBUser, Team, UserStructure } from "../../types";
+import { Team} from "../../types";
 import { borderColor } from "../../utils/theme/border";
 import { Button } from "../Mixed/Button";
 import * as icon from "react-icons/bs";
@@ -17,8 +17,7 @@ import { DashboardBot } from "./Bot";
 
 export const DashboardComponent: FC = () => {
     const { color } = useContext(ThemeContext);
-    const [user, setUser] = useState<DBUser>();
-    const websiteUser = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     const [editActions, setEditActions] = useState<{ submitedBio?: boolean; submitedBanner?: boolean; bio?: string; banner_url?: string; patchedbio?: boolean; patchedbanner?: boolean }>({
         banner_url: user?.banner_url,
@@ -37,9 +36,7 @@ export const DashboardComponent: FC = () => {
 
     const getUserTeams = async () => {
         const req = await api.getUserTeams();
-        const req2 = await api.getUserFromDB(websiteUser.user?.id || websiteUser.user?._id as string);
 
-        setUser(req2.data);
         setTeams(req.data);
     };
 
@@ -67,12 +64,12 @@ export const DashboardComponent: FC = () => {
 
     useEffect(() => {
         getUserTeams();
-    }, [websiteUser.user]);
+    }, [user]);
 
     return user ? (
         <main className="max-w-[1500px] flex justify-center items-center">
             <section className="w-screen flex flex-row p-5 text-white items-start xl:items-center justify-center gap-10 xl:flex-col">
-                <DashboardUser color={color} user={user as UserStructure} />
+                <DashboardUser color={color} user={user} />
                 <div className="flex h-full w-full flex-col">
                     <h1 className="text-[33px] text-center mb-5 mt-1">Bem vindo a dashboard, <strong>{user?.username}</strong></h1>
                     <div className={`w-full p-3 h-full flex flex-col gap-3 bg-neutral-900 ${borderColor[color]} border-2 rounded-lg`}>

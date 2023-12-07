@@ -66,10 +66,10 @@ export const TeamComponent: React.FC = () => {
                         </span>
                     </div>
                     <div className="flex w-full flex-col gap-3 py-3 px-5">
-                        {team.members?.find((member) => member.permission === TeamPermissions.Owner && member.id === user?.id || member.permission === TeamPermissions.Administrator && member.id === user?.id) && (
+                        {team.members?.find((member) => member.permission === TeamPermissions.Owner && member.id === user?._id || member.permission === TeamPermissions.Administrator && member.id === user?._id) && (
                             <div className="flex flex-col gap-2">
                                 <Button link to={"/team/manage/" + team.id} clas="w-full flex gap-3 items-center"><icon.BiWrench />Gerenciar</Button>
-                                {team.members.find((member) => member.permission === TeamPermissions.Owner && member.id === user?.id) && (
+                                {team.members.find((member) => member.permission === TeamPermissions.Owner && member.id === user?._id) && (
                                     <button onClick={() => setDeleteTeam(true)} className={`flex items-center flex-row gap-3 p-3 w-full rounded-lg ${buttonColor["red"]} h-12 transition-colors duration-300 border-2`}>
                                         <icon.BiTrash />
                                         <span>Deletar</span>

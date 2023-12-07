@@ -134,7 +134,7 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
         getTeam();
     }, []);
 
-    const youinTeam = team?.members?.find((member) => member.id === user?.id);
+    const youinTeam = team?.members?.find((member) => member.id === user?._id);
 
     return (
         <section className="flex w-full items-center justify-center flex-col gap-2">

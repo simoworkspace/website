@@ -121,7 +121,7 @@ export const FeedbackCard: React.FC<{
                             <span className="text-neutral-500">{moment(feedback.posted_at).fromNow()}</span>
                         </div>
                     </Link>
-                    {user?.id === feedback?.author?.id as string && (
+                    {user?._id === feedback?.author?.id as string && (
                         <div className="flex gap-3 justify-end w-full">
                             <button disabled={isDeleted} onClick={async () => {
                                 setIsDeleted(true);
@@ -160,7 +160,7 @@ export const FeedbackCard: React.FC<{
                     <div className="flex flex-col w-full justify-center items-start">
                         <div className="py-2">{feedback.content}{feedback?.edited && <span className="text-neutral-500"> (editado)</span>}</div>
                         {bot && (
-                            bot.owner_id === user?.id && !reply && !("content" in feedback.reply_message) && <button onClick={() => setReply(true)} className="text-neutral-500">Replicar</button>
+                            bot.owner_id === user?._id && !reply && !("content" in feedback.reply_message) && <button onClick={() => setReply(true)} className="text-neutral-500">Replicar</button>
                         )}
                     </div>
                 }
@@ -178,7 +178,7 @@ export const FeedbackCard: React.FC<{
                     isEditReply ? (
                         <form onSubmit={handleEditReplyFeedback} className="flex flex-row gap-3 w-full">
                             <div className="flex flex-col gap-3 h-42 items-center justify-center">
-                                <img className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} />
+                                <img className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} />
                                 <div className="h-full py-3 bg-neutral-800 rounded-lg w-1" />
                             </div>
                             <div className="flex flex-col gap-2 w-full">
@@ -210,7 +210,7 @@ export const FeedbackCard: React.FC<{
                                 </Link>
                                 <div className="py-2">{feedback.reply_message.content}{feedback?.reply_message.edited && <span className="text-neutral-500"> (editado)</span>}</div>
                             </div>
-                            {user?.id === bot.owner_id && (
+                            {user?._id === bot.owner_id && (
                                 <div className="flex gap-3 justify-end w-full">
                                     <button disabled={isDeleted} onClick={async () => {
                                         setIsDeleted(true);
@@ -234,7 +234,7 @@ export const FeedbackCard: React.FC<{
                 {reply && user && (
                     <form onSubmit={handleReplyFeedback} className="flex flex-row gap-3 w-full h-full">
                         <div className="flex flex-col gap-3 h-42 items-center justify-center">
-                            <img className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} />
+                            <img className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} />
                             <div className="h-full py-3 bg-neutral-800 rounded-lg w-1" />
                         </div>
                         <div className="flex w-full flex-col gap-3">

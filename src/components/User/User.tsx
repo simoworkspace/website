@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import api from "../../utils/api";
 import { Params, useParams } from "react-router-dom";
-import { BotStructure, DBUser } from "../../types";
-import { AxiosResponse } from "axios";
+import { BotStructure, UserStructure } from "../../types";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { borderColor } from "../../utils/theme/border";
 import { BotCard } from "../BotList/BotCard";
@@ -12,7 +11,7 @@ import simo from "../../assets/images/simo.png";
 export const User: React.FC = () => {
     const params: Params = useParams<string>();
     const userid: string = params.userid as string;
-    const [user, setUser] = useState<DBUser>();
+    const [user, setUser] = useState<UserStructure>();
     const [userBots, setUserBots] = useState<BotStructure[]>([]);
     const { color } = useContext(ThemeContext);
 

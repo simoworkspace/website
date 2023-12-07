@@ -73,7 +73,7 @@ export const ReplyFeedbackCard: FC<{
             isEditReply ? (
                 <form onSubmit={handleEditReplyFeedback} className="flex flex-row gap-3 w-full">
                     <div className="flex flex-col gap-3 h-42 items-center justify-center">
-                        <img className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} />
+                        <img className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} />
                         <div className="h-full py-3 bg-neutral-800 rounded-lg w-1" />
                     </div>
                     <div className="flex flex-col gap-2 w-full">
@@ -91,7 +91,7 @@ export const ReplyFeedbackCard: FC<{
                     <div className="flex items-start w-full flex-col mx-2 my-1">
                         <div className="flex items-center">
                             <img
-                                src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
+                                src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`}
                                 className="w-[30px] h-[30px] rounded-full"
                                 onError={({ currentTarget }) => {
                                     currentTarget.onerror = null;
@@ -103,7 +103,7 @@ export const ReplyFeedbackCard: FC<{
                         </div>
                         <div className="py-2">{feedback.reply_message.content}{feedback?.reply_message.edited && <span className="text-neutral-500"> (editado)</span>}</div>
                     </div>
-                    {user?.id === bot.owner_id && (
+                    {user?._id === bot.owner_id && (
                         <div className="flex gap-3 justify-end w-full">
                             <button onClick={async () => {
                                 setIsDeleted(true);
@@ -123,7 +123,7 @@ export const ReplyFeedbackCard: FC<{
                     {reply && user && (
                         <form onSubmit={handleReplyFeedback} className="flex flex-row gap-3 w-full h-full">
                             <div className="flex flex-col gap-3 h-42 items-center justify-center">
-                                <img className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} />
+                                <img className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} />
                                 <div className="h-full py-3 bg-neutral-800 rounded-lg w-1" />
                             </div>
                             <div className="flex w-full flex-col gap-3">

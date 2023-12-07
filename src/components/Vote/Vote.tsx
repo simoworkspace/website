@@ -65,7 +65,7 @@ export const VoteComponent: React.FC = () => {
 
     const handleVote = async () => {
         setClicked(true);
-        await api.voteBot(user?.id as string, botid as string);
+        await api.voteBot(user?._id as string, botid as string);
         getVoteData();
         getVoteStatus();
         setClicked(false);

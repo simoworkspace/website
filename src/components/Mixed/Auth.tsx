@@ -8,8 +8,9 @@ export const Auth: FC<{ children: React.ReactNode }> = ({ children }: PropsWithC
 
     const getUserData = async () => {
         try {
-            const { data: { signed } } = await api.getUserData();
-            setAuth(signed);
+            const { data } = await api.getUserData();
+
+            setAuth(data && true);
         } catch {
             setAuth(false);
         }
