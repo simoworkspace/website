@@ -9,6 +9,8 @@ import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
 import simo from "../../assets/images/simo.png";
 import { Link } from "react-router-dom";
+import moment from "moment";
+import "moment/dist/locale/pt-br";
 
 export const FeedbackCard: React.FC<{
     feedback: FeedbackStructure;
@@ -114,9 +116,9 @@ export const FeedbackCard: React.FC<{
                                 currentTarget.src = simo;
                             }}
                         />
-                        <div className="flex gap-2 items-center justify-center">
+                        <div className="flex gap-2 items-center min-w-[150px]">
                             <span className="p-1 ml-1">{feedback?.author?.username as string}</span>
-                            <span className="text-neutral-500">{new Date(feedback?.posted_at as string).toLocaleString().split(", ")[0]}</span>
+                            <span className="text-neutral-500">{moment(feedback.posted_at).fromNow()}</span>
                         </div>
                     </Link>
                     {user?.id === feedback?.author?.id as string && (

@@ -107,7 +107,7 @@ export const Feedbacks: React.FC<{ botid: string, bot: BotStructure, dev: { id: 
                         )}
                     </div>
                 ) : currentFeedbacks && currentFeedbacks.length > 0 ? (
-                    currentFeedbacks.map((feedback: FeedbackStructure, index: number) => (
+                    currentFeedbacks.sort((a, b) => new Date(b.posted_at as string).getTime() - new Date(a.posted_at as string).getTime()).map((feedback: FeedbackStructure, index: number) => (
                         <div key={index}>
                             <FeedbackCard developer={dev} bot={bot} feedback={feedback} botid={botid} updateFeedbacks={getBotFeedbacks} isDeleted={isDeleted} setIsDeleted={setIsDeleted} />
                         </div>
