@@ -184,6 +184,7 @@ enum DiscordNitroType {
     NitroBasic
 }
 export interface DiscordUser extends UserStructure {
+    id: Snowflake
     discriminator: string;
     bot?: boolean;
     system?: boolean;
