@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { BotStructure } from "../../types";
 import { Botloading } from "./Botloading";
 import api from "../../utils/api";
-import { AxiosResponse } from "axios";
 import { BotCard } from "./BotCard";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { buttonColor } from "../../utils/theme/button";
@@ -19,7 +18,7 @@ export const Bots: React.FC = () => {
     const fetchData = async (startAt: number, endAt: number) => {
         setBotLoading(true);
 
-        const res: AxiosResponse<BotStructure[]> = await api.getAllBots(startAt, endAt);
+        const res = await api.getAllBots(startAt, endAt);
         setData((prevData) => [...prevData, ...res.data]);
 
         if (res.data.length === 0) {
@@ -29,24 +28,15 @@ export const Bots: React.FC = () => {
         setBotLoading(false);
     };
 
-    const handleScroll = () => {
-        if (bottomOfPageRef.current && window.innerHeight + document.documentElement.scrollTop >= bottomOfPageRef.current.offsetTop) {
-            loadMoreBots();
-        }
-    };
-
     useEffect(() => {
         fetchData(0, botsToShow);
-        window.addEventListener("scroll", handleScroll);
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
     }, [botsToShow]);
 
-    const loadMoreBots = (): void => {
-        setBotsToShow(botsToShow + 6);
-        fetchData(botsToShow, botsToShow + 6);
+    const loadMoreBots = () => {
+        setBotsToShow(prevBotsToShow => {
+            fetchData(0, prevBotsToShow + 6);
+            return prevBotsToShow + 6;
+        });
     };
 
     return (
