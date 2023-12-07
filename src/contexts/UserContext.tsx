@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { UserStructure } from "../types";
 import api from "../utils/api";
-import { AxiosResponse } from "axios";
 
 interface UserContextProps {
     user: UserStructure | null;
@@ -10,22 +9,23 @@ interface UserContextProps {
 
 export const UserContext = createContext<UserContextProps>({
     user: null,
-    setUser: () => {},
+    setUser: () => void 1,
 });
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }: React.PropsWithChildren) => {
     const [user, setUser] = useState<UserStructure | null>(null);
 
-    useEffect(() => {
-        const getUserData = async () => {
-            const res: AxiosResponse<UserStructure> = await api.getUserData();
-            if(res.data.signed) {
-                setUser(res.data);
-            } else {
-                setUser(null);
-            }
-        };
+    const getUserData = async () => {
+        const { data } = await api.getUserData();
 
+        if (data) {
+            setUser(data);
+        } else {
+            setUser(null);
+        }
+    };
+
+    useEffect(() => {
         getUserData();
     }, []);
 
