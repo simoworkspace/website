@@ -264,15 +264,17 @@ export interface AuditLogStructure {
 
 export interface AuditLogEntryStructure {
     executor: {
-        id: Snowflake;
+        _id: Snowflake;
         username: string;
         avatar: string;
     }
+    target: {
+        username: string
+    } | null
     created_at: string;
     id: string;
     action_type: AuditLogActionType;
     changes: AnyAuditLogChange[];
-    target_id: Snowflake | null;
 }
 
 export enum AuditLogActionType {
