@@ -87,7 +87,7 @@ export const ManageTeamComponent: FC = () => {
     const getUserTeams = async (): Promise<void> => {
         const { data: { invite_code }, data } = await api.getTeam(teamID);
         await getAuditLogs();
-            
+
         setInviteHash(invite_code);
         setTeam(data);
     };
@@ -179,7 +179,11 @@ export const ManageTeamComponent: FC = () => {
                                     <ManageMembers updateAuditLogs={getAuditLogs} color={color} />
                                 </TabPanel>
                                 <TabPanel>
-                                    <TeamAddbot team={team} />
+                                    {team ? (
+                                        <TeamAddbot team={team as Team} />
+                                    ) : (
+                                        <div>Carregando...</div>
+                                    )}
                                 </TabPanel>
                                 <TabPanel>
                                     <AuditLogs logs={logs} />
