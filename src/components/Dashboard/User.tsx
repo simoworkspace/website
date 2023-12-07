@@ -10,7 +10,7 @@ export const DashboardUser: FC<{
     return (
         <div className={`${borderColor[color]} border-2 ${user.banner_url ? "min-h-[300px]" : "p-6"} w-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex justify-start flex-col gap-4 relative`}>
             {user.banner_url && (
-                <img className="w-full h-36 object-cover rounded-md z-0 mb-14" src={user.banner_url} alt="Possible banner" />
+                <img className="w-full h-36 object-cover rounded-md rounded-b-none z-0 mb-14" src={user.banner_url} alt="Possible banner" />
             )}
             <div className={`w-full items-center flex justify-center ${user.banner_url && "z-1 absolute top-36 left-0 transform -translate-y-1/2"}`}>
                 <img
