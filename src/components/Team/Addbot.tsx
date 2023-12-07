@@ -8,7 +8,7 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import * as iconMD from "react-icons/md";
 import { borderAndBg } from "../../utils/theme/border&bg";
 
-export const TeamAddbot: FC<{ team: Team | undefined, user: UserStructure | null }> = ({ team, user }) => {
+export const TeamAddbot: FC<{ team: Team | undefined; user: UserStructure | null }> = ({ team, user }) => {
     const [selectBotMenu, setSelectBotMenu] = useState<boolean>(false);
     const [bots, setBots] = useState<BotStructure[] | null>(null);
     const [selectedBot, setSelectedBot] = useState<BotStructure | null>(null);
