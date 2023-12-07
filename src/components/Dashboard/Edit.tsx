@@ -232,7 +232,7 @@ export const DashboardEdit: React.FC = () => {
                                 <h1 className="text-xl font-bold text-white my-2">Mensagem de voto</h1>
                                 <div className={`justify-center mb-5 items-center flex outline-none bg-[#2c2c2c] w-full xl:w-[80vw] h-full rounded-xl p-3 border-[2px] transition-all duration-100 ${borderColor[color]} text-white`}>
                                     <input
-                                        onChange={handleShortDescription}
+                                        onChange={handleVoteMessage}
                                         defaultValue={bot.vote_message}
                                         placeholder="Digite uma mensagem que irá aparecer após o usuário votar"
                                         minLength={50}
