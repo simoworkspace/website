@@ -138,8 +138,8 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
 
     return (
         <section className="flex w-full items-center justify-center flex-col gap-2">
-            <div className="flex flex-col w-full gap-3">
-                <span className="text-center font-bold text-2xl">Gerenciar membros</span>
+            <div className="flex flex-col w-full">
+                <span className="text-center font-bold text-2xl my-2">Gerenciar membros</span>
                 <div>
                     <button onClick={() => {
                         setActions({ menu: !actions.menu });

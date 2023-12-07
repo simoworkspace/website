@@ -179,10 +179,7 @@ export const ManageTeamComponent: FC = () => {
                                     <ManageMembers updateAuditLogs={getAuditLogs} color={color} />
                                 </TabPanel>
                                 <TabPanel>
-                                    <div className="w-full flex flex-col gap-3 mt-4 items-center justify-center">
-                                        <span className="text-white xl:text-[28px] text-2xl xl:mr-0 mr-2 font-bold xl:text-center">Adicionar bot no time</span>
-                                        <Button link to={`/team/${team?.id}/addbot`} clas="flex justify-center items-center">Adicionar</Button>
-                                    </div>
+                                    <TeamAddbot team={team} user={user} />
                                 </TabPanel>
                                 <TabPanel>
                                     <AuditLogs logs={logs} />
