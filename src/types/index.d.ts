@@ -115,6 +115,7 @@ export interface VoteStructure {
 export interface UserStructure {
     notifications_viewed: boolean
     username: string;
+    flags: UserFlags
     banner_url: string;
     _id: Snowflake | string;
     avatar: string;
@@ -357,3 +358,10 @@ export type BaseAuditLogChange<Key, Data> = {
     old_value: Data;
     new_value?: Data;
 };
+
+export enum UserFlags {
+    BugHunter,
+    Contributor,
+    PremiumPartner,
+    Developer,
+}
