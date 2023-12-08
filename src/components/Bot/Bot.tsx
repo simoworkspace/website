@@ -132,28 +132,32 @@ export const BotComponent: FC = () => {
                                             ))}
                                         </div>
                                     </div>
-                                    <h1 className="text-2xl text-center">Links</h1>
-                                    <hr className="my-1 w-full" />
-                                    <div className="flex flex-col gap-3 flex-wrap">
-                                        {botData?.support_server && (
-                                            <Link to={botData?.support_server.includes("https://") ? botData?.support_server : "https://" + botData?.support_server} className="flex items-center gap-3 p-2">
-                                                <icon.BsDiscord size={30} fill="#5662F6" />
-                                                <span>Servidor de suporte</span>
-                                            </Link>
-                                        )}
-                                        {botData?.source_code && (
-                                            <Link to={botData?.source_code.includes("https://") ? botData?.source_code : "https://" + botData?.source_code} className="flex items-center gap-3 p-2">
-                                                <icon.BsGithub size={30} />
-                                                <span>Repositório</span>
-                                            </Link>
-                                        )}
-                                        {botData?.website_url && (
-                                            <Link to={botData?.website_url.includes("https://") ? botData?.website_url : "https://" + botData?.website_url} className="flex items-center gap-3 p-2">
-                                                <icon.BsGlobe size={30} />
-                                                <span>Website (<span className="text-blue-600">{botData?.website_url}</span>)</span>
-                                            </Link>
-                                        )}
-                                    </div>
+                                    {(botData.support_server || botData.source_code || botData.website_url) && (
+                                        <>
+                                            <h1 className="text-2xl text-center">Links</h1>
+                                            <hr className="my-1 w-full" />
+                                            <div className="flex flex-col gap-3 flex-wrap">
+                                                {botData?.support_server && (
+                                                    <Link to={botData?.support_server.includes("https://") ? botData?.support_server : "https://" + botData?.support_server} className="flex items-center gap-3 p-2">
+                                                        <icon.BsDiscord size={30} fill="#5662F6" />
+                                                        <span>Servidor de suporte</span>
+                                                    </Link>
+                                                )}
+                                                {botData?.source_code && (
+                                                    <Link to={botData?.source_code.includes("https://") ? botData?.source_code : "https://" + botData?.source_code} className="flex items-center gap-3 p-2">
+                                                        <icon.BsGithub size={30} />
+                                                        <span>Repositório</span>
+                                                    </Link>
+                                                )}
+                                                {botData?.website_url && (
+                                                    <Link to={botData?.website_url.includes("https://") ? botData?.website_url : "https://" + botData?.website_url} className="flex items-center gap-3 p-2">
+                                                        <icon.BsGlobe size={30} />
+                                                        <span>Website (<span className="text-blue-600">{botData?.website_url}</span>)</span>
+                                                    </Link>
+                                                )}
+                                            </div>
+                                        </>
+                                    )}
                                 </div>
                             </div>
                         </div>
