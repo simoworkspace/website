@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { UserLogin } from "../Login/Discordlogin";
 import { Button } from "../Mixed/Button";
 import * as icon from "react-icons/bs";
 import { InputSearch } from "../Search/InputSearch";
 import { Link } from "react-router-dom";
 import { NotificationButton } from "../Notification/Button";
+import { LoginMenu } from "../DropdownMenu/Menu";
 
 export const Header: React.FC = () => {
     const [inputSearch, setInputSearch] = useState<boolean>(false);
@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
                     </div>
                     <InputSearch show={inputSearch} />
                     <NotificationButton />
-                    <UserLogin />
+                    <LoginMenu />
                 </div>
             </div>
             <hr className="w-screen xlr:fixed mt-[74px] xl:opacity-0 border-neutral-500" />
