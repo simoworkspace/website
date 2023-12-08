@@ -2,14 +2,13 @@ import React, { useState, useContext, useRef, useEffect } from "react";
 import * as iconMD from "react-icons/md";
 import * as iconBS from "react-icons/bi";
 import { UserContext } from "../../contexts/UserContext";
-import { LoginButton } from "../Login/Login";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { borderColor } from "../../utils/theme/border";
 import { Link } from "react-router-dom";
 import api from "../../utils/api";
 import { ChoiceColor } from "../Colors/Choice";
 
-export const LoggedMenu: React.FC = () => {
+export const LoginMenu: React.FC = () => {
     const { user } = useContext(UserContext);
     const { color } = useContext(ThemeContext);
 
@@ -38,7 +37,7 @@ export const LoggedMenu: React.FC = () => {
         };
     }, []);
 
-    return user ? (
+    return (
         <>
             <section className="xl:invisible" ref={menuRef}>
                 <button
@@ -48,12 +47,25 @@ export const LoggedMenu: React.FC = () => {
                     }}
                     className={`${borderColor[color]} mr-10 xl:invisible bg-neutral-900 flex text-white border-2 p-2 gap-3 rounded-lg max-w-[600px] min-w-[165px] items-center justify-center`}
                 >
-                    <div className="h-[30px] w-[30px]">
-                        <img src={`https://cdn.discordapp.com/avatars/${user?._id}/${user?.avatar}.png`} className="w-full h-full rounded-full" alt="Avatar" />
-                    </div>
-                    <div className="flex flex-reverse-row break-before-all items-center justify-center">
-                        <span>{user.username}</span>
-                    </div>
+                    {user ? (
+                        <>
+                            <div className="h-[30px] w-[30px] flex items-start">
+                                <img src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} className="w-full h-full rounded-full" alt="Avatar" />
+                            </div>
+                            <div className="flex flex-reverse-row break-before-all items-center justify-center">
+                                <span>{user.username}</span>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <div className="h-[30px] w-[30px] flex items-center justify-start">
+                                <iconMD.MdPerson fill="#525252" size={30} />
+                            </div>
+                            <div className="flex flex-reverse-row break-before-all items-center justify-center">
+                                <div className="bg-neutral-600 w-12 h-4 rounded-full"></div>
+                            </div>
+                        </>
+                    )}
                     <div className="flex items-center justify-center">
                         <iconMD.MdOutlineKeyboardArrowDown className={`transition-all duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`} size={25} />
                     </div>
@@ -80,12 +92,21 @@ export const LoggedMenu: React.FC = () => {
                             <span>Temas</span>
                         </div>
                     </button>
-                    <button onClick={async () => { await api.logoutUser(); return window.location.reload() }} className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-full">
-                        <div className="flex w-full items-center justify-start gap-2">
-                            <iconBS.BiExit fill="#fff" size={20} />
-                            <span>Sair</span>
-                        </div>
-                    </button>
+                    {user ? (
+                        <button onClick={async () => { await api.logoutUser(); return window.location.reload() }} className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-full">
+                            <div className="flex w-full items-center justify-start gap-2">
+                                <iconBS.BiExit fill="#fff" size={20} />
+                                <span>Sair</span>
+                            </div>
+                        </button>
+                    ) : (
+                        <Link to={import.meta.env.VITE_AUTH_LINK} className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 bg-neutral-800 w-full">
+                            <div className="flex w-full items-center justify-start gap-2">
+                                <iconMD.MdPerson fill="#fff" size={20} />
+                                <span>Login</span>
+                            </div>
+                        </Link>
+                    )}
                 </div>
             </section>
             <section className="xl:invisible" ref={themeRef}>
@@ -98,7 +119,5 @@ export const LoggedMenu: React.FC = () => {
                 </div>
             </section>
         </>
-    ) : (
-        <LoginButton />
     )
 };
