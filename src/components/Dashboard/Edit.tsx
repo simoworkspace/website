@@ -51,6 +51,14 @@ export const DashboardEdit: React.FC = () => {
         prefixes: bot?.prefixes
     });
 
+    const handleLongDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const { value } = event.target;
+
+        setMarkdown(value);
+        setEditedBot({ long_description: value });
+        setChangesMade({ changes: true });
+    };
+
     const handleVoteMessage = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
 
@@ -109,6 +117,7 @@ export const DashboardEdit: React.FC = () => {
     const deleteTag = (tag: string): void => {
         const newTags = tags.filter((a) => a !== tag);
         setTags(newTags);
+        setEditedBot({ tags: newTags });
         setChangesMade({ changes: true });
     };
 
@@ -129,11 +138,12 @@ export const DashboardEdit: React.FC = () => {
             setChangesMade({ loading: true, changes: true });
 
             const updatedBotData = {
-                long_description: markdown || bot?.long_description,
+                long_description: editedBot.long_description,
                 short_description: editedBot.short_description,
-                tags: tags,
+                tags: editedBot.tags,
                 support_server: editedBot.support_server,
                 source_code: editedBot.source_code,
+                vote_message: editedBot.vote_message,
                 website_url: editedBot.website_url,
                 prefixes: editedBot.prefixes,
             };
@@ -257,10 +267,7 @@ export const DashboardEdit: React.FC = () => {
                                 <div className={`justify-center mb-5 items-center flex outline-none bg-[#2c2c2c] w-full xl:w-[80vw] h-full rounded-xl p-3 border-[2px] transition-all duration-100 ${borderColor[color]} text-white`}>
                                     <textarea
                                         id="textoi"
-                                        onChange={(event: React.ChangeEvent<HTMLTextAreaElement>) => {
-                                            setMarkdown(event.target.value);
-                                            setChangesMade({ changes: true });
-                                        }}
+                                        onChange={handleLongDescription}
                                         placeholder="Digite uma descrição longa para seu bot, não se exite ao colocar informações (Markdown habilitado)"
                                         defaultValue={bot.long_description}
                                         maxLength={2048}
