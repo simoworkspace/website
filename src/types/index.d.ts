@@ -116,7 +116,7 @@ export interface UserStructure {
     notifications_viewed: boolean
     username: string;
     flags: UserFlags
-    banner_url: string;
+    banner_url: string | null;
     _id: Snowflake | string;
     avatar: string;
     bio: string | null;
