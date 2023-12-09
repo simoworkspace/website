@@ -10,6 +10,7 @@ import { Params, useParams } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { ApiErrors } from "../../utils/api/errors";
 import { PopUpError } from "../Mixed/Error";
+import { scrollBar } from "../../utils/theme/scrollBar";
 
 const TeamPermissions = {
     Administrator: 0,
@@ -21,7 +22,7 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
     const [actions, setActions] = useState<{
         menu?: boolean;
         loading?: boolean;
-    }>({ menu: false, loading: false });
+    }>({ menu: true, loading: false });
     const params: Params = useParams<string>();
     const teamID: string = params.teamId as string;
 
@@ -150,7 +151,6 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
                                 <div className="flex items-center justify-start gap-2 w-full flex-grow">
                                     <img className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${member.id}/${member.avatar}.png`} />
                                     <span className="text-lg font-bold">{member.username}</span>
-                                    <span className="text-neutral-500 xl:invisible">({member.id})</span>
                                 </div>
                                 <iconMD.MdOutlineKeyboardArrowDown className={`transition-all duration-300 ${menu ? "rotate-180" : "rotate-0"}`} size={25} />
                             </>
@@ -165,7 +165,7 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
                 <div className="relative w-full">
                     <div className={`${menu ? "opacity-100 visible" : "opacity-0 invisible"} transition-all duration-300 w-full flex items-center justify-center`}>
                         {menu && (
-                            <div className={`bg-neutral-900 rounded-b-lg overflow-auto max-h-[300px] w-[95%] ${borderColor[color]} border-2 border-t-0 flex items-center flex-col gap-2 p-3`}>
+                            <div className={`bg-neutral-900 relative rounded-b-lg ${scrollBar[color]} overflow-auto max-h-[600px] w-[95%] ${borderColor[color]} border-2 border-t-0 flex items-center flex-col gap-2 p-3`}>
                                 {team?.members?.map((member, index) => (
                                     <button key={index} onClick={() => {
                                         setMember(member);
@@ -174,7 +174,7 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
                                         <img className="rounded-full w-20" src={`https://cdn.discordapp.com/avatars/${member.id}/${member.avatar}.png`} />
                                         <span className="text-xl">{member.username}</span>
                                         <span className="text-[#797979] items-center flex text-[13px] justify-center">
-                                            ( {member.id} )
+                                            ( {member?.permission === 1 ? "Membro" : member.permission === TeamPermissions.Owner ? "Dono" : "Administrador"} )
                                         </span>
                                     </button>
                                 ))}
@@ -189,7 +189,10 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
                         <div className="flex items-center xl:flex-col justify-start gap-3 w-full flex-grow">
                             <img className="rounded-full w-20" src={`https://cdn.discordapp.com/avatars/${member.id}/${member.avatar}.png`} />
                             <div className="flex flex-col gap-1 xl:text-center">
-                                <span className="text-lg font-bold">{member.username}</span>
+                                <div className="flex gap-2 items-center xl:flex-col">
+                                    <span className="text-lg font-bold">{member.username}</span>
+                                    <span className="text-neutral-500">({member.id})</span>
+                                </div>
                                 <span>Cargo <strong>{member?.permission === 1 ? "Membro" : member.permission === TeamPermissions.Owner ? "Dono" : "Administrador"}</strong></span>
                             </div>
                         </div>
