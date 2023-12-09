@@ -116,6 +116,9 @@ const api = {
     },
     getApiKey: (botID: string): Promise<AxiosResponse<{ api_key: string }>> => {
         return axios.get(`/api/bots/${botID}/api-key`, header);
+    },
+    teamAddBot: ({ teamID, botID }: { teamID: string; botID: string }): Promise<AxiosResponse> => {
+        return axios.post(`/api/teams/${teamID}/bots/${botID}`, null, header);
     }
 };
 
