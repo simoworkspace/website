@@ -19,7 +19,7 @@ export const TeamAddbot: FC<{ team?: Team }> = ({ team }) => {
     const { user } = useContext(UserContext);
 
     const getUserBots = async () => {
-        const data = (await api.getUserBots()).data.filter((bot) => bot.team_id === team?.name);
+        const data = (await api.getUserBots()).data.filter((bot) => !team?.bots_id?.includes(bot._id));
 
         return setBots(data ? data : null);
     };
@@ -33,10 +33,14 @@ export const TeamAddbot: FC<{ team?: Team }> = ({ team }) => {
         });
 
         setAddbotLoading(false);
+
+        setInterval(() => {
+            window.location.reload();
+        }, 2_000);
     };
 
     const getSelectedBot = (botId: string) => {
-        const selbot = bots?.find(bot => bot._id == botId);
+        const selbot = bots?.find(bot => bot._id === botId);
         setSelectBotMenu(false);
         return setSelectedBot(selbot as BotStructure);
     };
