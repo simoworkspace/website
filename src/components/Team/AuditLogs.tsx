@@ -38,12 +38,14 @@ export const AuditLogs: FC<{ logs: AuditLogStructure | undefined }> = ({ logs })
                             <Link to={`/user/${log.executor._id}`}><img className="rounded-full w-12 h-12" src={`https://cdn.discordapp.com/avatars/${log.executor._id}/${log.executor.avatar}.png`} /></Link>
                             <div className="flex flex-col gap-1">
                                 <div>
-                                    {log.changes.map((change, index) => (
+                                    {log.action_type === 0 ? (
+                                        <span><strong>{log.target?.username}</strong> entrou no grupo</span>
+                                    ) : (
+                                        log.changes.map((change, index) => (
+                                    <div className="flex flex-col" key={index}>
                                         <div className="flex flex-col" key={index}>
                                             {(() => {
                                                 switch (log.action_type) {
-                                                    case actionType.MemberAdd:
-                                                        return <span>usuário <strong>{log.target?.username}</strong> entrou no grupo</span>;
                                                     case actionType.MemberUpdate:
                                                         return <span><strong>{log.executor.username}</strong> Atualizou as permissões para <strong>{log.target?.username}</strong> de <strong>{changedKeysNames[change.old_value]}</strong> para <strong>{changedKeysNames[change.new_value as string]}</strong></span>;
                                                     case actionType.MemberRemove:
@@ -61,8 +63,11 @@ export const AuditLogs: FC<{ logs: AuditLogStructure | undefined }> = ({ logs })
                                                 }
                                             })()}
                                         </div>
-                                    ))}
+                                    </div>
+                                    ))
+                                    )}
                                 </div>
+
                                 <div>
                                     <span className="text-neutral-400">{moment(log.created_at).locale("pt-br").fromNow()}</span>
                                 </div>
