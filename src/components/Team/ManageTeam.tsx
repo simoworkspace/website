@@ -18,6 +18,8 @@ import { ManageMembers } from "./ManageMembers";
 import { Button } from "../Mixed/Button";
 import { TeamAddbot } from "./Addbot";
 import { AuditLogs } from "./AuditLogs";
+import { scrollBar } from "../../utils/theme/scrollBar";
+import { TeamManageBots } from "./ManageBots";
 
 export const ManageTeamComponent: FC = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<Team>();
@@ -124,13 +126,14 @@ export const ManageTeamComponent: FC = () => {
                     </div>
                     <section className={`w-full bg-neutral-900 mt-2 border-2 flex-row ${borderColor[color]} rounded-lg p-4 items-center justify-center`}>
                         <Tabs position="relative" variant="unstyled">
-                            <TabList>
-                                <Tab>Time</Tab>
-                                <Tab>Membros</Tab>
-                                <Tab>Bot</Tab>
-                                <Tab>Audit logs</Tab>
+                            <TabList className={`overflow-auto ${scrollBar[color]}`}>
+                                <Tab className="xl:focus:bg-neutral-800 rounded-lg">Time</Tab>
+                                <Tab className="xl:focus:bg-neutral-800 rounded-lg">Membros</Tab>
+                                <Tab className="min-w-[140px] xl:focus:bg-neutral-800 rounded-lg">Adicionar bot</Tab>
+                                <Tab className="min-w-[140px] xl:focus:bg-neutral-800 rounded-lg">Gerenciar bot</Tab>
+                                <Tab className="min-w-[130px] xl:focus:bg-neutral-800 rounded-lg">Audit logs</Tab>
                             </TabList>
-                            <TabIndicator className={`mt[-1.5px] h-[2px] ${borderColor[color]} border-2 rounded-lg`} />
+                            <TabIndicator className={`mt[-1.5px] h-[2px] ${borderColor[color]} border-2 rounded-lgx xl:invisible`} />
                             <TabPanels>
                                 <TabPanel>
                                     {team ? (
@@ -181,6 +184,13 @@ export const ManageTeamComponent: FC = () => {
                                 <TabPanel>
                                     {team ? (
                                         <TeamAddbot team={team as Team} />
+                                    ) : (
+                                        <div>Carregando...</div>
+                                    )}
+                                </TabPanel>
+                                <TabPanel>
+                                    {team ? (
+                                        <TeamManageBots team={team as Team} />
                                     ) : (
                                         <div>Carregando...</div>
                                     )}
