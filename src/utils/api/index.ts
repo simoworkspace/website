@@ -119,6 +119,9 @@ const api = {
     },
     teamAddBot: ({ teamID, botID }: { teamID: string; botID: string }): Promise<AxiosResponse> => {
         return axios.post(`/api/teams/${teamID}/bots/${botID}`, null, header);
+    },
+    removeBotTeam: ({ teamID, botID }: { teamID: string; botID: string }): Promise<AxiosResponse> => {
+        return axios.delete(`/api/teams/${teamID}/bots/${botID}`, header);
     }
 };
 
