@@ -75,9 +75,9 @@ export const DashboardComponent: FC = () => {
                     <div className={`w-full p-3 h-full flex flex-col gap-3 bg-neutral-900 ${borderColor[color]} border-2 rounded-lg`}>
                         <Tabs position="relative" variant="unstyled">
                             <TabList>
-                                <Tab>Usuário</Tab>
-                                <Tab>Time</Tab>
-                                <Tab>Bot</Tab>
+                                <Tab>Perfil</Tab>
+                                <Tab>Times</Tab>
+                                <Tab>Bots</Tab>
                             </TabList>
                             <TabIndicator className={`mt[-1.5px] h-[2px] ${borderColor[color]} border-2 rounded-lg`} />
                             <TabPanels>
