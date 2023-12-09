@@ -23,7 +23,6 @@ import { ManageTeamPage } from "../pages/Team/ManageTeam";
 import { InvitePage } from "../pages/Team/Invite";
 import { Auth } from "../components/Mixed/Auth";
 import { TeamAddbotPage } from "../pages/Team/Addbot";
-import { Button } from "../components/Mixed/Button";
 
 function App() {
     const { color } = useContext(ThemeContext);
@@ -31,7 +30,6 @@ function App() {
 
     return (
         <main className={`xl:no-scrollbar xlr:h-1 flex flex-col items-center overflow-x-hidden min-h-screen ${appColor[color]} bg-fixed scrollbar-track-neutral-900 scrollbar-thin`}>
-            <Header />
             {snowflakes && (
                 <div className="snowflakes xl:invisible">
                     {Array(14).fill(
@@ -41,7 +39,7 @@ function App() {
                     )}
                 </div>
             )}
-            <Button clas="absolute bottom-1 right-1 xl:invisible" action={() => setSnowflakes(!snowflakes)}>{snowflakes ? "Desativar" : "Ativar"} Flocos de neve</Button>
+            <Header snowflakes={snowflakes} setSnowflakes={setSnowflakes}/>
             <section className="flex flex-1 flex-col">
                 <Routes>
                     <Route path="/testes" element={<Tests />} />

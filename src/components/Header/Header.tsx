@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { NotificationButton } from "../Notification/Button";
 import { LoginMenu } from "../DropdownMenu/Menu";
 
-export const Header: React.FC = () => {
+export const Header: React.FC<{ snowflakes: boolean, setSnowflakes: (value: boolean) => void }> = ({ snowflakes, setSnowflakes }) => {
     const [inputSearch, setInputSearch] = useState<boolean>(false);
 
     return (
@@ -20,7 +20,7 @@ export const Header: React.FC = () => {
                     </div>
                     <InputSearch show={inputSearch} />
                     <NotificationButton />
-                    <LoginMenu />
+                    <LoginMenu snowflakes={snowflakes} setSnowflakes={setSnowflakes} />
                 </div>
             </div>
             <hr className="w-screen xlr:fixed mt-[74px] xl:opacity-0 border-neutral-500" />
