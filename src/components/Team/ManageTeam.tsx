@@ -115,7 +115,7 @@ export const ManageTeamComponent: FC = () => {
     return (
         <main className="max-w-[1500px] flex justify-center">
             <section className="w-screen flex flex-row p-5 text-white items-start xl:items-center justify-start gap-10 xl:flex-col h-full">
-                <DashboardUser color={color} user={user as UserStructure} />
+                <DashboardUser color={color} />
                 <div className="flex items-center justify-start h-full w-full flex-col">
                     <h1 className="text-[33px] text-center">Bem vindo a dashboard, <strong>{user?.username}</strong></h1>
                     <hr className="w-full my-3" />
