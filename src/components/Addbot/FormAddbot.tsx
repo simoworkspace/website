@@ -53,7 +53,6 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             setError({
                 show: true,
                 title: "Erro ao tentar adicionar um bot",
-                //@ts-ignore
                 message: ApiErrors[error.response.data.errors] || JSON.stringify(error.response.data.errors[0])
             });
         }

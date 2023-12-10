@@ -40,7 +40,6 @@ export const CreateTeam: React.FC = () => {
             setError({
                 show: true,
                 title: "Erro ao tentar criar um time",
-                //@ts-ignore
                 message: JSON.stringify(error.response.data)
             });
         }

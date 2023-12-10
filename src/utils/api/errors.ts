@@ -1,4 +1,4 @@
-export const ApiErrors = {
+export const ApiErrors: Record<number, string> = {
     1001: "Bot desconhecido",
     1002: "O bot já existe",
     1003: "Não foi possível obter os votos do bot",

@@ -48,7 +48,6 @@ export const InviteComponent: FC = () => {
                 setError({
                     show: true,
                     title: "Erro ao tentar entrar em um time",
-                    //@ts-ignore
                     message: ApiErrors[error.response.data.code]
                 });
             }

@@ -51,7 +51,6 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
             setError({
                 show: true,
                 title: "Erro ao tentar remover membro",
-                //@ts-ignore
                 message: ApiErrors[error.response.data.code]
             });
         }
@@ -74,7 +73,6 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
             setError({
                 show: true,
                 title: "Erro ao tentar demotar membro",
-                //@ts-ignore
                 message: ApiErrors[error.response.data.code]
             });
         }
@@ -97,7 +95,6 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
             setError({
                 show: true,
                 title: "Erro ao tentar promover membro",
-                //@ts-ignore
                 message: ApiErrors[error.response.data.code]
             });
         }
@@ -120,7 +117,6 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
             setError({
                 show: true,
                 title: "Erro ao tentar transferir posse",
-                //@ts-ignore
                 message: ApiErrors[error.response.data.code]
             });
         }

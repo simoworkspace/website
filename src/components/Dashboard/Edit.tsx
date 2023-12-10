@@ -157,7 +157,6 @@ export const DashboardEdit: React.FC = () => {
             setError({
                 title: "Ocoreu um erro ao atualizar seu bot",
                 show: true,
-                //@ts-ignore
                 message: ApiErrors[error.response.data.code] || JSON.stringify(error.response.data)
             });
         }

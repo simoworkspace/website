@@ -52,8 +52,6 @@ export const ManageTeamComponent: FC = () => {
             invite_code
         };
 
-        console.log(formData);
-
         for (let i in formData) {
             if (!team) return;
 
@@ -78,7 +76,6 @@ export const ManageTeamComponent: FC = () => {
             setError({
                 show: true,
                 title: "Erro ao tentar criar um time",
-                //@ts-ignore
                 message: ApiErrors[error.response.data.code]
             });
         }
