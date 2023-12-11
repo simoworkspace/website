@@ -21,6 +21,11 @@
     font-family: "Inter", sans-serif;
 }
 
+.bounceIn {
+    animation: shakeX;
+    animation-duration: 1s;
+}
+
 .fade-in {
     opacity: 0;
     animation: fadeIn 500ms ease-in forwards;
