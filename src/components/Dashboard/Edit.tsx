@@ -35,7 +35,7 @@ export const DashboardEdit: React.FC = () => {
         long_description?: string | undefined;
         short_description?: string | undefined;
         tags?: string[] | undefined;
-        vote_message?: string | undefined | null;
+        vote_message?: string;
         support_server?: string | undefined;
         source_code?: string | undefined;
         website_url?: string | undefined;
@@ -55,49 +55,49 @@ export const DashboardEdit: React.FC = () => {
         const { value } = event.target;
 
         setMarkdown(value);
-        setEditedBot({ long_description: value });
+        setEditedBot({ ...editedBot, long_description: value });
         setChangesMade({ changes: true });
     };
 
     const handleVoteMessage = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
 
-        setEditedBot({ vote_message: value });
+        setEditedBot({ ...editedBot, vote_message: value });
         setChangesMade({ changes: true });
     };
 
     const handleShortDescription = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
 
-        setEditedBot({ short_description: value });
+        setEditedBot({ ...editedBot, short_description: value });
         setChangesMade({ changes: true });
     };
 
     const handleSupportServerChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const { value } = event.target;
 
-        setEditedBot({ support_server: value });
+        setEditedBot({ ...editedBot, support_server: value });
         setChangesMade({ changes: true });
     };
 
     const handleSourceCodeChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const { value } = event.target;
 
-        setEditedBot({ source_code: value });
+        setEditedBot({ ...editedBot, source_code: value });
         setChangesMade({ changes: true });
     };
 
     const handleWebsiteChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const { value } = event.target;
 
-        setEditedBot({ website_url: value });
+        setEditedBot({ ...editedBot, website_url: value });
         setChangesMade({ changes: true });
     };
 
     const handlePrefixChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         const { value } = event.target;
 
-        setEditedBot({ prefixes: value.split(", ") });
+        setEditedBot({ ...editedBot, prefixes: value.split(", ") });
         setChangesMade({ changes: true });
     };
 
@@ -114,26 +114,28 @@ export const DashboardEdit: React.FC = () => {
         setTag(tag);
     };
 
-    const deleteTag = (tag: string): void => {
+    const deleteTag = (tag: string) => {
         const newTags = tags.filter((a) => a !== tag);
         setTags(newTags);
-        setEditedBot({ tags: newTags });
+        setEditedBot({ ...editedBot, tags: newTags });
         setChangesMade({ changes: true });
     };
 
-    const getBotInDB = async (): Promise<void> => {
-        const res1: AxiosResponse<BotStructure> = await api.getBotInfos(botid);
-        const { owner_id } = res1.data;
+    const getBotInDB = async () => {
+        const res1 = await api.getBotInfos(botid);
+        const { owner_id, tags, vote_message, long_description, website_url, support_server, source_code, short_description, prefixes } = res1.data;
 
-        const res: AxiosResponse<DiscordUser> = await api.getDiscordUser(owner_id);
+        const res = await api.getDiscordUser(owner_id);
         const { username, avatar, id } = res.data;
 
         setDev({ username, avatar, id, });
 
-        return setBot(res1.data);
+        setEditedBot({ tags, vote_message, long_description, website_url, support_server, source_code, short_description, prefixes });
+
+        setBot(res1.data);
     };
 
-    const updateBot = async (): Promise<void> => {
+    const updateBot = async () => {
         try {
             setChangesMade({ loading: true, changes: true });
 
@@ -242,7 +244,8 @@ export const DashboardEdit: React.FC = () => {
                                 <div className={`justify-center mb-5 items-center flex outline-none bg-[#2c2c2c] w-full xl:w-[80vw] h-full rounded-xl p-3 border-[2px] transition-all duration-100 ${borderColor[color]} text-white`}>
                                     <input
                                         onChange={handleVoteMessage}
-                                        defaultValue={bot.vote_message}
+                                        defaultValue={editedBot.vote_message || ""}
+                                        value={editedBot.vote_message}
                                         placeholder="Digite uma mensagem que irá aparecer após o usuário votar"
                                         minLength={50}
                                         className="bg-transparent outline-none w-full scrollbar-thin disabled:opacity-50"
@@ -254,7 +257,8 @@ export const DashboardEdit: React.FC = () => {
                                 <div className={`justify-center mb-5 items-center flex outline-none bg-[#2c2c2c] w-full xl:w-[80vw] h-full rounded-xl p-3 border-[2px] transition-all duration-100 ${borderColor[color]} text-white`}>
                                     <input
                                         onChange={handleShortDescription}
-                                        defaultValue={bot.short_description}
+                                        defaultValue={editedBot.short_description}
+                                        value={editedBot.short_description}
                                         placeholder="Digite uma descrição curta que fala sobre seu bot"
                                         maxLength={80}
                                         className="bg-transparent outline-none w-full scrollbar-thin disabled:opacity-50"
@@ -268,7 +272,8 @@ export const DashboardEdit: React.FC = () => {
                                         id="textoi"
                                         onChange={handleLongDescription}
                                         placeholder="Digite uma descrição longa para seu bot, não se exite ao colocar informações (Markdown habilitado)"
-                                        defaultValue={bot.long_description}
+                                        defaultValue={editedBot.long_description}
+                                        value={editedBot.long_description}
                                         maxLength={2048}
                                         className="bg-transparent outline-none w-full scrollbar-thin disabled:opacity-50"
                                     />
@@ -297,7 +302,7 @@ export const DashboardEdit: React.FC = () => {
                                 <div className="flex flex-col w-full gap-3">
                                     <div>
                                         <strong className="text-lg">Prefixo </strong>
-                                        <input onChange={handlePrefixChange} maxLength={6} required placeholder="Digite um prefixo" defaultValue={bot.prefixes.join(", ")} className={`bg-transparent p-2 rounded-lg focus:outline-none w-1/3 border-2 ${borderAndBg[color]}`} type="text" />
+                                        <input onChange={handlePrefixChange} maxLength={6} required placeholder="Digite um prefixo" defaultValue={editedBot.prefixes?.join(", ")} value={editedBot.prefixes?.join(", ")} className={`bg-transparent p-2 rounded-lg focus:outline-none w-1/3 border-2 ${borderAndBg[color]}`} type="text" />
                                     </div>
                                     <div>
                                         <strong className="text-lg">Votos </strong><span>{bot.votes.reduce((votesCount, vote) => votesCount + vote.votes, 0)}</span>
@@ -330,15 +335,15 @@ export const DashboardEdit: React.FC = () => {
                                     <div className="flex flex-col gap-3 flex-wrap">
                                         <div className="flex items-center gap-3 p-2">
                                             <icon.BsDiscord size={30} fill="#5662F6" />
-                                            <input onChange={handleSupportServerChange} defaultValue={bot.support_server} className={`bg-transparent p-2 rounded-lg focus:outline-none w-full border-2 ${borderAndBg[color]}`} placeholder="Servidor de suporte" type="url" />
+                                            <input onChange={handleSupportServerChange} defaultValue={editedBot.support_server || ""} value={editedBot.support_server} className={`bg-transparent p-2 rounded-lg focus:outline-none w-full border-2 ${borderAndBg[color]}`} placeholder="Servidor de suporte" type="url" />
                                         </div>
                                         <div className="flex items-center gap-3 p-2">
                                             <icon.BsGithub size={30} />
-                                            <input onChange={handleSourceCodeChange} defaultValue={bot.source_code} className={`bg-transparent p-2 rounded-lg focus:outline-none w-full border-2 ${borderAndBg[color]}`} placeholder="Repositório" type="url" />
+                                            <input onChange={handleSourceCodeChange} defaultValue={editedBot.source_code || ""} value={editedBot.source_code} className={`bg-transparent p-2 rounded-lg focus:outline-none w-full border-2 ${borderAndBg[color]}`} placeholder="Repositório" type="url" />
                                         </div>
                                         <div className="flex items-center gap-3 p-2">
                                             <icon.BsGlobe size={30} />
-                                            <input onChange={handleWebsiteChange} defaultValue={bot.website_url} className={`bg-transparent p-2 rounded-lg focus:outline-none w-full border-2 ${borderAndBg[color]}`} placeholder="Website" type="url" />
+                                            <input onChange={handleWebsiteChange} defaultValue={editedBot.website_url || ""} value={editedBot.website_url} className={`bg-transparent p-2 rounded-lg focus:outline-none w-full border-2 ${borderAndBg[color]}`} placeholder="Website" type="url" />
                                         </div>
                                     </div>
                                 </div>
@@ -347,12 +352,21 @@ export const DashboardEdit: React.FC = () => {
                     </div>
                 </section>
                 {changesMade.changes && (
-                    <div className={`${changesMade ? "fade-in" : "fade-out"} w-[90vw] absolute xl:z-10 xl:fixed xl:bottom-10 xl:w-[95vw] bottom-2 bg-neutral-800 ${borderColor[color]} border-2 rounded-lg duration-200`}>
+                    <div className={`${changesMade ? "bounceIn" : "fade-out"} w-[90vw] absolute xl:z-10 xl:fixed xl:bottom-10 xl:w-[95vw] bottom-5 bg-neutral-800 ${borderColor[color]} border-2 rounded-lg duration-200`}>
                         <div className="flex p-2 text-white w-full items-center">
                             <span className="flex flex-grow">Você tem alterações para serem salvas</span>
                             <div className="flex gap-2 items-center">
                                 <button onClick={() => {
-                                    window.location.reload();
+                                    setEditedBot({
+                                        long_description: bot.long_description,
+                                        prefixes: bot.prefixes,
+                                        short_description: bot.short_description,
+                                        source_code: bot.source_code,
+                                        support_server: bot.support_server,
+                                        tags: bot.tags,
+                                        vote_message: bot.vote_message,
+                                        website_url: bot.website_url
+                                    });
 
                                     setChangesMade({ changes: false });
                                 }} className="text-neutral-400">Desfazer</button>

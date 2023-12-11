@@ -138,15 +138,11 @@ export const DashboardComponent: FC = () => {
                 </div>
             </section>
             {editActions.changesMade && (
-                <div className={`${editActions.changesMade ? "fade-in" : "fade-out"} w-[90vw] absolute xl:z-10 xl:fixed xl:bottom-10 xl:w-[95vw] bottom-2 bg-neutral-800 ${borderColor[color]} border-2 rounded-lg duration-200`}>
+                <div className={`${editActions.changesMade ? "bounceIn" : "invisible"} w-[90vw] absolute xl:z-10 xl:fixed xl:bottom-10 xl:w-[95vw] bottom-5 bg-neutral-800 ${borderColor[color]} border-2 rounded-lg duration-200`}>
                     <div className="flex p-2 text-white w-full items-center">
                         <span className="flex flex-grow">Você tem alterações para serem salvas</span>
                         <div className="flex gap-2 items-center">
-                            <button onClick={() => {
-                                window.location.reload();
-
-                                setEditActions({ changesMade: false });
-                            }} className="text-neutral-400">Desfazer</button>
+                            <button onClick={() => setEditActions({ changesMade: false, banner_url: user.banner_url, bio: user.bio })} className="text-neutral-400">Desfazer</button>
                             <Button disabled={editActions.changesLoading} clas="disabled:opacity-50" action={updateUser}>
                                 {!editActions.changesLoading ? <span>Salvar alterações</span> : <iconAI.AiOutlineLoading3Quarters fill="#fff" size={22} className="animate-spin" />}
                             </Button>
