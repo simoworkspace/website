@@ -1,11 +1,21 @@
-import { FC, useContext } from "react";
+import { FC, useEffect, useState } from "react";
 import { borderColor } from "../../utils/theme/border";
-import { Theme } from "../../types";
+import { Theme, UserStructure } from "../../types";
 import simo from "../../assets/images/simo.png";
-import { UserContext } from "../../contexts/UserContext";
+import api from "../../utils/api";
 
 export const DashboardUser: FC<{ color: Theme }> = ({ color }) => {
-    const { user } = useContext(UserContext);
+    const [user, setUser] = useState<UserStructure | null>(null);
+
+    const getUser = async () => {
+        const { data } = await api.getUserData();
+
+        setUser(data);
+    };
+
+    useEffect(() => {
+        getUser();
+    }, []);
 
     return user ? (
         <div className={`${borderColor[color]} border-2 ${user.banner_url ? "min-h-[300px]" : "p-6"} w-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex justify-start flex-col gap-4 relative`}>
