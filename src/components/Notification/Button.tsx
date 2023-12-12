@@ -21,20 +21,20 @@ export const NotificationButton: FC = () => {
     const [notifications, setNotifications] = useState<NotificationStructure>({});
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [bulkLoading, setBulkLoading] = useState<boolean>(false);
+    const [viewedNotifications, setViewedNotifications] = useState<boolean>(user?.notifications_viewed as boolean);
 
-    const getNotifications = async (): Promise<void> => {
+    const getNotifications = async () => {
         setIsLoading(true);
 
         const { data } = await api.getNotifications();
-        
-        if (data.notifications_viewed) await api.patchUser({ notifications_viewed: true });
+
         setNotifications(data);
 
         setIsLoading(false);
     };
 
     useEffect(() => {
-        const handleClickOutside = (event: MouseEvent): void => {
+        const handleClickOutside = (event: MouseEvent) => {
             if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
                 setIsOpen(false);
             }
@@ -49,57 +49,67 @@ export const NotificationButton: FC = () => {
 
     useEffect(() => {
         if (user) {
+            setViewedNotifications(user?.notifications_viewed as boolean);
             getNotifications();
         }
     }, [user, isOpen]);
 
-    return (
-        <section ref={menuRef} className={`${!user && "invisible"}`}>
-            {user?.notifications_viewed && <div className="h-3 w-3 bg-red-500 absolute rounded-lg xl:hidden" />}
-            <button onClick={() => setIsOpen(!isOpen)} className={`xl:invisible ${borderColor[color]} mr-1 flex border-2 p-3 items-center justify-center rounded-lg bg-neutral-900 h-[50px]`}>
-                <icon.BsBell fill="#fff" />
-            </button>
-            <div className={`${isOpen ? "opacity-100" : "opacity-0 invisible"} ${scrollBar[color]} p-3 xl:invisible overflow-auto flex-col flex text-white rounded-lg absolute right-[209px] max-h-[300px] w-[500px] top-16 origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
-                {isLoading ? (
-                    <div className="flex flex-col gap-3 xl:invisible">
-                        <h1 className="text-[22px] text-center my-1"><strong>Suas notificações</strong></h1>
-                        <div className="w-full bg-neutral-800 animate-pulse h-[70px] rounded-lg"></div>
-                        <div className="w-full bg-neutral-800 animate-pulse h-[50px] rounded-lg"></div>
-                        <div className="w-full bg-neutral-800 animate-pulse h-[66px] rounded-lg"></div>
-                    </div>
-                ) : (
-                    <div>
-                        <h1 className="text-[22px] text-center my-1"><strong>Suas notificações</strong></h1>
-                        {user?.notifications_viewed ? (
-                            <>
-                                <div className="flex flex-col my-3 gap-3 xl:invisible">
-                                    {Object.keys(notifications).map((key, index) => (
-                                        <NotificationCard updateNotifications={getNotifications} user={user} notification={notifications[key]} key={index} keyc={key} color={color} />
-                                    ))}
-                                </div>
-                                <Link className="text-blue-500 underline hover:text-blue-600 transition-colors flex items-center justify-center mb-3" to="/notifications">
-                                    <span>Página de notificações</span>
-                                </Link>
-                                <div className="flex flex-row gap-2 items-center justify-center">
-                                    <button onClick={async () => {
-                                        setBulkLoading(true);
+    return user && (
+        (
+            <section ref={menuRef} className={`${!user && "invisible"}`}>
+                {!viewedNotifications && <div className="h-3 w-3 bg-red-500 absolute rounded-lg xl:hidden" />}
+                <button onClick={async () => {
+                    setIsOpen(!isOpen);
 
-                                        await api.deleteAllNotifications(user?._id);
-                                        await getNotifications();
+                    if (!user.notifications_viewed) {
+                        await api.patchUser({ notifications_viewed: true });
+                        setViewedNotifications(true);
+                    }
+                }} className={`xl:invisible ${borderColor[color]} mr-1 flex border-2 p-3 items-center justify-center rounded-lg bg-neutral-900 h-[50px]`}>
+                    <icon.BsBell fill="#fff" />
+                </button>
+                <div className={`${isOpen ? "opacity-100" : "opacity-0 invisible"} ${scrollBar[color]} p-3 xl:invisible overflow-auto flex-col flex text-white rounded-lg absolute right-[209px] max-h-[300px] w-[500px] top-16 origin-top-right bg-neutral-900 border-2 transition-all duration-300 ${borderColor[color]}`}>
+                    {isLoading ? (
+                        <div className="flex flex-col gap-3 xl:invisible">
+                            <h1 className="text-[22px] text-center my-1"><strong>Suas notificações</strong></h1>
+                            <div className="w-full bg-neutral-800 animate-pulse h-[70px] rounded-lg"></div>
+                            <div className="w-full bg-neutral-800 animate-pulse h-[50px] rounded-lg"></div>
+                            <div className="w-full bg-neutral-800 animate-pulse h-[66px] rounded-lg"></div>
+                        </div>
+                    ) : (
+                        <div>
+                            <h1 className="text-[22px] text-center my-1"><strong>Suas notificações</strong></h1>
+                            {user.notifications && Object.keys(notifications).length > 0 ? (
+                                <>
+                                    <div className="flex flex-col my-3 gap-3 xl:invisible">
+                                        {Object.keys(notifications).map((key, index) => (
+                                            <NotificationCard updateNotifications={getNotifications} user={user} notification={notifications[key]} key={index} keyc={key} color={color} />
+                                        ))}
+                                    </div>
+                                    <Link className="text-blue-500 underline hover:text-blue-600 transition-colors flex items-center justify-center mb-3" to="/notifications">
+                                        <span>Página de notificações</span>
+                                    </Link>
+                                    <div className="flex flex-row gap-2 items-center justify-center">
+                                        <button onClick={async () => {
+                                            setBulkLoading(true);
 
-                                        setBulkLoading(false);
-                                    }} className={`text-center ${buttonColor[color]} duration-300 transition-colors p-3 rounded-lg border-2 w-full`}>Limpar notificações</button>
-                                    {bulkLoading && <iconAI.AiOutlineLoading3Quarters fill="#fff" size={25} className="animate-spin" />}
+                                            await api.deleteAllNotifications(user?._id);
+                                            await getNotifications();
+
+                                            setBulkLoading(false);
+                                        }} className={`text-center ${buttonColor[color]} duration-300 transition-colors p-3 rounded-lg border-2 w-full`}>Limpar notificações</button>
+                                        {bulkLoading && <iconAI.AiOutlineLoading3Quarters fill="#fff" size={25} className="animate-spin" />}
+                                    </div>
+                                </>
+                            ) : (
+                                <div className="w-full text-center text-[20px] flex items-center justify-center my-3">
+                                    <span>Você não tem notificações.</span>
                                 </div>
-                            </>
-                        ) : (
-                            <div className="w-full text-center text-[20px] flex items-center justify-center my-3">
-                                <span>Você não tem notificações.</span>
-                            </div>
-                        )}
-                    </div>
-                )}
-            </div>
-        </section>
+                            )}
+                        </div>
+                    )}
+                </div>
+            </section>
+        )
     )
 };
