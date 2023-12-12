@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext, FC } from "react";
 import { useParams, Link, Params } from "react-router-dom";
-import { BotStructure } from "../../types";
+import { BotStructure, Team } from "../../types";
 import api from '../../utils/api';
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { Feedbacks } from "../../components/Feedbacks/Feedbacks";
@@ -19,6 +19,7 @@ export const BotComponent: FC = () => {
     const [botData, setBotData] = useState<BotStructure>();
     const [stars, setStars] = useState<number>(0);
     const [dev, setDev] = useState<{ id: string, avatar: string, username: string }>();
+    const [team, setTeam] = useState<Team | null>();
 
     const getBotStars = async () => {
         const res = await api.getBotFeedbacks(params.botid as string);
@@ -33,7 +34,14 @@ export const BotComponent: FC = () => {
 
         const { data: { username, avatar, id } } = await api.getDiscordUser(owner_id);
 
+        if (data.team_id) {
+            const team = await api.getTeam(data.team_id as string);
+
+            setTeam(!team.data ? null : team.data);
+        }
+
         setDev({ username, avatar, id, });
+
         setBotData(data);
     };
 
@@ -114,6 +122,18 @@ export const BotComponent: FC = () => {
                                     </div>
                                 </div>
                             </div>
+                            {team && (
+                                <div className="w-full">
+                                    <h1 className="text-2xl text-center">Time</h1>
+                                    <hr className="my-4 w-full" />
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <Link to={`/team/${team.id}`} className="bg-neutral-900 border-2 border-neutral-700 p-2 rounded-lg flex flex-row flex-wrap justify-center xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
+                                            <img className="rounded-full h-[60px] w-[60px]" src={team.avatar_url} />
+                                            <span className="text-center">{team.name}</span>
+                                        </Link>
+                                    </div>
+                                </div>
+                            )}
                             <div>
                                 <h1 className="text-2xl text-center">Informações</h1>
                                 <hr className="my-4 w-full" />
