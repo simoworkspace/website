@@ -114,6 +114,7 @@ export interface VoteStructure {
 
 export interface UserStructure {
     notifications_viewed: boolean
+    notifications: Map<string, NotificationBody>;
     username: string;
     flags: UserFlags
     banner_url: string | null;
