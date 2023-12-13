@@ -42,7 +42,7 @@ export const Botloading: React.FC<{ fills: number, grid?: boolean }> = ({ fills,
             )}
         </>
     ) : (
-        <div className="grid-cols-2 grid gap-3 text-white p-3 xl:w-full xl:grid-cols-1 w-full">
+        <div className="grid-cols-2 grid gap-3 text-white px-3 xl:w-full xl:grid-cols-1 w-full">
             {Array(fills).fill(
                 <div className="bg-neutral-900 w-full rounded-lg p-3 transition-colors border-[#1d1d1d] border-2 flex flex-col gap-3 xl:w-[95vw]">
                     <div className="flex flex-col gap-3">
