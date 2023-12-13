@@ -21,7 +21,7 @@ export const CreateTeam: React.FC = () => {
     const onSubmit: SubmitHandler<Team> = async (data: Team): Promise<void> => {
         setSubmited(true);
 
-        const { avatar_url, description, name } = data;
+        const { avatar_url, description, name, id } = data;
 
         //@ts-ignore
         const formData: Team = {
@@ -34,7 +34,7 @@ export const CreateTeam: React.FC = () => {
         try {
             await api.createTeam(formData);
 
-            window.location.href = "/dashboard/settings";
+            window.location.href = `/team/${id}`;
         } catch (error: any) {
             setSubmited(false);
             setError({
