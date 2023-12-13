@@ -49,14 +49,14 @@ function App() {
                     <Route path="/search" element={<Search />} />
                     <Route path="/notifications" element={<NotificationsPage />} />
                     <Route path="/themes" element={<ThemesPage />} />
-                    <Route path="/addbot" element={<Addbot />} />
+                    <Route path="/addbot" element={<Auth><Addbot /></Auth>} />
                     <Route path="/user/:userid" element={<User />} />
-                    <Route path="/dashboard" element={<Dashboard />} />
-                    <Route path="/dashboard/edit/:botId" element={<DashboardEditPage />} />
-                    <Route path="/team/create" element={<CreateTeamPage />} />
+                    <Route path="/dashboard" element={<Auth><Dashboard /></Auth>} />
+                    <Route path="/dashboard/edit/:botId" element={<Auth><DashboardEditPage /></Auth>} />
+                    <Route path="/team/create" element={<Auth><CreateTeamPage /></Auth>} />
                     <Route path="/team/:teamId" element={<TeamPage />} />
                     <Route path="/team/:teamId/invite/:hash" element={<InvitePage />} />
-                    <Route path="/team/manage/:teamId" element={<ManageTeamPage />} />
+                    <Route path="/team/manage/:teamId" element={<Auth><ManageTeamPage /></Auth>} />
                     <Route path="/login" element={<Login />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
