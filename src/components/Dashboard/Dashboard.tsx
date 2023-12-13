@@ -64,7 +64,7 @@ export const DashboardComponent: FC = () => {
     return user ? (
         <main className="max-w-[1500px] flex justify-center items-center">
             <section className="w-screen flex flex-row p-5 text-white items-start xl:items-center justify-center gap-10 xl:flex-col">
-                <div className={`${borderColor[color]} max-w-[250px] border-2 ${editActions.banner_url ? "min-h-[300px]" : "p-6"} w-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex justify-start flex-col gap-4 relative`}>
+                <div className={`${borderColor[color]} max-w-[250px] xl:max-w-none border-2 ${editActions.banner_url ? "min-h-[300px]" : "p-6"} w-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex justify-start flex-col gap-4 relative`}>
                     {editActions.banner_url && (
                         <img className={`w-full h-36 object-cover rounded-md rounded-b-none z-0 mb-14 bg-neutral-800`} onError={({ currentTarget }) => {
                             currentTarget.src = "http://www.luquips.com.br/wp-content/uploads/2015/04/banner-vazio-300x86.png";

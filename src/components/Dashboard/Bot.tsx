@@ -63,7 +63,7 @@ export const DashboardBot: React.FC = () => {
     return (
         <main className="flex items-center justify-start h-full w-full flex-col">
             <div className="w-full">
-                <button disabled={bots?.length === 1 || !bots} onClick={() => setSelectBotMenu(!selectBotMenu)} className={`bg-neutral-900 p-3 items-center justify-center flex flex-row ${borderColor[color]} rounded-lg border-2 w-full ${selectedBot ? "h-16" : "h-14"}`}>
+                <button onClick={() => setSelectBotMenu(!selectBotMenu)} className={`bg-neutral-900 p-3 items-center justify-center flex flex-row ${borderColor[color]} rounded-lg border-2 w-full ${selectedBot ? "h-16" : "h-14"}`}>
                     {selectedBot ? (
                         <div className="flex items-center justify-start w-full gap-3 p-3">
                             <img className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${selectedBot._id}/${selectedBot.avatar}.png`} />
