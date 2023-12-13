@@ -73,7 +73,7 @@ const api = {
         return axios.post(`/api/auth/api-key/${botId}`, null, header);
     },
     getUserFromDB: (userId: Snowflake): Promise<AxiosResponse<UserStructure>> => {
-        return axios.get("/api/users/" + userId, header);
+        return axios.get("/api/users/" + userId);
     },
     patchUser: (body: { bio?: string, banner_url?: string; notifications_viewed?: boolean }): Promise<AxiosResponse> => {
         return axios.patch("/api/users", body, header);
