@@ -17,25 +17,20 @@ export const User: React.FC = () => {
 
     const getUserData = async () => {
         const { data } = await api.getUserFromDB(userid);
+        const bots = await api.getAllBots();
+        const userBots = bots.data.filter((bot) => bot.owner_id === userid);
 
-        return setUser(data);
+        setUserBots(userBots);
+        setUser(data);
     };
 
-    const getUserBots = async () => {
-        const { data } = await api.getAllBots();
-        const userBots = data.filter((bot) => bot.owner_id === userid);
-
-        return setUserBots(userBots);
-    };
-    
     useEffect(() => {
         getUserData();
-        getUserBots();
     }, []);
 
     return (
         <main className="max-w-[1500px] flex justify-center">
-            {!user || !userBots ? (
+            {!user ? (
                 <UserLoading />
             ) : (
                 <section className="w-screen flex flex-row p-5 text-white items-start xl:items-center justify-center gap-10 xl:flex-col">
