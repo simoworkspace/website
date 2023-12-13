@@ -22,6 +22,7 @@ import { TeamPage } from "../pages/Team/Team";
 import { ManageTeamPage } from "../pages/Team/ManageTeam";
 import { InvitePage } from "../pages/Team/Invite";
 import { Auth } from "../components/Mixed/Auth";
+import { Login } from "../pages/Login/Login";
 
 function App() {
     const { color } = useContext(ThemeContext);
@@ -56,6 +57,7 @@ function App() {
                     <Route path="/team/:teamId" element={<TeamPage />} />
                     <Route path="/team/:teamId/invite/:hash" element={<InvitePage />} />
                     <Route path="/team/manage/:teamId" element={<ManageTeamPage />} />
+                    <Route path="/login" element={<Login />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Mobilemenu />
