@@ -2,11 +2,11 @@ import axios, { AxiosResponse } from "axios";
 import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody, NotificationType, StatusStrucuture, Team, AuditLogStructure } from "../../types";
 import Cookies from "js-cookie";
 
-const header = {
+const header = Cookies.get("discordUser") ? {
     headers: {
         Authorization: Cookies.get("discordUser")
     },
-};
+} : undefined;
 
 const api = {
     getAllBots: (startAt?: number, endAt?: number): Promise<AxiosResponse<BotStructure[]>> => {
@@ -73,7 +73,7 @@ const api = {
         return axios.post(`/api/auth/api-key/${botId}`, null, header);
     },
     getUserFromDB: (userId: Snowflake): Promise<AxiosResponse<UserStructure>> => {
-        return axios.get("/api/users/" + userId);
+        return axios.get("/api/users/" + userId, header);
     },
     patchUser: (body: { bio?: string, banner_url?: string; notifications_viewed?: boolean }): Promise<AxiosResponse> => {
         return axios.patch("/api/users", body, header);
