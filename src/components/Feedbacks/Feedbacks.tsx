@@ -91,7 +91,7 @@ export const Feedbacks: React.FC<{ botid: string, bot: BotStructure, dev: { id: 
                 {feedbackLoading ? (
                     <div className="flex flex-col gap-3">
                         {Array(3).fill(
-                            <div className="bg-neutral-900 w-full h-[150px] rounded-lg border-2">
+                            <div className="bg-neutral-900 w-full h-[150px] rounded-lg border-2 border-neutral-800">
                                 <div className="flex flex-col p-3 gap-2">
                                     <div className="flex flex-row items-center justify w-full">
                                         <div className="w-[40px] h-[40px] rounded-full animate-pulse bg-neutral-800"></div>
