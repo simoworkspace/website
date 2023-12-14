@@ -13,16 +13,18 @@ export const Bots: React.FC = () => {
     const [showLoadMore, setShowLoadMore] = useState<boolean>(true);
     const [botLoading, setBotLoading] = useState<boolean>(false);
 
-    const bottomOfPageRef = useRef<HTMLDivElement>(null);
-
     const fetchData = async (startAt: number, endAt: number) => {
         setBotLoading(true);
 
         const res = await api.getAllBots(startAt, endAt);
         setData((prevData) => [...prevData, ...res.data]);
 
-        if (res.data.length === 0) {
+        const status = await api.getApiStatus();
+
+        if (res.data.length === 0 || data.length >= status.data.bots) {
             setShowLoadMore(false);
+        } else {
+            setShowLoadMore(true);
         }
 
         setBotLoading(false);
@@ -33,10 +35,7 @@ export const Bots: React.FC = () => {
     }, [botsToShow]);
 
     const loadMoreBots = () => {
-        setBotsToShow(prevBotsToShow => {
-            fetchData(0, prevBotsToShow + 6);
-            return prevBotsToShow + 6;
-        });
+        setBotsToShow((prevBotsToShow) => Math.min(prevBotsToShow + 6));
     };
 
     return (
@@ -46,10 +45,14 @@ export const Bots: React.FC = () => {
                     <BotCard bot={bot} key={index} />
                 ))}
             </div>
-            <div ref={bottomOfPageRef} />
-            {showLoadMore && !botLoading && (
+            {!botLoading && showLoadMore && (
                 <div className="max-w-[1500px] flex justify-center items-center w-screen">
-                    <button onClick={loadMoreBots} disabled={!showLoadMore} className={`${buttonColor[color]} border-2 transition-all duration-300 w-[98%] text-white p-3 rounded-lg mb-2`}>Carregar Mais</button>
+                    <button
+                        onClick={loadMoreBots}
+                        className={`${buttonColor[color]} border-2 transition-all duration-300 w-[98%] text-white p-3 rounded-lg mb-2`}
+                    >
+                        Carregar Mais
+                    </button>
                 </div>
             )}
             {botLoading && <Botloading fills={6} />}
