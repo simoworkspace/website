@@ -34,45 +34,45 @@ export const AuditLogs: FC<{ logs: AuditLogStructure | undefined }> = ({ logs })
             {logs ? (
                 <div className="flex gap-3 flex-col w-full">
                     {logs.entries.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).map((log, index) => (
-                        <div key={index} className="bg-neutral-800 w-full p-3 rounded-lg flex gap-2 break-before-auto">
-                            <Link to={`/user/${log.executor._id}`}><img className="rounded-full w-12 h-12" src={`https://cdn.discordapp.com/avatars/${log.executor._id}/${log.executor.avatar}.png`} /></Link>
-                            <div className="flex flex-col gap-1">
+                        <div key={index} className="bg-neutral-800 w-full p-3 rounded-lg flex gap-2 items-start">
+                            <Link to={`/user/${log.executor._id}`}>
+                                <img className="rounded-full w-12 h-12 flex-shrink-0" src={`https://cdn.discordapp.com/avatars/${log.executor._id}/${log.executor.avatar}.png`} />
+                            </Link>
+                            <div className="flex flex-col gap-1 flex-grow">
                                 <div>
                                     {log.action_type === 0 ? (
-                                        <span><strong>{log.target?.username}</strong> entrou no grupo</span>
+                                        <div><strong>{log.target?.username}</strong> entrou no grupo</div>
                                     ) : (
                                         log.changes.map((change, index) => (
-                                    <div className="flex flex-col" key={index}>
-                                        <div className="flex flex-col" key={index}>
-                                            {(() => {
-                                                switch (log.action_type) {
-                                                    case actionType.MemberUpdate:
-                                                        return <span><strong>{log.executor.username}</strong> Atualizou as permissões para <strong>{log.target?.username}</strong> de <strong>{changedKeysNames[change.old_value]}</strong> para <strong>{changedKeysNames[change.new_value as string]}</strong></span>;
-                                                    case actionType.MemberRemove:
-                                                        return <span><strong>{log.executor.username}</strong> removeu o membro <strong>{log.target?.username}</strong></span>
-                                                    case actionType.BotAdd:
-                                                        return <span><strong>{log.executor.username}</strong> adicionou o bot com o ID {log.target?.username}</span>;
-                                                    case actionType.TeamUpdate:
-                                                        return <span><strong>{log.executor.username}</strong> Atualizou <strong>{changedKeysNames[change.changed_key]}</strong> de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>
-                                                    case actionType.BotRemove:
-                                                        return <span><strong>{log.executor.username}</strong> removeu o bot com o ID {log.target?.username}</span>;
-                                                    case actionType.InviteUpdate:
-                                                        return <span><strong>{log.executor.username}</strong> Atualizou o código de invite, de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>;
-                                                    default:
-                                                        return <span>Ação não tratada para action_type {log.action_type}</span>;
-                                                }
-                                            })()}
-                                        </div>
-                                    </div>
-                                    ))
+                                            <div className="flex flex-col break-word max-w-3xl xl:max-w-[50vw]" key={index}>
+                                                {(() => {
+                                                    switch (log.action_type) {
+                                                        case actionType.MemberUpdate:
+                                                            return <span><strong>{log.executor.username}</strong> Atualizou as permissões para <strong>{log.target?.username}</strong> de <strong>{changedKeysNames[change.old_value]}</strong> para <strong>{changedKeysNames[change.new_value as string]}</strong></span>;
+                                                        case actionType.MemberRemove:
+                                                            return <span><strong>{log.executor.username}</strong> removeu o membro <strong>{log.target?.username}</strong></span>
+                                                        case actionType.BotAdd:
+                                                            return <span><strong>{log.executor.username}</strong> adicionou o bot com o ID {log.target?.username}</span>;
+                                                        case actionType.TeamUpdate:
+                                                            return <span><strong>{log.executor.username}</strong> Atualizou <strong>{changedKeysNames[change.changed_key]}</strong> de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>
+                                                        case actionType.BotRemove:
+                                                            return <span><strong>{log.executor.username}</strong> removeu o bot com o ID {log.target?.username}</span>;
+                                                        case actionType.InviteUpdate:
+                                                            return <span><strong>{log.executor.username}</strong> Atualizou o código de invite, de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>;
+                                                        default:
+                                                            return <span>Ação não tratada para action_type {log.action_type}</span>;
+                                                    }
+                                                })()}
+                                            </div>
+                                        ))
                                     )}
                                 </div>
-
                                 <div>
-                                    <span className="text-neutral-400">{moment(log.created_at).locale("pt-br").fromNow()}</span>
+                                    <div className="text-neutral-400">{moment(log.created_at).locale("pt-br").fromNow()}</div>
                                 </div>
                             </div>
                         </div>
+
                     ))}
                 </div>
             ) : (
