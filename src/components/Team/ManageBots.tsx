@@ -55,10 +55,10 @@ export const TeamManageBots: FC<{ team?: Team }> = ({ team }) => {
                     <iconMD.MdOutlineKeyboardArrowDown className={`transition-all duration-300 ${selectBotMenu ? "rotate-180" : "rotate-0"}`} size={25} />
                 </button>
             </div>
-            <div className="relative w-full">
-                <div className={`${selectBotMenu ? "opacity-100 visible" : "opacity-0 invisible"} relative transition-all duration-300 w-full flex items-center justify-center`}>
+            <div className="w-full">
+                <div className={`${selectBotMenu ? "opacity-100 visible" : "opacity-0 invisible"} transition-all duration-300 w-full flex items-center justify-center`}>
                     {selectBotMenu && (
-                        <div className={`bg-neutral-900 absolute top-0 rounded-b-lg overflow-auto max-h-[300px] w-[95%] ${borderColor[color]} border-2 border-t-0 flex items-center flex-col gap-2 p-3`}>
+                        <div className={`bg-neutral-900 rounded-b-lg overflow-auto max-h-[300px] w-[95%] ${borderColor[color]} border-2 border-t-0 flex items-center flex-col gap-2 p-3`}>
                             {bots?.map((bot, index) => (
                                 <button key={index} onClick={() => getSelectedBot(bot._id)} className="flex xl:flex-col items-center justify-start w-full gap-3 p-3 transition-colors duration-300 hover:bg-neutral-800 rounded-lg">
                                     <img className="rounded-full w-20" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
