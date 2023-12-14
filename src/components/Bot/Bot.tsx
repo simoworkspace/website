@@ -9,7 +9,6 @@ import { borderAndBg } from "../../utils/theme/border&bg";
 import { borderColor } from "../../utils/theme/border";
 import * as icon from "react-icons/bs";
 import { BotLoading } from "./BotLoading";
-import { Helmet } from "react-helmet";
 
 export const BotComponent: FC = () => {
     const params: Params = useParams<string>();
@@ -185,14 +184,6 @@ export const BotComponent: FC = () => {
                 </section>
                 <Feedbacks botid={botid} bot={botData} dev={dev} />
             </div>
-            <Helmet>
-                <title>Simo Botlist - {botData.name}</title>
-                <meta property="og:title" content={botData.name} />
-                <meta property="og:type" content="website" />
-                <meta property="og:image" content={`https://cdn.discordapp.com/avatars/${botData._id}/${botData.avatar}.png`} />
-                <meta property="og:description" content={botData.short_description} />
-                <meta name="theme-color" content="#FFFFFF" />
-            </Helmet>
         </section>
     ) : (
         <BotLoading />
