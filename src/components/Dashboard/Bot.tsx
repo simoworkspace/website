@@ -12,11 +12,11 @@ import { Link } from "react-router-dom";
 import { DeleteBot } from "./Delete";
 import { borderAndBg } from "../../utils/theme/border&bg";
 import { Button } from "../Mixed/Button";
+import { BiArrowBack } from "react-icons/bi";
 
 export const DashboardBot: React.FC = () => {
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
-    const [selectBotMenu, setSelectBotMenu] = useState<boolean>(false);
     const [bots, setBots] = useState<BotStructure[] | null>(null);
     const [selectedBot, setSelectedBot] = useState<BotStructure | null>(null);
     const [apiKey, setApiKey] = useState<string>("");
@@ -50,7 +50,7 @@ export const DashboardBot: React.FC = () => {
 
     const getSelectedBot = (botId: string) => {
         const selbot = bots?.find(bot => bot._id == botId);
-        setSelectBotMenu(false);
+
         return setSelectedBot(selbot as BotStructure);
     };
 
@@ -60,39 +60,34 @@ export const DashboardBot: React.FC = () => {
         if (selectedBot) getBotApiKey();
     }, [user]);
 
-    return (
+    return bots ? (
         <main className="flex items-center justify-start h-full w-full flex-col">
-            <div className="w-full">
-                <button onClick={() => setSelectBotMenu(!selectBotMenu)} className={`bg-neutral-900 p-3 items-center justify-center flex flex-row ${borderColor[color]} rounded-lg border-2 w-full ${selectedBot ? "h-16" : "h-14"}`}>
-                    {selectedBot ? (
-                        <div className="flex items-center justify-start w-full gap-3 p-3">
-                            <img className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${selectedBot._id}/${selectedBot.avatar}.png`} />
-                            <span className="text-xl">{selectedBot.name}</span>
-                            <span className="text-[#797979] items-center flex text-[13px] xl:invisible justify-center">
-                                ( {user?._id} )
-                            </span>
-                        </div>
-                    ) : <span className="flex flex-grow">Clique aqui para selecionar um bot para gerenciar.</span>}
-                    <iconMD.MdOutlineKeyboardArrowDown className={`transition-all duration-300 ${selectBotMenu ? "rotate-180" : "rotate-0"}`} size={25} />
-                </button>
-            </div>
-            <div className="w-full">
-                <div className={`${selectBotMenu ? "opacity-100 visible" : "opacity-0 invisible"} transition-all duration-300 w-full flex items-center justify-center`}>
-                    {selectBotMenu && (
-                        <div className={`bg-neutral-900 rounded-b-lg overflow-auto max-h-[300px] w-[95%] ${borderColor[color]} border-2 border-t-0 flex items-center flex-col gap-2 p-3`}>
-                            {bots?.map((bot, index) => (
-                                <button key={index} onClick={() => getSelectedBot(bot._id)} className="flex xl:flex-col items-center justify-start w-full gap-3 p-3 transition-colors duration-300 hover:bg-neutral-800 rounded-lg">
-                                    <img className="rounded-full w-20" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
-                                    <span className="text-xl">{bot.name}</span>
-                                    <span className="text-[#797979] items-center flex text-[13px] justify-center">
-                                        ( {user?._id} )
-                                    </span>
-                                </button>
-                            ))}
-                        </div>
-                    )}
+            {selectedBot ? (
+                <div className="flex items-center justify-start w-full">
+                    <Button action={() => setSelectedBot(null)} clas="flex items-center justify-center gap-3"><BiArrowBack /> Voltar</Button>
                 </div>
-            </div>
+            ) : bots.length === 0 ? (
+                <div className="flex w-full items-center justify-start gap-2 text-lg">Você não tem bots, que tal adicionar um bot<Link className="text-blue-500 underline" to="/addbot">clicando aqui?</Link></div>
+            ) : !selectedBot && (
+                <div className="flex flex-col gap-2">
+                    <span className="text-xl font-bold">Seus bots</span>
+                    <Button link to="/addbot" clas="disabled:opacity-50 flex items-center justify-center gap-2 w-[190px]"><iconBS.BsPlusLg size={22} />Adicionar um bot</Button>
+                    <div className="flex items-center w-full gap-2">
+                        {bots.map((bot) => (
+                            <button onClick={() => getSelectedBot(bot._id)} className="flex-col flex rounded-lg p-3 bg-neutral-800 items-center justify-center gap-3 transition duration-300 hover:bg-neutral-700">
+                                <div className="flex gap-2 items-center justify-start w-full">
+                                    <img className="rounded-full w-12 h-12" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
+                                    <div className="flex gap-2 items-center">
+                                        <span className="text-lg font-bold">{bot.name}</span>
+                                        (<span className="text-neutral-500">{bot._id}</span>)
+                                    </div>
+                                </div>
+                                <div className="text-start">{bot.short_description}</div>
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            )}
             {selectedBot && (
                 <section className={`w-full bg-neutral-900 mt-2 border-2 flex-row ${borderColor[color]} rounded-lg p-4`}>
                     <div className="flex flex-col gap-2">
@@ -143,5 +138,5 @@ export const DashboardBot: React.FC = () => {
                 {selectedBot && <DeleteBot setDeleteBot={setDeleteBot} deletebot={deleteBot} bot={selectedBot} />}
             </section>
         </main>
-    )
+    ) : <div>Carregando...</div>
 };
