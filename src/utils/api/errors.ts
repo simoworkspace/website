@@ -48,5 +48,5 @@ export const ApiErrors: Record<number, string> = {
     6015: "Não é possível remover o proprietário da equipe",
     6016: "Você não pode se remover",
     6017: "Você não pode remover um administrador",
-    6018: "Faltando 'member_id' no corpo para remover um membro"
-};
+    6018: "Faltando 'member_id' no corpo para remover um membro",
+}
