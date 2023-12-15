@@ -22,7 +22,7 @@ export const CreateTeam: React.FC = () => {
     const onSubmit: SubmitHandler<Team> = async (data: Team): Promise<void> => {
         setSubmited(true);
 
-        const { avatar_url, description, name, id } = data;
+        const { avatar_url, description, name } = data;
 
         //@ts-ignore
         const formData: Team = {
@@ -33,7 +33,7 @@ export const CreateTeam: React.FC = () => {
         };
 
         try {
-            await api.createTeam(formData);
+            const { data: { id } } = await api.createTeam(formData);
 
             window.location.href = `/team/${id}`;
         } catch (error: any) {
