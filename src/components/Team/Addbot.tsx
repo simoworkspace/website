@@ -108,7 +108,7 @@ export const TeamAddbot: FC<{ team?: Team }> = ({ team }) => {
                                 </Link>
                             </div>
                             <div className="flex flex-col gap-4">
-                                <span className="text-lg">Você deseja mesmo adicionar seu bot <strong>{selectedBot.name}</strong> no time <strong>{team.name}</strong> ? <span className="text-yellow-300">seu bot será removido do seu perfil, e será adicionado no time.</span></span>
+                                <span className="text-lg">Você deseja mesmo adicionar seu bot <strong>{selectedBot.name}</strong> no time <strong>{team.name}</strong> ? <span className="text-yellow-300">seu bot não será removido do seu perfil, ele só será adicionado no time, você continua sendo dono dele.</span></span>
                                 <Button clas="flex justify-center items-center" disabled={addbotLoading || addbotLoading === false} action={addBot}>{addbotLoading ? <iconAI.AiOutlineLoading3Quarters fill="#fff" size={24} className="animate-spin" /> : "Adicionar"}</Button>
                                 {addbotLoading === false && <span className="text-green-600">Bot adicionado no time!</span>}
                             </div>
