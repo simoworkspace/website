@@ -9,6 +9,7 @@ import { borderAndBg } from "../../utils/theme/border&bg";
 import { borderColor } from "../../utils/theme/border";
 import * as icon from "react-icons/bs";
 import { BotLoading } from "./BotLoading";
+import { CopyButton } from "../Mixed/Copy";
 
 export const BotComponent: FC = () => {
     const params: Params = useParams<string>();
@@ -77,11 +78,9 @@ export const BotComponent: FC = () => {
                             alt={botData.name + "'s Avatar"}
                         />
                         <div className="flex flex-col w-full justify-center gap-2">
-                            <div className="ml-6 xl:m-0 xl:my-1 text-white flex xl:flex-col xl:items-center flex-row gap-3 text-[26px]">
+                            <div className="ml-6 xl:m-0 xl:my-1 text-white flex xl:justify-center xl:items-center flex-row gap-3 text-[26px]">
                                 <strong>{botData.name}</strong>
-                                <span className="text-[#797979] items-center flex text-[13px]">
-                                    ( {botData._id} )
-                                </span>
+                                <CopyButton name="ID" text={botData._id} key={Math.random()}/>
                             </div>
                             <div className="flex mx-6 xl:justify-center xl:m-1 flex-row gap-1">
                                 {Array(stars).fill(0).map((_, index) => (
