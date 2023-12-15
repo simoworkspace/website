@@ -100,7 +100,7 @@ const api = {
         return axios.put(`/api/teams/change-owner/${userID}`, null, header);
     },
     removeMember: (teamID: string, userID: Snowflake): Promise<AxiosResponse<Team>> => {
-        return axios.put(`/api/teams/${teamID}/remove-member`, { member_id: userID }, header);
+        return axios.delete(`/api/teams/${teamID}/members/${userID}`, header);
     },
     getTeamBots: (teamID: string): Promise<AxiosResponse<BotStructure[]>> => {
         return axios.get(`/api/teams/${teamID}/bots`, header);
