@@ -22,12 +22,12 @@ export const DeleteTeam: FC<{
     const deleteTeam = async (): Promise<void> => {
         setLoading(true);
 
-        await api.deleteTeam();
+        await api.deleteTeam(team.id as string);
 
         setLoading(false);
         setDeletedTeam(false);
 
-        window.location.reload();
+        window.location.href = "/dashboard";
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {

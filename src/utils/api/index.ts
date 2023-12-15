@@ -84,8 +84,8 @@ const api = {
     getUserTeams: (): Promise<AxiosResponse<Team[]>> => {
         return axios.get("/api/teams/@all", header);
     },
-    deleteTeam: (): Promise<AxiosResponse<Team>> => {
-        return axios.delete("/api/teams", header);
+    deleteTeam: (teamID: string): Promise<AxiosResponse<Team>> => {
+        return axios.delete("/api/teams/" + teamID, header);
     },
     createTeam: (body: Team): Promise<AxiosResponse<Team>> => {
         return axios.post("/api/teams", body, header);
