@@ -35,7 +35,7 @@ export const Bots: React.FC = () => {
     }, [botsToShow]);
 
     const loadMoreBots = () => {
-        setBotsToShow((prevBotsToShow) => Math.min(prevBotsToShow + 6));
+        setBotsToShow((prevBotsToShow) => Math.min(prevBotsToShow + 6, data.length + 6));
     };
 
     return (
