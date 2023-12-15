@@ -11,10 +11,10 @@ export const Teams: FC<{
     return (
         <div className="flex flex-col gap-2">
             <Button disabled={teams?.length === 0} link to="/team/create" clas="disabled:opacity-50 flex items-center justify-center gap-2 mt-2 w-[190px]"><icon.BsPlusLg size={22} />Criar time</Button>
-            <div className="flex flex-wrap gap-3">
+            <div className="grid gap-3 grid-cols-2 xl:grid-cols-1">
                 {teams ? teams.map((team, index) => (
                     <Link key={index} to={`/team/${team.id}`} className="bg-neutral-800 p-3 xl:w-full rounded-lg duration-300 transition-colors hover:bg-neutral-700">
-                        <div className="flex flex-row gap-2 xl:w-full xl:justify-start px-2 items-center justify-center">
+                        <div className="flex flex-row gap-4 xl:w-full xl:justify-start px-2 items-center justify-start">
                             <img className="w-24 rounded-full h-24 object-center" src={team.avatar_url} onError={({ currentTarget }) => {
                                 currentTarget.onerror = null;
                                 currentTarget.src = simo;
