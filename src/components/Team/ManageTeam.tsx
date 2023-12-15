@@ -127,8 +127,8 @@ export const ManageTeamComponent: FC = () => {
                                 <Tab className="xl:focus:bg-neutral-800 rounded-lg">Time</Tab>
                                 <Tab className="xl:focus:bg-neutral-800 rounded-lg">Membros</Tab>
                                 <Tab className="min-w-[140px] xl:focus:bg-neutral-800 rounded-lg">Adicionar bot</Tab>
-                                <Tab className="min-w-[140px] xl:focus:bg-neutral-800 rounded-lg">Gerenciar bot</Tab>
-                                <Tab className="min-w-[130px] xl:focus:bg-neutral-800 rounded-lg">Audit logs</Tab>
+                                <Tab className="min-w-[140px] xl:focus:bg-neutral-800 rounded-lg">Gerenciar bots</Tab>
+                                <Tab className="min-w-[130px] xl:focus:bg-neutral-800 rounded-lg">Audit log</Tab>
                             </TabList>
                             <TabIndicator className={`mt[-1.5px] h-[2px] ${borderColor[color]} border-2 rounded-lgx xl:invisible`} />
                             <TabPanels>
