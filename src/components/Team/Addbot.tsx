@@ -9,9 +9,10 @@ import * as iconMD from "react-icons/md";
 import { borderAndBg } from "../../utils/theme/border&bg";
 import { UserContext } from "../../contexts/UserContext";
 import * as iconAI from "react-icons/ai";
+import { BiArrowBack } from "react-icons/bi";
+import { BsPlusLg } from "react-icons/bs";
 
 export const TeamAddbot: FC<{ team?: Team }> = ({ team }) => {
-    const [selectBotMenu, setSelectBotMenu] = useState<boolean>(false);
     const [bots, setBots] = useState<BotStructure[] | null>(null);
     const [selectedBot, setSelectedBot] = useState<BotStructure | null>(null);
     const [addbotLoading, setAddbotLoading] = useState<boolean>();
@@ -41,7 +42,7 @@ export const TeamAddbot: FC<{ team?: Team }> = ({ team }) => {
 
     const getSelectedBot = (botId: string) => {
         const selbot = bots?.find(bot => bot._id === botId);
-        setSelectBotMenu(false);
+
         return setSelectedBot(selbot as BotStructure);
     };
 
@@ -51,41 +52,35 @@ export const TeamAddbot: FC<{ team?: Team }> = ({ team }) => {
         }
     }, [user]);
 
-    return team ? (
+    return team && bots ? (
         <>
             <main className="flex items-center justify-start h-full w-full flex-col">
-                <div className="w-full flex gap-3 flex-col">
-                    <span className="text-center font-bold text-2xl">Adicionar bot</span>
-                    <button disabled={!!(bots?.length === 1 && selectedBot) || bots?.length === 0} onClick={() => setSelectBotMenu(!selectBotMenu)} className={`bg-neutral-900 p-3 items-center justify-center flex flex-row ${borderColor[color]} rounded-lg border-2 w-full ${selectedBot ? "h-16" : "h-14"}`}>
-                        {selectedBot ? (
-                            <div className="flex items-center justify-start w-full gap-3 p-3">
-                                <img className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${selectedBot._id}/${selectedBot.avatar}.png`} />
-                                <span className="text-xl">{selectedBot.name}</span>
-                                <span className="text-[#797979] items-center flex text-[13px] xl:invisible justify-center">
-                                    ( {selectedBot?._id} )
-                                </span>
-                            </div>
-                        ) : <span className="flex flex-grow">{bots?.length !== 0 ? "Clique aqui para selecionar um bot para adicionar." : "Você não tem bots adicionados para adicionar em outro time"}</span>}
-                        <iconMD.MdOutlineKeyboardArrowDown className={`transition-all duration-300 ${selectBotMenu ? "rotate-180" : "rotate-0"}`} size={25} />
-                    </button>
-                </div>
-                <div className="w-full">
-                    <div className={`${selectBotMenu ? "opacity-100 visible" : "opacity-0 invisible"} transition-all duration-300 w-full flex items-center justify-center`}>
-                        {selectBotMenu && (
-                            <div className={`bg-neutral-900 rounded-b-lg overflow-auto max-h-[300px] w-[95%] ${borderColor[color]} border-2 border-t-0 flex items-center flex-col gap-2 p-3`}>
-                                {bots?.map((bot, index) => (
-                                    <button key={index} onClick={() => getSelectedBot(bot._id)} className="flex xl:flex-col items-center justify-start w-full gap-3 p-3 transition-colors duration-300 hover:bg-neutral-800 rounded-lg">
-                                        <img className="rounded-full w-20" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
-                                        <span className="text-xl">{bot.name}</span>
-                                        <span className="text-[#797979] items-center flex text-[13px] justify-center">
-                                            ( {bot._id} )
-                                        </span>
-                                    </button>
-                                ))}
-                            </div>
-                        )}
+                <span className="text-center font-bold text-2xl">Adicionar bot</span>
+                {selectedBot ? (
+                    <div className="flex items-center justify-start w-full">
+                        <Button action={() => setSelectedBot(null)} clas="flex items-center justify-center gap-3"><BiArrowBack /> Voltar</Button>
                     </div>
-                </div>
+                ) : bots.length === 0 ? (
+                    <div className="flex w-full items-center justify-start gap-2 text-lg">Você não tem bots adicionados que não pertençam a um time</div>
+                ) : !selectedBot && (
+                    <div className="flex flex-col gap-2 justify-start w-full mt-2">
+                        <span className="text-start w-full text-lg">Selecione abaixo um bot para ser adicionado no time</span>
+                        <div className="flex items-center w-full gap-2">
+                            {bots.map((bot) => (
+                                <button onClick={() => getSelectedBot(bot._id)} className="flex-col flex rounded-lg p-3 bg-neutral-800 items-center justify-center gap-3 transition duration-300 hover:bg-neutral-700">
+                                    <div className="flex gap-2 items-center justify-start w-full">
+                                        <img className="rounded-full w-12 h-12" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
+                                        <div className="flex gap-2 items-center">
+                                            <span className="text-lg font-bold">{bot.name}</span>
+                                            (<span className="text-neutral-500">{bot._id}</span>)
+                                        </div>
+                                    </div>
+                                    <div className="text-start">{bot.short_description}</div>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                )}
                 {selectedBot && (
                     <section className={`w-full bg-neutral-900 mt-2 border-2 flex-row ${borderColor[color]} rounded-lg p-4`}>
                         <div className="grid grid-cols-2 xl:grid-cols-1 gap-8 text-white m-2">
