@@ -72,14 +72,14 @@ export const DashboardBot: React.FC = () => {
                 <div className="flex flex-col gap-2">
                     <span className="text-xl font-bold">Seus bots</span>
                     <Button link to="/addbot" clas="disabled:opacity-50 flex items-center justify-center gap-2 w-[190px]"><iconBS.BsPlusLg size={22} />Adicionar um bot</Button>
-                    <div className="flex items-center w-full gap-2">
+                    <div className="flex xl:flex-col items-center w-full gap-2">
                         {bots.map((bot) => (
                             <button onClick={() => getSelectedBot(bot._id)} className="flex-col flex rounded-lg p-3 bg-neutral-800 items-center justify-center gap-3 transition duration-300 hover:bg-neutral-700">
                                 <div className="flex gap-2 items-center justify-start w-full">
                                     <img className="rounded-full w-12 h-12" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
-                                    <div className="flex gap-2 items-center">
+                                    <div className="flex gap-2 items-center flex-wrap">
                                         <span className="text-lg font-bold">{bot.name}</span>
-                                        (<span className="text-neutral-500">{bot._id}</span>)
+                                        <span className="text-neutral-500 xl:hidden">({bot._id})</span>
                                     </div>
                                 </div>
                                 <div className="text-start">{bot.short_description}</div>

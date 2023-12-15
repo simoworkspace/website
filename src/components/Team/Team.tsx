@@ -38,7 +38,7 @@ export const TeamComponent: React.FC = () => {
 
     const getTeamBots = async () => {
         const { status, data } = await api.getTeamBots(teamID);
-        
+
         setTeamBots(status === 404 ? null : data);
     }
 
@@ -95,9 +95,9 @@ export const TeamComponent: React.FC = () => {
                     <h1 className="text-[33px]">Time <strong>{team.name}</strong></h1>
                     {team?.description && <span>{team.description}</span>}
                     <hr className="w-full my-3" />
-                    <section className="w-full">
-                        {teamBots || team.bots_id?.length === 0  ? (
-                            <div className="grid-cols-2 grid gap-3 text-white p-3 xl:w-full xl:grid-cols-1 w-full max-w-[1500px]">
+                    <section className="w-full flex xl:items-center xl:justify-center">
+                        {teamBots || team.bots_id?.length === 0 ? (
+                            <div className="grid-cols-2 grid gap-8 text-white m-2 xl:grid-cols-1 xl:place-items-center xl:w-[95vw]">
                                 {team.bots_id?.length === 0 ? (
                                     <span className="text-lg">Esse time não tem bots.</span>
                                 ) : teamBots?.map((bot, index) => <BotCard bot={bot} key={index} />)}
