@@ -122,6 +122,9 @@ const api = {
     },
     removeBotTeam: ({ teamID, botID }: { teamID: string; botID: string }): Promise<AxiosResponse> => {
         return axios.delete(`/api/teams/${teamID}/bots/${botID}`, header);
+    },
+    updateTeamInviteCode: (teamID: string): Promise<AxiosResponse<{ invite_code: string }>> => {
+        return axios.patch(`/api/teams/${teamID}/invite`, header);
     }
 };
 
