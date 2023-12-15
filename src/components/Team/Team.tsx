@@ -83,6 +83,10 @@ export const TeamComponent: React.FC = () => {
                                 <Link className="relative" key={index} to={`/user/${member.id}`}>
                                     {member.permission === TeamPermissions.Owner && <icon.BiSolidCrown fill="#FFD700" className="absolute ml-7 rotate-45" />}
                                     <img
+                                        onError={async ({ currentTarget }) => {
+                                            currentTarget.onerror = null;
+                                            currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                                        }}
                                         className="rounded-full w-10"
                                         src={`https://cdn.discordapp.com/avatars/${member.id}/${member.avatar}.png?size=2048`}
                                     />

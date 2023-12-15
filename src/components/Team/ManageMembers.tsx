@@ -161,7 +161,10 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
                     <div className="p-3 w-full bg-neutral-800 rounded-lg mt-2">
                         <div className="flex flex-row xl xl:flex-col xl:justify-center xl:w-full">
                             <div className="flex items-center xl:flex-col justify-start gap-3 w-full flex-grow">
-                                <img className="rounded-full w-20" src={`https://cdn.discordapp.com/avatars/${selectedMember.id}/${selectedMember.avatar}.png`} />
+                                <img onError={async ({ currentTarget }) => {
+                                    currentTarget.onerror = null;
+                                    currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                                }} className="rounded-full w-20" src={`https://cdn.discordapp.com/avatars/${selectedMember.id}/${selectedMember.avatar}.png`} />
                                 <div className="flex flex-col gap-1 xl:text-center">
                                     <div className="flex gap-2 items-center xl:flex-col">
                                         <span className="text-lg font-bold">{selectedMember.username}</span>
@@ -193,7 +196,10 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
                     <div className="flex flex-col gap-2 mt-2">
                         {team.members.filter((member) => member.username.toLowerCase().includes(searchQuery.toLowerCase())).map((member) => (
                             <button onClick={() => setSelectedMember(member)} className={`${member.id === selectedMember?.id ? "bg-neutral-700" : "bg-neutral-800"} flex transition duration-300 hover:bg-neutral-700 items-center p-3 rounded-lg gap-2`} key={member.id}>
-                                <img className="rounded-full w-12 h-12" src={`https://cdn.discordapp.com/avatars/${member.id}/${member.avatar}.png`} />
+                                <img onError={async ({ currentTarget }) => {
+                                    currentTarget.onerror = null;
+                                    currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                                }} className="rounded-full w-12 h-12" src={`https://cdn.discordapp.com/avatars/${member.id}/${member.avatar}.png`} />
                                 <div className="flex gap-3 flex-wrap">
                                     <span className="text-xl">{member.username}</span>
                                     <span className="text-[#797979] items-center flex text-[13px] justify-center">

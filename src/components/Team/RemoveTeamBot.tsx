@@ -56,7 +56,10 @@ export const RemoveTeamBot: FC<{
             </div>
             <div className="flex h-full flex-col items-center w-full justify-center p-3 gap-4">
                 <div className="flex flex-row justify-center gap-2 mt-2">
-                    <img className="w-16 h-16 rounded-full" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
+                    <img onError={async ({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                    }} className="w-16 h-16 rounded-full" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
                     <div className="flex flex-col justify-center items-center">
                         <span className="font-bold text-lg">{bot.name}</span>
                     </div>

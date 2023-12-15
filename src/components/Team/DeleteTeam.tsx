@@ -51,7 +51,10 @@ export const DeleteTeam: FC<{
             </div>
             <div className="flex h-full flex-col items-center w-full justify-center p-3 gap-4">
                 <div className="flex flex-row justify-center gap-2 mt-2">
-                    <img className="w-16 h-16 rounded-full" src={team.avatar_url} />
+                    <img onError={async ({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                    }} className="w-16 h-16 rounded-full" src={team.avatar_url} />
                     <div className="flex flex-col justify-center items-center">
                         <span className="font-bold text-lg">{team.name}</span>
                     </div>

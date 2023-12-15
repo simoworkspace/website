@@ -46,7 +46,10 @@ export const NotificationCard: FC<{
 
     return mobile ? (
         <div className={`flex items-center gap-3 ${borderColor[color]} ${typeSchemas[notification.type].colors} border-l-[5px] border-2 rounded-lg p-3 w-full break-before-all bg-neutral-900`}>
-            {notification.type !== 3 ? typeSchemas[notification.type].icon : <img className="w-[40px] rounded-full" src={notification.url}/>}
+            {notification.type !== 3 ? typeSchemas[notification.type].icon : <img onError={async ({ currentTarget }) => {
+                currentTarget.onerror = null;
+                currentTarget.src = (await import("../../assets/images/simo.png")).default;
+            }} className="w-[40px] rounded-full" src={notification.url} />}
             <span className="w-full"><Markdown markdown={notification.content} /></span>
             <button disabled={deleted} onClick={handleDeleteNotification} className="disabled:cursor-default flex h-full justify-start items-center">
                 {deleted ? <iconAI.AiOutlineLoading3Quarters fill="#fff" size={25} className="animate-spin" /> : <icon.BsX size={25} className="hover:fill-red-500 transition-all duration-300" />}
@@ -54,7 +57,10 @@ export const NotificationCard: FC<{
         </div>
     ) : (
         <div className={`flex items-center gap-3 ${borderColor[color]} ${typeSchemas[notification.type].colors} border-l-[5px] border-2 rounded-lg p-3 w-full break-before-all`}>
-            {notification.type !== 3 ? typeSchemas[notification.type].icon : <img className="w-[40px] rounded-full" src={notification.url}/>}
+            {notification.type !== 3 ? typeSchemas[notification.type].icon : <img onError={async ({ currentTarget }) => {
+                currentTarget.onerror = null;
+                currentTarget.src = (await import("../../assets/images/simo.png")).default;
+            }} className="w-[40px] rounded-full" src={notification.url} />}
             <span className="w-full"><Markdown markdown={notification.content} /></span>
             <button disabled={deleted} onClick={handleDeleteNotification} className="disabled:cursor-default flex justify-start items-start">
                 {deleted ? <iconAI.AiOutlineLoading3Quarters fill="#fff" size={25} className="animate-spin" /> : <icon.BsX size={25} className="hover:fill-red-500 transition-all duration-300" />}

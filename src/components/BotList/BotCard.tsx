@@ -14,7 +14,11 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
         <div className={`bg-neutral-900 w-full rounded-lg p-3 transition-colors ${color === "black" && "border-[#1d1d1d] border-2"} hover:bg-[#1d1d1d] flex flex-col gap-3 xl:w-[95vw]`} key={bot._id}>
             <Link to={`/bot/${bot._id}`} className="flex flex-col gap-3 h-full">
                 <div className="flex gap-2 items-center">
-                    <img className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} onError={({ currentTarget }) => { currentTarget.onerror = null; currentTarget.src = simo }} />
+                    <img className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} onError={async ({ currentTarget }) => {
+                        currentTarget.onerror = null;
+                        currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                    }}
+                    />
                     <div className="flex gap-2 flex-col">
                         <span className="font-bold text-lg">{bot.name}</span>
                         <div className="flex">

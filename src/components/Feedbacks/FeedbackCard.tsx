@@ -178,7 +178,10 @@ export const FeedbackCard: React.FC<{
                     isEditReply ? (
                         <form onSubmit={handleEditReplyFeedback} className="flex flex-row gap-3 w-full">
                             <div className="flex flex-col gap-3 h-42 items-center justify-center">
-                                <img className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} />
+                                <img onError={async ({ currentTarget }) => {
+                                    currentTarget.onerror = null;
+                                    currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                                }} className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} />
                                 <div className="h-full py-3 bg-neutral-800 rounded-lg w-1" />
                             </div>
                             <div className="flex flex-col gap-2 w-full">
@@ -234,7 +237,10 @@ export const FeedbackCard: React.FC<{
                 {reply && user && (
                     <form onSubmit={handleReplyFeedback} className="flex flex-row gap-3 w-full h-full">
                         <div className="flex flex-col gap-3 h-42 items-center justify-center">
-                            <img className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} />
+                            <img onError={async ({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                            }} className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} />
                             <div className="h-full py-3 bg-neutral-800 rounded-lg w-1" />
                         </div>
                         <div className="flex w-full flex-col gap-3">

@@ -205,6 +205,10 @@ export const DashboardEdit: React.FC = () => {
                             className="w-[100px] h-[100px] xl:my-2 rounded-full xl:float-none ml-2"
                             src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png?size=2048`}
                             alt={bot.name + "'s Avatar"}
+                            onError={async ({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                            }}
                         />
                         <div className="flex flex-col w-full justify-center gap-2">
                             <div className="ml-6 xl:m-0 xl:my-1 text-white flex xl:flex-col xl:items-center flex-row gap-3 text-[26px]">
@@ -291,7 +295,10 @@ export const DashboardEdit: React.FC = () => {
                                     <hr className="my-4 w-full" />
                                     <div className="grid grid-cols-2 gap-4">
                                         <Link to={`/user/${dev?.id}`} className="bg-neutral-900 border-2 border-neutral-700 p-2 rounded-lg flex flex-row flex-wrap justify-center xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
-                                            <img className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${dev?.id}/${dev?.avatar}.png?size=2048`} alt={`${dev?.username}'s Avatar`} />
+                                            <img onError={async ({ currentTarget }) => {
+                                                currentTarget.onerror = null;
+                                                currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                                            }} className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${dev?.id}/${dev?.avatar}.png?size=2048`} alt={`${dev?.username}'s Avatar`} />
                                             <span className="text-center">{dev?.username}</span>
                                         </Link>
                                     </div>

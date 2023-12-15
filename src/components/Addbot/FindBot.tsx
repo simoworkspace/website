@@ -28,7 +28,7 @@ export const FindBot: React.FC<{
             const createdAt: string = new Date(date).toISOString();
             const allbots: AxiosResponse<BotStructure[]> = await api.getAllBots();
             const verified: boolean = (flags & (1 << 16)) !== 0;
-            
+
             setIsBot(Object.keys(req.data).includes("bot"));
             setAlreadyExists(allbots.data.map((bot: BotStructure) => bot._id).includes(botid));
 
@@ -74,7 +74,10 @@ export const FindBot: React.FC<{
                             {!alreadyExists && isBot ? (
                                 <div className="flex flex-col items-center justify-center gap-3 p-3">
                                     <div className={`bg-neutral-800 flex p-2 xl:w-full h-[110px] items-center justify-center gap-3 rounded-lg border-2 ${borderColor[color]}`}>
-                                        <img className="rounded-full w-[80px]" src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png`} alt={`${botData.username}'s Avatar`} />
+                                        <img className="rounded-full w-[80px]" src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png`} onError={async ({ currentTarget }) => {
+                                            currentTarget.onerror = null;
+                                            currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                                        }} alt={`${botData.username}'s Avatar`} />
                                         <div className="flex xl:flex-col gap-2 text-white">
                                             <span><strong>{botData.username}</strong></span>
                                             <span className="text-neutral-300">({botData.id})</span>

@@ -69,6 +69,10 @@ export const BotComponent: FC = () => {
                     <div className={`bg-neutral-900 rounded-xl flex xl:flex-col xl:h-[320px] h-[120px] w-[95%] border-2 ${borderColor[color]} items-center justify-center`}>
                         <img
                             className="w-[100px] h-[100px] xl:my-2 rounded-full xl:float-none ml-2"
+                            onError={async ({ currentTarget }) => {
+                                currentTarget.onerror = null;
+                                currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                            }}
                             src={`https://cdn.discordapp.com/avatars/${botData._id}/${botData.avatar}.png`}
                             alt={botData.name + "'s Avatar"}
                         />
@@ -120,7 +124,10 @@ export const BotComponent: FC = () => {
                                     <hr className="my-4 w-full" />
                                     <div className="grid grid-cols-2 gap-4">
                                         <Link to={`/user/${dev?.id}`} className="border-2 border-neutral-800 p-2 rounded-lg flex flex-row flex-wrap justify-center xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
-                                            <img className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${dev?.id}/${dev?.avatar}.png?size=2048`} alt={`${dev?.username}'s Avatar`} />
+                                            <img onError={async ({ currentTarget }) => {
+                                                currentTarget.onerror = null;
+                                                currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                                            }} className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${dev?.id}/${dev?.avatar}.png?size=2048`} alt={`${dev?.username}'s Avatar`} />
                                             <span className="text-center">{dev?.username}</span>
                                         </Link>
                                     </div>
@@ -132,7 +139,10 @@ export const BotComponent: FC = () => {
                                     <hr className="my-4 w-full" />
                                     <div className="grid grid-cols-2 gap-4">
                                         <Link to={`/team/${team.id}`} className="border-2 border-neutral-800 p-2 rounded-lg flex flex-row flex-wrap justify-center xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
-                                            <img className="rounded-full h-[60px] w-[60px]" src={team.avatar_url} />
+                                            <img onError={async ({ currentTarget }) => {
+                                                currentTarget.onerror = null;
+                                                currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                                            }} className="rounded-full h-[60px] w-[60px]" src={team.avatar_url} />
                                             <span className="text-center">{team.name}</span>
                                         </Link>
                                     </div>

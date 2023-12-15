@@ -90,6 +90,10 @@ export const VoteComponent: React.FC = () => {
                     <section className="text-white p-3 w-screen flex flex-col items-center justify-center">
                         <div className="flex flex-row rounded-lg items-center gap-3 max-w-[900px] xl:text-center xl:flex-col xl:w-[80vw] p-4 justify-center">
                             <img
+                                onError={async ({ currentTarget }) => {
+                                    currentTarget.onerror = null;
+                                    currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                                }}
                                 className="w-[100px] rounded-full"
                                 src={`https://cdn.discordapp.com/avatars/${botData._id}/${botData.avatar}.png?size=2048`}
                                 alt={`${botData.name}'s Avatar`}
