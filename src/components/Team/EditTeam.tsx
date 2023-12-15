@@ -70,7 +70,7 @@ export const EditTeam: FC<{
             <main>
                 <div className="text-white xl:text-[26px] text-[40px] m-2 xl:m-0 xl:mt-2 w-full flex items-center justify-center">
                     <span className="text-white flex flex-row text-[26px] mx-10 my-3">
-                        <h1 className="text-[#ffffff] xl:text-[28px] xl:mr-0 mr-2 font-bold xl:text-center">Editar time <strong>{team?.name}</strong></h1>
+                        <h1 className="text-[#ffffff] xl:text-[28px] xl:mr-0 mr-2 font-bold xl:text-center max-w-4xl">Editar time <strong>{editActions.name}</strong></h1>
                     </span>
                 </div>
                 <div className="flex flex-col gap-3 w-full">
