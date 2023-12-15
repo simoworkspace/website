@@ -1,5 +1,4 @@
 import { FC, useContext, useEffect, useState } from "react";
-import { DashboardUser } from "../Dashboard/User";
 import { UserContext } from "../../contexts/UserContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { AuditLogStructure, ErrorStructure, Team, UserStructure } from "../../types";
@@ -11,7 +10,8 @@ import * as iconMD from "react-icons/md";
 import { Input } from "../Addbot/Input";
 import { buttonColor } from "../../utils/theme/button";
 import api from "../../utils/api";
-import { Params, useParams } from "react-router-dom";
+import * as iconBI from "react-icons/bi";
+import { Link, Params, useParams } from "react-router-dom";
 import { PopUpError } from "../Mixed/Error";
 import { ApiErrors } from "../../utils/api/errors";
 import { ManageMembers } from "./ManageMembers";
@@ -20,19 +20,23 @@ import { TeamAddbot } from "./Addbot";
 import { AuditLogs } from "./AuditLogs";
 import { scrollBar } from "../../utils/theme/scrollBar";
 import { TeamManageBots } from "./ManageBots";
+import simo from "../../assets/images/simo.png";
+import { EditTeam } from "./EditTeam";
 
 export const ManageTeamComponent: FC = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm<Team>();
     const { color } = useContext(ThemeContext);
     const params: Params = useParams<string>();
     const teamID: string = params.teamId as string;
     const { user } = useContext(UserContext);
     const [team, setTeam] = useState<Team | undefined>();
-    const [submitedEdit, setSubmitedEdit] = useState<boolean>(false);
     const [error, setError] = useState<ErrorStructure>();
-    const [loading, setLoading] = useState<boolean>(false);
-    const [inviteHash, setInviteHash] = useState<string>("");
     const [logs, setLogs] = useState<AuditLogStructure>();
+
+    const getTeam = async () => {
+        const { data } = await api.getTeam(teamID);
+
+        return setTeam(data);
+    };
 
     const getAuditLogs = async () => {
         const { data } = await api.getAuditLogs(teamID);
@@ -40,82 +44,48 @@ export const ManageTeamComponent: FC = () => {
         return setLogs(data);
     };
 
-    const onSubmitEdit: SubmitHandler<Team> = async (data: Team): Promise<void> => {
-        setSubmitedEdit(true);
-
-        const { avatar_url, description, name, invite_code } = data;
-
-        const formData: Team = {
-            avatar_url,
-            description,
-            name,
-            invite_code
-        };
-
-        for (let i in formData) {
-            if (!team) return;
-
-            if (formData[i as keyof Team] === team[i as keyof Team]) {
-                delete formData[i as keyof Team];
-            }
-        }
-
-        console.log(formData);
-
-        try {
-            await api.patchTeam(team?.id as string, formData);
-
-            await getUserTeams();
-            await getAuditLogs();
-
-            setError({
-                show: false
-            });
-        } catch (error: any) {
-            setSubmitedEdit(false);
-            setError({
-                show: true,
-                title: "Erro ao tentar criar um time",
-                message: ApiErrors[error.response.data.code]
-            });
-        }
-
-        setSubmitedEdit(false);
-    };
-
-    const getUserTeams = async (): Promise<void> => {
-        const { data: { invite_code }, data } = await api.getTeam(teamID);
-        await getAuditLogs();
-
-        setInviteHash(invite_code);
-        setTeam(data);
-    };
-
-    const updateInviteHash = async (): Promise<void> => {
-        if (team) {
-            setLoading(true);
-            await getAuditLogs();
-
-            //@ts-ignore
-            const req = await api.patchTeam(teamID, {
-                invite_code: Math.random().toString(22).slice(2, 8)
-            });
-
-            setInviteHash(req.data.invite_code);
-
-            setLoading(false);
-        }
-    };
-
     useEffect(() => {
-        getUserTeams();
+        getTeam();
         getAuditLogs();
     }, []);
 
     return (
         <main className="max-w-[1500px] flex justify-center">
             <section className="w-screen flex flex-row p-5 text-white items-start xl:items-center justify-start gap-10 xl:flex-col h-full">
-                <DashboardUser color={color} />
+                {team ? (
+                    <div className={`${borderColor[color]} border-2 w-[300px] p-5 xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col`}>
+                    <div>
+                        <img onError={({ currentTarget }) => {
+                            currentTarget.onerror = null;
+                            currentTarget.src = simo;
+                        }}
+                            className="rounded-full w-32 h-32 object-center" src={team.avatar_url} />
+                    </div>
+                    <hr className="w-[80%] my-6" />
+                    <div className="flex flex-col text-center justify-center">
+                        <strong>{team.name}</strong>
+                        <span className="text-[#797979] items-center flex text-[13px] justify-center">
+                            ( {team.id} )
+                        </span>
+                    </div>
+                    <div className="flex w-full flex-col gap-3 py-3 px-5">
+                        <span className="text-lg font-bold text-left">Membros</span>
+                        <div className="flex flex-wrap w-full gap-2">
+                            {team.members?.map((member, index) => (
+                                <Link className="relative" key={index} to={`/user/${member.id}`}>
+                                    {member.permission === 2 && <iconBI.BiSolidCrown fill="#FFD700" className="absolute ml-7 rotate-45" />}
+                                    <img
+                                        className="rounded-full w-10"
+                                        src={`https://cdn.discordapp.com/avatars/${member.id}/${member.avatar}.png?size=2048`}
+                                    />
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                ) : (
+                    <div>Carregando...</div>
+                )}
                 <div className="flex items-center justify-start h-full w-full flex-col">
                     <h1 className="text-[33px] text-center">Bem vindo a dashboard, <strong>{user?.username}</strong></h1>
                     <hr className="w-full my-3" />
@@ -133,47 +103,7 @@ export const ManageTeamComponent: FC = () => {
                             <TabIndicator className={`mt[-1.5px] h-[2px] ${borderColor[color]} border-2 rounded-lgx xl:invisible`} />
                             <TabPanels>
                                 <TabPanel>
-                                    {team ? (
-                                        <>
-                                            <div className="flex flex-col w-full py-3">
-                                                <div className="text-white xl:text-[26px] text-[26px] font-bold m-2 xl:m-0 xl:mt-2 w-full flex items-center justify-center">
-                                                    <span>Link de convite</span>
-                                                </div>
-                                                <div className="flex flex-row xl:flex-col bg-neutral-800 w-full h-full rounded-lg items-center">
-                                                    <input disabled value={`${new URL(location.href).origin}/team/${teamID}/invite/${inviteHash}`} placeholder="Atualizar link de invite" className="flex-grow p-2 w-full bg-transparent xl:break-words" />
-                                                    <div className="flex flex-row xl:w-full">
-                                                        <Button disabled={loading} clas="rounded-r-none" action={async () => await navigator.clipboard.writeText(`${new URL(location.href).origin}/team/${teamID}/invite/${inviteHash}`)}>
-                                                            <iconMD.MdOutlineContentCopy fill="#fff" size={26} />
-                                                        </Button>
-                                                        <Button action={updateInviteHash} clas="rounded-l-none xl:flex xl:flex-grow">{loading ? <icon.AiOutlineLoading3Quarters fill="#fff" size={26} className="animate-spin" /> : "Atualizar"}</Button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div className="text-white xl:text-[26px] text-[40px] m-2 xl:m-0 xl:mt-2 w-full flex items-center justify-center">
-                                                <span className="text-white flex flex-row text-[26px] mx-10 my-3">
-                                                    <h1 className="text-[#ffffff] xl:text-[28px] xl:mr-0 mr-2 font-bold xl:text-center">Editar time <strong>{team?.name}</strong></h1>
-                                                </span>
-                                            </div>
-                                            <form onSubmit={handleSubmit(onSubmitEdit)} className="gap-5 items-center justify-center pt-1 flex flex-col">
-                                                <div className="flex flex-col gap-3">
-                                                    <Input errors={errors} optional name="name" defaultValue={team?.name} register={register} text="Digite o nome que o seu time irá receber" title="Nome" type="input" maxLength={15} minLength={3} placeholder="Mango Team" />
-                                                    <Input errors={errors} optional name="avatar_url" defaultValue={team?.avatar_url} register={register} text="Coloque o link de imagem do avatar do seu time" title="Avatar em URL" inputType="url" type="input" placeholder="https://i.imgur.com/1DBO2wh.jpeg" />
-                                                    <Input errors={errors} name="description" register={register} defaultValue={team?.description} text="Digite uma breve descrição sobre seu time" title="Descrição" optional type="input" placeholder="Meu time é um time legal e bonito..." maxLength={50} minLength={5} />
-                                                </div>
-                                                <div className="flex justify-center m-4 xl:m-0 xl:w-full xl:mb-4 items-center gap-3">
-                                                    <input
-                                                        type="submit"
-                                                        value="Salvar alterações"
-                                                        disabled={submitedEdit}
-                                                        className={`disabled:cursor-default disabled:opacity-70 cursor-pointer transition-all duration-300 items-center border-2 w-[300px] rounded-xl h-[60px] text-white xl:w-full ${buttonColor[color]}`}
-                                                    />
-                                                    {submitedEdit && <icon.AiOutlineLoading3Quarters fill="#fff" size={30} className="animate-spin" />}
-                                                </div>
-                                            </form>
-                                        </>
-                                    ) : (
-                                        <div>Carregando...</div>
-                                    )}
+                                    <EditTeam team={team} />
                                 </TabPanel>
                                 <TabPanel>
                                     <ManageMembers updateAuditLogs={getAuditLogs} color={color} />
