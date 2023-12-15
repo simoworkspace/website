@@ -13,6 +13,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { buttonColor } from "../../utils/theme/button";
 import { DeleteTeam } from "./DeleteTeam";
 import { Botloading } from "../BotList/Botloading";
+import { CopyButton } from "../Mixed/Copy";
 
 const TeamPermissions = {
     Administrator: 0,
@@ -59,11 +60,9 @@ export const TeamComponent: React.FC = () => {
                             className="rounded-full w-32 h-32 object-center" src={team.avatar_url} />
                     </div>
                     <hr className="w-[80%] my-6" />
-                    <div className="flex flex-col text-center justify-center">
+                    <div className="flex gap-2 text-center justify-center">
                         <strong>{team.name}</strong>
-                        <span className="text-[#797979] items-center flex text-[13px] justify-center">
-                            ( {team.id} )
-                        </span>
+                        <CopyButton name="ID" text={team.id as string} key={Math.random()}/>
                     </div>
                     <div className="flex w-full flex-col gap-3 py-3 px-5">
                         {team.members?.find((member) => member.permission === TeamPermissions.Owner && member.id === user?._id || member.permission === TeamPermissions.Administrator && member.id === user?._id) && (

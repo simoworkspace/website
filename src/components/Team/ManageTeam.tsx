@@ -19,6 +19,7 @@ import { TeamManageBots } from "./ManageBots";
 import simo from "../../assets/images/simo.png";
 import { EditTeam } from "./EditTeam";
 import Translate from "translate";
+import { CopyButton } from "../Mixed/Copy";
 
 export const ManageTeamComponent: FC = () => {
     const { color } = useContext(ThemeContext);
@@ -105,11 +106,9 @@ export const ManageTeamComponent: FC = () => {
                                 className="rounded-full w-32 h-32 object-center" src={editActions.avatar_url} />
                         </div>
                         <hr className="w-[80%] my-6" />
-                        <div className="flex flex-col text-center justify-center">
+                        <div className="flex gap-2 text-center justify-center">
                             <strong className="max-w-[200px]">{editActions.name}</strong>
-                            <span className="text-[#797979] items-center flex text-[13px] justify-center">
-                                ( {team.id} )
-                            </span>
+                            <CopyButton name="ID" text={teamID} key={Math.random()}/>
                         </div>
                         <div className="flex w-full flex-col gap-3 py-3 px-5">
                             <span className="text-lg font-bold text-left">Membros</span>
