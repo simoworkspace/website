@@ -29,19 +29,24 @@ export const BotComponent: FC = () => {
     };
 
     const getBotData = async () => {
-        const { data: { owner_id }, data } = await api.getBotInfos(botid);
+        try {
+            const { data: { owner_id }, data } = await api.getBotInfos(botid);
 
-        const { data: { username, avatar, id } } = await api.getDiscordUser(owner_id);
+            const { data: { username, avatar, id } } = await api.getDiscordUser(owner_id);
 
-        if (data.team_id) {
-            const team = await api.getTeam(data.team_id as string);
+            if (data.team_id) {
+                const team = await api.getTeam(data.team_id as string);
 
-            setTeam(!team.data ? null : team.data);
+                setTeam(!team.data ? null : team.data);
+            }
+
+            setDev({ username, avatar, id, });
+
+            setBotData(data);
+        } catch (error) {
+            console.error(error);
+            window.location.href = "/";
         }
-
-        setDev({ username, avatar, id, });
-
-        setBotData(data);
     };
 
     useEffect(() => {

@@ -70,10 +70,15 @@ export const ManageTeamComponent: FC = () => {
     };
 
     const getTeam = async () => {
-        const { data } = await api.getTeam(teamID);
+        try {
+            const { data } = await api.getTeam(teamID);
 
-        setEditActions({ description: data.description, avatar_url: data.avatar_url, name: data.name });
-        return setTeam(data);
+            setEditActions({ description: data.description, avatar_url: data.avatar_url, name: data.name });
+            return setTeam(data);
+        } catch (error) {
+            console.error(error);
+            window.location.href = "/";
+        }
     };
 
     const getAuditLogs = async () => {

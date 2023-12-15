@@ -16,12 +16,17 @@ export const User: React.FC = () => {
     const { color } = useContext(ThemeContext);
 
     const getUserData = async () => {
-        const { data } = await api.getUserFromDB(userid);
-        const bots = await api.getAllBots();
-        const userBots = bots.data.filter((bot) => bot.owner_id === userid);
+        try {
+            const { data } = await api.getUserFromDB(userid);
+            const bots = await api.getAllBots();
+            const userBots = bots.data.filter((bot) => bot.owner_id === userid);
 
-        setUserBots(userBots);
-        setUser(data);
+            setUserBots(userBots);
+            setUser(data);
+        } catch (error) {
+            console.error(error);
+            window.location.href = "/";
+        }
     };
 
     useEffect(() => {
