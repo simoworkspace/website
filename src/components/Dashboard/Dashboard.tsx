@@ -125,12 +125,13 @@ export const DashboardComponent: FC = () => {
                                 </TabPanel>
                                 <TabPanel>
                                     <div className="py-3">
-                                        <span className="text-lg font-bold">Seus times</span>
                                         <Teams teams={teams} />
                                     </div>
                                 </TabPanel>
                                 <TabPanel>
-                                    <DashboardBot />
+                                    <div className="py-3">
+                                        <DashboardBot />
+                                    </div>
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>
