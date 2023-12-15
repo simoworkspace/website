@@ -12,7 +12,7 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
 
     return (
         <div className={`bg-neutral-900 w-full rounded-lg p-3 transition-colors ${color === "black" && "border-[#1d1d1d] border-2"} hover:bg-[#1d1d1d] flex flex-col gap-3 xl:w-[95vw]`} key={bot._id}>
-            <Link to={`/bot/${bot._id}`} className="flex flex-col gap-3">
+            <Link to={`/bot/${bot._id}`} className="flex flex-col gap-3 h-full">
                 <div className="flex gap-2 items-center">
                     <img className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} onError={({ currentTarget }) => { currentTarget.onerror = null; currentTarget.src = simo }} />
                     <div className="flex gap-2 flex-col">
@@ -24,7 +24,11 @@ export const BotCard: React.FC<{ bot: BotStructure }> = ({ bot }) => {
                     </div>
                 </div>
                 <div className="flex gap-3 flex-col">
-                    <span className="min-h-[48px]">{bot.short_description}</span>
+                    <div className="min-h-[48px]">
+                        <span>{bot.short_description.length > 80
+                            ? bot.short_description.slice(0, 80) + "..."
+                            : bot.short_description}</span>
+                    </div>
                     <div className="flex flex-row gap-1 flex-wrap">
                         {bot.tags.map((tag, index) => (
                             <div key={index} className={`${borderAndBg[color]} p-[6px] rounded-lg border-2`}>{tag}</div>
