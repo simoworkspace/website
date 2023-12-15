@@ -19,7 +19,7 @@ export const TeamAddbot: FC<{ team?: Team }> = ({ team }) => {
     const { user } = useContext(UserContext);
 
     const getUserBots = async () => {
-        const data = (await api.getUserBots()).data.filter((bot) => !team?.bots_id?.includes(bot._id));
+        const data = (await api.getUserBots()).data.filter((bot) => !bot.team_id);
 
         return setBots(data ? data : null);
     };
@@ -65,7 +65,7 @@ export const TeamAddbot: FC<{ team?: Team }> = ({ team }) => {
                                     ( {selectedBot?._id} )
                                 </span>
                             </div>
-                        ) : <span className="flex flex-grow">{bots?.length !== 0 ? "Clique aqui para selecionar um bot para adicionar." : "Você não tem bots adicionados."}</span>}
+                        ) : <span className="flex flex-grow">{bots?.length !== 0 ? "Clique aqui para selecionar um bot para adicionar." : "Você não tem bots adicionados para adicionar em outro time"}</span>}
                         <iconMD.MdOutlineKeyboardArrowDown className={`transition-all duration-300 ${selectBotMenu ? "rotate-180" : "rotate-0"}`} size={25} />
                     </button>
                 </div>
