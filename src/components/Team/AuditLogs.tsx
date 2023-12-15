@@ -45,6 +45,8 @@ export const AuditLogs: FC<{ logs: AuditLogStructure | undefined }> = ({ logs })
                                 <div>
                                     {log.action_type === 0 ? (
                                         <div><strong>{log.target?.username}</strong> entrou no time</div>
+                                    ) : log.action_type === 1 ? (
+                                        <span><strong>{log.executor.username}</strong> removeu o membro <strong>{log.target?.username}</strong></span>
                                     ) : (
                                         log.changes.map((change, index) => (
                                             <div className="flex flex-col break-word max-w-3xl xl:max-w-[50vw]" key={index}>
@@ -52,8 +54,6 @@ export const AuditLogs: FC<{ logs: AuditLogStructure | undefined }> = ({ logs })
                                                     switch (log.action_type) {
                                                         case actionType.MemberUpdate:
                                                             return <span><strong>{log.executor.username}</strong> atualizou as permissões para <strong>{log.target?.username}</strong> de <strong>{changedKeysNames[change.old_value]}</strong> para <strong>{changedKeysNames[change.new_value as string]}</strong></span>;
-                                                        case actionType.MemberRemove:
-                                                            return <span><strong>{log.executor.username}</strong> removeu o membro <strong>{log.target?.username}</strong></span>
                                                         case actionType.BotAdd:
                                                             return <span><strong>{log.executor.username}</strong> adicionou o bot com o ID {log.target?.username}</span>;
                                                         case actionType.TeamUpdate:
