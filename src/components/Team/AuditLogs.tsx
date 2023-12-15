@@ -41,24 +41,24 @@ export const AuditLogs: FC<{ logs: AuditLogStructure | undefined }> = ({ logs })
                             <div className="flex flex-col gap-1 flex-grow">
                                 <div>
                                     {log.action_type === 0 ? (
-                                        <div><strong>{log.target?.username}</strong> entrou no grupo</div>
+                                        <div><strong>{log.target?.username}</strong> entrou no time</div>
                                     ) : (
                                         log.changes.map((change, index) => (
                                             <div className="flex flex-col break-word max-w-3xl xl:max-w-[50vw]" key={index}>
                                                 {(() => {
                                                     switch (log.action_type) {
                                                         case actionType.MemberUpdate:
-                                                            return <span><strong>{log.executor.username}</strong> Atualizou as permissões para <strong>{log.target?.username}</strong> de <strong>{changedKeysNames[change.old_value]}</strong> para <strong>{changedKeysNames[change.new_value as string]}</strong></span>;
+                                                            return <span><strong>{log.executor.username}</strong> atualizou as permissões para <strong>{log.target?.username}</strong> de <strong>{changedKeysNames[change.old_value]}</strong> para <strong>{changedKeysNames[change.new_value as string]}</strong></span>;
                                                         case actionType.MemberRemove:
                                                             return <span><strong>{log.executor.username}</strong> removeu o membro <strong>{log.target?.username}</strong></span>
                                                         case actionType.BotAdd:
                                                             return <span><strong>{log.executor.username}</strong> adicionou o bot com o ID {log.target?.username}</span>;
                                                         case actionType.TeamUpdate:
-                                                            return <span><strong>{log.executor.username}</strong> Atualizou <strong>{changedKeysNames[change.changed_key]}</strong> de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>
+                                                            return <span><strong>{log.executor.username}</strong> atualizou <strong>{changedKeysNames[change.changed_key]}</strong> de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>
                                                         case actionType.BotRemove:
                                                             return <span><strong>{log.executor.username}</strong> removeu o bot com o ID {log.target?.username}</span>;
                                                         case actionType.InviteUpdate:
-                                                            return <span><strong>{log.executor.username}</strong> Atualizou o código de invite, de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>;
+                                                            return <span><strong>{log.executor.username}</strong> atualizou o código de invite, de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>;
                                                         default:
                                                             return <span>Ação não tratada para action_type {log.action_type}</span>;
                                                     }
