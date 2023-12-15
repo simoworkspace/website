@@ -9,6 +9,7 @@ import api from "../../utils/api";
 import { buttonColor } from "../../utils/theme/button";
 import * as icon from "react-icons/ai";
 import { PopUpError } from "../Mixed/Error";
+import Translate from "translate";
 
 export const CreateTeam: React.FC = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<Team>();
@@ -40,7 +41,7 @@ export const CreateTeam: React.FC = () => {
             setError({
                 show: true,
                 title: "Erro ao tentar criar um time",
-                message: JSON.stringify(error.response.data)
+                message: JSON.stringify(error.response.data) || (await Translate(error.response.data.errors[0], { from: "en", to: "pt" }))
             });
         }
     };

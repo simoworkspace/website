@@ -13,6 +13,7 @@ import { BotLoading } from "../Bot/BotLoading";
 import { Button } from "../Mixed/Button";
 import { PopUpError } from "../Mixed/Error";
 import { ApiErrors } from "../../utils/api/errors";
+import Translate from "translate";
 
 export const DashboardEdit: React.FC = () => {
     const params: Params<string> = useParams<string>();
@@ -159,7 +160,7 @@ export const DashboardEdit: React.FC = () => {
             setError({
                 title: "Ocoreu um erro ao atualizar seu bot",
                 show: true,
-                message: ApiErrors[error.response.data.code] || JSON.stringify(error.response.data)
+                message: ApiErrors[error.response.data.code] || (await Translate(error.response.data.errors[0], { from: "en", to: "pt" }))
             });
         }
     };

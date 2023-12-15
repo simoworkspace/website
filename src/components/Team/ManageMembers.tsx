@@ -11,6 +11,7 @@ import { UserContext } from "../../contexts/UserContext";
 import { ApiErrors } from "../../utils/api/errors";
 import { PopUpError } from "../Mixed/Error";
 import { scrollBar } from "../../utils/theme/scrollBar";
+import Translate from "translate";
 
 const TeamPermissions = {
     Administrator: 0,
@@ -51,7 +52,7 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
             setError({
                 show: true,
                 title: "Erro ao tentar remover membro",
-                message: ApiErrors[error.response.data.code]
+                message: ApiErrors[error.response.data.code] || (await Translate(error.response.data.errors[0], { from: "en", to: "pt" }))
             });
         }
 
@@ -73,7 +74,7 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
             setError({
                 show: true,
                 title: "Erro ao tentar demotar membro",
-                message: ApiErrors[error.response.data.code]
+                message: ApiErrors[error.response.data.code] || (await Translate(error.response.data.errors[0], { from: "en", to: "pt" }))
             });
         }
 
@@ -95,7 +96,7 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
             setError({
                 show: true,
                 title: "Erro ao tentar promover membro",
-                message: ApiErrors[error.response.data.code]
+                message: ApiErrors[error.response.data.code] || (await Translate(error.response.data.errors[0], { from: "en", to: "pt" }))
             });
         }
 
@@ -112,12 +113,12 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
 
         try {
             await api.transferOnwer(member.id);
-        } catch (error: any) {
+        } catch (error: any) {            
             setActions({ loading: false });
             setError({
                 show: true,
                 title: "Erro ao tentar transferir posse",
-                message: ApiErrors[error.response.data.code]
+                message: ApiErrors[error.response.data.code] || (await Translate(error.response.data.errors[0], { from: "en", to: "pt" }))
             });
         }
 

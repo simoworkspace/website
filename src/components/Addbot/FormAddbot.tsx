@@ -10,6 +10,7 @@ import { buttonColor } from "../../utils/theme/button";
 import * as icon from "react-icons/ai";
 import { PopUpError } from "../Mixed/Error";
 import { ApiErrors } from "../../utils/api/errors";
+import Translate from "translate";
 
 export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSteps: (value: number) => void }> = ({ botData, setSteps }) => {
     const { register, handleSubmit, formState: { errors } } = useForm<BotStructure>();
@@ -53,7 +54,7 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             setError({
                 show: true,
                 title: "Erro ao tentar adicionar um bot",
-                message: ApiErrors[error.response.data.errors] || JSON.stringify(error.response.data.errors[0])
+                message: ApiErrors[error.response.data.errors] || (await Translate(error.response.data.errors[0], { from: "en", to: "pt" }))
             });
         }
     };

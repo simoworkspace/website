@@ -1,14 +1,10 @@
 import { FC, useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/UserContext";
 import { ThemeContext } from "../../contexts/ThemeContext";
-import { AuditLogStructure, ErrorStructure, Team, UserStructure } from "../../types";
+import { AuditLogStructure, ErrorStructure, Team } from "../../types";
 import { Tabs, TabList, TabPanels, Tab, TabPanel, TabIndicator } from "@chakra-ui/react";
 import { borderColor } from "../../utils/theme/border";
-import { SubmitHandler, useForm } from "react-hook-form";
 import * as icon from "react-icons/ai";
-import * as iconMD from "react-icons/md";
-import { Input } from "../Addbot/Input";
-import { buttonColor } from "../../utils/theme/button";
 import api from "../../utils/api";
 import * as iconBI from "react-icons/bi";
 import { Link, Params, useParams } from "react-router-dom";
@@ -22,6 +18,7 @@ import { scrollBar } from "../../utils/theme/scrollBar";
 import { TeamManageBots } from "./ManageBots";
 import simo from "../../assets/images/simo.png";
 import { EditTeam } from "./EditTeam";
+import Translate from "translate";
 
 export const ManageTeamComponent: FC = () => {
     const { color } = useContext(ThemeContext);
@@ -61,13 +58,13 @@ export const ManageTeamComponent: FC = () => {
             await getAuditLogs();
 
             setEditActions({ changesMade: false, changesLoading: false, avatar_url: editActions.avatar_url, description: editActions.description, name: editActions.name });
-        } catch(error: any) {
+        } catch (error: any) {
             setError({
                 show: true,
                 title: "Erro ao tentar adicionar um bot",
-                message: ApiErrors[error.response.data.errors] || JSON.stringify(error.response.data.errors[0])
+                message: ApiErrors[error.response.data.errors] || (await Translate(error.response.data.errors[0], { from: "en", to: "pt" }))
             });
-            
+
             if (team) setEditActions({ changesLoading: false, changesMade: false, avatar_url: team.avatar_url, description: team.description, name: team.name });
         }
     };
