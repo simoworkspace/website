@@ -20,26 +20,60 @@ export const EditTeam: FC<{
     const [inviteHash, setInviteHash] = useState<string | undefined>("");
     const [logs, setLogs] = useState<AuditLogStructure>();
 
-    const handleDescriptionChange = (event: ChangeEvent<HTMLInputElement>) => setEditActions({
-        description: event.target.value,
-        name: editActions.name,
-        avatar_url: editActions.avatar_url,
-        changesMade: true
-    });
+    const handleDescriptionChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value === team?.description) {
+            return setEditActions({
+                description: event.target.value,
+                name: editActions.name,
+                avatar_url: editActions.avatar_url,
+                changesMade: false
+            });
+        }
 
-    const handleAvatarChange = (event: ChangeEvent<HTMLInputElement>) => setEditActions({
-        description: editActions.description,
-        name: editActions.name,
-        avatar_url: event.target.value,
-        changesMade: true
-    });
+        setEditActions({
+            description: event.target.value,
+            name: editActions.name,
+            avatar_url: editActions.avatar_url,
+            changesMade: true
+        });
+    }
 
-    const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => setEditActions({
-        description: editActions.description,
-        name: event.target.value,
-        avatar_url: editActions.avatar_url,
-        changesMade: true
-    });
+    const handleAvatarChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value === team?.avatar_url) {
+            return setEditActions({
+                description: editActions.description,
+                name: editActions.name,
+                avatar_url: event.target.value,
+                changesMade: false
+            });
+        }
+
+
+        setEditActions({
+            description: editActions.description,
+            name: editActions.name,
+            avatar_url: event.target.value,
+            changesMade: true
+        });
+    }
+
+    const handleNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (event.target.value === team?.name) {
+            return setEditActions({
+                description: editActions.description,
+                name: event.target.value,
+                avatar_url: editActions.avatar_url,
+                changesMade: false
+            });
+        }
+
+        setEditActions({
+            description: editActions.description,
+            name: event.target.value,
+            avatar_url: editActions.avatar_url,
+            changesMade: true
+        });
+    }
 
     const getTeamData = async () => {
         const { data: { invite_code } } = await api.getTeam(teamID);
