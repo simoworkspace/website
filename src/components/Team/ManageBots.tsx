@@ -72,7 +72,7 @@ export const TeamManageBots: FC<{ team?: Team }> = ({ team }) => {
             )}
             {selectedBot && (
                 <section className={`w-full bg-neutral-900 mt-2 border-2 flex-row ${borderColor[color]} rounded-lg p-4`}>
-                    <div className="grid grid-cols-2 xl:grid-cols-1 gap-8 text-white m-2">
+                    <div className="flex flex-col gap-2 text-white m-2">
                         <div className={`bg-neutral-900 w-full border-neutral-800 border-2 rounded-lg p-3 transition-colors hover:bg-[#1d1d1d] flex flex-col gap-3`} key={selectedBot._id}>
                             <Link to={`/bot/${selectedBot._id}`} className="flex flex-col gap-3">
                                 <div className="flex gap-2 items-center">
