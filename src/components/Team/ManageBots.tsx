@@ -50,7 +50,7 @@ export const TeamManageBots: FC<{ team?: Team }> = ({ team }) => {
                 <div className="flex w-full items-center justify-start gap-2 text-lg mt-2">O time não tem bots para serem gerenciados</div>
             ) : !selectedBot && (
                 <div className="flex flex-col gap-2 justify-start w-full mt-2">
-                    <span className="text-start w-full text-lg">Selecione abaixo um bot para ser adicionado no time</span>
+                    <span className="text-start w-full text-lg">Selecione abaixo um bot para ser gerenciado</span>
                     <div className="flex items-center w-full gap-2 xl:flex-col">
                         {bots?.map((bot) => (
                             <button onClick={() => getSelectedBot(bot._id)} className="flex-col flex rounded-lg p-3 bg-neutral-800 items-center justify-center gap-3 transition duration-300 hover:bg-neutral-700">
