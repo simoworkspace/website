@@ -1,19 +1,9 @@
 import { FC } from "react";
-import { AuditLogStructure } from "../../types";
+import { AuditLogStructure, VanityURLUpdateChange } from "../../types";
 import moment from "moment";
 import "moment/dist/locale/pt-br";
 import { Link } from "react-router-dom";
-
-const actionType = {
-    MemberAdd: 0,
-    MemberRemove: 1,
-    MemberUpdate: 2,
-    TeamOwnershipTransfer: 3,
-    TeamUpdate: 4,
-    BotAdd: 5,
-    BotRemove: 6,
-    InviteUpdate: 7
-};
+import { AuditLogActionType } from "@simo.js/simo-api-types";
 
 const changedKeysNames: Record<string | number, string> = {
     name: "o nome",
@@ -21,7 +11,8 @@ const changedKeysNames: Record<string | number, string> = {
     permission: "a permissão",
     description: "a descrição",
     bot_id: "id do bot",
-    invite_code: "código de convite",
+    invite_code: "o código de convite",
+    vanity_url: "o código de convite personalizado",
     0: "Administrador",
     1: "Membro",
     3: "Dono"
@@ -52,15 +43,21 @@ export const AuditLogs: FC<{ logs: AuditLogStructure | undefined }> = ({ logs })
                                             <div className="flex flex-col break-word max-w-3xl xl:max-w-[50vw]" key={index}>
                                                 {(() => {
                                                     switch (log.action_type) {
-                                                        case actionType.MemberUpdate:
-                                                            return <span><strong>{log.executor.username}</strong> atualizou as permissões para <strong>{log.target?.username}</strong> de <strong>{changedKeysNames[change.old_value]}</strong> para <strong>{changedKeysNames[change.new_value as string]}</strong></span>;
-                                                        case actionType.BotAdd:
+                                                        case AuditLogActionType.MemberUpdate:
+                                                            return <span><strong>{log.executor.username}</strong> atualizou as permissões para <strong>{log.target?.username}</strong> de <strong>{changedKeysNames[change.old_value]}</strong> para <strong>{changedKeysNames[change.new_value as string] || change.new_value}</strong></span>;
+                                                        case AuditLogActionType.BotAdd:
                                                             return <span><strong>{log.executor.username}</strong> adicionou o bot com o ID {log.target?.username}</span>;
-                                                        case actionType.TeamUpdate:
+                                                        case AuditLogActionType.TeamUpdate: {
+                                                            if (change.changed_key === "vanity_url") {
+                                                                const newChange = change as unknown as VanityURLUpdateChange
+
+                                                                return <span><strong>{log.executor.username}</strong> atualizou <strong>{changedKeysNames[change.changed_key]}</strong> de <strong>{newChange.old_value?.code || "nenhum"}</strong> para <strong>{newChange.new_value?.code || ""}</strong></span>
+                                                            }
                                                             return <span><strong>{log.executor.username}</strong> atualizou <strong>{changedKeysNames[change.changed_key]}</strong> de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>
-                                                        case actionType.BotRemove:
+                                                        }
+                                                        case AuditLogActionType.BotRemove:
                                                             return <span><strong>{log.executor.username}</strong> removeu o bot com o ID {log.target?.username}</span>;
-                                                        case actionType.InviteUpdate:
+                                                        case AuditLogActionType.InviteUpdate:
                                                             return <span><strong>{log.executor.username}</strong> atualizou o código de invite, de <strong>{change.old_value}</strong> para <strong>{change.new_value}</strong></span>;
                                                         default:
                                                             return <span>Ação não tratada para action_type {log.action_type}</span>;
