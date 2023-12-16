@@ -104,6 +104,7 @@ export interface BotStructure {
     approved: boolean;
     votes: VoteStructure[];
     vote_message?: string;
+    webhook_url?: string
 }
 
 export interface VoteStructure {

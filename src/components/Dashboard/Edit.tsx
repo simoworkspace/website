@@ -41,6 +41,7 @@ export const DashboardEdit: React.FC = () => {
         source_code?: string | undefined;
         website_url?: string | undefined;
         prefixes?: string[] | undefined;
+        webhook_url?: string | undefined
     }>({
         long_description: bot?.long_description,
         short_description: bot?.short_description,
@@ -49,8 +50,17 @@ export const DashboardEdit: React.FC = () => {
         support_server: bot?.support_server,
         source_code: bot?.source_code,
         website_url: bot?.website_url,
-        prefixes: bot?.prefixes
+        prefixes: bot?.prefixes,
+        webhook_url: bot?.webhook_url
     });
+
+    const handleWebhook = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { value } = event.target;
+
+        setMarkdown(value);
+        setEditedBot({ ...editedBot, webhook_url: value });
+        setChangesMade({ changes: true });
+    };
 
     const handleLongDescription = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         const { value } = event.target;
@@ -123,17 +133,21 @@ export const DashboardEdit: React.FC = () => {
     };
 
     const getBotInDB = async () => {
-        const res1 = await api.getBotInfos(botid);
-        const { owner_id, tags, vote_message, long_description, website_url, support_server, source_code, short_description, prefixes } = res1.data;
+        const res1 = (await api.getUserBots()).data.find((a) => a._id === botid);
 
-        const res = await api.getDiscordUser(owner_id);
-        const { username, avatar, id } = res.data;
+        if (res1) {
+            const { owner_id, tags, vote_message, long_description, website_url, support_server, source_code, short_description, prefixes, webhook_url } = res1;
+            const res = await api.getDiscordUser(owner_id);
+            const { username, avatar, id } = res.data;
 
-        setDev({ username, avatar, id, });
+            setDev({ username, avatar, id, });
 
-        setEditedBot({ tags, vote_message, long_description, website_url, support_server, source_code, short_description, prefixes });
+            setEditedBot({ tags, vote_message, long_description, website_url, support_server, source_code, short_description, prefixes, webhook_url });
 
-        setBot(res1.data);
+            setBot(res1);
+        }
+
+
     };
 
     const updateBot = async () => {
@@ -149,6 +163,7 @@ export const DashboardEdit: React.FC = () => {
                 vote_message: editedBot.vote_message,
                 website_url: editedBot.website_url,
                 prefixes: editedBot.prefixes,
+                webhook_url: editedBot.webhook_url
             };
 
             //@ts-ignore
@@ -160,7 +175,7 @@ export const DashboardEdit: React.FC = () => {
             setError({
                 title: "Ocoreu um erro ao atualizar seu bot",
                 show: true,
-                message: ApiErrors[error.response.data.code] || (await Translate(error.response.data.errors[0], { from: "en", to: "pt" }))
+                message: JSON.stringify(error.reponse.data.errors)
             });
         }
     };
@@ -244,6 +259,18 @@ export const DashboardEdit: React.FC = () => {
                 <section className={`w-[90%] min-w-[680px] xl:min-w-0 mb-5 bg-neutral-900 border-2 ${borderColor[color]} border-t-0 rounded-t-none rounded-lg p-10 xl:p-3`}>
                     <div className="flex flex-row xl:flex-col h-full">
                         <div className="flex flex-col w-full h-full">
+                            <div className="w-[95%] h-full xl:w-full break-words xl:justify-center mr-4">
+                                <h1 className="text-xl font-bold text-white my-2">Webhook URL</h1>
+                                <div className={`justify-center mb-5 items-center flex outline-none bg-[#2c2c2c] w-full xl:w-[80vw] h-full rounded-xl p-3 border-[2px] transition-all duration-100 ${borderColor[color]} text-white`}>
+                                    <input
+                                        onChange={handleWebhook}
+                                        defaultValue={editedBot.webhook_url || ""}
+                                        value={editedBot.webhook_url}
+                                        placeholder="Coloque a URL do seu webhook que será ativado após um usuário votar no seu bot"
+                                        className="bg-transparent outline-none w-full scrollbar-thin disabled:opacity-50"
+                                    />
+                                </div>
+                            </div>
                             <div className="w-[95%] h-full xl:w-full break-words xl:justify-center mr-4">
                                 <h1 className="text-xl font-bold text-white my-2">Mensagem de voto</h1>
                                 <div className={`justify-center mb-5 items-center flex outline-none bg-[#2c2c2c] w-full xl:w-[80vw] h-full rounded-xl p-3 border-[2px] transition-all duration-100 ${borderColor[color]} text-white`}>
@@ -372,8 +399,9 @@ export const DashboardEdit: React.FC = () => {
                                         source_code: bot.source_code,
                                         support_server: bot.support_server,
                                         tags: bot.tags,
-                                        vote_message: bot.vote_message,
-                                        website_url: bot.website_url
+                                        vote_message: bot.vote_message || "",
+                                        website_url: bot.website_url,
+                                        webhook_url: bot.webhook_url
                                     });
 
                                     setChangesMade({ changes: false });
