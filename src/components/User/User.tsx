@@ -7,6 +7,7 @@ import { borderColor } from "../../utils/theme/border";
 import { BotCard } from "../BotList/BotCard";
 import { UserLoading } from "./UserLoading";
 import simo from "../../assets/images/simo.png";
+import { CopyButton } from "../Mixed/Copy";
 
 export const User: React.FC = () => {
     const params: Params = useParams<string>();
@@ -39,7 +40,7 @@ export const User: React.FC = () => {
                 <UserLoading />
             ) : (
                 <section className="w-screen flex flex-row p-5 text-white items-start xl:items-center justify-center gap-10 xl:flex-col">
-                    <div className={`${borderColor[color]} border-2 ${user.banner_url ? "min-h-[300px]" : "p-6"} w-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex justify-start flex-col gap-4 relative`}>
+                    <div className={`${borderColor[color]} border-2 ${user.banner_url ? "min-h-[230px]" : "p-6"} w-[300px] xl:w-[90vw] rounded-lg bg-neutral-900 flex justify-start flex-col gap-4 relative`}>
                         {user.banner_url && (
                             <img className="w-full h-36 object-cover rounded-md rounded-b-none z-0 mb-14" src={user.banner_url} alt="Possible banner" />
                         )}
@@ -53,11 +54,9 @@ export const User: React.FC = () => {
                                 alt={`${user.username}'s Avatar`}
                             />
                         </div>
-                        <div className="flex flex-col justify-center gap-1 z-2 relative px-3 pb-4">
+                        <div className="flex justify-center gap-2 z-2 relative px-3 pb-4">
                             <strong>{user.username}</strong>
-                            <span className="text-[#797979] items-center flex text-[13px]">
-                                ( {user._id} )
-                            </span>
+                            <CopyButton name="ID" text={user._id} key={Math.random()} />
                         </div>
                     </div>
                     <div className="flex items-start w-full flex-col gap-2">
