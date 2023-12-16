@@ -126,6 +126,7 @@ export const LoginMenu: React.FC<{ snowflakes: boolean, setSnowflakes: (value: b
                     <ChoiceColor name="Roxo" theme="purple" margin="6px" selected={selectedTheme === "purple"} />
                     <ChoiceColor name="Verde" theme="green" margin="6px" selected={selectedTheme === "green"} />
                     <ChoiceColor name="Preto" theme="black" margin="6px" selected={selectedTheme === "black"} />
+                    <ChoiceColor name="Natal" theme="christmas" margin="6px" selected={selectedTheme === "christmas"} />
                 </div>
             </section>
         </>

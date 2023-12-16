@@ -1,6 +1,6 @@
 type Snowflake = string;
 
-export type Theme = "blue" | "red" | "green" | "black" | "purple";
+export type Theme = "blue" | "red" | "green" | "black" | "purple" | "christmas";
 
 export interface ThemeContextProps {
     color: Theme;
@@ -67,6 +67,7 @@ export interface ThemeStructure {
     red: string,
     purple: string,
     black: string
+    christmas: string
 }
 
 export interface botDataStructure {
