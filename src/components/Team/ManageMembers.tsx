@@ -12,6 +12,7 @@ import { ApiErrors } from "../../utils/api/errors";
 import { PopUpError } from "../Mixed/Error";
 import { scrollBar } from "../../utils/theme/scrollBar";
 import Translate from "translate";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const TeamPermissions = {
     Administrator: 0,
@@ -19,7 +20,9 @@ const TeamPermissions = {
     Owner: 2
 }
 
-export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<void> }> = ({ color, updateAuditLogs }) => {
+export const ManageMembers: FC<{ updateAuditLogs: () => Promise<void> }> = ({ updateAuditLogs }) => {
+    const { color } = useContext(ThemeContext);
+    
     const [actions, setActions] = useState<{
         menu?: boolean;
         loading?: boolean;
@@ -192,7 +195,7 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
                         {error?.show && <PopUpError setShow={setError} show={error} />}
                     </div>
                 ) : null}
-                {(team && team.members) ? (
+                {team?.members ? (
                     <div className="flex flex-col gap-2 mt-2">
                         {team.members.filter((member) => member.username.toLowerCase().includes(searchQuery.toLowerCase())).map((member) => (
                             <button onClick={() => setSelectedMember(member)} className={`${member.id === selectedMember?.id ? "bg-neutral-700" : "bg-neutral-800"} flex transition duration-300 hover:bg-neutral-700 items-center p-3 rounded-lg gap-2`} key={member.id}>
