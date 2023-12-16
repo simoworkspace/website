@@ -27,7 +27,7 @@ export const CopyButton: FC<{ text: string; name: string }> = ({ text, name }) =
             </button>
             <div>
                 {show && (
-                    <div className={`absolute ${copied && "w-28"} bg-neutral-800 p-3 border-2 rounded-lg text-center text-sm ${borderColor[color]}`}>{copied ? `${name} copiado` : "Copiar"}</div>
+                    <div className={`absolute min-w-[120px] bg-neutral-800 p-3 border-2 rounded-lg text-center text-sm ${borderColor[color]}`}>{copied ? `${name} copiado` : `Copiar ${name}`}</div>
                 )}
             </div>
         </div>
