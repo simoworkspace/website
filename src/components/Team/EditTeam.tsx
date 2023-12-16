@@ -6,12 +6,6 @@ import * as iconMD from "react-icons/md";
 import { Button } from "../Mixed/Button";
 import { TeamInput } from "./Input";
 
-const TeamPermissions = {
-    Administrator: 0,
-    ReadOnly: 1,
-    Owner: 2
-}
-
 interface EditActionsProps {
     changesLoading?: boolean;
     changesMade?: boolean;
@@ -23,7 +17,7 @@ export const EditTeam: FC<{
     teamID: string, team?: Team, editActions: EditActionsProps, setEditActions: (value: EditActionsProps) => void
 }> = ({ teamID, team, editActions, setEditActions }) => {
     const [loading, setLoading] = useState<boolean>(false);
-    const [inviteHash, setInviteHash] = useState<string>("");
+    const [inviteHash, setInviteHash] = useState<string | undefined>("");
     const [logs, setLogs] = useState<AuditLogStructure>();
 
     const handleDescriptionChange = (event: ChangeEvent<HTMLInputElement>) => setEditActions({
@@ -48,7 +42,7 @@ export const EditTeam: FC<{
     });
 
     const getTeamData = async () => {
-        const { data: { invite_code }, data } = await api.getTeam(teamID);
+        const { data: { invite_code } } = await api.getTeam(teamID);
 
         await getAuditLogs();
         setInviteHash(invite_code);
