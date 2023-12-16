@@ -344,7 +344,7 @@ export type AuditLogTeamOwnershipTransferChange = BaseAuditLogChange<
 >;
 
 export type AuditLogTeamUpdateChange = BaseAuditLogChange<
-    "name" | "description" | "avatar_url",
+    "name" | "description" | "avatar_url" | "vanity_url",
     string
 >;
 
@@ -367,4 +367,10 @@ export enum UserFlags {
     Contributor,
     PremiumPartner,
     Developer,
+}
+
+export enum PremiumType {
+    None,
+    Basic,
+    Advanced,
 }
