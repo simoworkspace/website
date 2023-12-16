@@ -70,7 +70,7 @@ export const TeamManageBots: FC<{ team?: Team }> = ({ team }) => {
                     </div>
                 </div>
             )}
-            {selectedBot && (
+            {selectedBot ? (
                 <section className={`w-full bg-neutral-900 mt-2 border-2 flex-row ${borderColor[color]} rounded-lg p-4`}>
                     <div className="flex flex-col gap-2 text-white m-2">
                         <div className={`bg-neutral-900 w-full border-neutral-800 border-2 rounded-lg p-3 transition-colors hover:bg-[#1d1d1d] flex flex-col gap-3`} key={selectedBot._id}>
@@ -99,7 +99,7 @@ export const TeamManageBots: FC<{ team?: Team }> = ({ team }) => {
                         </div>
                     </div>
                 </section>
-            )}
+            ) : null}
             <section className={`transiton-opacity duration-300 ${removeBot ? "visible opacity-100" : "invisible opacity-0"}`}>
                 {removeBot && <RemoveTeamBot teamID={team.id as string} bot={selectedBot as BotStructure} removeBot={removeBot} setRemoveBot={setRemoveBot} />}
             </section>
