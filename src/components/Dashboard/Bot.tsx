@@ -13,6 +13,7 @@ import { DeleteBot } from "./Delete";
 import { borderAndBg } from "../../utils/theme/border&bg";
 import { Button } from "../Mixed/Button";
 import { BiArrowBack } from "react-icons/bi";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export const DashboardBot: React.FC = () => {
     const { color } = useContext(ThemeContext);
@@ -22,6 +23,7 @@ export const DashboardBot: React.FC = () => {
     const [apiKey, setApiKey] = useState<string>("");
     const [apiKeyLoading, setApiKeyLoading] = useState<boolean>(false);
     const [deleteBot, setDeleteBot] = useState<boolean>(false);
+    const [showApiKey, setShowApiKey] = useState<boolean>(false);
 
     const handleCreateApiKey = async () => {
         setApiKeyLoading(true);
@@ -128,7 +130,12 @@ export const DashboardBot: React.FC = () => {
                         </div>
                         <span className="text-lg font-bold">Chave de api</span>
                         <div className="flex flex-row xl:flex-col bg-neutral-800 w-full rounded-lg items-center">
-                            <input disabled value={apiKey} placeholder="Solicite uma nova api key" className="flex-grow p-2 bg-transparent xl:w-full" />
+                            <div className="flex gap-2 items-center justify-start w-full px-3">
+                                <button onClick={() => setShowApiKey(!showApiKey)}>
+                                    {showApiKey ? <FaEyeSlash size={22} /> : <FaEye size={22} />}
+                                </button>
+                                <input disabled value={showApiKey ? apiKey : apiKey.replaceAll(apiKey, "*".repeat(apiKey.length))} placeholder="Solicite uma nova api key" className="flex-grow p-2 bg-transparent xl:w-full" />
+                            </div>
                             <div className="flex xl:w-full">
                                 <Button clas="rounded-r-none" action={async () => {
                                     await navigator.clipboard.writeText(apiKey);
