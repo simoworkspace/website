@@ -119,9 +119,14 @@ export const ManageTeamComponent: FC = () => {
                                 className="rounded-full w-32 h-32 object-center" src={editActions.avatar_url} />
                         </div>
                         <hr className="w-[80%] my-6" />
-                        <div className="flex gap-2 text-center justify-center">
-                            <strong className="max-w-[200px]">{editActions.name}</strong>
-                            <CopyButton name="ID" text={teamID} key={Math.random()} />
+                        <div className="flex flex-col gap-2 text-center justify-center">
+                            <div className="flex gap-2 items-center justify-center">
+                                <strong className="max-w-[200px]">{editActions.name}</strong>
+                                <CopyButton name="ID" text={teamID} key={Math.random()} />
+                            </div>
+                            <div className={editActions.description?.includes(" ") ? "break-words" : "break-all"}>
+                                <span className="max-w-[250px]">{editActions.description}</span>
+                            </div>
                         </div>
                         <div className="flex w-full flex-col gap-3 py-3 px-5">
                             <span className="text-lg font-bold text-left">Membros</span>
