@@ -1,4 +1,4 @@
-import { FC, useContext, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { BiCopy } from "react-icons/bi";
 import { borderColor } from "../../utils/theme/border";
 import { ThemeContext } from "../../contexts/ThemeContext";
@@ -14,6 +14,12 @@ export const CopyButton: FC<{ text: string; name: string }> = ({ text, name }) =
         setCopied(true);
     };
 
+    useEffect(() => {
+        setTimeout(() => {
+            setCopied(false);
+        }, 5_000);
+    }, [show, copied]);
+    
     return (
         <div className="relative">
             <button onMouseLeave={() => setShow(false)} onMouseEnter={() => setShow(true)} onClick={handleCopy} className="">
@@ -21,7 +27,7 @@ export const CopyButton: FC<{ text: string; name: string }> = ({ text, name }) =
             </button>
             <div>
                 {show && (
-                    <div className={`absolute ${show && "w-28"} bg-neutral-800 p-3 border-2 rounded-lg text-center text-sm ${borderColor[color]}`}>{copied ? `${name} copiado` : "Copiar"}</div>
+                    <div className={`absolute ${copied && "w-28"} bg-neutral-800 p-3 border-2 rounded-lg text-center text-sm ${borderColor[color]}`}>{copied ? `${name} copiado` : "Copiar"}</div>
                 )}
             </div>
         </div>
