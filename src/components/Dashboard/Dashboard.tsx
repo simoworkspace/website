@@ -1,34 +1,32 @@
 import { FC, useContext, useState, useEffect } from "react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel, TabIndicator } from "@chakra-ui/react";
 import { ThemeContext } from "../../contexts/ThemeContext";
-import { Team } from "../../types";
+import { Team, UserStructure } from "../../types";
 import { borderColor } from "../../utils/theme/border";
 import { Button } from "../Mixed/Button";
 import * as iconAI from "react-icons/ai";
 import api from "../../utils/api";
 import { Teams } from "../Team/Teams";
-import { UserContext } from "../../contexts/UserContext";
 import { UserLoading } from "../User/UserLoading";
 import simo from "../../assets/images/simo.png";
 import { DashboardBot } from "./Bot";
 
 export const DashboardComponent: FC = () => {
     const { color } = useContext(ThemeContext);
-    const { user } = useContext(UserContext);
 
+    const [user, setUser] = useState<UserStructure>();
+    const [teams, setTeams] = useState<Team[]>();
     const [editActions, setEditActions] = useState<{
         changesLoading?: boolean;
         changesMade?: boolean;
         bio?: string | null;
         banner_url?: string | null;
     }>({
-        banner_url: user?.banner_url || "",
-        bio: user?.bio || "",
+        banner_url: user?.banner_url,
+        bio: user?.bio,
         changesLoading: false,
         changesMade: false
     });
-
-    const [teams, setTeams] = useState<Team[]>();
 
     const handleBioChange = (event: React.ChangeEvent<HTMLInputElement>) => setEditActions({ bio: event?.target.value, banner_url: editActions.banner_url, changesMade: true });
 
@@ -40,14 +38,29 @@ export const DashboardComponent: FC = () => {
         setTeams(req.data);
     };
 
+    const getUserData = async () => {
+        const { data: { banner_url, bio }, data } = await api.getUserData();
+
+        setEditActions({ bio, banner_url });
+        setUser(data);
+    };
+
     const updateUser = async () => {
         try {
             setEditActions({ changesLoading: true, changesMade: true, banner_url: editActions.banner_url, bio: editActions.bio });
 
-            const updatedUserData = {
-                banner_url: editActions.banner_url as string,
-                bio: editActions.bio as string
+            let updatedUserData = {
+                banner_url: editActions.banner_url as string | null,
+                bio: editActions.bio as string | null
             };
+
+            if (updatedUserData.bio === null) {
+                updatedUserData.bio = null;
+            }
+
+            if (updatedUserData.banner_url === null) {
+                updatedUserData.banner_url = null;
+            }
 
             await api.patchUser(updatedUserData);
 
@@ -61,6 +74,10 @@ export const DashboardComponent: FC = () => {
         getUserTeams();
     }, [user]);
 
+    useEffect(() => {
+        getUserData();
+    }, []);
+
     return user ? (
         <main className="max-w-[1500px] flex justify-center items-center">
             <section className="w-screen flex flex-row p-5 text-white items-start xl:items-center justify-center gap-10 xl:flex-col">
@@ -68,7 +85,7 @@ export const DashboardComponent: FC = () => {
                     {editActions.banner_url && (
                         <img className={`w-full h-36 object-cover rounded-md rounded-b-none z-0 mb-14 bg-neutral-800`} onError={({ currentTarget }) => {
                             currentTarget.src = "http://www.luquips.com.br/wp-content/uploads/2015/04/banner-vazio-300x86.png";
-                        }} src={editActions.banner_url || ""} />
+                        }} src={!editActions.banner_url ? "" : editActions.banner_url} />
                     )}
                     <div className={`w-full items-center flex justify-center ${editActions.banner_url && "z-1 absolute top-36 left-0 transform -translate-y-1/2"}`}>
                         <img
@@ -107,7 +124,7 @@ export const DashboardComponent: FC = () => {
                                         </div>
                                         <form className="w-[50%] xl:w-full xl:h-14 flex flex-row">
                                             <div className="w-full">
-                                                <input defaultValue={user.bio || ""} placeholder="Digite sua biografia aqui." maxLength={200} value={editActions.bio || ""} required onChange={handleBioChange} className={`bg-transparent disabled:opacity-50 focus:outline-none border-2 rounded-lg p-2 w-full h-14 ${borderColor[color]}`} type="text" />
+                                                <input defaultValue={!editActions.bio ? "" : editActions.bio} placeholder="Digite sua biografia aqui." maxLength={200} value={!editActions.bio ? "" : editActions.bio} required onChange={handleBioChange} className={`bg-transparent disabled:opacity-50 focus:outline-none border-2 rounded-lg p-2 w-full h-14 ${borderColor[color]}`} type="text" />
                                             </div>
                                         </form>
                                     </div>
@@ -118,7 +135,7 @@ export const DashboardComponent: FC = () => {
                                         </div>
                                         <form className="w-[50%] xl:w-full xl:h-14 flex flex-row">
                                             <div className="w-full">
-                                                <input defaultValue={user?.banner_url || ""} placeholder="Coloque uma URL de uma imagem aqui." maxLength={200} value={editActions.banner_url || ""} required onChange={handleBannerChange} className={`bg-transparent disabled:opacity-5 focus:outline-none border-2 rounded-lg p-2 w-full h-14 ${borderColor[color]}`} type="text" />
+                                                <input defaultValue={!editActions.banner_url ? "" : editActions.banner_url} placeholder="Coloque uma URL de uma imagem aqui." maxLength={200} value={!editActions.banner_url ? "" : editActions.banner_url} required onChange={handleBannerChange} className={`bg-transparent disabled:opacity-5 focus:outline-none border-2 rounded-lg p-2 w-full h-14 ${borderColor[color]}`} type="text" />
                                             </div>
                                         </form>
                                     </div>

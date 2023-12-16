@@ -151,7 +151,6 @@ export const ManageTeamComponent: FC = () => {
                                 <TabPanel>
                                     {team ? (
                                         <EditTeam editActions={editActions} setEditActions={setEditActions} teamID={teamID} team={team} />
-
                                     ) : (
                                         <span>Carregando...</span>
                                     )}
