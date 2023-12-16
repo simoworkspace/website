@@ -52,9 +52,11 @@ export const DashboardBot: React.FC = () => {
 
     useEffect(() => {
         if (user) getUserBots();
-
-        if (selectedBot) getBotApiKey();
     }, [user]);
+
+    useEffect(() => {
+        getBotApiKey();
+    }, [selectedBot]);
 
     return bots ? (
         <main className="flex items-start justify-center h-full w-full flex-col">
