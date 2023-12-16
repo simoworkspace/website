@@ -35,10 +35,6 @@ export const DashboardBot: React.FC = () => {
     const getUserBots = async () => {
         const { data } = await api.getUserBots();
 
-        if (data.length === 1) {
-            return setSelectedBot(data[0]);
-        }
-
         return setBots(data ? data : null);
     };
 
@@ -61,7 +57,7 @@ export const DashboardBot: React.FC = () => {
     }, [user]);
 
     return bots ? (
-        <main className="flex items-center justify-start h-full w-full flex-col">
+        <main className="flex items-start justify-center h-full w-full flex-col">
             {selectedBot ? (
                 <div className="flex items-center justify-start w-full">
                     <Button action={() => setSelectedBot(null)} clas="flex items-center justify-center gap-3"><BiArrowBack /> Voltar</Button>
@@ -69,9 +65,9 @@ export const DashboardBot: React.FC = () => {
             ) : bots.length === 0 ? (
                 <div className="flex w-full items-center justify-start gap-2 text-lg">Você não tem bots, que tal adicionar um bot<Link className="text-blue-500 underline" to="/addbot">clicando aqui?</Link></div>
             ) : !selectedBot && (
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 w-full">
                     <span className="text-xl font-bold">Seus bots</span>
-                    <Button link to="/addbot" clas="disabled:opacity-50 flex items-center justify-center gap-2 w-[190px]"><iconBS.BsPlusLg size={22} />Adicionar um bot</Button>
+                    <Button link to="/addbot" clas="disabled:opacity-50 flex items-center justify-center gap-2 w-full"><iconBS.BsPlusLg size={22} />Adicionar um bot</Button>
                     <div className="flex xl:flex-col items-center w-full gap-2">
                         {bots.map((bot) => (
                             <button onClick={() => getSelectedBot(bot._id)} className="flex-col flex rounded-lg p-3 bg-neutral-800 items-center justify-center gap-3 transition duration-300 hover:bg-neutral-700">
