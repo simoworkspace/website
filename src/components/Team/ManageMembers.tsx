@@ -157,7 +157,7 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
                         </div>
                     </form>
                 </div>
-                {selectedMember && (
+                {selectedMember ? (
                     <div className="p-3 w-full bg-neutral-800 rounded-lg mt-2">
                         <div className="flex flex-row xl xl:flex-col xl:justify-center xl:w-full">
                             <div className="flex items-center xl:flex-col justify-start gap-3 w-full flex-grow">
@@ -191,7 +191,7 @@ export const ManageMembers: FC<{ color: Theme, updateAuditLogs: () => Promise<vo
                         </div>
                         {error?.show && <PopUpError setShow={setError} show={error} />}
                     </div>
-                )}
+                ) : null}
                 {(team && team.members) ? (
                     <div className="flex flex-col gap-2 mt-2">
                         {team.members.filter((member) => member.username.toLowerCase().includes(searchQuery.toLowerCase())).map((member) => (

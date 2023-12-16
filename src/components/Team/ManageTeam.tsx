@@ -169,7 +169,11 @@ export const ManageTeamComponent: FC = () => {
                                     )}
                                 </TabPanel>
                                 <TabPanel>
-                                    <ManageMembers updateAuditLogs={getAuditLogs} color={color} />
+                                    {team ? (
+                                        <ManageMembers updateAuditLogs={getAuditLogs} color={color} />
+                                    ) : (
+                                        <div>Carregando...</div>
+                                    )}
                                 </TabPanel>
                                 <TabPanel>
                                     {team ? (
@@ -186,7 +190,11 @@ export const ManageTeamComponent: FC = () => {
                                     )}
                                 </TabPanel>
                                 <TabPanel>
-                                    <AuditLogs logs={logs} />
+                                    {team ? (
+                                        <AuditLogs logs={logs} />
+                                    ) : (
+                                        <div>Carregando...</div>
+                                    )}
                                 </TabPanel>
                             </TabPanels>
                         </Tabs>
