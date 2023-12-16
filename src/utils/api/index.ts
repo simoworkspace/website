@@ -10,7 +10,7 @@ const header = Cookies.get("discordUser") ? {
 
 const api = {
     getAllBots: (startAt?: number, endAt?: number): Promise<AxiosResponse<BotStructure[]>> => {
-        return axios.get(`/api/bots?startAt=${startAt}&endAt=${endAt}`, header);
+        return axios.get(`/api/bots?start_at=${startAt}&end_at=${endAt}`, header);
     },
     getUserData: (): Promise<AxiosResponse<UserStructure>> => {
         return axios.get("/api/users/@me", header);
