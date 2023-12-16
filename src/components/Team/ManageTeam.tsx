@@ -21,6 +21,12 @@ import { EditTeam } from "./EditTeam";
 import Translate from "translate";
 import { CopyButton } from "../Mixed/Copy";
 
+interface UpdatedTeamData {
+    avatar_url: string;
+    description: string | null;
+    name: string;
+}
+
 export const ManageTeamComponent: FC = () => {
     const { color } = useContext(ThemeContext);
     const params: Params = useParams<string>();
@@ -48,13 +54,20 @@ export const ManageTeamComponent: FC = () => {
         try {
             setEditActions({ changesLoading: true, changesMade: true, avatar_url: editActions.avatar_url, description: editActions.description, name: editActions.name });
 
-            const updatedTeamData = {
+            const updatedTeamData: UpdatedTeamData = {
                 avatar_url: editActions.avatar_url,
                 description: editActions.description,
                 name: editActions.name
             };
 
-            //@ts-ignore
+            for (let i in updatedTeamData) {
+                if (team) {
+                    if (updatedTeamData[i as keyof UpdatedTeamData] === team[i as keyof UpdatedTeamData]) {
+                        delete updatedTeamData[i as keyof UpdatedTeamData];
+                    }
+                }
+            }
+
             await api.patchTeam(teamID, updatedTeamData);
             await getAuditLogs();
 
@@ -108,7 +121,7 @@ export const ManageTeamComponent: FC = () => {
                         <hr className="w-[80%] my-6" />
                         <div className="flex gap-2 text-center justify-center">
                             <strong className="max-w-[200px]">{editActions.name}</strong>
-                            <CopyButton name="ID" text={teamID} key={Math.random()}/>
+                            <CopyButton name="ID" text={teamID} key={Math.random()} />
                         </div>
                         <div className="flex w-full flex-col gap-3 py-3 px-5">
                             <span className="text-lg font-bold text-left">Membros</span>
@@ -180,8 +193,8 @@ export const ManageTeamComponent: FC = () => {
                     </section>
                 </div>
             </section>
-            {error?.show && <PopUpError setShow={setError} show={error} />}
-            {(editActions.changesMade && team) && (
+            {error?.show ? <PopUpError setShow={setError} show={error} /> : null}
+            {editActions.changesMade && team ? (
                 <div className={`${editActions.changesMade ? "bounceIn" : "invisible"} w-[90vw] bottom-5 origin-center absolute xl:z-10 xl:fixed xl:bottom-10 xl:w-[95vw] bg-neutral-800 ${borderColor[color]} border-2 rounded-lg duration-200`}>
                     <div className="flex p-2 text-white w-full items-center">
                         <span className="flex flex-grow">Você tem alterações para serem salvas</span>
@@ -193,7 +206,7 @@ export const ManageTeamComponent: FC = () => {
                         </div>
                     </div>
                 </div>
-            )}
+            ) : null}
         </main>
     )
 };
