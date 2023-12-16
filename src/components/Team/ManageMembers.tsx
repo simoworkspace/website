@@ -197,7 +197,7 @@ export const ManageMembers: FC<{ updateAuditLogs: () => Promise<void> }> = ({ up
                 ) : null}
                 {team?.members ? (
                     <div className="flex flex-col gap-2 mt-2">
-                        {team.members.filter((member) => member.username.toLowerCase().includes(searchQuery.toLowerCase())).map((member) => (
+                        {team.members.filter((member) => member.username.toLowerCase().includes(searchQuery.toLowerCase())).filter((member) => member.id !== selectedMember?.id).map((member) => (
                             <button onClick={() => setSelectedMember(member)} className={`${member.id === selectedMember?.id ? "bg-neutral-700" : "bg-neutral-800"} flex transition duration-300 hover:bg-neutral-700 items-center p-3 rounded-lg gap-2`} key={member.id}>
                                 <img onError={async ({ currentTarget }) => {
                                     currentTarget.onerror = null;
