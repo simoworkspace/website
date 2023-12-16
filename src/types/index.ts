@@ -338,6 +338,8 @@ export type AuditLogInviteUpdateChange = BaseAuditLogChange<
     string
 >;
 
+export type VanityURLUpdateChange = BaseAuditLogChange<"vanity_url", { code: string } | null>
+
 export type BaseAuditLogChange<Key, Data> = {
     changed_key: Key;
     old_value: Data;
