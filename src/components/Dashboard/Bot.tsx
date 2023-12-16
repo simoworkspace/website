@@ -92,7 +92,7 @@ export const DashboardBot: React.FC = () => {
             {selectedBot && (
                 <section className={`w-full bg-neutral-900 mt-2 border-2 flex-row ${borderColor[color]} rounded-lg p-4`}>
                     <div className="flex flex-col gap-2">
-                        <div className="grid grid-cols-2 xl:grid-cols-1 gap-8 text-white m-2">
+                        <div className="flex flex-col gap-2 text-white m-2">
                             <div className={`bg-neutral-900 w-full border-neutral-800 border-2 rounded-lg p-3 transition-colors hover:bg-[#1d1d1d] flex flex-col gap-3`} key={selectedBot._id}>
                                 <Link to={`/bot/${selectedBot._id}`} className="flex flex-col gap-3">
                                     <div className="flex gap-2 items-center">
@@ -114,6 +114,7 @@ export const DashboardBot: React.FC = () => {
                                     </div>
                                 </Link>
                             </div>
+                            <span className="text-lg font-bold">Ações</span>
                             <div className="w-full flex flex-col gap-3 items-center justify-center">
                                 <button onClick={() => setDeleteBot(true)} className={`flex flex-row items-center justify-center gap-3 p-3 w-full rounded-lg ${buttonColor["red"]} h-12 transition-colors duration-300 border-2`}>
                                     <iconBS.BsTrashFill />
@@ -129,10 +130,13 @@ export const DashboardBot: React.FC = () => {
                         <div className="flex flex-row xl:flex-col bg-neutral-800 w-full rounded-lg items-center">
                             <input disabled value={apiKey} placeholder="Solicite uma nova api key" className="flex-grow p-2 bg-transparent xl:w-full" />
                             <div className="flex xl:w-full">
-                                <Button clas="rounded-r-none" action={async () => await navigator.clipboard.writeText(apiKey)}>
+                                <Button clas="rounded-r-none" action={async () => {
+                                    await navigator.clipboard.writeText(apiKey);
+                                    alert("Copiado para área de transferências.")
+                                }}>
                                     <iconMD.MdOutlineContentCopy fill="#fff" size={24} />
                                 </Button>
-                                <Button disabled={apiKeyLoading} action={handleCreateApiKey} clas="h-full xl:w-full items-center justify-center rounded-l-none">{apiKeyLoading ? <iconAI.AiOutlineLoading3Quarters fill="#fff" size={30} className="animate-spin" /> : apiKey ? "Atualizar" : "Gerar"}</Button>
+                                <Button disabled={apiKeyLoading} action={handleCreateApiKey} clas="h-full xl:w-full items-center justify-center rounded-l-none">{apiKeyLoading ? <iconAI.AiOutlineLoading3Quarters fill="#fff" size={24} className="animate-spin" /> : apiKey ? "Atualizar" : "Gerar"}</Button>
                             </div>
                         </div>
                     </div>
