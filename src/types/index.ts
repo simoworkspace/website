@@ -1,4 +1,4 @@
-type Snowflake = string;
+export type Snowflake = string;
 
 export type Theme = "blue" | "red" | "green" | "black" | "purple" | "christmas";
 
