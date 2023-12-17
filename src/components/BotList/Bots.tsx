@@ -24,7 +24,7 @@ export const Bots: React.FC = () => {
 
         console.log(data.length, bots);
 
-        if (data.length === bots) {
+        if (data.length >= bots) {
             setShowLoadMore(false);
         } else {
             setShowLoadMore(true);
@@ -38,9 +38,10 @@ export const Bots: React.FC = () => {
     }, [botsToShow]);
 
     const loadMoreBots = () => {
-        setBotsToShow((bots) => {
-            setPrevBotsToShow(() => prevBotsToShow + 6);
-            return bots + 6
+        setBotsToShow((prevBots) => {
+            const newBotsToShow = prevBots + 6;
+            setPrevBotsToShow(prevBots);
+            return newBotsToShow;
         });
     };
 
