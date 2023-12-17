@@ -10,6 +10,7 @@ export const Bots: React.FC = () => {
     const { color } = useContext(ThemeContext);
     const [data, setData] = useState<BotStructure[]>([]);
     const [botsToShow, setBotsToShow] = useState<number>(6);
+    const [prevBotsToShow, setPrevBotsToShow] = useState<number>(0);
     const [showLoadMore, setShowLoadMore] = useState<boolean>(true);
     const [botLoading, setBotLoading] = useState<boolean>(false);
 
@@ -31,11 +32,14 @@ export const Bots: React.FC = () => {
     };
 
     useEffect(() => {
-        fetchData(0, botsToShow);
+        fetchData(prevBotsToShow, botsToShow);
     }, [botsToShow]);
 
     const loadMoreBots = () => {
-        setBotsToShow((prevBotsToShow) => Math.min(prevBotsToShow + 6, data.length + 6));
+        setBotsToShow((bots) => {
+            setPrevBotsToShow(() => prevBotsToShow + 6);
+            return bots + 6
+        });
     };
 
     return (
