@@ -42,7 +42,7 @@ export const InviteComponent: FC = () => {
             try {
                 await api.joinTeam(teamId, hash);
 
-                window.location.href = "/dashboard/settings";
+                window.location.href = `/team/${teamId}`;
             } catch (error: any) {
                 setLoading(false);
                 setError({
