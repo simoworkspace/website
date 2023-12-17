@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody, NotificationType, StatusStrucuture, Team, AuditLogStructure } from "../../types";
+import { BotStructure, UserStructure, VoteStructure, DiscordUser, Snowflake, FeedbackStructure, NotificationStructure, NotificationBody, NotificationType, StatusStrucuture, Team, AuditLogStructure, TeamMember } from "../../types";
 import Cookies from "js-cookie";
 
 const header = Cookies.get("discordUser") ? {
@@ -125,7 +125,10 @@ const api = {
     },
     updateTeamInviteCode: (teamID: string): Promise<AxiosResponse<{ invite_code: string }>> => {
         return axios.patch(`/api/teams/${teamID}/invite`, null, header);
-    }
+    },
+    leaveTeam: (teamID: string): Promise<AxiosResponse<TeamMember>> => {
+        return axios.delete(`/api/teams/${teamID}/members/@me`, header);
+    },
 };
 
 export default api;
