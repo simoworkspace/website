@@ -14,6 +14,7 @@ import { buttonColor } from "../../utils/theme/button";
 import { DeleteTeam } from "./DeleteTeam";
 import { Botloading } from "../BotList/Botloading";
 import { CopyButton } from "../Mixed/Copy";
+import { LeaveTeam } from "./LeaveTeam";
 
 const TeamPermissions = {
     Administrator: 0,
@@ -28,6 +29,7 @@ export const TeamComponent: React.FC = () => {
     const [team, setTeam] = useState<Team>();
     const [deleteTeam, setDeleteTeam] = useState<boolean>(false);
     const [teamBots, setTeamBots] = useState<BotStructure[] | null>(null);
+    const [leaveTeam, setLeaveTeam] = useState<boolean>(false);
 
     const { color } = useContext(ThemeContext);
 
@@ -76,6 +78,12 @@ export const TeamComponent: React.FC = () => {
                                 )}
                             </div>
                         )}
+                        {team.members?.find((member) => member.id === user?._id) && (
+                            <Button action={() => setLeaveTeam(true)} clas={`flex items-center gap-2 ${buttonColor["red"]}`}>
+                                <icon.BiArrowBack/>
+                                <span>Sair do time</span>
+                            </Button>
+                        )}
                         <span className="text-lg font-bold text-left">Membros</span>
                         <div className="flex flex-wrap w-full gap-2">
                             {team.members?.map((member, index) => (
@@ -111,9 +119,12 @@ export const TeamComponent: React.FC = () => {
                     </section>
                 </div>
             </section>
-            <section className={`transiton-opacity duration-300 ${deleteTeam ? "visible opacity-100" : "invisible opacity-0"}`}>
+            <div className={`transiton-opacity duration-300 ${deleteTeam ? "visible opacity-100" : "invisible opacity-0"}`}>
                 {deleteTeam && <DeleteTeam deletedTeam={deleteTeam} setDeletedTeam={setDeleteTeam} team={team} />}
-            </section>
+            </div>
+            <div className={`transiton-opacity duration-300 ${leaveTeam ? "visible opacity-100" : "invisible opacity-0"}`}>
+                {leaveTeam && <LeaveTeam menu={leaveTeam} setMenu={setLeaveTeam} team={team}/>}
+            </div>
         </main>
     ) : (
         <UserLoading />
