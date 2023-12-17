@@ -20,9 +20,11 @@ export const Bots: React.FC = () => {
         const res = await api.getAllBots(startAt, endAt);
         setData((prevData) => [...prevData, ...res.data]);
 
-        const status = await api.getApiStatus();
+        const { data: { bots } } = await api.getApiStatus();
 
-        if (res.data.length === 0 || data.length >= status.data.bots) {
+        console.log(data.length, bots);
+
+        if (data.length === bots) {
             setShowLoadMore(false);
         } else {
             setShowLoadMore(true);
