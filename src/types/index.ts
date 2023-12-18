@@ -215,6 +215,7 @@ export interface StatusStrucuture {
 
 export interface Team {
     members?: TeamMember[];
+    created_at?: string;
     id?: string;
     name: string;
     invite_code?: string;
