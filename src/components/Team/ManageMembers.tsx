@@ -1,7 +1,6 @@
 import { FC, useState, useEffect, useContext } from "react";
-import { ErrorStructure, Team, TeamMember, Theme } from "../../types";
+import { ErrorStructure, Team, TeamMember } from "../../types";
 import { borderColor } from "../../utils/theme/border";
-import * as iconMD from "react-icons/md";
 import * as iconBI from "react-icons/bi";
 import * as iconBS from "react-icons/bs";
 import { Button } from "../Mixed/Button";
@@ -10,9 +9,10 @@ import { Params, useParams } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
 import { ApiErrors } from "../../utils/api/errors";
 import { PopUpError } from "../Mixed/Error";
-import { scrollBar } from "../../utils/theme/scrollBar";
 import Translate from "translate";
 import { ThemeContext } from "../../contexts/ThemeContext";
+import moment from "moment";
+import "moment/dist/locale/pt-br";
 
 const TeamPermissions = {
     Administrator: 0,
@@ -41,14 +41,14 @@ export const ManageMembers: FC<{ updateAuditLogs: () => Promise<void> }> = ({ up
         setSearchQuery(event.target.value);
     };
 
-    const getTeam = async (): Promise<void> => {
+    const getTeam = async () => {
         const { data } = await api.getTeam(teamID);
 
         setSelectedMember(data.members?.find((teamMember) => teamMember.id === selectedMember?.id) as TeamMember);
         setTeam(data);
     }
 
-    const kickMember = async (): Promise<void> => {
+    const kickMember = async () => {
         if (!team) return;
 
         setActions({ loading: true });
@@ -70,7 +70,7 @@ export const ManageMembers: FC<{ updateAuditLogs: () => Promise<void> }> = ({ up
         setActions({ loading: false });
     };
 
-    const demoteMember = async (): Promise<void> => {
+    const demoteMember = async () => {
         setActions({ loading: true });
 
         try {
@@ -92,7 +92,7 @@ export const ManageMembers: FC<{ updateAuditLogs: () => Promise<void> }> = ({ up
         setActions({ loading: false });
     };
 
-    const promoveMember = async (): Promise<void> => {
+    const promoveMember = async () => {
         setActions({ loading: true });
 
         try {
@@ -114,7 +114,7 @@ export const ManageMembers: FC<{ updateAuditLogs: () => Promise<void> }> = ({ up
         setActions({ loading: false });
     };
 
-    const transferPosse = async (): Promise<void> => {
+    const transferPosse = async () => {
         if (!team || !selectedMember || !team.members) return;
 
         setActions({ loading: true });
@@ -174,6 +174,7 @@ export const ManageMembers: FC<{ updateAuditLogs: () => Promise<void> }> = ({ up
                                         <span className="text-neutral-500">({selectedMember.id})</span>
                                     </div>
                                     <span>Cargo <strong>{selectedMember?.permission === 1 ? "Membro" : selectedMember.permission === TeamPermissions.Owner ? "Dono" : "Administrador"}</strong></span>
+                                    <span className="text-neutral-500">Entrou {moment(selectedMember.joined_at).fromNow()}</span>
                                 </div>
                             </div>
                             <div className="flex flex-row xl:flex-col xl:justify-center xl:w-full gap-2 w-full p-2 justify-end">

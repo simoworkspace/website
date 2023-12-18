@@ -224,6 +224,7 @@ export interface Team {
 }
 
 export interface TeamMember {
+    joined_at: string
     id: Snowflake;
     avatar: string;
     username: string;
