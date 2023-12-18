@@ -78,7 +78,7 @@ export const TeamComponent: React.FC = () => {
                                 )}
                             </div>
                         )}
-                        {team.members?.find((member) => member.id === user?._id) && (
+                        {team.members?.find((member) => member.id === user?._id && member.permission !== TeamPermissions.Owner) && (
                             <Button action={() => setLeaveTeam(true)} clas={`flex items-center gap-2 ${buttonColor["red"]}`}>
                                 <icon.BiArrowBack/>
                                 <span>Sair do time</span>
