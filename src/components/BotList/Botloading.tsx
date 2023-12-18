@@ -2,10 +2,12 @@
 import { TiArrowSortedUp } from "react-icons/ti";
 
 
-export const Botloading: React.FC<{ fills: number, grid?: boolean }> = ({ fills, grid }) => {
+export const Botloading: React.FC<{ fills: number, grid?: boolean, ignore?: string }> = ({ fills, grid }) => {
     return grid ? (
         <>
-            {Array(fills).fill(
+            {Array(fills).filter(b=>{
+            return b._id != ignore
+            }).fill(
                 <div className={`bg-neutral-900 w-full rounded-lg p-3 transition-colors border-[#1d1d1d] border-2 flex flex-col gap-3 xl:w-[95vw]`}>
                     <div className="flex flex-col gap-3">
                         <div className="flex gap-2 items-center">
