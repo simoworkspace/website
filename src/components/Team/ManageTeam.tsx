@@ -20,7 +20,8 @@ import simo from "../../assets/images/simo.png";
 import { EditTeam } from "./EditTeam";
 import Translate from "translate";
 import { CopyButton } from "../Mixed/Copy";
-
+import moment from "moment";
+import "moment/dist/locale/pt-br";
 interface UpdatedTeamData {
     avatar_url: string;
     description: string | null;
@@ -146,6 +147,7 @@ export const ManageTeamComponent: FC = () => {
                                 ))}
                             </div>
                         </div>
+                        <span className="text-neutral-500">Criado {moment(team.created_at).fromNow()} atrás</span>
                     </div>
                 ) : (
                     <div>Carregando...</div>

@@ -15,6 +15,8 @@ import { DeleteTeam } from "./DeleteTeam";
 import { Botloading } from "../BotList/Botloading";
 import { CopyButton } from "../Mixed/Copy";
 import { LeaveTeam } from "./LeaveTeam";
+import moment from "moment";
+import "moment/dist/locale/pt-br";
 
 const TeamPermissions = {
     Administrator: 0,
@@ -101,6 +103,7 @@ export const TeamComponent: React.FC = () => {
                             ))}
                         </div>
                     </div>
+                    <span className="text-neutral-500">Criado {moment(team.created_at).fromNow()} atrás</span>
                 </div>
                 <div className="flex items-start w-full flex-col gap-2">
                     <h1 className="text-[33px]">Time <strong>{team.name}</strong></h1>
