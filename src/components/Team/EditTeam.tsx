@@ -5,6 +5,7 @@ import * as iconAI from "react-icons/ai";
 import * as iconMD from "react-icons/md";
 import { Button } from "../Mixed/Button";
 import { TeamInput } from "./Input";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 interface EditActionsProps {
     changesLoading?: boolean;
@@ -18,7 +19,7 @@ export const EditTeam: FC<{
 }> = ({ teamID, team, editActions, setEditActions }) => {
     const [loading, setLoading] = useState<boolean>(false);
     const [inviteHash, setInviteHash] = useState<string | undefined>("");
-    const [logs, setLogs] = useState<AuditLogStructure>();
+    const [showHash, setShowHash] = useState<boolean>(false);
 
     const handleDescriptionChange = (event: ChangeEvent<HTMLInputElement>) => {
         if (event.target.value === team?.description) {
@@ -78,19 +79,11 @@ export const EditTeam: FC<{
     const getTeamData = async () => {
         const { data: { invite_code } } = await api.getTeam(teamID);
 
-        await getAuditLogs();
         setInviteHash(invite_code);
-    };
-
-    const getAuditLogs = async () => {
-        const { data } = await api.getAuditLogs(teamID);
-
-        return setLogs(data);
     };
 
     useEffect(() => {
         getTeamData();
-        getAuditLogs();
     }, []);
 
     return team ? (
@@ -134,8 +127,13 @@ export const EditTeam: FC<{
                         <span>Link de convite</span>
                     </div>
                     <div className="flex flex-row xl:flex-col bg-neutral-800 w-full h-full rounded-lg items-center">
-                        <input disabled value={`${new URL(location.href).origin}/team/${team.id}/invite/${inviteHash}`} placeholder="Atualizar link de invite" className="flex-grow p-2 w-full bg-transparent xl:break-words" />
-                        <div className="flex flex-row xl:w-full">
+                        <div className="flex gap-2 items-center justify-start w-full px-3">
+                            <button onClick={() => setShowHash(!showHash)}>
+                                {showHash ? <FaEyeSlash size={22} /> : <FaEye size={22} />}
+                            </button>
+                            <input disabled value={`${new URL(location.href).origin}/team/${team.id}/invite/${showHash ? inviteHash : inviteHash?.replaceAll(inviteHash, "*".repeat(inviteHash?.length as number))}`} placeholder="Atualizar link de invite" className="flex-grow p-2 w-full bg-transparent xl:break-words" />
+                        </div>
+                        <div className="flex xl:w-full">
                             <Button disabled={loading} clas="rounded-r-none" action={async () => {
                                 alert("Copiado para área de transferencias.");
                                 await navigator.clipboard.writeText(`${new URL(location.href).origin}/team/${team.id}/invite/${inviteHash}`)
