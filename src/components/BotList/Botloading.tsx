@@ -35,7 +35,7 @@ export const Botloading: React.FC<{ fills: number, grid?: boolean }> = ({ fills,
                             <div className="animate-pulse text-center border-2 border-neutral-700 h-[52px] transition-all duration-300 p-3 rounded-lg w-full bg-neutral-800"></div>
                         </div>
                         <div>
-                            <div className="animate-pulse text-center border-2 border-neutral-700 h-[52px] transition-all duration-300p-3 rounded-lg px-5 flex gap-2 items-center justify-center w-full bg-neutral-800 text-neutral-800">dsajkdalj</div>
+                            <div className="animate-pulse text-center border-2 border-neutral-700 h-[52px] transition-all duration-300p-3 rounded-lg px-5 flex gap-2 items-center justify-center w-full bg-neutral-800 text-neutral-800"></div>
                         </div>
                     </div>
                 </div>
