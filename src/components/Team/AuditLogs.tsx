@@ -1,9 +1,8 @@
 import { FC } from "react";
-import { AuditLogStructure, VanityURLUpdateChange } from "../../types";
+import { AuditLogActionType, AuditLogStructure, VanityURLUpdateChange } from "../../types";
 import moment from "moment";
 import "moment/dist/locale/pt-br";
 import { Link } from "react-router-dom";
-import { AuditLogActionType } from "@simo.js/simo-api-types";
 
 const changedKeysNames: Record<string | number, string> = {
     name: "o nome",
