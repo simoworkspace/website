@@ -140,7 +140,7 @@ export const VoteComponent: React.FC = () => {
                     <h1 className="font-extrabold text-white text-2xl">Bots sugeridos</h1>
                     <div className="grid grid-cols-2 xl:grid-cols-1 place-content-center gap-2 w-full p-3">
                         {botLoading ? (
-                            <Botloading fills={2} grid />
+                            <Botloading fills={2} grid ignore={botData?._id}/>
                         ) : (
                             bots.map((bot, index) => (<BotCard key={index} bot={bot} />))
                         )}
