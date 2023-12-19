@@ -10,7 +10,7 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { UserContext } from "../../contexts/UserContext";
 import { buttonColor } from "../../utils/theme/button";
 
-export const Feedbacks: React.FC<{ botid: string, bot: BotStructure, dev: { id: string, avatar: string, username: string } | undefined }> = ({ botid, bot, dev }) => {
+export const Feedbacks: React.FC<{ botid: string, bot: BotStructure, dev: { _id: string, avatar: string, username: string } | undefined }> = ({ botid, bot, dev }) => {
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
 

@@ -19,7 +19,7 @@ export const FeedbackCard: React.FC<{
     isDeleted: boolean;
     setIsDeleted: (value: boolean) => void;
     updateFeedbacks: () => Promise<void>;
-    developer: { id: string, avatar: string, username: string } | undefined;
+    developer: { _id: string, avatar: string, username: string } | undefined;
 }> = ({ feedback, botid, updateFeedbacks, setIsDeleted, isDeleted, bot, developer }): any => {
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
@@ -197,9 +197,9 @@ export const FeedbackCard: React.FC<{
                     ) : (
                         <div className="flex flex-row gap-2 items-start justify-center h-full my-1 border-l-neutral-800 border-l-[3px]">
                             <div className="flex items-start w-full flex-col mx-2 my-1">
-                                <Link to={`/user/${developer?.id}`} className="flex items-center">
+                                <Link to={`/user/${developer?._id}`} className="flex items-center">
                                     <img
-                                        src={`https://cdn.discordapp.com/avatars/${developer?.id}/${developer?.avatar}.png`}
+                                        src={`https://cdn.discordapp.com/avatars/${developer?._id}/${developer?.avatar}.png`}
                                         className="w-[30px] h-[30px] rounded-full"
                                         onError={({ currentTarget }) => {
                                             currentTarget.onerror = null;

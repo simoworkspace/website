@@ -18,7 +18,7 @@ export const BotComponent: FC = () => {
 
     const [botData, setBotData] = useState<BotStructure>();
     const [stars, setStars] = useState<number>(0);
-    const [dev, setDev] = useState<{ id: string, avatar: string, username: string }>();
+    const [dev, setDev] = useState<{ _id: string, avatar: string, username: string }>();
     const [team, setTeam] = useState<Team | null>();
 
     const getBotStars = async () => {
@@ -33,7 +33,7 @@ export const BotComponent: FC = () => {
         try {
             const { data: { owner_id }, data } = await api.getBotInfos(botid);
 
-            const { data: { username, avatar, id } } = await api.getDiscordUser(owner_id);
+            const { data: { username, avatar, _id } } = await api.getUserFromDB(owner_id);
 
             if (data.team_id) {
                 const team = await api.getTeam(data.team_id as string);
@@ -41,7 +41,7 @@ export const BotComponent: FC = () => {
                 setTeam(!team.data ? null : team.data);
             }
 
-            setDev({ username, avatar, id, });
+            setDev({ username, avatar, _id });
 
             setBotData(data);
         } catch (error) {
@@ -122,11 +122,11 @@ export const BotComponent: FC = () => {
                                     <h1 className="text-2xl text-center">Developer</h1>
                                     <hr className="my-4 w-full" />
                                     <div className="grid grid-cols-2 gap-4">
-                                        <Link to={`/user/${dev?.id}`} className="border-2 border-neutral-800 p-2 rounded-lg flex flex-row flex-wrap justify-center xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
+                                        <Link to={`/user/${dev?._id}`} className="border-2 border-neutral-800 p-2 rounded-lg flex flex-row flex-wrap justify-center xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
                                             <img onError={async ({ currentTarget }) => {
                                                 currentTarget.onerror = null;
                                                 currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                                            }} className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${dev?.id}/${dev?.avatar}.png?size=2048`} alt={`${dev?.username}'s Avatar`} />
+                                            }} className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${dev?._id}/${dev?.avatar}.png?size=2048`} alt={`${dev?.username}'s Avatar`} />
                                             <span className="text-center">{dev?.username}</span>
                                         </Link>
                                     </div>
