@@ -6,5 +6,6 @@ export const appColor: ThemeStructure = {
     red: "bg-[#45151a] scrollbar-thumb-red-500 hover:scrollbar-thumb-red-400",
     purple: "bg-[#220e33] scrollbar-thumb-[#5732bd] hover:scrollbar-thumb-[#6439db]",
     black: "bg-neutral-900 scrollbar-thumb-[#222] hover:scrollbar-thumb-[#2c2c2c]",
-    christmas: "bg-[#034F1B] scrollbar-thumb-[#7E121D] hover:scrollbar-thumb-[#BD3634]"
+    christmas: "bg-[#034F1B] scrollbar-thumb-[#7E121D] hover:scrollbar-thumb-[#BD3634]",
+    orange: "bg-[#DC3200] scrollbar-thumb-[#FFD8C5] hover:scrollbar-thumb-[#895338]"
 };

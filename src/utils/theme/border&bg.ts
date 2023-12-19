@@ -5,5 +5,6 @@ export const borderAndBg: ThemeStructure = {blue: "bg-slate-900 border-slate-700
     red: "bg-[#4a1110] border-red-900",
     purple: "bg-[#301542] border-purple-900",
     black: "bg-neutral-900 border-neutral-500",
-    christmas: "border-[#7E121D] bg-[#BD3634]"
+    christmas: "border-[#7E121D] bg-[#BD3634]",
+    orange: "border-[#ffffff] bg-[#FF8E57]"
 };

@@ -16,6 +16,7 @@ export const ThemesPage: FC = () => {
                 <ChoiceColor name="Roxo" theme="purple" margin="6px" selected={selectedTheme === "purple"} />
                 <ChoiceColor name="Verde" theme="green" margin="6px" selected={selectedTheme === "green"} />
                 <ChoiceColor name="Preto" theme="black" margin="6px" selected={selectedTheme === "black"} />
+                <ChoiceColor name="Laranja" theme="orange" margin="6px" selected={selectedTheme === "orange"} />
             </div>
         </section>
     )

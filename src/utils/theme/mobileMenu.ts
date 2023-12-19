@@ -6,5 +6,6 @@ export const mobileMenu: ThemeStructure = {
     red: "bg-[#571423]",
     purple: "bg-[#351a7c]",
     black: "bg-[#000]",
-    christmas: "bg-[#7E121D]"
+    christmas: "bg-[#7E121D]",
+    orange: "bg-[#CF2F00]"
 };

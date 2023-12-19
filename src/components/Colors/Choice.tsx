@@ -19,6 +19,7 @@ export const ChoiceColor: React.FC<ButtonProps> = ({ name, theme, margin, select
         green: "bg-[#04484d]",
         purple: "bg-[#2B195C]",
         red: "bg-[#802222]",
+        orange: "bg-[#802222]",
         christmas: "bg-[#034F1B]"
     }
 

@@ -6,5 +6,6 @@ export const shadowColor: ThemeStructure = {
     red: "border-red-500 shadow-red-500",
     purple: "border-purple-500 shadow-purple-500",
     black: "border-white shadow-white",
-    christmas: "border-[#BD3634] shadow-[#7E121D]"
+    christmas: "border-[#BD3634] shadow-[#7E121D]",
+    orange: "border-[#BD3634] shadow-[#7E121D]"
 };

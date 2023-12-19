@@ -6,5 +6,6 @@ export const buttonColor: ThemeStructure = {
     red: "bg-[#4a1110] hover:bg-red-900 border-red-900 disabled:hover:bg-[#4a1110]",
     purple: "bg-[#301542] hover:bg-purple-900 border-purple-900 disabled:hover:bg-[#301542]",
     black: "bg-neutral-900 border-neutral-500 hover:bg-neutral-500 disabled:hover:bg-neutral-900",
-    christmas: "bg-[#7E121D] border-[#BD3634] hover:bg-[#BD3634] disabled:hover:bg-[#BD3634]"
+    christmas: "bg-[#7E121D] border-[#BD3634] hover:bg-[#BD3634] disabled:hover:bg-[#BD3634]",
+    orange: "bg-[#FF5733] border-[#ffffff] hover:bg-[#FF7558] disabled:hover:bg-[#BC4127]"
 };
