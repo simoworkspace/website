@@ -22,6 +22,7 @@ import Translate from "translate";
 import { CopyButton } from "../Mixed/Copy";
 import moment from "moment";
 import "moment/dist/locale/pt-br";
+import { TeamCardLoading } from "./Loaders.tsx/TeamCard";
 interface UpdatedTeamData {
     avatar_url: string;
     description: string | null;
@@ -111,102 +112,104 @@ export const ManageTeamComponent: FC = () => {
         <main className="max-w-[1500px] flex justify-center">
             <section className="w-screen flex flex-row p-5 text-white items-start xl:items-center justify-start gap-10 xl:flex-col h-full">
                 {team ? (
-                    <div className={`${borderColor[color]} border-2 w-[300px] p-5 xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col`}>
-                        <div>
-                            <img onError={({ currentTarget }) => {
-                                currentTarget.onerror = null;
-                                currentTarget.src = simo;
-                            }}
-                                className="rounded-full w-32 h-32 object-center" src={editActions.avatar_url} />
-                        </div>
-                        <hr className="w-[80%] my-6" />
-                        <div className="flex flex-col gap-2 text-center justify-center">
-                            <div className="flex gap-2 items-center justify-center">
-                                <strong className="max-w-[200px]">{editActions.name}</strong>
-                                <CopyButton name="ID" text={teamID} key={Math.random()} />
+                    <>
+                        <div className={`${borderColor[color]} border-2 w-[300px] p-5 xl:w-[90vw] rounded-lg bg-neutral-900 flex items-center justify-center flex-col`}>
+                            <div>
+                                <img onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null;
+                                    currentTarget.src = simo;
+                                }}
+                                    className="rounded-full w-32 h-32 object-center" src={editActions.avatar_url} />
                             </div>
-                            <div className={editActions.description?.includes(" ") ? "break-words" : "break-all"}>
-                                <span className="max-w-[250px]">{editActions.description}</span>
+                            <hr className="w-[80%] my-6" />
+                            <div className="flex flex-col gap-2 text-center justify-center">
+                                <div className="flex gap-2 items-center justify-center">
+                                    <strong className="max-w-[200px]">{editActions.name}</strong>
+                                    <CopyButton name="ID" text={teamID} key={Math.random()} />
+                                </div>
+                                <div className={editActions.description?.includes(" ") ? "break-words" : "break-all"}>
+                                    <span className="max-w-[250px]">{editActions.description}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="flex w-full flex-col gap-3 py-3 px-5">
-                            <span className="text-lg font-bold text-left">Membros</span>
-                            <div className="flex flex-wrap w-full gap-2">
-                                {team.members?.map((member, index) => (
-                                    <Link className="relative" key={index} to={`/user/${member.id}`}>
-                                        {member.permission === 2 && <iconBI.BiSolidCrown fill="#FFD700" className="absolute ml-7 rotate-45" />}
-                                        <img
-                                            onError={async ({ currentTarget }) => {
-                                                currentTarget.onerror = null;
-                                                currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                                            }}
-                                            className="rounded-full w-10"
-                                            src={`https://cdn.discordapp.com/avatars/${member.id}/${member.avatar}.png?size=2048`}
-                                        />
-                                    </Link>
-                                ))}
+                            <div className="flex w-full flex-col gap-3 py-3 px-5">
+                                <span className="text-lg font-bold text-left">Membros</span>
+                                <div className="flex flex-wrap w-full gap-2">
+                                    {team.members?.map((member, index) => (
+                                        <Link className="relative" key={index} to={`/user/${member.id}`}>
+                                            {member.permission === 2 && <iconBI.BiSolidCrown fill="#FFD700" className="absolute ml-7 rotate-45" />}
+                                            <img
+                                                onError={async ({ currentTarget }) => {
+                                                    currentTarget.onerror = null;
+                                                    currentTarget.src = (await import("../../assets/images/simo.png")).default;
+                                                }}
+                                                className="rounded-full w-10"
+                                                src={`https://cdn.discordapp.com/avatars/${member.id}/${member.avatar}.png?size=2048`}
+                                            />
+                                        </Link>
+                                    ))}
+                                </div>
                             </div>
+                            <span className="text-neutral-500">Criado {moment(team.created_at).fromNow()} atrás</span>
                         </div>
-                        <span className="text-neutral-500">Criado {moment(team.created_at).fromNow()} atrás</span>
-                    </div>
+                        <div className="flex items-center justify-start h-full w-full flex-col">
+                            <h1 className="text-[33px] text-center">Bem vindo a dashboard, <strong>{user?.username}</strong></h1>
+                            <hr className="w-full my-3" />
+                            <div className="w-full">
+                            </div>
+                            <section className={`w-full bg-neutral-900 mt-2 border-2 flex-row ${borderColor[color]} rounded-lg p-4 items-center justify-center`}>
+                                <Tabs position="relative" variant="unstyled">
+                                    <TabList className={`overflow-auto ${scrollBar[color]}`}>
+                                        <Tab className="xl:focus:bg-neutral-800 rounded-lg">Time</Tab>
+                                        <Tab className="xl:focus:bg-neutral-800 rounded-lg">Membros</Tab>
+                                        <Tab className="min-w-[140px] xl:focus:bg-neutral-800 rounded-lg">Adicionar bot</Tab>
+                                        <Tab className="min-w-[140px] xl:focus:bg-neutral-800 rounded-lg">Gerenciar bots</Tab>
+                                        <Tab className="min-w-[130px] xl:focus:bg-neutral-800 rounded-lg">Audit log</Tab>
+                                    </TabList>
+                                    <TabIndicator className={`mt[-1.5px] h-[2px] ${borderColor[color]} border-2 rounded-lgx xl:invisible`} />
+                                    <TabPanels>
+                                        <TabPanel>
+                                            {team ? (
+                                                <EditTeam editActions={editActions} setEditActions={setEditActions} teamID={teamID} team={team} />
+                                            ) : (
+                                                <span>Carregando...</span>
+                                            )}
+                                        </TabPanel>
+                                        <TabPanel>
+                                            {team ? (
+                                                <ManageMembers updateAuditLogs={getAuditLogs} />
+                                            ) : (
+                                                <div>Carregando...</div>
+                                            )}
+                                        </TabPanel>
+                                        <TabPanel>
+                                            {team ? (
+                                                <TeamAddbot team={team} />
+                                            ) : (
+                                                <div>Carregando...</div>
+                                            )}
+                                        </TabPanel>
+                                        <TabPanel>
+                                            {team ? (
+                                                <TeamManageBots team={team} />
+                                            ) : (
+                                                <div>Carregando...</div>
+                                            )}
+                                        </TabPanel>
+                                        <TabPanel>
+                                            {logs ? (
+                                                <AuditLogs logs={logs} />
+                                            ) : (
+                                                <div>Carregando...</div>
+                                            )}
+                                        </TabPanel>
+                                    </TabPanels>
+                                </Tabs>
+                            </section>
+                        </div>
+                    </>
                 ) : (
-                    <div>Carregando...</div>
+                    <TeamCardLoading />
                 )}
-                <div className="flex items-center justify-start h-full w-full flex-col">
-                    <h1 className="text-[33px] text-center">Bem vindo a dashboard, <strong>{user?.username}</strong></h1>
-                    <hr className="w-full my-3" />
-                    <div className="w-full">
-                    </div>
-                    <section className={`w-full bg-neutral-900 mt-2 border-2 flex-row ${borderColor[color]} rounded-lg p-4 items-center justify-center`}>
-                        <Tabs position="relative" variant="unstyled">
-                            <TabList className={`overflow-auto ${scrollBar[color]}`}>
-                                <Tab className="xl:focus:bg-neutral-800 rounded-lg">Time</Tab>
-                                <Tab className="xl:focus:bg-neutral-800 rounded-lg">Membros</Tab>
-                                <Tab className="min-w-[140px] xl:focus:bg-neutral-800 rounded-lg">Adicionar bot</Tab>
-                                <Tab className="min-w-[140px] xl:focus:bg-neutral-800 rounded-lg">Gerenciar bots</Tab>
-                                <Tab className="min-w-[130px] xl:focus:bg-neutral-800 rounded-lg">Audit log</Tab>
-                            </TabList>
-                            <TabIndicator className={`mt[-1.5px] h-[2px] ${borderColor[color]} border-2 rounded-lgx xl:invisible`} />
-                            <TabPanels>
-                                <TabPanel>
-                                    {team ? (
-                                        <EditTeam editActions={editActions} setEditActions={setEditActions} teamID={teamID} team={team} />
-                                    ) : (
-                                        <span>Carregando...</span>
-                                    )}
-                                </TabPanel>
-                                <TabPanel>
-                                    {team ? (
-                                        <ManageMembers updateAuditLogs={getAuditLogs} />
-                                    ) : (
-                                        <div>Carregando...</div>
-                                    )}
-                                </TabPanel>
-                                <TabPanel>
-                                    {team ? (
-                                        <TeamAddbot team={team} />
-                                    ) : (
-                                        <div>Carregando...</div>
-                                    )}
-                                </TabPanel>
-                                <TabPanel>
-                                    {team ? (
-                                        <TeamManageBots team={team} />
-                                    ) : (
-                                        <div>Carregando...</div>
-                                    )}
-                                </TabPanel>
-                                <TabPanel>
-                                    {logs ? (
-                                        <AuditLogs logs={logs} />
-                                    ) : (
-                                        <div>Carregando...</div>
-                                    )}
-                                </TabPanel>
-                            </TabPanels>
-                        </Tabs>
-                    </section>
-                </div>
             </section>
             {error?.show ? <PopUpError setShow={setError} show={error} /> : null}
             {editActions.changesMade && team ? (
