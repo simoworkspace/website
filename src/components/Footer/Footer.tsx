@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
                     <section className="flex flex-row items-center justify-end flex-grow xl:flex-grow-0 mx-10 my-3">
                         <div className="flex flex-col">
                             <div className="grid grid-cols-2 gap-[25px] text-[#b9b9b9]">
-                                <a href="https://github.com/Simo-Workspace" target="_blank"><icon.BsGithub className="hover:-translate-y-[6px] hover:fill-white cursor-pointer transition-all duration-300" size={35} /></a>
+                                <a href="https://github.com/simoworkspace" target="_blank"><icon.BsGithub className="hover:-translate-y-[6px] hover:fill-white cursor-pointer transition-all duration-300" size={35} /></a>
                                 <a href="https://discord.gg/DGDEJtRsms" target="_blank"><icon.BsDiscord className="hover:-translate-y-[6px] hover:fill-[#5165F5] cursor-pointer transition-all duration-300" size={35} /></a>
                             </div>
                         </div>
