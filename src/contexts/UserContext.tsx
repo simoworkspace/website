@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { UserStructure } from "../types";
 import api from "../utils/api";
-import Cookies from "js-cookie";
 
 interface UserContextProps {
     user: UserStructure | null;
@@ -17,14 +16,10 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const [user, setUser] = useState<UserStructure | null>(null);
 
     const getUserData = async () => {
-        if (Cookies.get("discordUser")) {
-            const { data } = await api.getUserData();
-
-            if (data) {
-                setUser(data);
-            } else {
-                setUser(null);
-            }
+        const { data } = await api.getUserData();
+        
+        if (data) {
+            setUser(data);
         } else {
             setUser(null);
         }
