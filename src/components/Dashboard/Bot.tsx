@@ -57,14 +57,19 @@ export const DashboardBot: React.FC = () => {
     }, [user]);
 
     useEffect(() => {
-        getBotApiKey();
+        if (selectedBot) {
+            getBotApiKey();
+        }
     }, [selectedBot]);
 
     return bots ? (
         <main className="flex items-start justify-center h-full w-full flex-col">
             {selectedBot ? (
-                <div className="flex items-center justify-start w-full">
-                    <Button action={() => setSelectedBot(null)} clas="flex items-center justify-center gap-3"><BiArrowBack /> Voltar</Button>
+                <div className="flex items-center justify-start w-full xl:flex-col-reverse xl:gap-2">
+                    <Button action={() => setSelectedBot(null)} clas="flex items-center justify-center gap-3 xl:w-full"><BiArrowBack /> Voltar</Button>
+                    <div className="w-10/12 items-center justify-center flex">
+                        <span className="font-bold text-2xl xl:text-base">Bot selecionado - {selectedBot.name}</span>
+                    </div>
                 </div>
             ) : bots.length === 0 ? (
                 <div className="flex w-full items-center justify-start gap-2 text-lg">Você não tem bots, que tal adicionar um bot<Link className="text-blue-500 underline" to="/addbot">clicando aqui?</Link></div>
