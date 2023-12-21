@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 const header = Cookies.get("discordUser") ? {
     headers: {
-        Authorization: Cookies.get("discordUser")
+        Authorization: `User ${Cookies.get("discordUser")}`
     },
 } : undefined;
 
