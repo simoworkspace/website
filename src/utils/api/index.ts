@@ -49,11 +49,7 @@ const api = {
         return axios.patch(`/api/bots/${botId}/feedbacks`, props, header);
     },
     voteStatus: (botID: Snowflake): Promise<AxiosResponse<{ can_vote: boolean; rest_time: number; }>> => {
-        return axios.get(`/api/vote-status/${botID}`, Cookies.get("discordUser") ? {
-    headers: {
-        Authorization: `Bot ${Cookies.get("discordUser")}`
-    },
-} : undefined);
+        return axios.get(`/api/vote-status/${botID}`, header);
     },
     getBotFeedbacks: (botID: Snowflake): Promise<AxiosResponse<FeedbackStructure[]>> => {
         return axios.get(`/api/bots/${botID}/feedbacks`, header);
