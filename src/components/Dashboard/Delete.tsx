@@ -22,7 +22,7 @@ export const DeleteBot: FC<{
     const deleteBot = async (): Promise<void> => {
         setLoading(true);
 
-        await api.deleteBot(bot._id);
+        await api.deleteBot(bot.id);
 
         setLoading(false);
         setDeleteBot(false);
@@ -42,7 +42,7 @@ export const DeleteBot: FC<{
     };
 
     const getBotStars = async (): Promise<void> => {
-        const res = await api.getBotFeedbacks(bot._id);
+        const res = await api.getBotFeedbacks(bot.id);
         const stars = res.data.map(a => a.stars);
         const count = stars.reduce((a, b) => (a as number) += (b as number));
 
@@ -66,7 +66,7 @@ export const DeleteBot: FC<{
                     <img onError={async ({ currentTarget }) => {
                         currentTarget.onerror = null;
                         currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                    }} className="w-16 h-16 rounded-full" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png?size=2048`} alt={`${bot.name}'s avatar`} />
+                    }} className="w-16 h-16 rounded-full" src={`https://cdn.discordapp.com/avatars/${bot.id}/${bot.avatar}.png?size=2048`} alt={`${bot.name}'s avatar`} />
                     <div className="flex flex-col justify-start items-start">
                         <span className="font-bold text-lg">{bot.name}</span>
                         <div className="flex flex-row gap-1">

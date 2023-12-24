@@ -25,11 +25,11 @@ export const AuditLogs: FC<{ logs: AuditLogStructure | undefined }> = ({ logs })
                 <div className="flex gap-3 flex-col w-full">
                     {logs.entries.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).map((log, index) => (
                         <div key={index} className="bg-neutral-800 w-full p-3 rounded-lg flex gap-2 items-start">
-                            <Link to={`/user/${log.executor._id}`}>
+                            <Link to={`/user/${log.executor.id}`}>
                                 <img onError={async ({ currentTarget }) => {
                                     currentTarget.onerror = null;
                                     currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                                }} className="rounded-full w-12 h-12 flex-shrink-0" src={`https://cdn.discordapp.com/avatars/${log.executor._id}/${log.executor.avatar}.png`} />
+                                }} className="rounded-full w-12 h-12 flex-shrink-0" src={`https://cdn.discordapp.com/avatars/${log.executor.id}/${log.executor.avatar}.png`} />
                             </Link>
                             <div className="flex flex-col gap-1 flex-grow">
                                 <div>

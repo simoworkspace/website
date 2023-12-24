@@ -54,7 +54,7 @@ export const LoginMenu: React.FC<{ snowflakes: boolean, setSnowflakes: (value: b
                                 <img onError={async ({ currentTarget }) => {
                                     currentTarget.onerror = null;
                                     currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                                }} src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} className="w-full h-full rounded-full" alt="Avatar" />
+                                }} src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} className="w-full h-full rounded-full" alt="Avatar" />
                             </div>
                             <div className="flex flex-reverse-row break-before-all items-center justify-center">
                                 <span>{user.username}</span>

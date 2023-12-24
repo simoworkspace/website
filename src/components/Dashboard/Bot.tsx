@@ -28,7 +28,7 @@ export const DashboardBot: React.FC = () => {
     const handleCreateApiKey = async () => {
         setApiKeyLoading(true);
 
-        const { data: { api_key } } = await api.createApiKey(selectedBot?._id as string);
+        const { data: { api_key } } = await api.createApiKey(selectedBot?.id as string);
         setApiKey(api_key);
 
         setApiKeyLoading(false);
@@ -41,13 +41,13 @@ export const DashboardBot: React.FC = () => {
     };
 
     const getBotApiKey = async () => {
-        const { data: { api_key } } = await api.getApiKey(selectedBot?._id as string);
+        const { data: { api_key } } = await api.getApiKey(selectedBot?.id as string);
 
         setApiKey(api_key || "");
     };
 
     const getSelectedBot = (botId: string) => {
-        const selbot = bots?.find(bot => bot._id == botId);
+        const selbot = bots?.find(bot => bot.id == botId);
 
         return setSelectedBot(selbot as BotStructure);
     };
@@ -79,15 +79,15 @@ export const DashboardBot: React.FC = () => {
                     <Button link to="/addbot" clas="disabled:opacity-50 flex items-center justify-center gap-2 w-full"><iconBS.BsPlusLg size={22} />Adicionar um bot</Button>
                     <div className="flex xl:flex-col items-center w-full gap-2">
                         {bots.map((bot) => (
-                            <button onClick={() => getSelectedBot(bot._id)} className="flex-col flex rounded-lg p-3 bg-neutral-800 items-center justify-center gap-3 transition duration-300 hover:bg-neutral-700">
+                            <button onClick={() => getSelectedBot(bot.id)} className="flex-col flex rounded-lg p-3 bg-neutral-800 items-center justify-center gap-3 transition duration-300 hover:bg-neutral-700">
                                 <div className="flex gap-2 items-center justify-start w-full">
                                     <img onError={async ({ currentTarget }) => {
                                         currentTarget.onerror = null;
                                         currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                                    }} className="rounded-full w-12 h-12" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
+                                    }} className="rounded-full w-12 h-12" src={`https://cdn.discordapp.com/avatars/${bot.id}/${bot.avatar}.png`} />
                                     <div className="flex gap-2 items-center flex-wrap">
                                         <span className="text-lg font-bold">{bot.name}</span>
-                                        <span className="text-neutral-500 xl:hidden">({bot._id})</span>
+                                        <span className="text-neutral-500 xl:hidden">({bot.id})</span>
                                     </div>
                                 </div>
                                 <div className="text-start">{bot.short_description}</div>
@@ -100,13 +100,13 @@ export const DashboardBot: React.FC = () => {
                 <section className={`w-full bg-neutral-900 mt-2 border-2 flex-row ${borderColor[color]} rounded-lg p-4`}>
                     <div className="flex flex-col gap-2">
                         <div className="flex flex-col gap-2 text-white m-2">
-                            <div className={`bg-neutral-900 w-full border-neutral-800 border-2 rounded-lg p-3 transition-colors hover:bg-[#1d1d1d] flex flex-col gap-3`} key={selectedBot._id}>
-                                <Link to={`/bot/${selectedBot._id}`} className="flex flex-col gap-3">
+                            <div className={`bg-neutral-900 w-full border-neutral-800 border-2 rounded-lg p-3 transition-colors hover:bg-[#1d1d1d] flex flex-col gap-3`} key={selectedBot.id}>
+                                <Link to={`/bot/${selectedBot.id}`} className="flex flex-col gap-3">
                                     <div className="flex gap-2 items-center">
                                         <img onError={async ({ currentTarget }) => {
                                             currentTarget.onerror = null;
                                             currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                                        }} className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${selectedBot._id}/${selectedBot.avatar}.png`} />
+                                        }} className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${selectedBot.id}/${selectedBot.avatar}.png`} />
                                         <div className="flex gap-2 flex-col">
                                             <span className="font-bold text-lg">{selectedBot.name}</span>
                                         </div>
@@ -127,7 +127,7 @@ export const DashboardBot: React.FC = () => {
                                     <iconBS.BsTrashFill />
                                     <span>Deletar bot</span>
                                 </button>
-                                <Link to={`/dashboard/edit/${selectedBot._id}`} className={`flex flex-row items-center justify-center gap-3 p-3 w-full rounded-lg ${buttonColor[color]} h-12 transition-colors duration-300 border-2`}>
+                                <Link to={`/dashboard/edit/${selectedBot.id}`} className={`flex flex-row items-center justify-center gap-3 p-3 w-full rounded-lg ${buttonColor[color]} h-12 transition-colors duration-300 border-2`}>
                                     <iconMD.MdEditSquare />
                                     <span>Editar bot</span>
                                 </Link>

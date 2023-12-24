@@ -56,7 +56,7 @@ export const Mobilemenu: React.FC = () => {
                             <img className="w-7 rounded-full" onError={({ currentTarget }) => {
                                 currentTarget.onerror = null;
                                 currentTarget.src = simo;
-                            }} src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} />
+                            }} src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} />
                         </button>
                     ) : (
                         <Link to={import.meta.env.VITE_AUTH_LINK} className="flex flex-grow justify-center">

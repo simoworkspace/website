@@ -133,7 +133,7 @@ export const DashboardEdit: React.FC = () => {
     };
 
     const getBotInDB = async () => {
-        const res1 = (await api.getUserBots()).data.find((a) => a._id === botid);
+        const res1 = (await api.getUserBots()).data.find((a) => a.id === botid);
 
         if (res1) {
             const { owner_id, tags, vote_message, long_description, website_url, support_server, source_code, short_description, prefixes, webhook_url } = res1;
@@ -218,7 +218,7 @@ export const DashboardEdit: React.FC = () => {
                     <div className={`bg-neutral-900 rounded-xl flex xl:flex-col xl:h-[320px] h-[120px] w-[95%] border-2 ${borderColor[color]} items-center justify-center`}>
                         <img
                             className="w-[100px] h-[100px] xl:my-2 rounded-full xl:float-none ml-2"
-                            src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png?size=2048`}
+                            src={`https://cdn.discordapp.com/avatars/${bot.id}/${bot.avatar}.png?size=2048`}
                             alt={bot.name + "'s Avatar"}
                             onError={async ({ currentTarget }) => {
                                 currentTarget.onerror = null;
@@ -229,7 +229,7 @@ export const DashboardEdit: React.FC = () => {
                             <div className="ml-6 xl:m-0 xl:my-1 text-white flex xl:flex-col xl:items-center flex-row gap-3 text-[26px]">
                                 <strong>{bot.name}</strong>
                                 <span className="text-[#797979] items-center flex text-[13px]">
-                                    ( {bot._id} )
+                                    ( {bot.id} )
                                 </span>
                             </div>
                             <div className="flex mx-6 xl:justify-center xl:m-1 flex-row gap-1">
@@ -242,13 +242,13 @@ export const DashboardEdit: React.FC = () => {
                             <div className="flex gap-4 items-center justify-center xl:w-screen flex-row m-4">
                                 <Link
                                     className="border-2 border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
-                                    to={`/vote/${bot._id}`}
+                                    to={`/vote/${bot.id}`}
                                 >
                                     <span>Votar</span>
                                 </Link>
                                 <Link
                                     className="border-2 border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
-                                    to={`https://discord.com/api/oauth2/authorize?client_id=${bot._id}&permissions=70368744177655&scope=bot%20applications.commands`}
+                                    to={`https://discord.com/api/oauth2/authorize?client_id=${bot.id}&permissions=70368744177655&scope=bot%20applications.commands`}
                                 >
                                     <span>Adicionar</span>
                                 </Link>

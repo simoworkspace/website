@@ -30,7 +30,7 @@ export const FindBot: React.FC<{
             const verified: boolean = (flags & (1 << 16)) !== 0;
 
             setIsBot(Object.keys(req.data).includes("bot"));
-            setAlreadyExists(allbots.data.map((bot: BotStructure) => bot._id).includes(botid));
+            setAlreadyExists(allbots.data.map((bot: BotStructure) => bot.id).includes(botid));
 
             setBotData({
                 id: id,

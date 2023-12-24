@@ -43,7 +43,7 @@ export const ReplyFeedbackCard: FC<{
 
         event.preventDefault();
 
-        await api.editFeedback(bot._id, {
+        await api.editFeedback(bot.id, {
             reply_message: {
                 content: editedReplyContent,
                 edited: true
@@ -59,7 +59,7 @@ export const ReplyFeedbackCard: FC<{
         event.preventDefault();
         setReplySubmit(true);
 
-        await api.editFeedback(bot._id, {
+        await api.editFeedback(bot.id, {
             reply_message: {
                 content: replyContent,
                 posted_at: new Date().toISOString()
@@ -78,7 +78,7 @@ export const ReplyFeedbackCard: FC<{
                         <img onError={async ({ currentTarget }) => {
                             currentTarget.onerror = null;
                             currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                        }} className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} />
+                        }} className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} />
                         <div className="h-full py-3 bg-neutral-800 rounded-lg w-1" />
                     </div>
                     <div className="flex flex-col gap-2 w-full">
@@ -96,7 +96,7 @@ export const ReplyFeedbackCard: FC<{
                     <div className="flex items-start w-full flex-col mx-2 my-1">
                         <div className="flex items-center">
                             <img
-                                src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`}
+                                src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`}
                                 className="w-[30px] h-[30px] rounded-full"
                                 onError={({ currentTarget }) => {
                                     currentTarget.onerror = null;
@@ -108,11 +108,11 @@ export const ReplyFeedbackCard: FC<{
                         </div>
                         <div className="py-2">{feedback.reply_message.content}{feedback?.reply_message.edited && <span className="text-neutral-500"> (editado)</span>}</div>
                     </div>
-                    {user?._id === bot.owner_id && (
+                    {user?.id === bot.owner_id && (
                         <div className="flex gap-3 justify-end w-full">
                             <button onClick={async () => {
                                 setIsDeleted(true);
-                                await api.editFeedback(bot._id, { reply_message: {} });
+                                await api.editFeedback(bot.id, { reply_message: {} });
                                 await updateFeedbacks();
                                 setIsDeleted(false);
                             }} className="flex justify-end">
@@ -131,7 +131,7 @@ export const ReplyFeedbackCard: FC<{
                                 <img onError={async ({ currentTarget }) => {
                                     currentTarget.onerror = null;
                                     currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                                }} className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} />
+                                }} className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} />
                                 <div className="h-full py-3 bg-neutral-800 rounded-lg w-1" />
                             </div>
                             <div className="flex w-full flex-col gap-3">

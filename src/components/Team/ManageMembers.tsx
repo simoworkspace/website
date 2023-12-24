@@ -140,7 +140,7 @@ export const ManageMembers: FC<{ updateAuditLogs: () => Promise<void> }> = ({ up
         getTeam();
     }, []);
 
-    const youinTeam = team?.members?.find((member) => member.id === user?._id);
+    const youinTeam = team?.members?.find((member) => member.id === user?.id);
 
     return (
         <section className="flex w-full items-center justify-center flex-col gap-2">

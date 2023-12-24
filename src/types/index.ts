@@ -87,7 +87,7 @@ export interface botDataStructure {
 }
 
 export interface BotStructure {
-    _id: Snowflake;
+    id: Snowflake;
     name: string;
     avatar: string;
     invite_url: string;
@@ -120,7 +120,7 @@ export interface UserStructure {
     username: string;
     flags: UserFlags
     banner_url: string | null;
-    _id: Snowflake | string;
+    id: Snowflake | string;
     avatar: string;
     bio: string | null;
 }
@@ -251,7 +251,7 @@ export interface AuditLogStructure {
 
 export interface AuditLogEntryStructure {
     executor: {
-        _id: Snowflake;
+        id: Snowflake;
         username: string;
         avatar: string;
     }
@@ -349,10 +349,10 @@ export type BaseAuditLogChange<Key, Data> = {
 };
 
 export enum UserFlags {
-    BugHunter,
-    Contributor,
-    PremiumPartner,
-    Developer,
+    BugHunter = 1 << 0,
+    Contributor = 1 << 1,
+    PremiumPartner = 1 << 2,
+    Developer = 1 << 3,
 }
 
 export enum PremiumType {

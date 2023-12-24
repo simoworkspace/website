@@ -65,7 +65,7 @@ export const VoteComponent: React.FC = () => {
 
     const handleVote = async () => {
         setClicked(true);
-        await api.voteBot(user?._id as string, botid as string);
+        await api.voteBot(user?.id as string, botid as string);
         getVoteData();
         getVoteStatus();
         setClicked(false);
@@ -95,7 +95,7 @@ export const VoteComponent: React.FC = () => {
                                     currentTarget.src = (await import("../../assets/images/simo.png")).default;
                                 }}
                                 className="w-[100px] rounded-full"
-                                src={`https://cdn.discordapp.com/avatars/${botData._id}/${botData.avatar}.png?size=2048`}
+                                src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png?size=2048`}
                                 alt={`${botData.name}'s Avatar`}
                             />
                             <div>

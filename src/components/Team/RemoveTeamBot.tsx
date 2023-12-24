@@ -25,7 +25,7 @@ export const RemoveTeamBot: FC<{
         setLoading(true);
 
         await api.removeBotTeam({
-            botID: bot._id,
+            botID: bot.id,
             teamID: teamID as string
         });
 
@@ -59,7 +59,7 @@ export const RemoveTeamBot: FC<{
                     <img onError={async ({ currentTarget }) => {
                         currentTarget.onerror = null;
                         currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                    }} className="w-16 h-16 rounded-full" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
+                    }} className="w-16 h-16 rounded-full" src={`https://cdn.discordapp.com/avatars/${bot.id}/${bot.avatar}.png`} />
                     <div className="flex flex-col justify-center items-center">
                         <span className="font-bold text-lg">{bot.name}</span>
                     </div>

@@ -18,7 +18,7 @@ export const BotComponent: FC = () => {
 
     const [botData, setBotData] = useState<BotStructure>();
     const [stars, setStars] = useState<number>(0);
-    const [dev, setDev] = useState<{ _id: string, avatar: string, username: string }>();
+    const [dev, setDev] = useState<{ id: string, avatar: string, username: string }>();
     const [team, setTeam] = useState<Team | null>();
 
     const getBotStars = async () => {
@@ -33,7 +33,7 @@ export const BotComponent: FC = () => {
         try {
             const { data: { owner_id }, data } = await api.getBotInfos(botid);
 
-            const { data: { username, avatar, _id } } = await api.getUserFromDB(owner_id);
+            const { data: { username, avatar, id } } = await api.getUserFromDB(owner_id);
 
             if (data.team_id) {
                 const team = await api.getTeam(data.team_id as string);
@@ -41,7 +41,7 @@ export const BotComponent: FC = () => {
                 setTeam(!team.data ? null : team.data);
             }
 
-            setDev({ username, avatar, _id });
+            setDev({ username, avatar, id });
 
             setBotData(data);
         } catch (error) {
@@ -74,13 +74,13 @@ export const BotComponent: FC = () => {
                                 currentTarget.onerror = null;
                                 currentTarget.src = (await import("../../assets/images/simo.png")).default;
                             }}
-                            src={`https://cdn.discordapp.com/avatars/${botData._id}/${botData.avatar}.png`}
+                            src={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png`}
                             alt={botData.name + "'s Avatar"}
                         />
                         <div className="flex flex-col w-full justify-center gap-2">
                             <div className="ml-6 xl:m-0 xl:my-1 text-white flex xl:justify-center xl:items-center flex-row gap-3 text-[26px]">
                                 <strong>{botData.name}</strong>
-                                <CopyButton name="ID" text={botData._id} key={Math.random()}/>
+                                <CopyButton name="ID" text={botData.id} key={Math.random()}/>
                             </div>
                             <div className="flex mx-6 xl:justify-center xl:m-1 flex-row gap-1">
                                 {Array(stars).fill(0).map((_, index) => (
@@ -95,13 +95,13 @@ export const BotComponent: FC = () => {
                             <div className="flex gap-4 items-center justify-center xl:w-screen flex-row m-4">
                                 <Link
                                     className="border-2 border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
-                                    to={`/vote/${botData._id}`}
+                                    to={`/vote/${botData.id}`}
                                 >
                                     <span>Votar</span>
                                 </Link>
                                 <Link
                                     className="border-2 border-neutral-700 bg-neutral-900 text-white hover:bg-neutral-700 transition-colors duration-300 p-2 rounded-md w-[120px] text-center"
-                                    to={`https://discord.com/api/oauth2/authorize?client_id=${botData._id}&permissions=70368744177655&scope=bot%20applications.commands`}
+                                    to={`https://discord.com/api/oauth2/authorize?client_id=${botData.id}&permissions=70368744177655&scope=bot%20applications.commands`}
                                 >
                                     <span>Adicionar</span>
                                 </Link>
@@ -122,11 +122,11 @@ export const BotComponent: FC = () => {
                                     <h1 className="text-2xl text-center">Developer</h1>
                                     <hr className="my-4 w-full" />
                                     <div className="grid grid-cols-2 gap-4">
-                                        <Link to={`/user/${dev?._id}`} className="border-2 border-neutral-800 p-2 rounded-lg flex flex-row flex-wrap justify-center xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
+                                        <Link to={`/user/${dev?.id}`} className="border-2 border-neutral-800 p-2 rounded-lg flex flex-row flex-wrap justify-center xl:flex-col items-center gap-4 transition-colors duration-300 hover:bg-neutral-800">
                                             <img onError={async ({ currentTarget }) => {
                                                 currentTarget.onerror = null;
                                                 currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                                            }} className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${dev?._id}/${dev?.avatar}.png?size=2048`} alt={`${dev?.username}'s Avatar`} />
+                                            }} className="rounded-full h-[60px] w-[60px]" src={`https://cdn.discordapp.com/avatars/${dev?.id}/${dev?.avatar}.png?size=2048`} alt={`${dev?.username}'s Avatar`} />
                                             <span className="text-center">{dev?.username}</span>
                                         </Link>
                                     </div>

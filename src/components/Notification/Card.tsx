@@ -19,7 +19,7 @@ export const NotificationCard: FC<{
     const handleDeleteNotification = async (): Promise<void> => {
         setDeleted(true);
 
-        await api.deleteNotification(user?._id, keyc);
+        await api.deleteNotification(user?.id, keyc);
         await updateNotifications();
 
         setDeleted(false);

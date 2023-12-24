@@ -5,13 +5,11 @@ import api from "../../utils/api";
 import { Link } from "react-router-dom";
 import { borderColor } from "../../utils/theme/border";
 import { ThemeContext } from "../../contexts/ThemeContext";
-import * as iconMD from "react-icons/md";
 import { borderAndBg } from "../../utils/theme/border&bg";
 import { UserContext } from "../../contexts/UserContext";
 import { buttonColor } from "../../utils/theme/button";
 import { RemoveTeamBot } from "./RemoveTeamBot";
-import { BiArrowBack } from "react-icons/bi";
-import { BsPlusLg } from "react-icons/bs";
+import { BiArrowBack } from "react-icons/bi";;
 
 export const TeamManageBots: FC<{ team?: Team }> = ({ team }) => {
     const [bots, setBots] = useState<BotStructure[] | null>(null);
@@ -28,7 +26,7 @@ export const TeamManageBots: FC<{ team?: Team }> = ({ team }) => {
     };
 
     const getSelectedBot = (botId: string) => {
-        const selbot = bots?.find(bot => bot._id == botId);
+        const selbot = bots?.find(bot => bot.id == botId);
 
         return setSelectedBot(selbot as BotStructure);
     };
@@ -53,15 +51,15 @@ export const TeamManageBots: FC<{ team?: Team }> = ({ team }) => {
                     <span className="text-start w-full text-lg">Selecione abaixo um bot para ser gerenciado</span>
                     <div className="flex items-center w-full gap-2 xl:flex-col">
                         {bots?.map((bot) => (
-                            <button onClick={() => getSelectedBot(bot._id)} className="flex-col flex rounded-lg p-3 bg-neutral-800 items-center justify-center gap-3 transition duration-300 hover:bg-neutral-700">
+                            <button onClick={() => getSelectedBot(bot.id)} className="flex-col flex rounded-lg p-3 bg-neutral-800 items-center justify-center gap-3 transition duration-300 hover:bg-neutral-700">
                                 <div className="flex gap-2 items-center justify-start w-full">
                                     <img onError={async ({ currentTarget }) => {
                                         currentTarget.onerror = null;
                                         currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                                    }} className="rounded-full w-12 h-12" src={`https://cdn.discordapp.com/avatars/${bot._id}/${bot.avatar}.png`} />
+                                    }} className="rounded-full w-12 h-12" src={`https://cdn.discordapp.com/avatars/${bot.id}/${bot.avatar}.png`} />
                                     <div className="flex gap-2 items-center flex-wrap">
                                         <span className="text-lg font-bold">{bot.name}</span>
-                                        <span className="text-neutral-500 xl:hidden">({bot._id})</span>
+                                        <span className="text-neutral-500 xl:hidden">({bot.id})</span>
                                     </div>
                                 </div>
                                 <div className="text-start">{bot.short_description}</div>
@@ -73,13 +71,13 @@ export const TeamManageBots: FC<{ team?: Team }> = ({ team }) => {
             {selectedBot ? (
                 <section className={`w-full bg-neutral-900 mt-2 border-2 flex-row ${borderColor[color]} rounded-lg p-4`}>
                     <div className="flex flex-col gap-2 text-white m-2">
-                        <div className={`bg-neutral-900 w-full border-neutral-800 border-2 rounded-lg p-3 transition-colors hover:bg-[#1d1d1d] flex flex-col gap-3`} key={selectedBot._id}>
-                            <Link to={`/bot/${selectedBot._id}`} className="flex flex-col gap-3">
+                        <div className={`bg-neutral-900 w-full border-neutral-800 border-2 rounded-lg p-3 transition-colors hover:bg-[#1d1d1d] flex flex-col gap-3`} key={selectedBot.id}>
+                            <Link to={`/bot/${selectedBot.id}`} className="flex flex-col gap-3">
                                 <div className="flex gap-2 items-center">
                                     <img onError={async ({ currentTarget }) => {
                                         currentTarget.onerror = null;
                                         currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                                    }} className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${selectedBot._id}/${selectedBot.avatar}.png`} />
+                                    }} className="rounded-full w-12" src={`https://cdn.discordapp.com/avatars/${selectedBot.id}/${selectedBot.avatar}.png`} />
                                     <div className="flex gap-2 flex-col">
                                         <span className="font-bold text-lg">{selectedBot.name}</span>
                                     </div>

@@ -19,7 +19,7 @@ export const FeedbackCard: React.FC<{
     isDeleted: boolean;
     setIsDeleted: (value: boolean) => void;
     updateFeedbacks: () => Promise<void>;
-    developer: { _id: string, avatar: string, username: string } | undefined;
+    developer: { id: string, avatar: string, username: string } | undefined;
 }> = ({ feedback, botid, updateFeedbacks, setIsDeleted, isDeleted, bot, developer }): any => {
     const { color } = useContext(ThemeContext);
     const { user } = useContext(UserContext);
@@ -52,7 +52,7 @@ export const FeedbackCard: React.FC<{
 
         event.preventDefault();
 
-        await api.editFeedback(bot._id, {
+        await api.editFeedback(bot.id, {
             reply_message: {
                 content: editedContent,
                 posted_at: new Date(Date.now()).toISOString(),
@@ -121,7 +121,7 @@ export const FeedbackCard: React.FC<{
                             <span className="text-neutral-500">{moment(feedback.posted_at).fromNow()}</span>
                         </div>
                     </Link>
-                    {user?._id === feedback?.author?.id as string && (
+                    {user?.id === feedback?.author?.id as string && (
                         <div className="flex gap-3 justify-end w-full">
                             <button disabled={isDeleted} onClick={async () => {
                                 setIsDeleted(true);
@@ -160,7 +160,7 @@ export const FeedbackCard: React.FC<{
                     <div className="flex flex-col w-full justify-center items-start">
                         <div className="py-2">{feedback.content}{feedback?.edited && <span className="text-neutral-500"> (editado)</span>}</div>
                         {bot && (
-                            bot.owner_id === user?._id && !reply && !("content" in feedback.reply_message) && <button onClick={() => setReply(true)} className="text-neutral-500">Replicar</button>
+                            bot.owner_id === user?.id && !reply && !("content" in feedback.reply_message) && <button onClick={() => setReply(true)} className="text-neutral-500">Replicar</button>
                         )}
                     </div>
                 }
@@ -181,7 +181,7 @@ export const FeedbackCard: React.FC<{
                                 <img onError={async ({ currentTarget }) => {
                                     currentTarget.onerror = null;
                                     currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                                }} className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} />
+                                }} className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} />
                                 <div className="h-full py-3 bg-neutral-800 rounded-lg w-1" />
                             </div>
                             <div className="flex flex-col gap-2 w-full">
@@ -197,9 +197,9 @@ export const FeedbackCard: React.FC<{
                     ) : (
                         <div className="flex flex-row gap-2 items-start justify-center h-full my-1 border-l-neutral-800 border-l-[3px]">
                             <div className="flex items-start w-full flex-col mx-2 my-1">
-                                <Link to={`/user/${developer?._id}`} className="flex items-center">
+                                <Link to={`/user/${developer?.id}`} className="flex items-center">
                                     <img
-                                        src={`https://cdn.discordapp.com/avatars/${developer?._id}/${developer?.avatar}.png`}
+                                        src={`https://cdn.discordapp.com/avatars/${developer?.id}/${developer?.avatar}.png`}
                                         className="w-[30px] h-[30px] rounded-full"
                                         onError={({ currentTarget }) => {
                                             currentTarget.onerror = null;
@@ -213,11 +213,11 @@ export const FeedbackCard: React.FC<{
                                 </Link>
                                 <div className="py-2">{feedback.reply_message.content}{feedback?.reply_message.edited && <span className="text-neutral-500"> (editado)</span>}</div>
                             </div>
-                            {user?._id === bot.owner_id && (
+                            {user?.id === bot.owner_id && (
                                 <div className="flex gap-3 justify-end w-full">
                                     <button disabled={isDeleted} onClick={async () => {
                                         setIsDeleted(true);
-                                        await api.editFeedback(bot._id, {
+                                        await api.editFeedback(bot.id, {
                                             reply_message: {}
                                         });
                                         await updateFeedbacks();
@@ -240,7 +240,7 @@ export const FeedbackCard: React.FC<{
                             <img onError={async ({ currentTarget }) => {
                                 currentTarget.onerror = null;
                                 currentTarget.src = (await import("../../assets/images/simo.png")).default;
-                            }} className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user._id}/${user.avatar}.png`} />
+                            }} className="rounded-full w-8" src={`https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`} />
                             <div className="h-full py-3 bg-neutral-800 rounded-lg w-1" />
                         </div>
                         <div className="flex w-full flex-col gap-3">

@@ -9,7 +9,7 @@ export const Bot: React.FC = () => {
                 <title>Simo Botlist - bot</title>
                 <meta property="og:title" content="bot legal e bonito" />
                 <meta property="og:type" content="website" />
-                {/* <meta property="og:image" content={`https://cdn.discordapp.com/avatars/${botData._id}/${botData.avatar}.png`} /> */}
+                {/* <meta property="og:image" content={`https://cdn.discordapp.com/avatars/${botData.id}/${botData.avatar}.png`} /> */}
                 <meta property="og:description" content="short descrioç]ap" />
                 <meta name="theme-color" content="#FFFFFF" />
             </Helmet>

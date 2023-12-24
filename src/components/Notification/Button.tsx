@@ -93,7 +93,7 @@ export const NotificationButton: FC = () => {
                                         <button onClick={async () => {
                                             setBulkLoading(true);
 
-                                            await api.deleteAllNotifications(user?._id);
+                                            await api.deleteAllNotifications(user?.id);
                                             await getNotifications();
 
                                             setBulkLoading(false);
