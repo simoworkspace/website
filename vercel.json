@@ -2,7 +2,7 @@
     "rewrites": [
         {
             "source": "/api/(.*)",
-            "destination": "https://botlistapi.squareweb.app/api/$1"
+            "destination": "https://botlist-api.spyei.repl.co/api/$1"
         },
         {
             "source": "/(.*)",
