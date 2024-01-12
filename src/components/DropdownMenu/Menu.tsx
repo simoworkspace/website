@@ -6,10 +6,9 @@ import { ThemeContext } from "../../contexts/ThemeContext";
 import { borderColor } from "../../utils/theme/border";
 import { Link } from "react-router-dom";
 import api from "../../utils/api";
-import { FaRegSnowflake } from "react-icons/fa";
 import { ChoiceColor } from "../Colors/Choice";
 
-export const LoginMenu: React.FC<{ snowflakes: boolean, setSnowflakes: (value: boolean) => void }> = ({ snowflakes, setSnowflakes }) => {
+export const LoginMenu: React.FC = () => {
     const { user } = useContext(UserContext);
     const { color } = useContext(ThemeContext);
 
@@ -75,12 +74,6 @@ export const LoginMenu: React.FC<{ snowflakes: boolean, setSnowflakes: (value: b
                     </div>
                 </button>
                 <div className={`${isOpen ? "opacity-100" : "opacity-0 invisible"} w-[155px] text-white p-3 rounded-lg absolute right-[45px] origin-top-right bg-neutral-900 border-2 transition-all duration-300 top-16 ${borderColor[color]}`}>
-                    <button onClick={() => setSnowflakes(!snowflakes)} className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-full">
-                        <div className="flex w-full items-center justify-start gap-2">
-                            <FaRegSnowflake fill="#fff" size={20} />
-                            <span>{snowflakes ? "Desativar" : "Ativar"}</span>
-                        </div>
-                    </button>
                     <Link to="/dashboard" className="flex flex-row items-center justify-center text-center gap-3 p-2 rounded-lg transition-colors duration-300 hover:bg-neutral-800 w-full">
                         <div className="flex w-full items-center justify-start gap-2">
                             <iconMD.MdPerson fill="#fff" size={20} />
@@ -126,7 +119,6 @@ export const LoginMenu: React.FC<{ snowflakes: boolean, setSnowflakes: (value: b
                     <ChoiceColor name="Roxo" theme="purple" margin="6px" selected={selectedTheme === "purple"} />
                     <ChoiceColor name="Verde" theme="green" margin="6px" selected={selectedTheme === "green"} />
                     <ChoiceColor name="Preto" theme="black" margin="6px" selected={selectedTheme === "black"} />
-                    <ChoiceColor name="Natal" theme="christmas" margin="6px" selected={selectedTheme === "christmas"} />
                 </div>
             </section>
         </>

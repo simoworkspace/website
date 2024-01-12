@@ -5,6 +5,5 @@ export const borderColor: ThemeStructure = {
     green: "border-[#1d733f]",
     red: "border-red-900",
     purple: "border-purple-900",
-    black: "border-neutral-500",
-    christmas: "border-[#BD3634]"
+    black: "border-neutral-500"
 };

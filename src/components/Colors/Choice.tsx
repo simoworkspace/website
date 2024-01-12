@@ -18,8 +18,7 @@ export const ChoiceColor: React.FC<ButtonProps> = ({ name, theme, margin, select
         blue: "bg-[#004d7c]",
         green: "bg-[#04484d]",
         purple: "bg-[#2B195C]",
-        red: "bg-[#802222]",
-        christmas: "bg-[#034F1B]"
+        red: "bg-[#802222]"
     }
 
     const toggleTheme = (newTheme: Theme) => {

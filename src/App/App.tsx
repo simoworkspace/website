@@ -26,20 +26,10 @@ import { Login } from "../pages/Login/Login";
 
 function App() {
     const { color } = useContext(ThemeContext);
-    const [snowflakes, setSnowflakes] = useState<boolean>(true);
 
     return (
         <main className={`xl:no-scrollbar xlr:h-1 flex flex-col items-center overflow-x-hidden min-h-screen ${appColor[color]} bg-fixed scrollbar-track-neutral-900 scrollbar-thin`}>
-            {snowflakes && (
-                <div className="snowflakes xl:invisible">
-                    {Array(14).fill(
-                        <div className="snowflake">
-                            ❅
-                        </div>
-                    )}
-                </div>
-            )}
-            <Header snowflakes={snowflakes} setSnowflakes={setSnowflakes} />
+            <Header/>
             <section className="flex flex-1 flex-col">
                 <Routes>
                     <Route path="/testes" element={<Tests />} />
