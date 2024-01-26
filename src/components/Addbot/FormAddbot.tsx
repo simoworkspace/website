@@ -32,7 +32,8 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
             short_description: data.short_description,
             long_description: data.long_description,
             prefixes: (data.prefixes as any).split(",").map((a: string) => a.trim()),
-            tags: (data.tags as any).split(",")
+            tags: (data.tags as any).split(","),
+            verified: false
         };
 
         for (let i in formData) {
