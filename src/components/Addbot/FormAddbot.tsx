@@ -26,7 +26,6 @@ export const FormAddbot: React.FC<{ botData: FindBotStructure | undefined; setSt
 
         //@ts-ignore
         const formData: BotStructure = {
-            invite_url: `https://discord.com/api/oauth2/authorize?client_id=${botData?.id}&permissions=70368744177655&scope=bot%20applications.commands`,
             website_url: data.website_url,
             support_server: data.support_server,
             source_code: data.source_code,
