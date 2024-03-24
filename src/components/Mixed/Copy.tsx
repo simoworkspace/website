@@ -26,9 +26,7 @@ export const CopyButton: FC<{ text: string; name: string }> = ({ text, name }) =
                 <BiCopy size={20} />
             </button>
             <div>
-                {show && (
-                    <div className={`absolute min-w-[120px] bg-neutral-800 p-3 border-2 rounded-lg text-center text-sm ${borderColor[color]}`}>{copied ? `${name} copiado` : `Copiar ${name}`}</div>
-                )}
+                {show && <div className={`absolute min-w-[120px] bg-neutral-800 p-3 border-2 rounded-lg text-center text-sm ${borderColor[color]}`}>{copied ? `${name} copiado` : `Copiar ${name}`}</div>}
             </div>
         </div>
     );
