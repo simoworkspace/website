@@ -48,7 +48,7 @@ Siga as instruções abaixo para configurar o ambiente em sua máquina:
 
 1. Clone este repositório:
 ```bash
-git clone [https://github.com/simoworkspace/website.git](https://github.com/simoworkspace/website.git)
+git clone https://github.com/simoworkspace/website.git
 cd website
 ```
 
@@ -80,3 +80,4 @@ Caso tenha dúvidas sobre o funcionamento do projeto ou queira entrar em contato
 Este projeto está sob a Licença MIT. Consulte o arquivo LICENSE para obter mais detalhes.
 
 <p align="center">Desenvolvido por Spyei e Simo Workspace.</p>
+
