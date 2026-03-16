@@ -97,7 +97,7 @@ export const Input: React.FC<InputProps> = ({ defaultValue, register, name, requ
                     <input
                         defaultValue={defaultValue}
                         placeholder={placeholder}
-                        {...register(name, { required } || { required: true })}
+                        {...register(name, { required: true })}
                         name={name}
                         maxLength={maxLength}
                         minLength={minLength}
@@ -176,7 +176,7 @@ export const Input: React.FC<InputProps> = ({ defaultValue, register, name, requ
                         defaultValue={defaultValue}
                         placeholder={placeholder}
                         disabled={disabled}
-                        {...register(name, { required } || { required: true })}
+                        {...register(name, { required: true })}
                         name={name}
                         rows={5}
                         maxLength={200}
@@ -234,7 +234,7 @@ export const TagInput: React.FC<{
                 >
                     <input
                         disabled={disabled}
-                        {...register(name, { required } || { required: true })}
+                        {...register(name, { required: true })}
                         name={name}
                         type="text"
                         value={inputValue}

@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from "react";
 import { UserStructure } from "../types";
-import api from "../utils/api";
+import { randomUser } from "../utils/api";
 
 interface UserContextProps {
     user: UserStructure | null;
@@ -12,21 +12,11 @@ export const UserContext = createContext<UserContextProps>({
     setUser: () => void 0,
 });
 
-export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }: React.PropsWithChildren) => {
+export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [user, setUser] = useState<UserStructure | null>(null);
 
-    const getUserData = async () => {
-        const { data } = await api.getUserData();
-        
-        if (data) {
-            setUser(data);
-        } else {
-            setUser(null);
-        }
-    };
-
     useEffect(() => {
-        getUserData();
+        setUser(randomUser);
     }, []);
 
     return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>;
