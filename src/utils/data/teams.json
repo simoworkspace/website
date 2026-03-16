@@ -1,0 +1,171 @@
+[{
+  "_id": {
+    "$oid": "65738304e930d0459f2d632a"
+  },
+  "bots_id": [],
+  "description": "Um time muito massa, do Helper",
+  "avatar_url": "https://cdn.discordapp.com/avatars/1015096771661279243/a95c30f2de9c76dc675ba8a3fceca21a.png",
+  "name": "Helper plus",
+  "invite_code": "hy5ap7",
+  "id": "cl48qb2gapb",
+  "members": [
+    {
+      "id": "955095844275781693",
+      "permission": 0,
+      "joined_at": "2023-12-18T17:28:40.108Z"
+    }
+  ],
+  "created_at": "2023-12-16T00:23:44.347Z"
+},
+{
+  "_id": {
+    "$oid": "657f0ad5a8c55f6153b4d21c"
+  },
+  "bots_id": [],
+  "description": "alguma descsdadsdsasadasd",
+  "avatar_url": "https://imgb.ifunny.co/images/74fb9a0465187697a14ad1a3c4ba265700b7f3dd21f5558767738ee55bb61306_1.webp",
+  "name": "time legal",
+  "invite_code": "87cfrs",
+  "id": "hjslohsv31l",
+  "members": [
+    {
+      "id": "963124227911860264",
+      "permission": 2,
+      "joined_at": "2023-12-17T13:57:33.462Z"
+    },
+    {
+      "id": "905961240990457876",
+      "permission": 0,
+      "joined_at": "2023-12-17T13:57:33.462Z"
+    },
+    {
+      "id": "485801281621852175",
+      "permission": 0,
+      "joined_at": "2023-12-17T13:57:33.462Z"
+    },
+    {
+      "id": "1046844921530818630",
+      "permission": 0,
+      "joined_at": "2023-12-17T13:57:33.462Z"
+    },
+    {
+      "id": "955095844275781693",
+      "permission": 2,
+      "joined_at": "2023-12-17T13:50:19.441Z"
+    },
+    {
+      "id": "943852777568874546",
+      "permission": 0,
+      "joined_at": "2024-08-18T19:06:49.294Z"
+    },
+    {
+      "id": "1127031830281977876",
+      "permission": 1,
+      "joined_at": "2024-08-18T19:06:49.294Z"
+    }
+  ],
+  "created_at": "2023-12-17T13:57:33.462Z"
+},
+{
+  "_id": {
+    "$oid": "65808640f31414ea59b3f15d"
+  },
+  "bots_id": [],
+  "avatar_url": "https://hi.com",
+  "name": "some",
+  "invite_code": "2ayjkz",
+  "id": "7g38e2arfbv",
+  "members": [
+    {
+      "id": "963124227911860264",
+      "permission": 2,
+      "joined_at": "2023-12-18T17:49:50.844Z"
+    }
+  ],
+  "created_at": "2023-12-18T17:49:50.844Z"
+},
+{
+  "_id": {
+    "$oid": "657a177987ccb35bfe1d080a"
+  },
+  "bots_id": [],
+  "description": "um time",
+  "avatar_url": "https://i.ytimg.com/vi/RAl_rc0GYO8/mqdefault.jpg",
+  "name": "Time",
+  "invite_code": "8er6h2",
+  "id": "ij5nett84z",
+  "members": [
+    {
+      "id": "1046844921530818630",
+      "permission": 2
+    }
+  ],
+  "created_at": "2023-12-16T00:23:44.373Z"
+},
+{
+  "_id": {
+    "$oid": "65808be00a42a21f2c2119e1"
+  },
+  "bots_id": [],
+  "avatar_url": "https://hi.com",
+  "name": "test",
+  "invite_code": "wccbwq",
+  "id": "1s7tjpjqu7e",
+  "members": [
+    {
+      "id": "963124227911860264",
+      "permission": 2,
+      "joined_at": "2023-12-18T17:53:30.941Z"
+    }
+  ],
+  "created_at": "2023-12-18T17:53:30.941Z"
+},
+{
+  "_id": {
+    "$oid": "66cbcf11c4a7d7d1ea6bd7ad"
+  },
+  "bots_id": [],
+  "description": "fumem makonha",
+  "avatar_url": "https://i.pinimg.com/564x/66/8e/39/668e39b31aeeb4130278924f117fb1c9.jpg",
+  "name": "Fumem Makonha",
+  "invite_code": "dsjkl2",
+  "id": "kfldskf12",
+  "members": [
+    {
+      "id": "955095844275781693",
+      "permission": 0
+    }
+  ],
+  "created_at": "2023-12-16T00:23:44.373Z"
+},
+{
+  "_id": {
+    "$oid": "657cb5db4cea39f22c688f04"
+  },
+  "bots_id": [
+    "1185238832115876011"
+  ],
+  "description": "Melhor Time do site :3",
+  "avatar_url": "https://media.discordapp.net/attachments/1170828489188982805/1185316032143949824/31_Sem_Titulo_20231215172038.png?ex=658f2a94&is=657cb594&hm=60defd3bec7eb1540e66d01a291d141bd0f01c1bd9b814b7559c21ec2bf36767&=&format=webp&quality=lossless&width=400&height=400",
+  "name": "Milk Team",
+  "invite_code": "as1nux",
+  "id": "e8flxlr3gd",
+  "members": [
+    {
+      "id": "1142936214744354896",
+      "permission": 2,
+      "joined_at": "2023-12-17T13:50:19.441Z"
+    },
+    {
+      "id": "702325941849948264",
+      "permission": 0,
+      "joined_at": "2023-12-17T13:50:19.441Z"
+    },
+    {
+      "id": "1102308379872985168",
+      "permission": 1,
+      "joined_at": "2024-01-12T20:10:55.860Z"
+    }
+  ],
+  "created_at": "2023-12-16T00:23:44.423Z"
+}]

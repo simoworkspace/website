@@ -21,40 +21,44 @@ import { CreateTeamPage } from "../pages/Team/CreateTeam";
 import { TeamPage } from "../pages/Team/Team";
 import { ManageTeamPage } from "../pages/Team/ManageTeam";
 import { InvitePage } from "../pages/Team/Invite";
-import { Auth } from "../components/Mixed/Auth";
 import { Login } from "../pages/Login/Login";
 
 function App() {
-    const { color } = useContext(ThemeContext);
+	const { color } = useContext(ThemeContext);
 
-    return (
-        <main className={`xl:no-scrollbar xlr:h-1 flex flex-col items-center overflow-x-hidden min-h-screen ${appColor[color]} bg-fixed scrollbar-track-neutral-900 scrollbar-thin`}>
-            <Header/>
-            <section className="flex flex-1 flex-col">
-                <Routes>
-                    <Route path="/testes" element={<Tests />} />
-                    <Route path="/bot/:botid" element={<Bot />} />
-                    <Route path="/vote/:botid" element={<Vote />} />
-                    <Route path="/" element={<Bots />} />
-                    <Route path="/search" element={<Search />} />
-                    <Route path="/notifications" element={<NotificationsPage />} />
-                    <Route path="/themes" element={<ThemesPage />} />
-                    <Route path="/addbot" element={<Auth><Addbot /></Auth>} />
-                    <Route path="/user/:userid" element={<User />} />
-                    <Route path="/dashboard" element={<Auth><Dashboard /></Auth>} />
-                    <Route path="/dashboard/edit/:botId" element={<Auth><DashboardEditPage /></Auth>} />
-                    <Route path="/team/create" element={<Auth><CreateTeamPage /></Auth>} />
-                    <Route path="/team/:teamId" element={<TeamPage />} />
-                    <Route path="/team/:teamId/invite/:hash" element={<InvitePage />} />
-                    <Route path="/team/manage/:teamId" element={<Auth><ManageTeamPage /></Auth>} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-                <Mobilemenu />
-            </section>
-            <Footer />
-        </main>
-    );
+	return (
+		<main
+			className={`xl:no-scrollbar xlr:h-1 flex flex-col items-center overflow-x-hidden min-h-screen ${appColor[color]} bg-fixed scrollbar-track-neutral-900 scrollbar-thin`}
+		>
+			<Header />
+			<section className="flex flex-1 flex-col">
+				<Routes>
+					<Route path="/testes" element={<Tests />} />
+					<Route path="/bot/:botid" element={<Bot />} />
+					<Route path="/vote/:botid" element={<Vote />} />
+					<Route path="/" element={<Bots />} />
+					<Route path="/search" element={<Search />} />
+					<Route path="/notifications" element={<NotificationsPage />} />
+					<Route path="/themes" element={<ThemesPage />} />
+					<Route path="/addbot" element={<Addbot />} />
+					<Route path="/user/:userid" element={<User />} />
+					<Route path="/dashboard" element={<Dashboard />} />
+					<Route
+						path="/dashboard/edit/:botId"
+						element={<DashboardEditPage />}
+					/>
+					<Route path="/team/create" element={<CreateTeamPage />} />
+					<Route path="/team/:teamId" element={<TeamPage />} />
+					<Route path="/team/:teamId/invite/:hash" element={<InvitePage />} />
+					<Route path="/team/manage/:teamId" element={<ManageTeamPage />} />
+					<Route path="/login" element={<Login />} />
+					<Route path="*" element={<NotFound />} />
+				</Routes>
+				<Mobilemenu />
+			</section>
+			<Footer />
+		</main>
+	);
 }
 
 export default App;

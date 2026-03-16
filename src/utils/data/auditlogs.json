@@ -1,0 +1,1574 @@
+[{
+  "_id": {
+    "$oid": "656f4071ec03edf314a77dc7"
+  },
+  "team_id": "5d5lfnca7nf",
+  "entries": []
+},
+{
+  "_id": {
+    "$oid": "657f0ad5a8c55f6153b4d21e"
+  },
+  "team_id": "hjslohsv31l",
+  "entries": [
+    {
+      "executor_id": "905961240990457876",
+      "action_type": 0,
+      "target_id": "905961240990457876",
+      "changes": [],
+      "id": "kmxohv",
+      "created_at": "2023-12-17T14:51:33.295Z"
+    },
+    {
+      "executor_id": "485801281621852175",
+      "action_type": 0,
+      "target_id": "485801281621852175",
+      "changes": [],
+      "id": "r6yxt7",
+      "created_at": "2023-12-17T14:51:51.948Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 0,
+      "target_id": "955095844275781693",
+      "changes": [],
+      "id": "vkpji0",
+      "created_at": "2023-12-17T14:52:19.145Z"
+    },
+    {
+      "executor_id": "1046844921530818630",
+      "action_type": 0,
+      "target_id": "1046844921530818630",
+      "changes": [],
+      "id": "dd0h0c",
+      "created_at": "2023-12-17T14:56:11.072Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 8,
+      "target_id": null,
+      "changes": [],
+      "id": "oimzxt",
+      "created_at": "2023-12-17T15:05:27.883Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 0,
+      "target_id": "955095844275781693",
+      "changes": [],
+      "id": "v6lkm1",
+      "created_at": "2023-12-17T15:08:29.534Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 8,
+      "target_id": null,
+      "changes": [],
+      "id": "ix2lxf",
+      "created_at": "2023-12-17T15:06:06.936Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 0,
+      "target_id": "955095844275781693",
+      "changes": [],
+      "id": "zyb83m",
+      "created_at": "2023-12-17T15:06:20.512Z"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "65738304e930d0459f2d632c"
+  },
+  "team_id": "cl48qb2gapb",
+  "entries": [
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 0,
+      "target_id": "955095844275781693",
+      "changes": [],
+      "id": "7m51bw",
+      "created_at": "2023-12-08T20:59:14.655Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 0,
+      "target_id": "963124227911860264",
+      "changes": [],
+      "id": "agbjhb",
+      "created_at": "2023-12-08T20:59:35.296Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 8,
+      "changes": [],
+      "id": "t43h4w",
+      "created_at": "2023-12-18T17:28:41.491Z"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "657a17fb87ccb35bfe1d0839"
+  },
+  "team_id": "90a87iyr9wi",
+  "entries": []
+},
+{
+  "_id": "1s7tjpjqu7e",
+  "entries": [
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "name",
+          "old_value": "some",
+          "new_value": "test"
+        }
+      ],
+      "id": "27kr7p",
+      "created_at": "2023-12-18T18:32:55.527Z"
+    }
+  ]
+},
+{
+  "_id": "7oic8awsap9",
+  "entries": [
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "ck7832",
+          "new_value": "047jgv"
+        }
+      ],
+      "id": "b2babu",
+      "created_at": "2024-01-11T18:03:54.277Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "047jgv",
+          "new_value": "au8q14"
+        }
+      ],
+      "id": "mz4qd7",
+      "created_at": "2024-01-11T18:03:54.428Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "au8q14",
+          "new_value": "unr2mk"
+        }
+      ],
+      "id": "1nstwh",
+      "created_at": "2024-01-11T18:03:54.688Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "unr2mk",
+          "new_value": "udyhod"
+        }
+      ],
+      "id": "2zfdl1",
+      "created_at": "2024-01-11T18:03:54.782Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "udyhod",
+          "new_value": "eo63da"
+        }
+      ],
+      "id": "skl4nn",
+      "created_at": "2024-01-11T18:03:54.959Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "eo63da",
+          "new_value": "durxtr"
+        }
+      ],
+      "id": "y22mvo",
+      "created_at": "2024-01-11T18:03:55.127Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "durxtr",
+          "new_value": "thvqy9"
+        }
+      ],
+      "id": "m8qbll",
+      "created_at": "2024-01-11T18:03:55.363Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "thvqy9",
+          "new_value": "87g85s"
+        }
+      ],
+      "id": "wmc4ew",
+      "created_at": "2024-01-11T18:03:55.529Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "87g85s",
+          "new_value": "3fymjw"
+        }
+      ],
+      "id": "q5l3sq",
+      "created_at": "2024-01-11T18:03:55.797Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "3fymjw",
+          "new_value": "d057aq"
+        }
+      ],
+      "id": "7irmju",
+      "created_at": "2024-01-11T18:03:55.979Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "d057aq",
+          "new_value": "jj82at"
+        }
+      ],
+      "id": "tgavrd",
+      "created_at": "2024-01-11T18:03:56.131Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "jj82at",
+          "new_value": "fr018h"
+        }
+      ],
+      "id": "b1wmm9",
+      "created_at": "2024-01-11T18:03:56.234Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "fr018h",
+          "new_value": "lb8u1b"
+        }
+      ],
+      "id": "ewb0o7",
+      "created_at": "2024-01-11T18:03:56.319Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "lb8u1b",
+          "new_value": "yn9hke"
+        }
+      ],
+      "id": "g7khsz",
+      "created_at": "2024-01-11T18:03:56.421Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "yn9hke",
+          "new_value": "zz7z5o"
+        }
+      ],
+      "id": "v7lwvh",
+      "created_at": "2024-01-11T18:03:56.579Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "zz7z5o",
+          "new_value": "m2jg5f"
+        }
+      ],
+      "id": "p261bb",
+      "created_at": "2024-01-11T18:03:56.762Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "m2jg5f",
+          "new_value": "kjs941"
+        }
+      ],
+      "id": "joz8gv",
+      "created_at": "2024-01-11T18:03:56.935Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "kjs941",
+          "new_value": "tbfmx3"
+        }
+      ],
+      "id": "1j5jvz",
+      "created_at": "2024-01-11T18:03:57.030Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "tbfmx3",
+          "new_value": "lhv4mq"
+        }
+      ],
+      "id": "bf3t2s",
+      "created_at": "2024-01-11T18:03:57.223Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "lhv4mq",
+          "new_value": "aw858c"
+        }
+      ],
+      "id": "xh5he7",
+      "created_at": "2024-01-11T18:03:57.387Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "aw858c",
+          "new_value": "2bc2r4"
+        }
+      ],
+      "id": "aht572",
+      "created_at": "2024-01-11T18:03:57.564Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "2bc2r4",
+          "new_value": "smlikf"
+        }
+      ],
+      "id": "8loxu0",
+      "created_at": "2024-01-11T18:03:57.663Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "smlikf",
+          "new_value": "vkxbw6"
+        }
+      ],
+      "id": "dk1pxw",
+      "created_at": "2024-01-11T18:03:57.762Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "vkxbw6",
+          "new_value": "j04t81"
+        }
+      ],
+      "id": "tozlt9",
+      "created_at": "2024-01-11T18:03:57.923Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "j04t81",
+          "new_value": "wbn8o7"
+        }
+      ],
+      "id": "eu1xbd",
+      "created_at": "2024-01-11T18:03:58.108Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "wbn8o7",
+          "new_value": "hdcc9v"
+        }
+      ],
+      "id": "dameob",
+      "created_at": "2024-01-11T18:03:58.363Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 1,
+      "target_id": "1046844921530818630",
+      "changes": [],
+      "reason": null,
+      "id": "zyngru",
+      "created_at": "2024-01-12T22:22:17.333Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "hdcc9v",
+          "new_value": "302pm5"
+        }
+      ],
+      "id": "geeoqm",
+      "created_at": "2024-01-12T22:23:45.788Z"
+    },
+    {
+      "executor_id": "915677756958863372",
+      "action_type": 0,
+      "target_id": "915677756958863372",
+      "changes": [],
+      "id": "04n5ye",
+      "created_at": "2024-02-05T17:00:05.793Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "915677756958863372",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "reason": null,
+      "id": "8li0zk",
+      "created_at": "2024-02-05T17:02:01.278Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "302pm5",
+          "new_value": "9mhott"
+        }
+      ],
+      "id": "auu5vr",
+      "created_at": "2024-02-08T02:45:53.717Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "9mhott",
+          "new_value": "ai37il"
+        }
+      ],
+      "id": "p98ut7",
+      "created_at": "2024-02-08T02:45:59.420Z"
+    },
+    {
+      "executor_id": "1146604611789135933",
+      "action_type": 0,
+      "target_id": "1146604611789135933",
+      "changes": [],
+      "id": "8bmebf",
+      "created_at": "2024-02-08T02:50:57.987Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "1146604611789135933",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "reason": null,
+      "id": "gbuxhk",
+      "created_at": "2024-02-08T02:52:00.808Z"
+    },
+    {
+      "executor_id": "532661648494952459",
+      "action_type": 0,
+      "target_id": "532661648494952459",
+      "changes": [],
+      "id": "pejlm1",
+      "created_at": "2024-02-15T20:55:25.675Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "532661648494952459",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "reason": null,
+      "id": "t209zn",
+      "created_at": "2024-02-15T20:56:02.036Z"
+    },
+    {
+      "executor_id": "532661648494952459",
+      "action_type": 1,
+      "target_id": "498013966740619264",
+      "changes": [],
+      "reason": null,
+      "id": "3u1x9t",
+      "created_at": "2024-02-15T20:57:22.308Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 1,
+      "target_id": "915677756958863372",
+      "changes": [],
+      "reason": null,
+      "id": "hw3e09",
+      "created_at": "2024-05-29T21:26:05.427Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "ai37il",
+          "new_value": "uxk1qq"
+        }
+      ],
+      "id": "0xyus1",
+      "created_at": "2024-05-29T21:26:11.359Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "uxk1qq",
+          "new_value": "zwtvzr"
+        }
+      ],
+      "id": "y9qqsz",
+      "created_at": "2024-05-29T21:26:13.746Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "zwtvzr",
+          "new_value": "yftjoa"
+        }
+      ],
+      "id": "9ydgp2",
+      "created_at": "2024-05-29T21:26:13.927Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "yftjoa",
+          "new_value": "1h1rab"
+        }
+      ],
+      "id": "czca50",
+      "created_at": "2024-05-29T21:26:14.171Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "1h1rab",
+          "new_value": "7wngrp"
+        }
+      ],
+      "id": "p86up1",
+      "created_at": "2024-05-29T21:26:14.367Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "7wngrp",
+          "new_value": "c2zjt2"
+        }
+      ],
+      "id": "hbl2u3",
+      "created_at": "2024-05-29T21:26:14.528Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "c2zjt2",
+          "new_value": "u6amnu"
+        }
+      ],
+      "id": "3s1j00",
+      "created_at": "2024-05-29T21:26:14.683Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "u6amnu",
+          "new_value": "ynzl2d"
+        }
+      ],
+      "id": "96p0bk",
+      "created_at": "2024-05-29T21:26:14.868Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "ynzl2d",
+          "new_value": "kaylp4"
+        }
+      ],
+      "id": "kvsed5",
+      "created_at": "2024-05-29T21:26:15.026Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 1,
+      "target_id": "963124227911860264",
+      "changes": [],
+      "reason": null,
+      "id": "z7l40p",
+      "created_at": "2024-06-26T01:41:53.674Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 1,
+      "target_id": "532661648494952459",
+      "changes": [],
+      "reason": null,
+      "id": "wbt54q",
+      "created_at": "2024-08-25T21:19:20.599Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "description",
+          "old_value": "meu time é legal e bonito",
+          "new_value": "meu time é legal e bonitod"
+        }
+      ],
+      "id": "u958jy",
+      "created_at": "2024-08-25T21:19:42.067Z"
+    }
+  ]
+},
+{
+  "_id": "hjslohsv31l",
+  "entries": [
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "1046844921530818630",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "hdd9zv",
+      "created_at": "2023-12-19T17:32:26.432Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "485801281621852175",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 0,
+          "new_value": 1
+        }
+      ],
+      "reason": "hurt my feelings",
+      "id": "3rvrzw",
+      "created_at": "2023-12-19T19:01:50.185Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "485801281621852175",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "reason": null,
+      "id": "090mee",
+      "created_at": "2024-05-29T21:32:10.189Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "avatar_url",
+          "old_value": "https://pornhub.com",
+          "new_value": "https://imgb.ifunny.co/images/74fb9a0465187697a14ad1a3c4ba265700b7f3dd21f5558767738ee55bb61306_1.webp"
+        },
+        {
+          "changed_key": "name",
+          "old_value": "Time de 25 mbrs",
+          "new_value": "time legal"
+        }
+      ],
+      "id": "qj33gn",
+      "created_at": "2024-05-30T02:00:12.173Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "905961240990457876",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "reason": null,
+      "id": "e544rz",
+      "created_at": "2024-06-26T01:39:58.806Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "b8yki5",
+          "new_value": "87cfrs"
+        }
+      ],
+      "id": "vegp7i",
+      "created_at": "2024-08-18T19:10:00.717Z"
+    },
+    {
+      "executor_id": "943852777568874546",
+      "action_type": 0,
+      "target_id": "943852777568874546",
+      "changes": [],
+      "id": "wxds4b",
+      "created_at": "2024-08-18T19:12:49.706Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "943852777568874546",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "reason": null,
+      "id": "2osxqb",
+      "created_at": "2024-08-18T19:13:49.997Z"
+    },
+    {
+      "executor_id": "943852777568874546",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "description",
+          "old_value": "alguma desc",
+          "new_value": "eu alterei essa descrissao"
+        }
+      ],
+      "id": "34bwdt",
+      "created_at": "2024-08-18T19:14:47.048Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "description",
+          "old_value": "eu alterei essa descrissao",
+          "new_value": "alguma descsdadsdsasadasd"
+        }
+      ],
+      "id": "j2osur",
+      "created_at": "2024-08-18T19:15:00.511Z"
+    },
+    {
+      "executor_id": "1127031830281977876",
+      "action_type": 0,
+      "target_id": "1127031830281977876",
+      "changes": [],
+      "id": "o58i8d",
+      "created_at": "2024-08-18T19:17:05.453Z"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "657a177987ccb35bfe1d080c"
+  },
+  "team_id": "ij5nett84z",
+  "entries": []
+},
+{
+  "_id": "5d5lfnca7nf",
+  "entries": [
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "vanity_url",
+          "old_value": {
+            "code": "teste2"
+          },
+          "new_value": {
+            "code": "abc"
+          }
+        }
+      ],
+      "id": "jxmt1g",
+      "created_at": "2023-12-19T15:10:36.565Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "vanity_url",
+          "old_value": {
+            "code": "abc"
+          },
+          "new_value": {
+            "code": "cba",
+            "uses": 1
+          }
+        }
+      ],
+      "id": "fhd1e6",
+      "created_at": "2023-12-19T15:10:57.020Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 0,
+      "target_id": "955095844275781693",
+      "changes": [],
+      "id": "dhplwe",
+      "created_at": "2023-12-19T15:11:43.999Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 8,
+      "changes": [],
+      "id": "6k1eow",
+      "created_at": "2023-12-19T15:15:26.646Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "vanity_url",
+          "old_value": {
+            "code": "cba",
+            "uses": {
+              "$inc": 1
+            }
+          },
+          "new_value": {
+            "code": "abc",
+            "uses": 1
+          }
+        }
+      ],
+      "id": "k8ktug",
+      "created_at": "2023-12-19T15:18:07.084Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 0,
+      "target_id": "955095844275781693",
+      "changes": [],
+      "id": "g2qrxi",
+      "created_at": "2023-12-19T15:18:42.176Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "description",
+          "old_value": "Python Hub",
+          "new_value": "🦀🦀🦀"
+        }
+      ],
+      "id": "nxd9vd",
+      "created_at": "2023-12-22T21:49:44.654Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "banner_url",
+          "old_value": null,
+          "new_value": "https://suck.com"
+        }
+      ],
+      "id": "tqarmm",
+      "created_at": "2023-12-23T22:25:35.582Z"
+    }
+  ]
+},
+{
+  "_id": "e8flxlr3gd",
+  "entries": [
+    {
+      "executor_id": "1142936214744354896",
+      "action_type": 1,
+      "target_id": "1136322824919847096",
+      "changes": [],
+      "id": "eh4q27",
+      "created_at": "2023-12-21T13:57:22.728Z"
+    },
+    {
+      "executor_id": "1142936214744354896",
+      "action_type": 1,
+      "target_id": "905961240990457876",
+      "changes": [],
+      "reason": null,
+      "id": "m10jjt",
+      "created_at": "2024-01-12T20:38:49.086Z"
+    },
+    {
+      "executor_id": "1102308379872985168",
+      "action_type": 0,
+      "target_id": "1102308379872985168",
+      "changes": [],
+      "id": "uv82tc",
+      "created_at": "2024-01-12T20:39:08.245Z"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "65707af9518cec2f0f9675e1"
+  },
+  "team_id": "7oic8awsap9",
+  "entries": [
+    {
+      "executor_id": "1057354767111831623",
+      "action_type": 0,
+      "target_id": "1057354767111831623",
+      "changes": [],
+      "id": "07z9xf",
+      "created_at": "2023-12-09T22:33:21.102Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "1057354767111831623",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "2l5oiu",
+      "created_at": "2023-12-09T22:40:09.233Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 0,
+      "target_id": "963124227911860264",
+      "changes": [],
+      "id": "1uro7z",
+      "created_at": "2023-12-10T15:10:17.974Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "963124227911860264",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "ghauxf",
+      "created_at": "2023-12-10T15:11:24.614Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "1057354767111831623",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 0,
+          "new_value": 1
+        }
+      ],
+      "id": "tah5m2",
+      "created_at": "2023-12-11T20:12:07.589Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "498013966740619264",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "7z3mqz",
+      "created_at": "2023-12-13T18:24:20.753Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 2,
+      "target_id": "1057354767111831623",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "ewasd4",
+      "created_at": "2023-12-15T17:00:22.302Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "498013966740619264",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 0,
+          "new_value": 1
+        }
+      ],
+      "id": "l6157y",
+      "created_at": "2023-12-15T17:00:33.697Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "498013966740619264",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "hb17ih",
+      "created_at": "2023-12-15T19:18:45.355Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "963124227911860264",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 0,
+          "new_value": 1
+        }
+      ],
+      "id": "oqnv0f",
+      "created_at": "2023-12-15T19:18:47.339Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "963124227911860264",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "mbbg39",
+      "created_at": "2023-12-15T19:18:48.538Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "1057354767111831623",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 0,
+          "new_value": 1
+        }
+      ],
+      "id": "mwakep",
+      "created_at": "2023-12-15T19:18:49.410Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "498013966740619264",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 0,
+          "new_value": 1
+        }
+      ],
+      "id": "0qctkj",
+      "created_at": "2023-12-15T19:18:50.154Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 7,
+      "changes": [
+        {
+          "changed_key": "invite_code",
+          "old_value": "dty2v7",
+          "new_value": "8axfrq"
+        }
+      ],
+      "id": "tn199k",
+      "created_at": "2023-12-18T14:37:05.981Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "avatar_url",
+          "old_value": "https://media2.giphy.com/media/MDJ9IbxxvDUQM/200w.webp?cid=ecf05e4746f6w9wyopiou5j5gwan3b8ei2mgarpy1ynojy6a&ep=v1_gifs_search&rid=200w.webp&ct=g",
+          "new_value": "https://media.discordapp.net/attachments/988397828063772762/1186332210358394880/FrmPFYsXsAEDHiD.png?ex=6592dcf7&is=658067f7&hm=970ea045020ce13530a63a54779caf8294b5fb0447c76f3300f94c38660196a9&=&format=webp&quality=lossless"
+        }
+      ],
+      "id": "uagx0p",
+      "created_at": "2023-12-18T15:41:25.406Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "name",
+          "old_value": "Simo Team 🦥",
+          "new_value": "Busco sexo "
+        }
+      ],
+      "id": "zb0ndd",
+      "created_at": "2023-12-18T17:34:08.336Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "name",
+          "old_value": "Busco sexo ",
+          "new_value": "Busco sexo 😳"
+        }
+      ],
+      "id": "o4fbiu",
+      "created_at": "2023-12-18T17:34:26.049Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "name",
+          "old_value": "Busco sexo 😳",
+          "new_value": "Busco sexo 😼"
+        }
+      ],
+      "id": "925qda",
+      "created_at": "2023-12-18T17:34:43.211Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "name",
+          "old_value": "Busco sexo 😼",
+          "new_value": "Busco sexo 😽"
+        }
+      ],
+      "id": "mjloef",
+      "created_at": "2023-12-18T17:34:54.823Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 4,
+      "changes": [
+        {
+          "changed_key": "name",
+          "old_value": "Busco sexo 😽",
+          "new_value": "Busco sexo 😽🕴"
+        }
+      ],
+      "id": "0y3tfm",
+      "created_at": "2023-12-18T17:35:00.826Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "1057354767111831623",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "8i0un6",
+      "created_at": "2023-12-18T22:14:08.131Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 2,
+      "target_id": "498013966740619264",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "antg4j",
+      "created_at": "2023-12-18T22:26:11.256Z"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "657cb5db4cea39f22c688f06"
+  },
+  "team_id": "e8flxlr3gd",
+  "entries": [
+    {
+      "executor_id": "702325941849948264",
+      "action_type": 0,
+      "target_id": "702325941849948264",
+      "changes": [],
+      "id": "kakpy8",
+      "created_at": "2023-12-15T20:26:52.391Z"
+    },
+    {
+      "executor_id": "1136322824919847096",
+      "action_type": 0,
+      "target_id": "1136322824919847096",
+      "changes": [],
+      "id": "kh5s33",
+      "created_at": "2023-12-15T20:27:32.890Z"
+    },
+    {
+      "executor_id": "1142936214744354896",
+      "action_type": 2,
+      "target_id": "702325941849948264",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "h2gxol",
+      "created_at": "2023-12-15T20:30:24.811Z"
+    },
+    {
+      "executor_id": "1142936214744354896",
+      "action_type": 2,
+      "target_id": "702325941849948264",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 0,
+          "new_value": 1
+        }
+      ],
+      "id": "z3xlc9",
+      "created_at": "2023-12-15T20:30:29.096Z"
+    },
+    {
+      "executor_id": "1142936214744354896",
+      "action_type": 2,
+      "target_id": "702325941849948264",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "jrg1cl",
+      "created_at": "2023-12-15T20:30:32.640Z"
+    },
+    {
+      "executor_id": "1142936214744354896",
+      "action_type": 2,
+      "target_id": "1136322824919847096",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "1dnfo9",
+      "created_at": "2023-12-15T20:30:36.523Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 0,
+      "target_id": "955095844275781693",
+      "changes": [],
+      "id": "7g4iny",
+      "created_at": "2023-12-15T20:34:25.475Z"
+    },
+    {
+      "executor_id": "1142936214744354896",
+      "action_type": 2,
+      "target_id": "955095844275781693",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "u0v8x0",
+      "created_at": "2023-12-15T20:36:32.532Z"
+    },
+    {
+      "executor_id": "905961240990457876",
+      "action_type": 0,
+      "target_id": "905961240990457876",
+      "changes": [],
+      "id": "1sayzc",
+      "created_at": "2023-12-15T20:40:48.976Z"
+    },
+    {
+      "executor_id": "1046844921530818630",
+      "action_type": 0,
+      "target_id": "1046844921530818630",
+      "changes": [],
+      "id": "08g245",
+      "created_at": "2023-12-15T20:43:59.834Z"
+    },
+    {
+      "executor_id": "1142936214744354896",
+      "action_type": 2,
+      "target_id": "905961240990457876",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "bieq0x",
+      "created_at": "2023-12-15T20:44:13.532Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 1,
+      "target_id": "1046844921530818630",
+      "changes": [],
+      "id": "cxmtwe",
+      "created_at": "2023-12-15T20:49:37.981Z"
+    },
+    {
+      "executor_id": "1142936214744354896",
+      "action_type": 1,
+      "target_id": "955095844275781693",
+      "changes": [],
+      "id": "964x6m",
+      "created_at": "2023-12-15T21:33:58.974Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 0,
+      "target_id": "955095844275781693",
+      "changes": [],
+      "id": "bfrd4s",
+      "created_at": "2023-12-15T21:42:52.052Z"
+    },
+    {
+      "executor_id": "1142936214744354896",
+      "action_type": 2,
+      "target_id": "955095844275781693",
+      "changes": [
+        {
+          "changed_key": "permission",
+          "old_value": 1,
+          "new_value": 0
+        }
+      ],
+      "id": "x2ss0s",
+      "created_at": "2023-12-15T21:43:40.500Z"
+    },
+    {
+      "executor_id": "1142936214744354896",
+      "action_type": 1,
+      "target_id": "955095844275781693",
+      "changes": [],
+      "id": "n7gtum",
+      "created_at": "2023-12-15T22:07:24.403Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 0,
+      "target_id": "963124227911860264",
+      "changes": [],
+      "id": "3ngm2a",
+      "created_at": "2023-12-15T23:22:37.986Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 0,
+      "target_id": "963124227911860264",
+      "changes": [],
+      "id": "ea7gh2",
+      "created_at": "2023-12-16T00:10:38.243Z"
+    },
+    {
+      "executor_id": "963124227911860264",
+      "action_type": 0,
+      "target_id": "963124227911860264",
+      "changes": [],
+      "id": "3y6fff",
+      "created_at": "2023-12-16T00:27:38.389Z"
+    },
+    {
+      "executor_id": "955095844275781693",
+      "action_type": 8,
+      "target_id": null,
+      "changes": [],
+      "id": "rso6hl",
+      "created_at": "2023-12-17T14:58:39.329Z"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "657ced854ee2c3fcd1ce5523"
+  },
+  "team_id": "0gje0bwobszk",
+  "entries": []
+}]

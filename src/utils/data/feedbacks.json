@@ -1,0 +1,583 @@
+[{
+  "_id": {
+    "$oid": "6552c6dbab32f44d2abed1e1"
+  },
+  "stars": 4,
+  "author_id": "963124227911860264",
+  "posted_at": "2023-11-14T01:01:15.458Z",
+  "content": "the feedback content",
+  "target_bot_id": "412347257233604609"
+},
+{
+  "_id": {
+    "$oid": "655e8b4b231c7c8c2f33c62d"
+  },
+  "stars": 5,
+  "author_id": "955095844275781693",
+  "posted_at": "2023-11-22T23:14:19.346Z",
+  "content": " ot lekgdsd",
+  "target_bot_id": "1018958083764002919"
+},
+{
+  "_id": {
+    "$oid": "655e9cbff6faa66e794fb0d7"
+  },
+  "stars": 5,
+  "author_id": "905961240990457876",
+  "posted_at": "2023-11-23T00:28:47.126Z",
+  "content": "Legal 👍",
+  "__v": 0,
+  "target_bot_id": "1015096771661279243"
+},
+{
+  "_id": {
+    "$oid": "656b5c7776494cefa7473266"
+  },
+  "stars": 5,
+  "author_id": "905961240990457876",
+  "posted_at": "2023-12-02T16:33:59.240Z",
+  "content": "Legal 👍",
+  "target_bot_id": "1118690191419392012"
+},
+{
+  "_id": {
+    "$oid": "6578e1eef7fe6c8f0fc4d0d5"
+  },
+  "stars": 5,
+  "author_id": "1136322824919847096",
+  "posted_at": "2023-12-12T22:42:54.524Z",
+  "content": "Muito bom várias pessoas aproveitaram",
+  "target_bot_id": "1183238322328440892"
+},
+{
+  "_id": {
+    "$oid": "6578ee99c09dc8b3c2d48104"
+  },
+  "stars": 5,
+  "author_id": "963124227911860264",
+  "posted_at": "2023-12-12T23:36:57.984Z",
+  "content": "🤓",
+  "target_bot_id": "1064594303181131928"
+},
+{
+  "_id": {
+    "$oid": "657dbb394e394356d649499a"
+  },
+  "stars": 3,
+  "author_id": "418088590334230548",
+  "posted_at": "2023-12-16T14:59:05.597Z",
+  "content": "teste pela api",
+  "target_bot_id": "1185238832115876011"
+},
+{
+  "_id": {
+    "$oid": "6580d38b01821caf86cb8997"
+  },
+  "stars": 5,
+  "author_id": "1046844921530818630",
+  "posted_at": "2023-12-18T23:19:39.331Z",
+  "content": "Bot mt foda se é louco",
+  "target_bot_id": "1064594303181131928",
+  "edited": true,
+  "reply_message": {}
+},
+{
+  "_id": {
+    "$oid": "65830dc4a06283313ee5c4bb"
+  },
+  "stars": 5,
+  "author_id": "712823738374291467",
+  "posted_at": "2023-12-20T15:52:36.026Z",
+  "content": "(joinha de pai)\nbot mt bom",
+  "target_bot_id": "1184880557587451925"
+},
+{
+  "_id": {
+    "$oid": "65a19fc74047b98e75cfd4f5"
+  },
+  "stars": 4,
+  "author_id": "1142936214744354896",
+  "posted_at": "2024-01-12T20:23:35.766Z",
+  "content": "Eca, bote de vendas",
+  "target_bot_id": "1091150938263265451"
+},
+{
+  "_id": {
+    "$oid": "65ce77c0fd0cc2351ae27d7b"
+  },
+  "stars": 1,
+  "author_id": "532661648494952459",
+  "posted_at": "2024-02-15T20:44:48.446Z",
+  "content": "Não gostei, tem link de sites pornográficos nos comentários.\n#RoubaMaisLula #VaiBolsonaro #MeComeBolsonaro",
+  "target_bot_id": "1183238322328440892"
+},
+{
+  "_id": {
+    "$oid": "65e0c80e2cb6a45270968dc5"
+  },
+  "stars": 5,
+  "author_id": "652555508246511647",
+  "posted_at": "2024-02-29T18:08:14.486Z",
+  "content": "Hola ",
+  "target_bot_id": "1160784105751986237"
+},
+{
+  "_id": {
+    "$oid": "661b12aa2cb6a4527096cab6"
+  },
+  "stars": 5,
+  "author_id": "1127031830281977876",
+  "posted_at": "2024-04-13T23:18:02.002Z",
+  "content": "teste",
+  "target_bot_id": "884203269818310687"
+},
+{
+  "_id": {
+    "$oid": "66f1ce6cda7d4d748907fd9c"
+  },
+  "stars": 5,
+  "author_id": "785933697479999561",
+  "posted_at": "2024-09-23T20:24:12.215Z",
+  "content": "hbgjgjhj",
+  "target_bot_id": "1026149038560661557"
+},
+{
+  "_id": {
+    "$oid": "65526a4d2363236f1a24b6bb"
+  },
+  "stars": 4,
+  "author_id": "1053131637187149905",
+  "posted_at": "2023-11-13T18:26:21.778Z",
+  "content": "ur mom hot",
+  "target_bot_id": "867483832537186375"
+},
+{
+  "_id": {
+    "$oid": "6553d1d103f2f057d112bfa5"
+  },
+  "stars": 1,
+  "author_id": "1046844921530818630",
+  "posted_at": "2023-11-14T20:00:17.899Z",
+  "content": "Pior bot do discord",
+  "target_bot_id": "504095380166803466"
+},
+{
+  "_id": {
+    "$oid": "656392d2f6faa66e794fbaa6"
+  },
+  "stars": 1,
+  "author_id": "955095844275781693",
+  "posted_at": "2023-11-26T18:47:46.504Z",
+  "content": "cvbn",
+  "edited": true,
+  "reply_message": {
+    "content": "oi",
+    "posted_at": "2023-11-26T18:45:28.338Z"
+  },
+  "target_bot_id": "1114916938552987708"
+},
+{
+  "_id": {
+    "$oid": "6564f34cf6faa66e794fbd4c"
+  },
+  "stars": 1,
+  "author_id": "481534167893540874",
+  "posted_at": "2023-11-27T19:51:40.496Z",
+  "content": "perfeito\n",
+  "target_bot_id": "884203269818310687"
+},
+{
+  "_id": {
+    "$oid": "6568b6aed532928f957cca55"
+  },
+  "stars": 5,
+  "author_id": "955095844275781693",
+  "posted_at": "2023-11-30T16:22:06.985Z",
+  "content": "bot muito bom daskldfalj240gw0gjt09",
+  "target_bot_id": "1117462737023418541",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "656b5cdf76494cefa74732be"
+  },
+  "stars": 5,
+  "author_id": "905961240990457876",
+  "posted_at": "2023-12-02T16:35:43.518Z",
+  "content": "Adorei 👍",
+  "target_bot_id": "1114916938552987708"
+},
+{
+  "_id": {
+    "$oid": "6578ecfac09dc8b3c2d480bd"
+  },
+  "stars": 1,
+  "author_id": "1136322824919847096",
+  "posted_at": "2023-12-12T23:30:02.831Z",
+  "content": "Muito ruim,me comeu do nd sem eu mandar ",
+  "target_bot_id": "1064594303181131928"
+},
+{
+  "_id": {
+    "$oid": "65798562c09dc8b3c2d4823f"
+  },
+  "stars": 5,
+  "author_id": "905961240990457876",
+  "posted_at": "2023-12-13T10:20:18.817Z",
+  "content": "Gostei 👍",
+  "target_bot_id": "1149531400119267368"
+},
+{
+  "_id": {
+    "$oid": "657cf144210ab487d22d7cfc"
+  },
+  "stars": 3,
+  "author_id": "963124227911860264",
+  "posted_at": "2023-12-16T00:37:24.841Z",
+  "content": "test 2",
+  "target_bot_id": "1047592810301358151",
+  "edited": true
+},
+{
+  "_id": {
+    "$oid": "6580ceba01821caf86cb88fd"
+  },
+  "stars": 5,
+  "author_id": "1142936214744354896",
+  "posted_at": "2023-12-18T22:59:06.691Z",
+  "content": "Tô amando!",
+  "target_bot_id": "1185238832115876011"
+},
+{
+  "_id": {
+    "$oid": "658303cea06283313ee5c40f"
+  },
+  "stars": 5,
+  "author_id": "702325941849948264",
+  "posted_at": "2023-12-20T15:10:06.054Z",
+  "content": "Muito bom esse bot oficial do site",
+  "target_bot_id": "1186367095131361320"
+},
+{
+  "_id": {
+    "$oid": "65a1a2b84047b98e75cfd67d"
+  },
+  "stars": 5,
+  "author_id": "1102308379872985168",
+  "posted_at": "2024-01-12T20:36:08.671Z",
+  "content": "Muito bom o bot 👍",
+  "target_bot_id": "1185238832115876011"
+},
+{
+  "_id": {
+    "$oid": "667b718d0b9e2dc7f5f90874"
+  },
+  "stars": 5,
+  "author_id": "955095844275781693",
+  "posted_at": "2024-06-26T01:40:29.449Z",
+  "content": "SASSSaAS",
+  "target_bot_id": "884203269818310687"
+},
+{
+  "_id": {
+    "$oid": "66c248efda7d4d748907f8d8"
+  },
+  "stars": 5,
+  "author_id": "955095844275781693",
+  "posted_at": "2024-08-18T19:18:07.212Z",
+  "content": "oi",
+  "target_bot_id": "1273763306682974239"
+},
+{
+  "_id": {
+    "$oid": "6553d0c103f2f057d112bf81"
+  },
+  "stars": 1,
+  "author_id": "1046844921530818630",
+  "posted_at": "2023-11-14T19:55:45.199Z",
+  "content": "1+1=2",
+  "target_bot_id": "1166885109471907840"
+},
+{
+  "_id": {
+    "$oid": "6553d2e703f2f057d112c038"
+  },
+  "stars": 5,
+  "author_id": "769969803526930504",
+  "posted_at": "2023-11-14T20:04:55.409Z",
+  "content": "Helper é vida kkkk",
+  "target_bot_id": "1015096771661279243"
+},
+{
+  "_id": {
+    "$oid": "65564e7b20dcb968d014a183"
+  },
+  "stars": 5,
+  "author_id": "498013966740619264",
+  "posted_at": "2023-11-16T17:16:43.406Z",
+  "content": "dsadnhio2hoi",
+  "target_bot_id": "1091150938263265451"
+},
+{
+  "_id": {
+    "$oid": "656b5d6376494cefa74732fb"
+  },
+  "stars": 5,
+  "author_id": "905961240990457876",
+  "posted_at": "2023-12-02T16:37:55.781Z",
+  "content": "Djejjakrkej",
+  "target_bot_id": "1091150938263265451"
+},
+{
+  "_id": {
+    "$oid": "6570e6f6627caf77a954ab49"
+  },
+  "stars": 1,
+  "author_id": "963124227911860264",
+  "posted_at": "2023-12-06T21:26:14.553Z",
+  "content": "sexo",
+  "target_bot_id": "1114916938552987708",
+  "edited": true,
+  "reply_message": {}
+},
+{
+  "_id": {
+    "$oid": "6578e5faf7fe6c8f0fc4d13c"
+  },
+  "stars": 5,
+  "author_id": "905961240990457876",
+  "posted_at": "2023-12-12T23:00:10.301Z",
+  "content": "Real",
+  "target_bot_id": "1183238322328440892"
+},
+{
+  "_id": {
+    "$oid": "6578ecb3c09dc8b3c2d480a9"
+  },
+  "stars": 5,
+  "author_id": "955095844275781693",
+  "posted_at": "2023-12-12T23:28:51.842Z",
+  "content": "bot legal, sem eu, eleé eu",
+  "target_bot_id": "1064594303181131928",
+  "edited": true,
+  "reply_message": {
+    "content": "concordo",
+    "posted_at": "2023-12-17T19:36:14.911Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "657cd2464cea39f22c68940a"
+  },
+  "stars": 5,
+  "author_id": "905961240990457876",
+  "posted_at": "2023-12-15T22:25:10.757Z",
+  "content": "Ótimo 👍",
+  "target_bot_id": "1185238832115876011"
+},
+{
+  "_id": {
+    "$oid": "6580a28401821caf86cb841e"
+  },
+  "stars": 5,
+  "author_id": "702325941849948264",
+  "posted_at": "2023-12-18T19:50:28.875Z",
+  "content": " ",
+  "target_bot_id": "1185238832115876011"
+},
+{
+  "_id": {
+    "$oid": "6580cf0001821caf86cb892b"
+  },
+  "stars": 5,
+  "author_id": "1046844921530818630",
+  "posted_at": "2023-12-18T23:00:16.230Z",
+  "content": "Bot mt foda",
+  "target_bot_id": "1185238832115876011"
+},
+{
+  "_id": {
+    "$oid": "658209d6a06283313ee5bfec"
+  },
+  "stars": 5,
+  "author_id": "1046844921530818630",
+  "posted_at": "2023-12-19T21:23:34.566Z",
+  "content": "Melhor bot possivel, top",
+  "target_bot_id": "1026149038560661557"
+},
+{
+  "_id": {
+    "$oid": "6582fbaba06283313ee5c2f4"
+  },
+  "stars": 5,
+  "author_id": "905961240990457876",
+  "posted_at": "2023-12-20T14:35:23.797Z",
+  "content": "👍",
+  "target_bot_id": "1184880557587451925"
+},
+{
+  "_id": {
+    "$oid": "65537d24bbcf0583fc71ea18"
+  },
+  "stars": 5,
+  "author_id": "955095844275781693",
+  "posted_at": "2023-11-14T13:59:00.773Z",
+  "content": " fgtjngfg",
+  "target_bot_id": "1091150938263265451"
+},
+{
+  "_id": {
+    "$oid": "6553a33e03f2f057d112be70"
+  },
+  "stars": 5,
+  "author_id": "1053131637187149905",
+  "posted_at": "2023-11-14T16:41:34.585Z",
+  "content": "afdnkl",
+  "target_bot_id": "1091150938263265451"
+},
+{
+  "_id": {
+    "$oid": "655fb60fc1dc354cc76fde33"
+  },
+  "stars": 4,
+  "author_id": "955095844275781693",
+  "posted_at": "2023-11-23T20:29:03.126Z",
+  "content": "🤡🤡🤡",
+  "__v": 0,
+  "target_bot_id": "504095380166803466"
+},
+{
+  "_id": {
+    "$oid": "65614fd91d56d0646a1664a3"
+  },
+  "stars": 5,
+  "author_id": "963124227911860264",
+  "posted_at": "2023-11-25T01:37:29.911Z",
+  "content": "Criando feedback pela API",
+  "target_bot_id": "1154572051454099546",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65627636f6faa66e794fb7e5"
+  },
+  "stars": 5,
+  "author_id": "955095844275781693",
+  "posted_at": "2023-11-25T22:33:26.611Z",
+  "content": "bot.bommmm",
+  "__v": 0,
+  "target_bot_id": "1117462737023418541"
+},
+{
+  "_id": {
+    "$oid": "6564f37ff6faa66e794fbd5e"
+  },
+  "stars": 5,
+  "author_id": "481534167893540874",
+  "posted_at": "2023-11-27T19:52:31.656Z",
+  "content": "fgtjngfg",
+  "target_bot_id": "1091150938263265451"
+},
+{
+  "_id": {
+    "$oid": "6568a222ace7fc03eaff59ff"
+  },
+  "stars": 5,
+  "author_id": "955095844275781693",
+  "posted_at": "2023-11-30T14:54:26.516Z",
+  "content": "bot muito bom 👍👍👍👍👍👍👍",
+  "target_bot_id": "1015096771661279243",
+  "__v": 0,
+  "edited": true,
+  "reply_message": {}
+},
+{
+  "_id": {
+    "$oid": "65798426c09dc8b3c2d481cc"
+  },
+  "stars": 5,
+  "author_id": "905961240990457876",
+  "posted_at": "2023-12-13T10:15:02.924Z",
+  "content": "Legal 👍",
+  "target_bot_id": "867483832537186375"
+},
+{
+  "_id": {
+    "$oid": "657a45164cea39f22c688231"
+  },
+  "stars": 5,
+  "author_id": "905961240990457876",
+  "posted_at": "2023-12-13T23:58:14.302Z",
+  "content": "👍",
+  "target_bot_id": "1064594303181131928"
+},
+{
+  "_id": {
+    "$oid": "657cb2b04cea39f22c688e3f"
+  },
+  "stars": 3,
+  "author_id": "963124227911860264",
+  "posted_at": "2023-12-15T20:10:24.691Z",
+  "content": "https://pornhub.com 😳",
+  "target_bot_id": "1183238322328440892"
+},
+{
+  "_id": {
+    "$oid": "657dbd12ddc0e302e23d97bb"
+  },
+  "stars": 5,
+  "author_id": "955095844275781693",
+  "posted_at": "2023-12-16T15:06:58.008Z",
+  "content": "oi",
+  "target_bot_id": "1026149038560661557"
+},
+{
+  "_id": {
+    "$oid": "657e4c23f2448df244d9f7a7"
+  },
+  "stars": 5,
+  "author_id": "1046844921530818630",
+  "posted_at": "2023-12-17T01:17:23.041Z",
+  "content": "melhor bot de economia sem discord.js q eu já fiz",
+  "target_bot_id": "1184880557587451925"
+},
+{
+  "_id": {
+    "$oid": "6580b6cb01821caf86cb84fe"
+  },
+  "stars": 5,
+  "author_id": "1117749265066893393",
+  "posted_at": "2023-12-18T21:16:59.944Z",
+  "content": "Massa",
+  "target_bot_id": "1149531400119267368"
+},
+{
+  "_id": {
+    "$oid": "65a02b3afb57f3d520739bf2"
+  },
+  "stars": 5,
+  "author_id": "955095844275781693",
+  "posted_at": "2024-01-11T17:54:02.799Z",
+  "content": "oi",
+  "target_bot_id": "867483832537186375"
+},
+{
+  "_id": {
+    "$oid": "65a3036dec035053383c1815"
+  },
+  "stars": 5,
+  "author_id": "1169975333269807285",
+  "posted_at": "2024-01-13T21:41:01.734Z",
+  "content": "Parabéns pelo trabalho. Bot brasileiro diferenciado dos demais. O design está incrivel. O funcionamento, fluxo de trabalho para cliente é único; Facilitando qualquer dor de cabeça entre o vendedor e o cliente pelo Discord.",
+  "target_bot_id": "1091150938263265451"
+},
+{
+  "_id": {
+    "$oid": "65c444a1fd0cc2351ae270de"
+  },
+  "stars": 5,
+  "author_id": "1146604611789135933",
+  "posted_at": "2024-02-08T03:04:01.388Z",
+  "content": "meu feedback\n",
+  "target_bot_id": "1128285015420186624"
+}]
